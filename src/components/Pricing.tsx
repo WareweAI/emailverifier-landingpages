@@ -4,6 +4,7 @@ import DiamondSvg from "@/assets/DiamondSvg";
 import TargetWithArrowSvg from "@/assets/TargetWithArrowSvg";
 import BlissSvg from "@/assets/BlissSvg";
 import CheckSvg from "@/assets/CheckSvg";
+import { Button } from "./ui/button";
 
 export default function Pricing() {
   const [volume, setVolume] = useState(10000);
@@ -165,13 +166,13 @@ export default function Pricing() {
           </ul>
 
           <div className="flex flex-col sm:flex-row gap-3 mt-12">
-            <button className="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white 
-            font-medium rounded-md py-2 hover:shadow-lg hover:from-blue-700 hover:to-blue-900 transition duration-300">
-              Buy Credits →
-            </button>
-          </div>
+            <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white 
+            font-medium rounded-md py-3 hover:shadow-lg hover:from-blue-700 hover:to-blue-900 transition duration-300" asChild>
+              <a href="https://app.emailverifier.io/signin">Buy Credits →</a>
+          </Button>
         </div>
       </div>
-    </section>
+    </div>
+    </section >
   );
 }

@@ -80,7 +80,7 @@ export default function OfferBanner(): JSX.Element | null {
       relative transition-all duration-500 
       ${visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
         >
-            <span className="max-w-[95%]">
+            <span className="max-w-[90%] lg:max-w-[95%] text-center lg:text-left">
                 Limited Time Launch Offer: <b>100,000</b> Validation Credits&nbsp;-&nbsp;
                 <b>Just $49</b>
             </span>

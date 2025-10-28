@@ -4,7 +4,8 @@ import { Button } from "./ui/button";
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-white isolate">
-      <div className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-2 items-center relative px-4 lg:px-10 2xl:px-44 py-10 xl:pb-20 xl:pt-10 2xl:py-24">
+      <div className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-2 items-center lg:justify-center 
+      relative px-4 lg:px-10 2xl:px-44 py-10 xl:pb-20 xl:pt-10 2xl:py-24">
         {/* dotted background */}
         <div
           aria-hidden
@@ -17,9 +18,9 @@ export default function Hero() {
         />
 
         {/* LEFT: heading and CTAs */}
-        <div className="flex-1">
+        <div className="flex-1 max-w-2xl">
           {/* top badges */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-center lg:justify-start gap-3">
             <img
               src="/assets/productHunt.svg"
               alt="Product Hunt"
@@ -41,11 +42,11 @@ export default function Hero() {
           </div>
 
           {/* main heading */}
-          <h1 className="text-3xl lg:text-5xl font-bold text-gray-900 leading-tight mt-4">
-            <span className="inline-block mr-3 text-blue-600 align-middle relative" style={{ paddingBottom: 8 }}>
+          <h1 className="text-2xl lg:text-5xl font-bold text-gray-900 leading-tight mt-4 text-center lg:text-left">
+            <span className="inline-block mt-1 lg:mt-0 mr-3 text-blue-600 align-middle relative " style={{ paddingBottom: 8 }}>
               #1
               <svg
-                className="absolute left-0 -bottom-1 w-[45px] lg:w-[59px]"
+                className="absolute left-0 -bottom-1 w-[40px] lg:w-[59px]"
                 width="59"
                 height="8"
                 viewBox="0 0 59 8"
@@ -67,15 +68,16 @@ export default function Hero() {
           </h1>
 
           {/* subtext */}
-          <p className="text-md lg:text-xl text-gray-600 max-w-xl mt-3">
+          <p className="text-md lg:text-xl text-gray-600 max-w-xl mt-3 text-center lg:text-left">
             Clean your email list in seconds. Protect your reputation and make sure your messages reach real people.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-8">
+          <div className="flex flex-col lg:flex-row gap-4 mt-8">
             <Button
               size="lg"
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-700 to-blue-900 text-white px-6 lg:px-16 py-3 hover:shadow-xl transition-shadow duration-300 ease-in-out"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-700 to-blue-900 text-white 
+              px-6 lg:px-16 py-3 hover:shadow-xl transition-shadow duration-300 ease-in-out"
               asChild
             >
               <a href="https://app.emailverifier.io/register">
@@ -86,7 +88,7 @@ export default function Hero() {
           </div>
 
           {/* micro-features row */}
-          <div className="text-sm lg:text-md text-blue-800 mt-5">
+          <div className="text-sm lg:text-md text-blue-800 mt-5 text-center lg:text-left">
             Get
             <span className="font-semibold">&nbsp;100 free verifications</span> - no setup, no credit card, no stress.
           </div>
