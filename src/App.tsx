@@ -18,8 +18,7 @@ import OfferBanner from './components/OfferBanner';
 
 // Home page component
 const HomePage = () => (
-  <main className="min-h-screen">
-  
+  <main className="min-h-screen" id="main-page" role="main">
   <Hero />
   <HowItWorks />
   <Features />
