@@ -1,11 +1,13 @@
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export default function CTA() {
+export default function CTA(): JSX.Element {
   return (
-    <section className="py-20 bg-gray-900 relative isolate">
+    <section className="py-20 bg-gray-900 relative isolate"
+      id="cta" aria-labelledby="cta-heading" role="region">
+
       <div
-        aria-hidden
+        aria-hidden="true"
         className="absolute inset-0 -z-10 pointer-events-none"
         style={{
           backgroundImage:
@@ -14,9 +16,10 @@ export default function CTA() {
           backgroundPosition: "0 0, 0 0",
         }}
       />
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center text-white">
-          <h2 className="text-3xl lg:text-5xl font-semibold mb-5">
+          <h2 id="cta-heading" className="text-3xl lg:text-5xl font-semibold mb-5">
             Ready to <span className='text-blue-600'>Clean Your List?</span>
           </h2>
           <p className="text-xl text-blue-50 mb-12 max-w-2xl mx-auto">
@@ -27,24 +30,29 @@ export default function CTA() {
             <Button size="xs" className="bg-gradient-to-r from-blue-700 to-blue-900
              text-white hover:opacity-90  lg:text-xl px-8 py-3
             transition-opacity duration-300 ease-in font-normal" asChild>
-              <a href="https://app.emailverifier.io/register">
+              <a href="https://app.emailverifier.io/register" target="_blank"
+                rel="noopener noreferrer" aria-label="Try Email Verifier free — register for 100 free verifications">
                 Try It Free - 100 Verifications On Us
-                <ArrowRight className="ml-2 w-5 h-5" />
+                <ArrowRight className="ml-2 w-5 h-5" aria-hidden="true" />
               </a>
             </Button>
           </div>
 
-          <div className="flex flex-wrap justify-center items-center gap-3 text-white">
-            <span className='inline-flex items-center gap-2'>
-              <CheckCircle size={18} /> No setup
-            </span>
-            <span className='inline-flex items-center gap-2'>
-              <CheckCircle size={18} /> No credit card
-            </span>
-            <span className='inline-flex items-center gap-2 font-semibold'>
-              - Just results.
-            </span>
-          </div>
+           <ul className="flex flex-wrap justify-center items-center gap-3 text-white list-none p-0 m-0">
+            <li className="inline-flex items-center gap-2">
+              <CheckCircle size={18} aria-hidden="true" />
+              <span>No setup</span>
+            </li>
+
+            <li className="inline-flex items-center gap-2">
+              <CheckCircle size={18} aria-hidden="true" />
+              <span>No credit card</span>
+            </li>
+
+            <li className="inline-flex items-center gap-2 font-semibold">
+              <span>- Just results.</span>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

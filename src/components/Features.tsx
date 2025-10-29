@@ -1,7 +1,16 @@
 
 import { Shield, Zap, Globe, BarChart3, Lock, Cpu } from 'lucide-react';
 
-const features = [
+type Feature = {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  title: string;
+  description: string;
+  card: string;
+  id: string;
+};
+
+
+const features: Feature[] = [
   {
     icon: Shield,
     title: 'Advanced Validation',
@@ -68,20 +77,20 @@ const features = [
   },
 ];
 
-export default function Features() {
+export default function Features(): JSX.Element {
   return (
-    <section id="features" className="py-20 bg-white">
+    <section id="features" className="py-20 bg-white" aria-labelledby="features-heading" role="region">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <h2 id="features-heading" className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             Powerful Features That Just Work
           </h2>
           <p className='lg:text-xl max-w-2xl mx-auto'>Everything you need to maintain a clean, high-quality email list and improve your delivery rates.</p>
         </div>
 
         {/* Features List */}
-        <div className="flex flex-col gap-16 lg:gap-6 max-w-5xl mx-auto">
+        <div className="flex flex-col gap-16 lg:gap-6 max-w-5xl mx-auto" role="list">
           {features.map((feature, index) => (
             <div
               key={feature.id}
@@ -90,31 +99,35 @@ export default function Features() {
               id={feature.id}
             >
 
-              <div className="lg:w-[55%] flex justify-center">
+              <figure className="lg:w-[55%] flex justify-center">
                 <img
                   src={feature.card}
                   alt={feature.title}
                   className="w-full h-auto"
                   loading='lazy'
+                  width={800}
+                  height={500}
                 />
-              </div>
+                <figcaption className="sr-only">{feature.title} illustration</figcaption>
+              </figure>
 
 
-              <div className="flex-1 flex items-start gap-4  px-2">
+              <article className="flex-1 flex items-start gap-4  px-2" aria-labelledby={`${feature.id}-title`}>
                 <div className="flex items-center justify-center lg:justify-start mb-4">
-                  <span className="p-4 bg-blue-100 rounded-lg text-blue-900">
-                    <feature.icon className="w-6 h-6" />
+                  <span className="p-4 bg-blue-100 rounded-lg text-blue-900" aria-hidden="true">
+                    <feature.icon className="w-6 h-6" aria-hidden="true" focusable="false" />
                   </span>
                 </div>
+
                 <div>
-                  <h4 className="text-2xl font-semibold text-gray-900 mb-3">
+                  <h3 id={`${feature.id}-title`} className="text-2xl font-semibold text-gray-900 mb-3">
                     {feature.title}
-                  </h4>
+                  </h3>
                   <p className="text-gray-600 text-lg leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
-              </div>
+              </article>
             </div>
           ))}
         </div>

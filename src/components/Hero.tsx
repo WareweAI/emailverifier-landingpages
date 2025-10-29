@@ -3,12 +3,12 @@ import { Button } from "./ui/button";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white isolate">
+    <section className="relative overflow-hidden bg-white isolate" aria-labelledby="hero-heading" role="region">
       <div className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-2 items-center lg:justify-center 
       relative px-4 lg:px-10 2xl:px-44 py-10 xl:pb-20 xl:pt-10 2xl:py-24">
         {/* dotted background */}
         <div
-          aria-hidden
+          aria-hidden="true"
           className="absolute inset-0 -z-10 pointer-events-none"
           style={{
             backgroundImage:
@@ -42,7 +42,7 @@ export default function Hero() {
           </div>
 
           {/* main heading */}
-          <h1 className="text-2xl lg:text-5xl font-bold text-gray-900 leading-tight mt-4 text-center lg:text-left">
+          <h1 id="hero-heading" className="text-2xl lg:text-5xl font-bold text-gray-900 leading-tight mt-4 text-center lg:text-left">
             <span className="inline-block mt-1 lg:mt-0 mr-3 text-blue-600 align-middle relative " style={{ paddingBottom: 8 }}>
               #1
               <svg
@@ -53,6 +53,7 @@ export default function Hero() {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
+                focusable="false"
                 style={{ display: "block" }}
               >
                 <path
@@ -80,9 +81,11 @@ export default function Hero() {
               px-6 lg:px-16 py-3 hover:shadow-xl transition-shadow duration-300 ease-in-out"
               asChild
             >
-              <a href="https://app.emailverifier.io/register">
+              <a href="https://app.emailverifier.io/register"
+                target="_blank" rel="noopener noreferrer"
+                aria-label="Try Email Verifier free — registers at app.emailverifier.io">
                 Try It Free
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </a>
             </Button>
           </div>
@@ -98,12 +101,11 @@ export default function Hero() {
         <div className="flex-1 flex justify-end max-w-lg 2xl:max-w-2xl">
           <img
             src="assets/heroImage.webp"
-            alt="hero image"
+            alt="Email Verifier dashboard showing list cleaning and verification results"
             loading="eager"
             width="800"
             height="600"
             className="w-full h-auto max-w-[520px] 2xl:max-w-2xl object-contain"
-            
           />
         </div>
       </div>
@@ -114,10 +116,10 @@ export default function Hero() {
           Leading Brands and Agencies Using emailverifier.io
         </p>
 
-        <div className="mt-6 flex justify-center items-center gap-10 flex-wrap">
+        <div className="mt-6 flex justify-center items-center gap-10 flex-wrap" aria-hidden={false}>
           <img
             src="/logos/wareweeLogo.webp"
-            alt="Warewe"
+            alt="Warewee"
             width="144"
             height="48"
             className="w-36 h-auto object-contain"
@@ -125,7 +127,7 @@ export default function Hero() {
           />
           <img
             src="/logos/redserpLogo.webp"
-            alt="RedSorp"
+            alt="RedSerp"
             width="144"
             height="48"
             className="w-36 h-auto object-contain"
