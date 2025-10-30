@@ -79,27 +79,27 @@ export default function Footer() {
             <h3 className="text-lg font-bold text-slate-900 mb-2">Explore</h3>
             <ul className="space-y-1">
               <li>
-                <a href="/#how-it-works" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <a href="/#how-it-works" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
                   How it Works
                 </a>
               </li>
               <li>
-                <a href="/#features" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <a href="/#features" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
                   Features
                 </a>
               </li>
               <li>
-                <a href="/#pricing" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <a href="/#pricing" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
                   Pricing
                 </a>
               </li>
               <li>
-                <a href="/#testimonials" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <a href="/#testimonials" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
                   Testimonials
                 </a>
               </li>
               <li>
-                <a href="/#faqs" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <a href="/#faqs" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
                   FAQS
                 </a>
               </li>
@@ -111,12 +111,12 @@ export default function Footer() {
             <h3 className="text-lg font-bold text-slate-900 mb-2">Legal</h3>
             <ul className="space-y-1">
               <li>
-                <a href="/privacy-policy" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <a href="/privacy-policy" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="/terms-of-service" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <a href="/terms-of-service" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
                   Terms of Service
                 </a>
               </li>
@@ -129,7 +129,7 @@ export default function Footer() {
             <div className="space-y-3">
               <a
                 href="mailto:support@emailverifier.io"
-                className="flex items-center text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex items-center text-slate-600 hover:text-slate-900 transition-colors focus:outline-none "
                 aria-label="Email support at support@emailverifier.io"
               >
                 <Mail className="w-5 h-5 mr-2 flex-shrink-0" aria-hidden />
