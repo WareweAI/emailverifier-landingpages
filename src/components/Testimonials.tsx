@@ -35,6 +35,7 @@ export default function Testimonials(): JSX.Element {
       className="py-20 bg-blue-50"
       role="region"
       aria-labelledby="testimonials-heading"
+      id="testimonials"
     >
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
@@ -84,13 +85,13 @@ export default function Testimonials(): JSX.Element {
                           width={48}
                           height={48}
                         />
-                        <div className="leading-tight">
-                          <div id={`${idBase}-title`} className="font-semibold text-gray-900">
+                        <cite className="leading-tight flex flex-col" id={`${idBase}-title`}>
+                          <span  className="font-semibold text-gray-900">
                             {t.name}
-                          </div>
-                          <div className="text-xs text-gray-600">{t.title}</div>
-                          <div className="text-sm text-blue-600 font-medium">{t.company}</div>
-                        </div>
+                          </span>
+                          <span className="text-xs text-gray-600">{t.title}</span>
+                          <span className="text-sm text-blue-600 font-medium">{t.company}</span>
+                        </cite>
                       </div>
 
 

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import DiamondSvg from "@/assets/DiamondSvg";
 import TargetWithArrowSvg from "@/assets/TargetWithArrowSvg";
@@ -11,7 +11,7 @@ export default function Pricing(): JSX.Element {
   const presets = [10000, 25000, 50000, 100000, 500000, 1000000, 5000000, 10000000];
   const ratePerThousand = 1.8; // $1.80 per 1000 emails
   const usdToInr = 87.94;
-  const pricingCardRef = useRef<HTMLDivElement | null>(null);
+
 
 
   const formatNumber = (num: number) => num.toLocaleString("en-US");
@@ -83,14 +83,15 @@ export default function Pricing(): JSX.Element {
             <PlusIcon className="w-4 h-4" aria-hidden="true" />
           </button>
 
-          <button className="w-full sm:w-auto sm:flex-1 ml-0 sm:ml-10 
-          bg-gradient-to-r from-blue-600 to-blue-800 hover:shadow-lg text-white font-medium 
-          px-5 py-3 rounded-md transition"  type="button"
-            onClick={() => {
-              pricingCardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-            }}>
+          <a
+            href="#pricing-card"
+            className="w-full sm:w-auto sm:flex-1 ml-0 sm:ml-10 
+            bg-gradient-to-r from-blue-600 to-blue-800 hover:shadow-lg text-white font-medium 
+            px-5 py-3 rounded-md transition text-center inline-block focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+            aria-label="Scroll to see calculated pricing details"
+          >
             Calculate
-          </button>
+          </a>
         </div>
 
         {/* Slider */}
@@ -138,7 +139,7 @@ export default function Pricing(): JSX.Element {
       </div>
 
       {/* Pricing Card */}
-      <div ref={pricingCardRef} className="bg-white shadow-sm w-full max-w-xl overflow-hidden"
+      <div id="pricing-card" className="bg-white shadow-sm w-full max-w-xl overflow-hidden"
         role="region" aria-labelledby="pricing-card-heading">
 
         <div className="border-b shadow-sm border-gray-200 px-8 pt-10 pb-2">
@@ -162,6 +163,7 @@ export default function Pricing(): JSX.Element {
           rounded-md text-center py-4 my-6">
             <p>Pay once, Use Forever</p>
             <div role="status" aria-live="polite" aria-atomic="true" className="mt-2">
+              <span className="sr-only">Current total price:</span>
               <p className="text-3xl font-bold text-gray-800 my-2">${price.usd}</p>
               <p className="text-sm text-gray-600 mt-1">${ratePerThousand.toFixed(2)} per 1,000 emails</p>
             </div>

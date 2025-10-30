@@ -79,6 +79,11 @@ export default function Footer() {
             <h3 className="text-lg font-bold text-slate-900 mb-2">Explore</h3>
             <ul className="space-y-1">
               <li>
+                <a href="/#how-it-works" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  How it Works
+                </a>
+              </li>
+              <li>
                 <a href="/#features" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
                   Features
                 </a>
@@ -86,6 +91,16 @@ export default function Footer() {
               <li>
                 <a href="/#pricing" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
                   Pricing
+                </a>
+              </li>
+              <li>
+                <a href="/#testimonials" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  Testimonials
+                </a>
+              </li>
+              <li>
+                <a href="/#faqs" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  FAQS
                 </a>
               </li>
             </ul>

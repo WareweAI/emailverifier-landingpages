@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { ChevronDown, LogIn, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +12,7 @@ export default function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link className="flex items-center space-x-2" to='/' aria-label="Email Verifier — Home">
+          <a className="flex items-center space-x-2" href='/' aria-label="Email Verifier — Home">
             <span aria-hidden>
               <svg width="35" height="28" viewBox="0 0 35 28" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
                 <path d="M8.30763 1.90089C10.7707 0.887093 13.5124 0.661373 16.0334 1.22291C17.5465 1.5563 18.9793 2.16639 20.2416 2.99774C21.0833 3.55151 21.8505 4.20212 22.5204 4.92875C21.7287 4.33703 20.878 3.84311 19.9931 3.45209C18.6654 2.86497 17.2588 2.51365 15.8524 2.40317C13.5077 2.21593 11.1691 2.70595 9.1631 3.75736C7.15365 4.80476 5.48115 6.40887 4.36219 8.31866C3.23865 10.2265 2.67023 12.436 2.72935 14.6317C2.78357 16.8275 3.46481 19.0052 4.68521 20.8525C5.90105 22.7017 7.65464 24.2159 9.71507 25.1582C11.7728 26.1049 14.1343 26.4761 16.4665 26.1681C17.8652 25.9852 19.2513 25.561 20.5468 24.9062C21.4106 24.47 22.234 23.9318 22.9943 23.3C22.3626 24.0603 21.6306 24.7516 20.8184 25.3481C19.6007 26.2434 18.1999 26.925 16.7061 27.3359C14.2175 28.0266 11.4691 27.9427 8.95722 27.0573C6.44303 26.1813 4.17921 24.5075 2.58737 22.3132C0.987961 20.125 0.0705881 17.4285 0.00499414 14.7027C-0.0702581 11.977 0.707065 9.23593 2.19158 6.96802C3.66808 4.69454 5.84205 2.90543 8.30763 1.90089Z" fill="#C6DEFF" />
@@ -29,7 +28,7 @@ export default function Header() {
 
             </span>
             <span className="text-xl font-medium font-serif text-gray-900">Email Verifier</span>
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8" aria-label="Primary">
