@@ -56,7 +56,7 @@ export default function Testimonials(): JSX.Element {
                 <article
                   aria-labelledby={`${idBase}-title`}
                   aria-describedby={`${idBase}-content`}
-                  className=" rounded-xl"
+                  className="rounded-xl h-full"
                 >
                   <Card className="bg-white rounded-xl shadow-[0_0_10px_rgba(0,100,255,0.2)] h-full">
                     <CardContent className="p-5 pt-5 flex flex-col h-full">
