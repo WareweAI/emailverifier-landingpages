@@ -99,14 +99,27 @@ export default function Hero() {
 
         {/* RIGHT */}
         <div className="flex-1 flex justify-end max-w-lg 2xl:max-w-2xl">
-          <img
-            src="assets/heroImage.webp"
-            alt="Email Verifier dashboard showing list cleaning and verification results"
-            loading="eager"
-            width="800"
-            height="600"
-            className="w-full h-auto max-w-[520px] 2xl:max-w-2xl object-contain"
-          />
+          <picture>
+            <source
+              srcSet="
+              /assets/heroImage_400w.webp 400w,
+              /assets/heroImage_800w.webp 800w,
+              /assets/heroImage_1200w.webp 1200w
+              "
+              sizes="(max-width: 768px) 100vw, 50vw"
+              type="image/webp"
+            />
+            <img
+              src="/assets/heroImage_800w.webp"
+              alt="Email Verifier dashboard showing list cleaning and verification results"
+              width="800"
+              height="600"
+              className="w-full h-auto max-w-[520px] 2xl:max-w-2xl object-contain"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
+
         </div>
       </div>
 
