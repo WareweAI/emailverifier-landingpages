@@ -98,11 +98,11 @@ export default function Footer() {
                   Testimonials
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a href="/#faqs" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
                   FAQS
                 </a>
-              </li>
+              </li> */}
             </ul>
           </nav>
 

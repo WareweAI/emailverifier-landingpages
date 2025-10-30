@@ -85,7 +85,7 @@ export default function Testimonials(): JSX.Element {
                           width={48}
                           height={48}
                         />
-                        <cite className="leading-tight flex flex-col" id={`${idBase}-title`}>
+                        <cite className="leading-tight flex flex-col not-italic" id={`${idBase}-title`}>
                           <span  className="font-semibold text-gray-900">
                             {t.name}
                           </span>
