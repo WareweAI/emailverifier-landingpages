@@ -121,7 +121,7 @@ export default function Pricing(): JSX.Element {
         </div>
 
         {/* Presets */}
-        <div className="flex flex-wrap gap-2 justify-center" role="list" aria-label="Volume presets">
+        <div className="flex flex-wrap gap-2 justify-center" role="group" aria-label="Volume presets">
           {presets.map((p) => (
             <button
               key={p}
@@ -143,9 +143,9 @@ export default function Pricing(): JSX.Element {
         role="region" aria-labelledby="pricing-card-heading">
 
         <div className="border-b shadow-sm border-gray-200 px-8 pt-10 pb-2">
-          <span className="inline-flex items-center gap-2 text-xs font-semibold
-           bg-blue-100 text-blue-600 px-2 py-1 rounded-full uppercase tracking-wide" aria-hidden="true">
-            <DiamondSvg aria-hidden="true" /> One-Time Purchase
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold
+           bg-blue-100 text-blue-800 px-2 py-1 rounded-full uppercase tracking-wide" aria-hidden="true">
+            <DiamondSvg aria-hidden="true" /> <span>One-Time Purchase</span>
           </span>
           <div className="flex flex-col gap-4 my-3">
             <div className="h-8 w-8 bg-blue-100 rounded-full grid place-items-center shrink-0" aria-hidden="true">

@@ -1,5 +1,5 @@
 
-import { Shield, Zap, Globe, BarChart3, Lock, Cpu } from 'lucide-react';
+import { Shield, Zap, Globe, BarChart3, Lock, Cpu, Database, Filter } from 'lucide-react';
 
 type Feature = {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -52,15 +52,15 @@ const features: Feature[] = [
     id: "real-time-api"
   },
   {
-    icon: Lock,
+    icon: Database,
     title: 'Bulk Verification',
     description:
-      'Upload and verify thousands of emails fast',
+      'Upload and verify thousands of emails fast.',
     card: "/assets/featuresCard/FeatureBulk.svg",
     id: "bulk-verification"
   },
   {
-    icon: Lock,
+    icon: Filter,
     title: 'Role-Based Filtering',
     description:
       'Skip generic inboxes like info@ or sales@.',
@@ -90,19 +90,20 @@ export default function Features(): JSX.Element {
         </div>
 
         {/* Features List */}
-        <div className="flex flex-col gap-16 lg:gap-6 max-w-5xl mx-auto" role="list">
+        <ul className="flex flex-col gap-16 lg:gap-6 max-w-5xl mx-auto">
           {features.map((feature, index) => (
-            <div
+            <li
               key={feature.id}
               className={`flex flex-col-reverse lg:flex-row items-center gap-4 lg:gap-6
                  ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
               id={feature.id}
+
             >
 
               <figure className="lg:w-[55%] flex justify-center">
                 <img
                   src={feature.card}
-                  alt={feature.title}
+                  alt={`${feature.title} feature illustration`}
                   className="w-full h-auto"
                   loading='lazy'
                   width={800}
@@ -112,7 +113,7 @@ export default function Features(): JSX.Element {
               </figure>
 
 
-              <article className="flex-1 flex items-start gap-4  px-2" aria-labelledby={`${feature.id}-title`}>
+              <article className="flex-1 flex items-start gap-4  px-2" aria-labelledby={`${feature.id}-title`} aria-describedby={`${feature.id}-desc`}>
                 <div className="flex items-center justify-center lg:justify-start mb-4">
                   <span className="p-4 bg-blue-100 rounded-lg text-blue-900" aria-hidden="true">
                     <feature.icon className="w-6 h-6" aria-hidden="true" focusable="false" />
@@ -123,14 +124,14 @@ export default function Features(): JSX.Element {
                   <h3 id={`${feature.id}-title`} className="text-2xl font-semibold text-gray-900 mb-3">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-600 text-lg leading-relaxed">
+                  <p id={`${feature.id}-desc`} className="text-gray-600 text-lg leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
               </article>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

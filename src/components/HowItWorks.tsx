@@ -59,7 +59,7 @@ const HowItWorks: React.FC = () => {
             return (
               <li
                 key={step.number}
-                role="group"
+                role="listitem"
                 aria-labelledby={`${step.number}-title`}
                 aria-label={`Step ${index + 1} of ${processSteps.length}: ${step.title}`}
                 aria-posinset={index + 1}
