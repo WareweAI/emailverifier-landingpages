@@ -33,7 +33,7 @@ export default function PricingPage() {
     const price = calculatePrice(volume);
 
     return (
-        <main className="relative bg-blue-50 text-gray-800 overflow-hidden isolate"
+        <main className="relative bg-white text-gray-800 overflow-hidden isolate"
             id="pricing-main-content" aria-labelledby="pricing-heading" role="main">
 
             <div
@@ -67,8 +67,11 @@ export default function PricingPage() {
                 </div>
 
                 {/* Calculator */}
-                <div className="bg-white p-5 sm:p-8 sm:px-12 rounded-xl shadow-sm w-full max-w-4xl 2xl:max-w-6xl mb-12 mx-auto">
-                    <label htmlFor="email-volume-number" className="block text-gray-800 font-medium mb-3 text-center sm:text-left">
+                <div className="bg-white p-5 sm:p-8 sm:px-12 rounded-xl 
+                shadow-[0_8px_32px_rgba(0,0,0,0.05),_0_-1px_5px_rgba(0,0,0,0.08)]
+                 w-full max-w-4xl 2xl:max-w-6xl mb-12 mx-auto">
+                    <label htmlFor="email-volume-number"
+                        className="block text-gray-800 font-medium mb-3 text-center sm:text-left">
                         Email Volume
                     </label>
 
@@ -158,7 +161,9 @@ export default function PricingPage() {
                 </div>
 
                 {/* Pricing Card */}
-                <div id="pricing-card" className="bg-white shadow-sm w-full max-w-xl overflow-hidden mx-auto"
+                <div id="pricing-card" className="bg-white 
+                shadow-[0_8px_32px_rgba(0,0,0,0.05),_0_-1px_5px_rgba(0,0,0,0.08)]
+                w-full max-w-xl overflow-hidden mx-auto"
                     role="region" aria-labelledby="pricing-card-heading">
 
                     <div className="border-b shadow-sm border-gray-200 px-8 pt-10 pb-2">

@@ -36,13 +36,119 @@ const generalData = [
     },
 ];
 
+const verificationProcessData = [
+    {
+        question: "How does the email verification process work?",
+        answer:
+            "Our system checks each email through multiple layers — syntax validation, domain check, MX record lookup, and real-time SMTP ping — to confirm if the mailbox can receive emails.",
+    },
+    {
+        question: "How long does it take to verify an email list?",
+        answer:
+            "For small lists, results are almost instant. Larger bulk lists may take a few minutes depending on size and network response times.",
+    },
+    {
+        question: "Can I verify emails in bulk?",
+        answer:
+            "Yes. You can upload a CSV file or integrate via API for automated bulk verification.",
+    },
+    {
+        question: "Do you store the verified emails?",
+        answer:
+            "No. We only process the data temporarily for verification and do not retain any email addresses afterward.",
+    },
+    {
+        question: "Can I verify role-based or generic emails (like info@)?",
+        answer:
+            "Yes, but results for role-based addresses may vary since some mail servers block verification for shared inboxes.",
+    },
+];
+
+const billingAccountData = [
+    {
+        question: "What payment methods do you support?",
+        answer:
+            "We accept major credit and debit cards, as well as PayPal for international users.",
+    },
+    {
+        question: "Can I upgrade or downgrade my plan anytime?",
+        answer:
+            "Absolutely! You can change your plan at any time from your account dashboard. Adjustments will be reflected in your next billing cycle.",
+    },
+    {
+        question: "Do you offer refunds?",
+        answer:
+            "Yes, we provide refunds for unused credits within 7 days of purchase as per our refund policy.",
+    },
+    {
+        question: "Is there a free trial available?",
+        answer:
+            "Yes. You can sign up and verify a limited number of emails for free before upgrading to a paid plan.",
+    },
+    {
+        question: "Can multiple users share the same account?",
+        answer:
+            "Currently, accounts are individual. Team access will be supported in future updates.",
+    },
+];
+
+const dataSecurityData = [
+    {
+        question: "Is my data safe with you?",
+        answer:
+            "Yes. We follow strict data protection protocols and never share or sell your information to third parties.",
+    },
+    {
+        question: "Do you comply with GDPR and other privacy laws?",
+        answer:
+            "Absolutely. Our platform fully complies with GDPR and similar international data protection standards.",
+    },
+    {
+        question: "How long is my data stored?",
+        answer:
+            "Email data uploaded for verification is stored only as long as necessary to complete the process, then permanently deleted.",
+    },
+    {
+        question: "Do you encrypt my data?",
+        answer:
+            "Yes. All data transmissions are encrypted using HTTPS and stored securely in our servers.",
+    },
+    {
+        question: "Can I delete my account and all associated data?",
+        answer:
+            "Yes. You can permanently delete your account and all stored data from your account settings or by contacting support.",
+    },
+];
+
+
 export default function FaqPage() {
     const [currentTab, setCurrentTab] = useState("General");
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+    const renderFaqItems = () => {
+        const data =
+            currentTab === "General"
+                ? generalData
+                : currentTab === "Verification Process"
+                    ? verificationProcessData
+                    : currentTab === "Billing & Account"
+                        ? billingAccountData
+                        : dataSecurityData;
+
+        return data.map((faq, i) => (
+            <FaqItem
+                key={i}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={openIndex === i}
+                onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+            />
+        ));
+    };
+
     return (
         <main className="relative bg-white text-gray-800 overflow-hidden"
-        id="faqs-main-content" role="main" aria-labelledby="faqs-heading">
+            id="faqs-main-content" role="main" aria-labelledby="faqs-heading">
             {/* Radial background gradients */}
             <div
                 aria-hidden="true"
@@ -110,15 +216,7 @@ export default function FaqPage() {
                     <h3 id="general-heading" className="sr-only">
                         General FAQs
                     </h3>
-                    {generalData.map((faq, i) => (
-                        <FaqItem
-                            key={i}
-                            question={faq.question}
-                            answer={faq.answer}
-                            isOpen={openIndex === i}
-                            onToggle={() => setOpenIndex(openIndex === i ? null : i)}
-                        />
-                    ))}
+                    {renderFaqItems()}
                 </section>
             </section>
 
@@ -131,7 +229,7 @@ export default function FaqPage() {
                 <a
                     href="mailto:support@emailverifier.io"
                     className="text-blue-700 text-2xl lg:text-3xl font-medium hover:underline 
-          focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-700"
+                    focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-700"
                 >
                     support@emailverifier.io
                 </a>

@@ -35,7 +35,7 @@ export default function FAQSection() {
   return (
     <section
       aria-labelledby="faq-heading"
-      className="bg-white py-16 px-4 sm:px-6 lg:px-8"
+      className="bg-blue-50 py-16 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-3xl mx-auto">
         <h2

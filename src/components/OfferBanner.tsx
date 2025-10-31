@@ -83,7 +83,7 @@ export default function OfferBanner(): JSX.Element | null {
         >
             <span className="flex items-center justify-center gap-2 flex-wrap text-center lg:text-left max-w-[95%]">
                 <img
-                    src="/assets/fire.png"
+                    src="/assets/fire.webp"
                     alt="Fire Icon"
                     width="22"
                     height="22"
@@ -96,7 +96,7 @@ export default function OfferBanner(): JSX.Element | null {
             {/* Countdown */}
             <div className="flex items-center gap-1 lg:gap-3 text-sm lg:text-lg ml-2" aria-hidden={false}>
                 <span id="offer-countdown-label" className="flex items-center gap-1"><img
-                    src="/assets/timer.png"
+                    src="/assets/timer.webp"
                     alt="Fire Icon"
                     width="22"
                     height="22"

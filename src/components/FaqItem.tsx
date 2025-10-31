@@ -22,7 +22,7 @@ export default function FaqItem({ question, answer, isOpen, onToggle }: FaqItemP
 
     return (
         <article
-            className="border border-gray-300 rounded-3xl bg-white shadow-sm hover:shadow-md transition p-5"
+            className="border border-gray-500 rounded-3xl bg-white shadow-sm hover:shadow-md transition p-5"
             aria-expanded={isOpen}
         >
             <button
