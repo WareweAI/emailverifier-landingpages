@@ -81,36 +81,25 @@ export default function OfferBanner(): JSX.Element | null {
             relative transition-all duration-500 
             ${visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
         >
-            <span className="max-w-[90%] lg:max-w-[95%] text-center lg:text-left">
-                Limited Time Launch Offer: <b>100,000</b> Validation Credits&nbsp;-&nbsp;
-                <b>Just $49</b>
+            <span className="max-w-[90%] lg:max-w-[95%] text-center lg:text-left flex items-center gap-2">
+                <img
+              src="/assets/fire.png"
+              alt="Fire Icon"
+              width="22"
+              height="22"
+            />
+                Launch Offer: Verify 1,000 Emails for &nbsp;-&nbsp;
+                <b>Just $1.80!</b>
             </span>
-
-            <a
-                href="https://app.emailverifier.io/register" target="_blank" rel="noopener noreferrer"
-                className="bg-gradient-to-b from-white to-white/70 text-[#5105FF] px-5 py-2 rounded-md 
-                text-sm font-medium transition inline-flex items-center gap-2"
-                aria-label="Get Started — opens registration in a new tab"
-            >
-                Get Started
-                <svg
-                    width="14"
-                    height="10"
-                    viewBox="0 0 14 10"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true" focusable="false"
-                >
-                    <path
-                        d="M10.9038 4.1012L8.34615 1.53964C8.16667 1.35988 8.08066 1.15016 8.08814 0.91048C8.09562 0.670802 8.18162 0.461082 8.34615 0.281323C8.52564 0.101564 8.73878 0.00794029 8.98558 0.000450134C9.23237 -0.00704002 9.44551 0.0790949 9.625 0.258854L13.7308 4.37084C13.9103 4.5506 14 4.76032 14 5C14 5.23968 13.9103 5.4494 13.7308 5.62916L9.625 9.74115C9.44551 9.92091 9.23237 10.007 8.98558 9.99955C8.73878 9.99206 8.52564 9.89844 8.34615 9.71868C8.18162 9.53892 8.09562 9.3292 8.08814 9.08952C8.08066 8.84984 8.16667 8.64012 8.34615 8.46036L10.9038 5.8988H0.897435C0.643162 5.8988 0.430021 5.81266 0.258013 5.64039C0.0860043 5.46812 0 5.25466 0 5C0 4.74534 0.0860043 4.53188 0.258013 4.35961C0.430021 4.18734 0.643162 4.1012 0.897435 4.1012H10.9038Z"
-                        fill="#1F5DD8"
-                    />
-                </svg>
-            </a>
 
             {/* Countdown */}
             <div className="flex items-center gap-1 lg:gap-3 text-sm lg:text-lg ml-2" aria-hidden={false}>
-                <span id="offer-countdown-label">Expiring in:</span>
+                <span id="offer-countdown-label" className="flex items-center gap-1"><img
+              src="/assets/timer.png"
+              alt="Fire Icon"
+              width="22"
+              height="22"
+            /><b>Offer ends in:</b></span>
 
                 <div
                     aria-live="polite" aria-atomic="true" aria-describedby="offer-countdown-label"
@@ -133,6 +122,27 @@ export default function OfferBanner(): JSX.Element | null {
                     <time dateTime={`${timeLeft.minutes}m`}>{String(timeLeft.minutes).padStart(2, "0")}M</time>
                 </div>
             </div>
+            <a
+                href="https://app.emailverifier.io/register" target="_blank" rel="noopener noreferrer"
+                className="bg-gradient-to-b from-white to-white/70 text-[#5105FF] px-5 py-2 rounded-md 
+                text-sm font-medium transition inline-flex items-center gap-2"
+                aria-label="Get Started — opens registration in a new tab"
+            >
+                Get Started
+                <svg
+                    width="14"
+                    height="10"
+                    viewBox="0 0 14 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true" focusable="false"
+                >
+                    <path
+                        d="M10.9038 4.1012L8.34615 1.53964C8.16667 1.35988 8.08066 1.15016 8.08814 0.91048C8.09562 0.670802 8.18162 0.461082 8.34615 0.281323C8.52564 0.101564 8.73878 0.00794029 8.98558 0.000450134C9.23237 -0.00704002 9.44551 0.0790949 9.625 0.258854L13.7308 4.37084C13.9103 4.5506 14 4.76032 14 5C14 5.23968 13.9103 5.4494 13.7308 5.62916L9.625 9.74115C9.44551 9.92091 9.23237 10.007 8.98558 9.99955C8.73878 9.99206 8.52564 9.89844 8.34615 9.71868C8.18162 9.53892 8.09562 9.3292 8.08814 9.08952C8.08066 8.84984 8.16667 8.64012 8.34615 8.46036L10.9038 5.8988H0.897435C0.643162 5.8988 0.430021 5.81266 0.258013 5.64039C0.0860043 5.46812 0 5.25466 0 5C0 4.74534 0.0860043 4.53188 0.258013 4.35961C0.430021 4.18734 0.643162 4.1012 0.897435 4.1012H10.9038Z"
+                        fill="#1F5DD8"
+                    />
+                </svg>
+            </a>
 
             {/* Dismiss button */}
             <button
