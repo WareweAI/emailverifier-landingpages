@@ -15,6 +15,7 @@ import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 import OfferBanner from './components/OfferBanner';
 import PricingPage from './pages/PricingPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 
 // Home page component
@@ -27,7 +28,7 @@ const HomePage = () => (
   <LogoCloud />
   <Testimonials />
   <CTA />
-  
+
 </main>
 
 
@@ -45,6 +46,7 @@ function App() {
           <Route path='/pricing' element={<PricingPage/>} />
           <Route path='/privacy-policy' element={<PrivacyPage />} />
           <Route path='/terms-of-service' element={<TermsPage />} />
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
         <Footer />
       </div>
