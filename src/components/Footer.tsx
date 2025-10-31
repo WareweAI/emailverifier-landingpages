@@ -89,7 +89,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/#pricing" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
+                <a href="/pricing" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
                   Pricing
                 </a>
               </li>
@@ -98,11 +98,11 @@ export default function Footer() {
                   Testimonials
                 </a>
               </li>
-              {/* <li>
-                <a href="/#faqs" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
+              <li>
+                <a href="/faqs" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
                   FAQS
                 </a>
-              </li> */}
+              </li>
             </ul>
           </nav>
 

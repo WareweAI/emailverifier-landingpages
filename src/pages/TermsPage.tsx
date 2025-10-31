@@ -4,7 +4,7 @@
 export default function TermsPage() {
   return (
     <main
-      id="main-content"
+      id="terms-main-content"
       role="main"
       aria-labelledby="terms-heading"
       className="flex-grow bg-white px-6 py-16 text-gray-800"

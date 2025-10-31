@@ -14,6 +14,8 @@ import LogoCloud from './components/LogoCloud';
 import PrivacyPage from './pages/PrivacyPage';
 import TermsPage from './pages/TermsPage';
 import OfferBanner from './components/OfferBanner';
+import FaqPage from './pages/FaqPage';
+import PricingPage from './pages/PricingPage';
 
 
 // Home page component
@@ -41,8 +43,10 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path='/pricing' element={<PricingPage/>} />
           <Route path='/privacy-policy' element={<PrivacyPage />} />
           <Route path='/terms-of-service' element={<TermsPage />} />
+          <Route path='/faqs' element={<FaqPage />} />
         </Routes>
         <Footer />
       </div>

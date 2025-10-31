@@ -81,13 +81,14 @@ export default function OfferBanner(): JSX.Element | null {
             relative transition-all duration-500 
             ${visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
         >
-            <span className="max-w-[90%] lg:max-w-[95%] text-center lg:text-left flex items-center gap-2">
+            <span className="flex items-center justify-center gap-2 flex-wrap text-center lg:text-left max-w-[95%]">
                 <img
-              src="/assets/fire.png"
-              alt="Fire Icon"
-              width="22"
-              height="22"
-            />
+                    src="/assets/fire.png"
+                    alt="Fire Icon"
+                    width="22"
+                    height="22"
+                    className="w-5 h-5"
+                />
                 Launch Offer: Verify 1,000 Emails for &nbsp;-&nbsp;
                 <b>Just $1.80!</b>
             </span>
@@ -95,11 +96,11 @@ export default function OfferBanner(): JSX.Element | null {
             {/* Countdown */}
             <div className="flex items-center gap-1 lg:gap-3 text-sm lg:text-lg ml-2" aria-hidden={false}>
                 <span id="offer-countdown-label" className="flex items-center gap-1"><img
-              src="/assets/timer.png"
-              alt="Fire Icon"
-              width="22"
-              height="22"
-            /><b>Offer ends in:</b></span>
+                    src="/assets/timer.png"
+                    alt="Fire Icon"
+                    width="22"
+                    height="22"
+                /><b>Offer ends in:</b></span>
 
                 <div
                     aria-live="polite" aria-atomic="true" aria-describedby="offer-countdown-label"
