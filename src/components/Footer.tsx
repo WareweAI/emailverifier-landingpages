@@ -99,7 +99,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/faqs" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
+                <a href="/pricing/#faqs" className="block text-slate-600 hover:text-slate-900 transition-colors focus:outline-none ">
                   FAQS
                 </a>
               </li>
