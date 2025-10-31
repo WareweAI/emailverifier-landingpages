@@ -11,22 +11,22 @@ export default function FAQSection() {
     {
       question: "Is there a subscription or recurring charge?",
       answer:
-        "No, there's no recurring charge. You only pay for the credits you buy.",
+        "No. You pay only once for the credits you buy. There are no hidden or recurring fees - it's a one-time purchase.",
     },
     {
       question: "Can I upgrade or buy more credits later?",
       answer:
-        "Yes! You can purchase more credits anytime from your dashboard.",
+        "Absolutely! You can purchase additional credits anytime as you verifications needs grow - no need to change plans.",
     },
     {
       question: "What's included with the credits I purchase?",
       answer:
-        "Each credit lets you verify one email address with real-time validation and detailed status results.",
+        "Every plan includes real-time verrification, API access, CSV list cleaning, disposable email detection, and role-based filtering - at no extra cost.",
     },
     {
       question: "Do you offer refunds if I'm not satisfied?",
       answer:
-        "Yes, we offer refunds under fair-use terms if there's an issue with your purchase.",
+        "Yes, if you experience any technical issue or incorrect results, you can contact our support team within 7 days for review and possible refund.",
     },
   ];
 
