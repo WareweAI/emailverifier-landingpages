@@ -90,7 +90,7 @@ export default function Testimonials(): JSX.Element {
                           alt={`${i}-rating-icon`} className="w-5 h-5" aria-hidden="true" />
                         ))}
                       </div>
-                      <span className=" text-gray-900 font-medium mt-3">{t.title}</span>
+                      <span className=" text-gray-900 font-semibold mt-3">{t.title}</span>
                       {/* Quote */}
                       <blockquote className="text-gray-900 flex-grow mt-2">
                         <p id={`${idBase}-content`}>{t.content}</p>
