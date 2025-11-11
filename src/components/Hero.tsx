@@ -21,7 +21,7 @@ export default function Hero() {
         <div className="flex-1 max-w-2xl">
           {/* top badges */}
           <div className="flex items-center justify-center lg:justify-start gap-3">
-            <img
+            {/* <img
               src="/assets/productHunt.svg"
               alt="Product Hunt"
               className="h-8 w-auto"
@@ -29,7 +29,7 @@ export default function Hero() {
               height="32"
               loading="eager"
               aria-hidden="true"
-            />
+            /> */}
             <img
               src="/assets/trustPilot.svg"
               alt="Trustpilot"

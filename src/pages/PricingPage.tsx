@@ -6,6 +6,7 @@ import BlissSvg from "@/assets/BlissSvg";
 import CheckSvg from "@/assets/CheckSvg";
 import { Button } from "@/components/ui/button";
 import FaqInPricing from "@/components/FaqInPricing";
+import { Helmet } from "react-helmet-async";
 
 
 export default function PricingPage() {
@@ -35,6 +36,11 @@ export default function PricingPage() {
     return (
         <main className="relative bg-white text-gray-800 overflow-hidden isolate"
             id="pricing-main-content" aria-labelledby="pricing-heading" role="main">
+
+            <Helmet>
+                {/* meta title */}
+                <title>Pricing - Email Verifier</title> 
+            </Helmet>
 
             <div
                 aria-hidden="true"

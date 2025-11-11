@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -9,6 +10,11 @@ export default function TermsPage() {
       aria-labelledby="terms-heading"
       className="flex-grow bg-white px-6 py-16 text-gray-800"
     >
+
+      <Helmet>
+        <title>Terms & Conditions - Email Verifier</title>
+      </Helmet>
+
       <div className="max-w-4xl mx-auto">
         <h1 id="terms-heading" className="text-4xl font-bold mb-4 text-gray-900">
           Terms & Conditions

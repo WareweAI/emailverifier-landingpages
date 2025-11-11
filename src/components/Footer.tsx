@@ -149,7 +149,7 @@ export default function Footer() {
         </div>
 
         <p className="text-center lg:text-right text-slate-600 text-md py-4 lg:py-6 border-t">
-          <small>©{new Date().getFullYear()} EmailVerifier.io, All rights reserved</small>
+          <small>©{new Date().getFullYear()} emailverifier.io, All rights reserved</small>
         </p>
       </div>
     </footer>

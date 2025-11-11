@@ -1,7 +1,14 @@
+import { Helmet } from "react-helmet-async";
+
 export default function PrivacyPage() {
   return (
     <main className="flex-grow bg-white px-6 py-16 text-gray-800"
       id="privacy-main-content" role="main" aria-labelledby="privacy-heading">
+
+      <Helmet>
+        <title>Privacy Policy - Email Verifier</title>
+      </Helmet>
+
       <div className="max-w-4xl mx-auto">
         <h1 id="privacy-heading" className="text-4xl font-bold mb-4 text-gray-900">
           Privacy Policy

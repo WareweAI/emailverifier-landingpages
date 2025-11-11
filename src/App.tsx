@@ -16,20 +16,21 @@ import TermsPage from './pages/TermsPage';
 import OfferBanner from './components/OfferBanner';
 import PricingPage from './pages/PricingPage';
 import NotFoundPage from './pages/NotFoundPage';
+import { HelmetProvider } from 'react-helmet-async';
 
 
 // Home page component
 const HomePage = () => (
   <main className="min-h-screen" id="main-page" role="main">
-  <Hero />
-  <HowItWorks />
-  <Features />
-  <Pricing />
-  <LogoCloud />
-  <Testimonials />
-  <CTA />
+    <Hero />
+    <HowItWorks />
+    <Features />
+    <Pricing />
+    <LogoCloud />
+    <Testimonials />
+    <CTA />
 
-</main>
+  </main>
 
 
 
@@ -37,20 +38,22 @@ const HomePage = () => (
 
 function App() {
   return (
-    <Router>
-      <div className="min-h-screen bg-white flex flex-col">
-        <OfferBanner />
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path='/pricing' element={<PricingPage/>} />
-          <Route path='/privacy-policy' element={<PrivacyPage />} />
-          <Route path='/terms-of-service' element={<TermsPage />} />
-          <Route path='*' element={<NotFoundPage />} />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <div className="min-h-screen bg-white flex flex-col">
+          <OfferBanner />
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path='/pricing' element={<PricingPage />} />
+            <Route path='/privacy-policy' element={<PrivacyPage />} />
+            <Route path='/terms-of-service' element={<TermsPage />} />
+            <Route path='*' element={<NotFoundPage />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }
 
