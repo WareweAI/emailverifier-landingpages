@@ -81,15 +81,21 @@ export default function Testimonials(): JSX.Element {
                       </header>
 
                       <div
-                        className="flex items-center mt-4 gap-0.5"
-                        aria-label={`Rated ${t.rating} out of 5`}
-                        role="img"
-                      >
-                        {[...Array(t.rating)].map((_, i) => (
-                          <img src="/assets/TrustPilotRatingStar.svg" 
-                          alt={`${i}-rating-icon`} className="w-5 h-5" aria-hidden="true" />
-                        ))}
-                      </div>
+  className="flex items-center mt-4 gap-0.5"
+  aria-label={`Rated ${t.rating} out of 5`}
+  role="img"
+>
+  {[...Array(t.rating)].map((_, i) => (
+    <svg
+      key={i}
+      className="w-5 h-5 fill-yellow-400"
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+    >
+      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+    </svg>
+  ))}
+</div>
                       <span className=" text-gray-900 font-semibold mt-3">{t.title}</span>
                       {/* Quote */}
                       <blockquote className="text-gray-900 flex-grow mt-2">
