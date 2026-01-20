@@ -23,10 +23,10 @@ export default function LogoCloud() {
             </div>
 
             <div role="presentation" aria-label="Scrolling logos of trusted platform partners"
-                className="relative w-full flex overflow-hidden py-4 mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]">
+                className="group relative w-full flex overflow-hidden py-4 mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]">
                 <ul aria-label="List of integrated platforms"
                     className="flex items-center justify-center md:justify-start [&_li]:mx-2
-                    [&_img]:max-w-none animate-infinite-scroll group-hover:animation-pause list-none">
+                    [&_img]:max-w-none animate-infinite-scroll group-hover:[animation-play-state:paused] list-none">
                     {logos.map((logo, index) => (
                         <li key={index}>
                             <Image src={logo.src} alt={logo.alt} width={140} height={40} loading="eager"
@@ -36,7 +36,7 @@ export default function LogoCloud() {
                 </ul>
                 <ul aria-hidden="true"
                     className="flex items-center justify-center [&_li]:mx-2 [&_img]:max-w-none 
-                    animate-infinite-scroll group-hover:animation-pause list-none">
+                    animate-infinite-scroll group-hover:[animation-play-state:paused] list-none">
                     {logos.map((logo, index) => (
                         <li key={index + logos.length}>
                             <Image src={logo.src} alt={logo.alt} width={140} height={40} loading="eager"
