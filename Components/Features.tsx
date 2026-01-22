@@ -5,11 +5,11 @@ import Image from 'next/image';
 const features = [
     {
         icon: Shield,
-        title: 'Advanced Validation',
+        title: 'Real-Time Validation',
         description:
-            'Smart checks for syntax, domain, and mailbox accuracy.',
+            ' Smart checks for syntax, domain, and mailbox deliverability in real time.',
         card: "/assets/featuresCard/FeatureValidation.svg",
-        id: "advanced-validation"
+        id: "real-time-validation"
     },
     {
         icon: Zap,
@@ -36,12 +36,12 @@ const features = [
         id: "catch-all-detection"
     },
     {
-        icon: Cpu,
-        title: 'Real-Time API',
+        icon: Filter,
+        title: 'Role-Based Filtering',
         description:
-            'Verify emails instantly right inside your app.',
-        card: "/assets/featuresCard/FeatureApi.svg",
-        id: "real-time-api"
+            'Skip generic inboxes like info@ or sales@.',
+        card: "/assets/featuresCard/FeatureRole.svg",
+        id: "role-based-filtering"
     },
     {
         icon: Database,
@@ -52,12 +52,12 @@ const features = [
         id: "bulk-verification"
     },
     {
-        icon: Filter,
-        title: 'Role-Based Filtering',
+        icon: Cpu,
+        title: 'Real-Time API',
         description:
-            'Skip generic inboxes like info@ or sales@.',
-        card: "/assets/featuresCard/FeatureRole.svg",
-        id: "role-based-filtering"
+            'Verify emails instantly right inside your app.',
+        card: "/assets/featuresCard/FeatureApi.svg",
+        id: "real-time-api"
     },
     {
         icon: Lock,
@@ -75,10 +75,12 @@ export default function Features() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
                 <div className="text-center mb-16">
-                    <h2 id="features-heading" className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                        Powerful Features That Just Work
+                    <h2 id="features-heading" className="text-3xl font-bold text-gray-900 mb-4">
+                        Powerful Features That Guarantee 99.9% Deliverability
                     </h2>
-                    <p className='lg:text-xl max-w-2xl mx-auto'>Everything you need to maintain a clean, high-quality email list and improve your delivery rates.</p>
+                    <p className='lg:text-xl max-w-xl mx-auto'>
+                        Everything you need to maintain a clean, high-quality email list and improve your delivery rates.
+                    </p>
                 </div>
 
                 {/* Features List */}
