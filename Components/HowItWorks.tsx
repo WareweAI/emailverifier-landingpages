@@ -37,15 +37,15 @@ export default function HowItWorks() {
         >
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 {/* Heading */}
-                <div className="mx-auto max-w-xl text-center">
+                <div className="mx-auto max-w-3xl text-center">
                     <h2
                         id="howitworks-heading"
                         className="text-2xl lg:text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
                     >
-                        How it Works
+                        How Emailverifier.io Works
                     </h2>
                     <p className="mt-4 text-lg leading-8 text-gray-600">
-                        Our 4-step process keeps things simple, fast, and accurate.
+                        Emailverifier.io is an email verification and validation tool that checks whether an email address is real, deliverable, and safe to send without sending an email
                     </p>
                 </div>
 
