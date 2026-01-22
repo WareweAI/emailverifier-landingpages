@@ -1,6 +1,9 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CircleDashed } from "lucide-react";
 import { Button } from "./ui/Button";
 import Image from "next/image";
+import { StarRating } from "./ui/StarRating";
+import Link from "next/link";
+import HappyUsers from "./HappyUsers";
 
 export default function Hero() {
     return (
@@ -20,6 +23,32 @@ export default function Hero() {
 
                 {/* LEFT: heading and CTAs */}
                 <div className="flex-1 max-w-2xl">
+
+                    <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                        {/* Logo */}
+                        <Image
+                            src="/assets/capterra.svg"
+                            alt="capterra-logo"
+                            width={32}
+                            height={32}
+                            className="w-8 h-8 object-contain"
+                            priority
+                        />
+
+                        <div className="flex flex-col leading-tight">
+                            <span className="text-base sm:text-lg font-semibold text-gray-900">
+                                Capterra
+                            </span>
+
+                            {/* Rating row */}
+                            <div className="flex items-center gap-1 sm:gap-2 text-[10px] sm:text-xs text-gray-500">
+                                <span className="font-medium text-gray-600">4.8</span>
+                                <StarRating rating={4.8} size={14} activeColor="#fdc700" />
+                                <span>Rating</span>
+                            </div>
+                        </div>
+                    </div>
+
 
                     {/* main heading */}
                     <h1 id="hero-heading" className="text-2xl lg:text-5xl font-bold text-gray-900 leading-tight mt-4 text-center lg:text-left">
@@ -50,7 +79,7 @@ export default function Hero() {
 
                     {/* subtext */}
                     <p className="text-md lg:text-xl text-gray-600 max-w-xl mt-3 text-center lg:text-left">
-                        Clean your email list in seconds. Protect your reputation and make sure your messages reach real people.
+                        Clean your email lists in seconds with our email checker and prevent bounces, spam traps, and invalid emails.
                     </p>
 
                     {/* CTAs */}
@@ -61,20 +90,53 @@ export default function Hero() {
                             px-6 lg:px-16 py-3 hover:shadow-xl transition-shadow duration-300 ease-in-out"
                             asChild
                         >
-                            <a href="https://app.emailverifier.io/register"
+                            <Link href="https://app.emailverifier.io/register"
                                 target="_blank" rel="noopener noreferrer"
                                 aria-label="Try Email Verifier free — registers at app.emailverifier.io">
-                                Try It Free
+                                Verify Emails Free
                                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                            </a>
+                            </Link>
                         </Button>
+
+                        <HappyUsers />
                     </div>
 
                     {/* micro-features row */}
-                    <div className="text-sm lg:text-md text-blue-800 mt-5 text-center lg:text-left">
+                    <div className="text-xs lg:text-md text-blue-800 mt-5 text-center lg:text-left">
                         Get
                         <span className="font-semibold">&nbsp;100 free verifications</span> - no setup, no credit card, no stress.
                     </div>
+
+                    <div className="mt-3 flex items-center justify-center lg:justify-start gap-2 text-blue-800">
+                        {/* GDPR */}
+                        <div className="flex items-center gap-1">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/30">
+                                <span className="text-xs tracking-widest border border-blue-800/20 rounded-full p-1.5 bg-blue-800/10">
+                                    <CircleDashed size={20} />
+                                </span>
+                            </div>
+                            <span className="text-xs font-medium tracking-wide">
+                                GDPR<br />COMPLIANT
+                            </span>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="h-10 w-px bg-white/30" />
+
+                        {/* Deliverability */}
+                        <div className="flex items-center gap-1">
+                            <div className="flex h-12 w-12 items-center justify-center">
+                                <div className="border border-blue-800/20 rounded-full p-1.5
+                             bg-blue-800/10 text-xs font-semibold">
+                                    <span className="w-5 h-5 flex items-center justify-center">99%</span>
+                                </div>
+                            </div>
+                            <span className="text-xs font-medium tracking-wide">
+                                DELIVERABILITY<br />GUARANTEE
+                            </span>
+                        </div>
+                    </div>
+
                 </div>
 
                 {/* RIGHT */}
@@ -94,7 +156,7 @@ export default function Hero() {
             {/* Brands row */}
             <div className="my-10 border-t border-transparent">
                 <p className="text-xl lg:text-2xl text-center font-semibold">
-                    Leading Brands and Agencies Using emailverifier.io
+                    Leading Brands and Agencies Using Emailverifier.io
                 </p>
 
                 <div className="mt-6 flex justify-center items-center gap-10 flex-wrap" aria-hidden={false}>
