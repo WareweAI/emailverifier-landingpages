@@ -24,7 +24,7 @@ export default function CTA() {
                         Ready to <span className='text-blue-600'>Clean Your List?</span>
                     </h2>
                     <p className="text-xl text-blue-50 mb-12 max-w-2xl mx-auto">
-                        Join thousands of marketers keeping their email lists healthy and their messages reaching inboxes.
+                        Join thousands of marketers keeping their email lists healthy and their emails reaching inboxes.
                     </p>
 
                     <div className="flex flex-col gap-4 items-center mb-10 ">
