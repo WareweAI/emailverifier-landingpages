@@ -8,24 +8,14 @@ import { Button } from './ui/Button';
 
 const MENU_LIST = [
     {
-        title: "Advanced Validation",
-        desc: "Multi-layer email accuracy check.",
-        link: "/#advanced-validation",
-    },
-    {
-        title: "Catch-All Detection",
-        desc: "Identify risky catch-all domains.",
-        link: "/#catch-all-detection",
+        title: "Real-Time Validation",
+        desc: "Email verification in real-time",
+        link: "/#real-time-validation",
     },
     {
         title: "Spam Trap Detection",
-        desc: "Protect your sender reputation.",
+        desc: "Identify spam trap emails",
         link: "/#spam-trap-detection",
-    },
-    {
-        title: "Bulk Verification",
-        desc: "Clean large lists in seconds.",
-        link: "/#bulk-verification",
     },
     {
         title: "Disposable Email Check",
@@ -33,9 +23,19 @@ const MENU_LIST = [
         link: "/#disposable-email-check",
     },
     {
+        title: "Catch-All Detection",
+        desc: "Identify risky catch-all domains.",
+        link: "/#catch-all-detection",
+    },
+    {
         title: "Role-Based Filtering",
         desc: "Exclude generic addresses automatically.",
         link: "/#role-based-filtering",
+    },
+    {
+        title: "Bulk Verification",
+        desc: "Clean large lists in seconds.",
+        link: "/#bulk-verification",
     },
 ];
 
@@ -93,22 +93,23 @@ export default function Header() {
                         </div>
 
 
-                        <a href="/pricing" className="text-gray-600 hover:text-blue-600 transition-colors">Pricing</a>
+                        <Link href="/pricing" className="text-gray-600 hover:text-blue-600 transition-colors">Pricing</Link>
+                        <Link href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Free Validation</Link>
                     </nav>
 
                     {/* Desktop CTA */}
                     <div className="hidden md:flex items-center space-x-4">
                         <Button className='px-2.5 py-2
                         transition-colors duration-300 ease-in' variant="ghost" asChild title='Log in'>
-                            <a href="https://app.emailverifier.io/signin" target="_blank"
+                            <Link href="https://app.emailverifier.io/signin" target="_blank"
                                 rel="noopener noreferrer"
-                                aria-label="Sign in to Email Verifier"><LogIn aria-hidden /><span className="sr-only">Sign in</span></a>
+                                aria-label="Sign in to Email Verifier"><LogIn aria-hidden /><span className="sr-only">Sign in</span></Link>
                         </Button>
                         <Button className='bg-linear-to-r from-blue-500 to-blue-700 hover:bg-blue-600 text-white px-2.5 py-2
                         transition-colors duration-300 ease-in' asChild>
-                            <a href="https://app.emailverifier.io/register" target="_blank"
+                            <Link href="https://app.emailverifier.io/register" target="_blank"
                                 rel="noopener noreferrer"
-                                aria-label="Register — Get Started for Free">Get Started for Free</a>
+                                aria-label="Register — Get Started for Free">Get Started for Free</Link>
                         </Button>
                     </div>
 
@@ -130,16 +131,17 @@ export default function Header() {
                         <nav className="flex flex-col space-y-4">
                             <Link href="/#features" className="text-gray-600 hover:text-blue-600 transition-colors">Features</Link>
                             <Link href="/pricing" className="text-gray-600 hover:text-blue-600 transition-colors">Pricing</Link>
+                            <Link href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Free Validation</Link>
                             <div className="flex flex-col  space-y-2 pt-4">
                                 <Button variant="ghost"
                                     className='border border-blue-500
                                     px-6 py-2  transition-colors duration-300 ease-in' asChild>
-                                    <a href="https://app.emailverifier.io/signin" target="_blank" rel="noopener noreferrer">Sign In</a>
+                                    <Link href="https://app.emailverifier.io/signin" target="_blank" rel="noopener noreferrer">Sign In</Link>
                                 </Button>
                                 <Button
                                     className='bg-linear-to-r from-blue-500 to-blue-700 hover:bg-blue-600 text-white
                                     px-6 py-2  transition-colors duration-300 ease-in' asChild>
-                                    <a href="https://app.emailverifier.io/register" target="_blank" rel="noopener noreferrer">Get Started</a>
+                                    <Link href="https://app.emailverifier.io/register" target="_blank" rel="noopener noreferrer">Get Started</Link>
                                 </Button>
                             </div>
                         </nav>
