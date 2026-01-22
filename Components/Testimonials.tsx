@@ -45,7 +45,7 @@ export default function Testimonials() {
                         Loved by Thousands of Businesses
                     </h2>
                     <p className="text-xl text-black max-w-3xl mx-auto">
-                        See what our customers have to say about their experience with Email Verifier.
+                        See what our customers have to say about their experience with Emailverifier.io
                     </p>
                 </div>
 
