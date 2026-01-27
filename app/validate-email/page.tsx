@@ -7,9 +7,7 @@ import UseCaseSection from "@/Components/FreeValidationPage/UseCaseSection"
 import WhyChoose from "@/Components/FreeValidationPage/WhyChoose"
 import LeadingBrand from "@/Components/LeadingBrand"
 import Testimonials from "@/Components/Testimonials"
-import { ArrowRight, Mail, } from "lucide-react"
 import { Metadata } from "next"
-// import Link from "next/link"
 
 
 export const metadata: Metadata = {
