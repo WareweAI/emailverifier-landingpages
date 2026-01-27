@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function PricingPage() {
     return (
         <main className="relative bg-white text-gray-800 overflow-hidden isolate"
-            id="pricing-main-content" aria-labelledby="pricing-heading" role="main">
+            id="pricing-main-content" aria-labelledby="pricing-heading">
 
             <div
                 aria-hidden="true"
@@ -35,7 +35,7 @@ export default function PricingPage() {
                     >
                         Pricing
                     </p>
-                    <h2 id="faqs-heading" className="text-3xl lg:text-4xl font-semibold text-gray-900 mb-3">
+                    <h2 id="pricing-heading" className="text-3xl lg:text-4xl font-semibold text-gray-900 mb-3">
                         Simple, Honest Pricing
                     </h2>
                     <p className="text-black text-sm lg:text-base">

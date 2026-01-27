@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
+import { Inter } from "next/font/google"
 // import OfferBanner from "@/Components/OfferBanner";
 
 export const viewport: Viewport = {
@@ -40,6 +41,13 @@ export const metadata: Metadata = {
   },
 };
 
+const InterFont = Inter({
+  subsets: ['latin'],
+  variable: '--inter-font',
+  display: 'swap',
+})
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -68,7 +76,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={'antialiased'}>
+      <body className={`antialiased ${InterFont.variable} font-sans flex flex-col min-h-screen`}>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe

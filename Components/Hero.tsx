@@ -4,6 +4,7 @@ import Image from "next/image";
 import { StarRating } from "./ui/StarRating";
 import Link from "next/link";
 import HappyUsers from "./HappyUsers";
+import LeadingBrand from "./LeadingBrand";
 
 export default function Hero() {
     return (
@@ -154,46 +155,7 @@ export default function Hero() {
             </div>
 
             {/* Brands row */}
-            <div className="my-10 border-t border-transparent">
-                <p className="text-xl lg:text-2xl text-center font-semibold">
-                    Leading Brands and Agencies Using Emailverifier.io
-                </p>
-
-                <div className="mt-6 flex justify-center items-center gap-10 flex-wrap" aria-hidden={false}>
-                    <Image
-                        src="/logos/wareweeLogo.webp"
-                        alt="Warewee"
-                        width="144"
-                        height="48"
-                        className="w-36 h-auto object-contain"
-                        loading="lazy"
-                    />
-                    <Image
-                        src="/logos/redserpLogo.webp"
-                        alt="RedSerp"
-                        width="144"
-                        height="48"
-                        className="w-36 h-auto object-contain"
-                        loading="lazy"
-                    />
-                    <Image
-                        src="/logos/paperboatLogo.webp"
-                        alt="Paperbot AI"
-                        width="144"
-                        height="48"
-                        className="w-36 h-auto object-contain"
-                        loading="lazy"
-                    />
-                    <Image
-                        src="/logos/saasyogiLogo.webp"
-                        alt="SaaS Yogi"
-                        width="144"
-                        height="48"
-                        className="w-36 h-auto object-contain"
-                        loading="lazy"
-                    />
-                </div>
-            </div>
+            <LeadingBrand />
         </section>
     );
 }

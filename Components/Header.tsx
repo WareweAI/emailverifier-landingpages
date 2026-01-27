@@ -94,7 +94,7 @@ export default function Header() {
 
 
                         <Link href="/pricing" className="text-gray-600 hover:text-blue-600 transition-colors">Pricing</Link>
-                        <Link href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Free Validation</Link>
+                        <Link href="/validate-email" className="text-gray-600 hover:text-blue-600 transition-colors">Free Validation</Link>
                     </nav>
 
                     {/* Desktop CTA */}
@@ -131,7 +131,7 @@ export default function Header() {
                         <nav className="flex flex-col space-y-4">
                             <Link href="/#features" className="text-gray-600 hover:text-blue-600 transition-colors">Features</Link>
                             <Link href="/pricing" className="text-gray-600 hover:text-blue-600 transition-colors">Pricing</Link>
-                            <Link href="#" className="text-gray-600 hover:text-blue-600 transition-colors">Free Validation</Link>
+                            <Link href="/validate-email" className="text-gray-600 hover:text-blue-600 transition-colors">Free Validation</Link>
                             <div className="flex flex-col  space-y-2 pt-4">
                                 <Button variant="ghost"
                                     className='border border-blue-500
