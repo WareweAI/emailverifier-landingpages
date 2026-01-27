@@ -89,10 +89,8 @@ export default function Features() {
                         <li
                             key={feature.id}
                             className={`flex flex-col-reverse lg:flex-row items-center gap-4 lg:gap-6
-                 ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
-                            id={feature.id}
-
-                        >
+                            ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
+                            id={feature.id} >
 
                             <figure className="lg:w-[55%] flex justify-center">
                                 <Image

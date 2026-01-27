@@ -39,7 +39,7 @@ export default function Testimonials() {
             aria-labelledby="testimonials-heading"
             id="testimonials"
         >
-            <div className="mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto px-4 sm:px-6 lg:px-14">
                 <div className="text-center mb-10">
                     <h2 id="testimonials-heading" className="text-2xl lg:text-3xl font-bold text-black mb-4">
                         Loved by Thousands of Businesses

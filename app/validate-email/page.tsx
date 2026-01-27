@@ -1,6 +1,11 @@
 
+import CTA from "@/Components/CTA"
+import FAQInValidation from "@/Components/FreeValidationPage/FAQInValidation"
 import Features from "@/Components/FreeValidationPage/Features"
+import UseCaseSection from "@/Components/FreeValidationPage/UseCaseSection"
+import WhyChoose from "@/Components/FreeValidationPage/WhyChoose"
 import LeadingBrand from "@/Components/LeadingBrand"
+import Testimonials from "@/Components/Testimonials"
 import { ArrowRight, Mail, } from "lucide-react"
 import { Metadata } from "next"
 // import Link from "next/link"
@@ -120,10 +125,23 @@ export default function ValidateEmailPage() {
 
             <LeadingBrand />
 
-
-
             {/* features section */}
             <Features />
+
+            {/* Why choose us section */}
+            <WhyChoose />
+
+            {/* faq section */}
+            <FAQInValidation />
+
+            {/* use cases section */}
+            <UseCaseSection />
+
+            {/* testiominals */}
+            <Testimonials />
+
+            {/* cta section */}
+            <CTA />
         </main>
     )
 }
