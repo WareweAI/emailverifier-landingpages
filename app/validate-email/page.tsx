@@ -11,7 +11,8 @@ import { Metadata } from "next"
 
 
 export const metadata: Metadata = {
-    title: "Free Email Validator and Checker | Emailverifier.io"
+    title: "Free Email Validator and Checker | Emailverifier.io",
+    description: "Free email verifier tool you can trust for accurate email validation. Instantly check email validity, reduce bounces, and protect sender reputation.",
 }
 
 
