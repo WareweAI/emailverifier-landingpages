@@ -2,6 +2,7 @@
 import CTA from "@/Components/CTA"
 import FAQInValidation from "@/Components/FreeValidationPage/FAQInValidation"
 import Features from "@/Components/FreeValidationPage/Features"
+import InputForm from "@/Components/FreeValidationPage/InputForm"
 import UseCaseSection from "@/Components/FreeValidationPage/UseCaseSection"
 import WhyChoose from "@/Components/FreeValidationPage/WhyChoose"
 import LeadingBrand from "@/Components/LeadingBrand"
@@ -68,51 +69,7 @@ export default function ValidateEmailPage() {
 
                     <div className="mx-auto max-w-xl space-y-3">
                         {/* Input Card */}
-                        <div className="py-2 px-3 shadow-[0px_13px_20px_-3px_rgba(0,0,0,0.1)] bg-white rounded-2xl">
-                            <div className="flex items-center gap-3">
-                                <div className="flex items-center gap-2 flex-1 bg-blue-100/25 p-2 rounded-sm">
-                                    <span className="text-gray-400">
-                                        <Mail />
-                                    </span>
-                                    <input
-                                        type="email"
-                                        placeholder="Enter email address (e.g. name@company.com)"
-                                        className="w-full bg-transparent text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none"
-                                    />
-                                </div>
-
-                                <button
-                                    className="py-2 px-6 rounded-sm bg-linear-to-r from-blue-600 to-blue-800 
-                            text-white font-medium flex items-center gap-2 hover:opacity-90 transition cursor-pointer"
-                                >
-                                    Verify Email
-                                    <ArrowRight size={16} />
-                                </button>
-                            </div>
-                        </div>
-                        {/* STATUS MESSAGES */}
-
-                        {/* limit warning done */}
-                        {/* <div className=" rounded-lg border border-yellow-300 
-                        bg-yellow-50 px-4 py-3 text-base text-gray-600 text-left flex items-start gap-2">
-                        <span className="text-yellow-500"><TriangleAlert size={18} /></span>
-                        <p>
-                            You&apos;ve reached the maximum number of trial limit. Please{" "}
-                            <Link href="/signin" className="underline">sign in</Link> or{" "}
-                            <Link href="/register" className="underline">create a free account</Link> to continue.
-                        </p>
-                    </div> */}
-
-                        {/* invalid done */}
-                        {/* <div className="flex items-center justify-center gap-2 text-red-600 font-semibold">
-                        <CircleX size={20} /> This email is invalid!
-                    </div> */}
-
-
-                        {/* VALID done*/}
-                        {/* <div className="flex items-center justify-center gap-2 text-green-600 font-semibold">
-                        <span><CircleCheck size={20} /></span> This email is Valid. OK to send!
-                    </div> */}
+                        <InputForm />
                     </div>
 
                     {/* Trust line */}
