@@ -54,6 +54,7 @@ export default function FAQSection() {
                     {faqs.map((faq, i) => (
                         <FaqItem
                             key={i}
+                            id={`faq-${i}`}
                             question={faq.question}
                             answer={faq.answer}
                             isOpen={openIndex === i}
@@ -67,11 +68,13 @@ export default function FAQSection() {
 }
 
 function FaqItem({
+    id,
     question,
     answer,
     isOpen,
     onToggle,
 }: {
+    id: string;
     question: string;
     answer: string;
     isOpen: boolean;
@@ -95,8 +98,9 @@ function FaqItem({
             <button
                 onClick={onToggle}
                 className="flex w-full items-center justify-between text-left text-base sm:text-lg font-semibold text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-                aria-controls={`faq-answer-${question}`}
+                aria-controls={`${id}-panel`}
                 aria-expanded={isOpen}
+                id={`${id}-button`}
             >
                 {question}
                 <span
@@ -109,7 +113,9 @@ function FaqItem({
 
             <div
                 ref={ref}
-                id={`faq-answer-${question}`}
+                id={`${id}-panel`}
+                role="region"
+                aria-labelledby={`${id}-button`}
                 className="overflow-hidden transition-all duration-500 ease-in-out"
                 style={{ maxHeight: height }}
             >
