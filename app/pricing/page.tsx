@@ -3,9 +3,23 @@ import CTA from "@/Components/CTA";
 import PricingCalculator from "@/Components/PricingPage/PricingCalculator";
 import type { Metadata } from "next";
 
+const title = "Pricing | Emailverifier.io";
+const description =
+    "Simple, transparent pricing for email verification. Validate bulk emails, reduce bounce rates, and improve deliverability with pay as you go plans - no hidden fees";
+
 export const metadata: Metadata = {
-    title: "Pricing | Emailverifier.io",
-    description: "Simple, transparent pricing for email verification. Validate bulk emails, reduce bounce rates, and improve deliverability with pay as you go plans - no hidden fees",
+    title,
+    description,
+    alternates: { canonical: "/pricing" },
+    openGraph: {
+        title,
+        description,
+        url: "/pricing",
+    },
+    twitter: {
+        title,
+        description,
+    },
 };
 
 export default function PricingPage() {
@@ -35,9 +49,9 @@ export default function PricingPage() {
                     >
                         Pricing
                     </p>
-                    <h2 id="pricing-heading" className="text-3xl lg:text-4xl font-semibold text-gray-900 mb-3">
+                    <h1 id="pricing-heading" className="text-3xl lg:text-4xl font-semibold text-gray-900 mb-3">
                         Simple, Honest Pricing
-                    </h2>
+                    </h1>
                     <p className="text-black text-sm lg:text-base">
                         Pick your volume. See your price instantly. No hidden fees ever.
                     </p>

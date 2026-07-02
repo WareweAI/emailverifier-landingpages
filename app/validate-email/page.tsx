@@ -10,10 +10,24 @@ import Testimonials from "@/Components/Testimonials"
 import { Metadata } from "next"
 
 
+const title = "Free Email Validator and Checker | Emailverifier.io";
+const description =
+    "Free email verifier tool you can trust for accurate email validation. Instantly check email validity, reduce bounces, and protect sender reputation.";
+
 export const metadata: Metadata = {
-    title: "Free Email Validator and Checker | Emailverifier.io",
-    description: "Free email verifier tool you can trust for accurate email validation. Instantly check email validity, reduce bounces, and protect sender reputation.",
-}
+    title,
+    description,
+    alternates: { canonical: "/validate-email" },
+    openGraph: {
+        title,
+        description,
+        url: "/validate-email",
+    },
+    twitter: {
+        title,
+        description,
+    },
+};
 
 
 

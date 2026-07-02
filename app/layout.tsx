@@ -12,18 +12,11 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Email Verifier: Free, Bulk & API Email Validation",
-  description: "Reduce bounce rates by up to 98% with our advanced email validation service. 99.9% accuracy guaranteed.",
-  alternates: {
-    canonical: "https://emailverifier.io/",
-  },
+  metadataBase: new URL("https://emailverifier.io"),
   openGraph: {
-    title: "Email Verifier: Free, Bulk & API Email Validation",
-    description: "Reduce bounce rates by up to 98% with our advanced email validation service. 99.9% accuracy guaranteed.",
-    url: "https://emailverifier.io/",
     images: [
       {
-        url: "https://emailverifier.io/og-image.jpg",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Email Verifier",
@@ -34,9 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Email Verifier: Free, Bulk & API Email Validation",
-    description: "Reduce bounce rates by up to 98% with our advanced email validation service. 99.9% accuracy guaranteed.",
-    images: ["https://emailverifier.io/og-image.jpg"],
+    images: ["/og-image.jpg"],
     site: "@emailverifier",
   },
 };

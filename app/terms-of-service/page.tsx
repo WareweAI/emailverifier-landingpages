@@ -3,9 +3,23 @@
 
 import type { Metadata } from "next";
 
+const title = "Terms & Conditions - Email Verifier";
+const description =
+  "Read our terms and conditions to understand the rules and regulations for using Email Verifier services.";
+
 export const metadata: Metadata = {
-  title: "Terms & Conditions - Email Verifier",
-  description: "Read our terms and conditions to understand the rules and regulations for using Email Verifier services.",
+  title,
+  description,
+  alternates: { canonical: "/terms-of-service" },
+  openGraph: {
+    title,
+    description,
+    url: "/terms-of-service",
+  },
+  twitter: {
+    title,
+    description,
+  },
 };
 
 export default function TermsPage() {

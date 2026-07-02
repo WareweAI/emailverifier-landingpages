@@ -2,9 +2,23 @@
 
 import type { Metadata } from "next";
 
+const title = "Privacy Policy - Email Verifier";
+const description =
+  "Read our privacy policy to understand how Email Verifier collects, uses, and protects your personal information.";
+
 export const metadata: Metadata = {
-  title: "Privacy Policy - Email Verifier",
-  description: "Read our privacy policy to understand how Email Verifier collects, uses, and protects your personal information.",
+  title,
+  description,
+  alternates: { canonical: "/privacy-policy" },
+  openGraph: {
+    title,
+    description,
+    url: "/privacy-policy",
+  },
+  twitter: {
+    title,
+    description,
+  },
 };
 
 export default function PrivacyPage() {
