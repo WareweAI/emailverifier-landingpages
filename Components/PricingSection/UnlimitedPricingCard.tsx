@@ -4,7 +4,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Button } from "../ui/Button";
 import CheckSvg from "../assets/CheckSvg";
 import {
-  START_UNLIMITED_URL,
   UNLIMITED_FEATURES,
   UNLIMITED_MONTHLY_EMAIL_CAP,
   UNLIMITED_PRICE_MONTHLY,
@@ -81,8 +80,6 @@ export default function UnlimitedPricingCard() {
     return () => clearInterval(timer);
   }, [getTimeLeft, soldOut]);
 
-  const ctaDisabled = soldOut || !offerActive;
-
   return (
     <article
       id="unlimited-plan"
@@ -93,16 +90,22 @@ export default function UnlimitedPricingCard() {
     >
       <div className="flex flex-wrap items-center gap-2">
         <span
-          className="inline-flex w-fit items-center rounded-full bg-blue-600 px-2.5 py-1
-            text-[11px] font-semibold uppercase tracking-wide text-white"
+          className="inline-flex w-fit items-center rounded-full bg-blue-100 px-2.5 py-1
+            text-[11px] font-semibold uppercase tracking-wide text-blue-800"
         >
           Unlimited
         </span>
         <span
-          className="inline-flex w-fit items-center rounded-full bg-white px-2.5 py-1
-            text-[11px] font-semibold uppercase tracking-wide text-blue-700 border border-blue-100"
+          className="inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-600 px-2.5 py-1
+            text-[11px] font-semibold uppercase tracking-wide text-white shadow-sm
+            ring-2 ring-blue-300/80"
         >
-          Limited offer
+          Coming Soon
+          <span className="inline-flex items-center gap-0.5" aria-hidden="true">
+            <span className="coming-soon-dot" />
+            <span className="coming-soon-dot" />
+            <span className="coming-soon-dot" />
+          </span>
         </span>
       </div>
 
@@ -182,34 +185,19 @@ export default function UnlimitedPricingCard() {
       </ul>
 
       <div className="mt-auto pt-8">
-        {ctaDisabled ? (
-          <Button
-            className="w-full bg-gray-300 py-3 text-gray-600 font-medium cursor-not-allowed"
-            disabled
-            aria-label={
-              soldOut
-                ? "Unlimited plan sold out"
-                : "Unlimited limited offer has ended"
-            }
-          >
-            {soldOut ? "Sold Out" : "Offer Ended"}
-          </Button>
-        ) : (
-          <Button
-            className="w-full bg-linear-to-r from-blue-700 to-blue-900 py-3 text-white font-medium
-              hover:shadow-lg hover:from-blue-800 hover:to-blue-950 transition duration-300"
-            asChild
-          >
-            <a
-              href={START_UNLIMITED_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Start Unlimited plan at Email Verifier"
-            >
-              Start Unlimited →
-            </a>
-          </Button>
-        )}
+        <Button
+          className="w-full bg-blue-100 py-3 text-blue-800 font-medium cursor-not-allowed
+            border border-blue-200"
+          disabled
+          aria-label="Unlimited plan coming soon"
+        >
+          Coming Soon
+          <span className="ml-1.5 inline-flex items-center gap-0.5" aria-hidden="true">
+            <span className="coming-soon-dot" />
+            <span className="coming-soon-dot" />
+            <span className="coming-soon-dot" />
+          </span>
+        </Button>
       </div>
     </article>
   );
