@@ -5,10 +5,8 @@ import { Button } from "../ui/Button";
 import CheckSvg from "../assets/CheckSvg";
 import {
   UNLIMITED_FEATURES,
-  UNLIMITED_MONTHLY_EMAIL_CAP,
   UNLIMITED_PRICE_MONTHLY,
   UNLIMITED_TOTAL_SPOTS,
-  formatNumber,
   getUnlimitedOfferEndsAt,
   getUnlimitedSpotsLeft,
 } from "@/lib/pricing";
@@ -165,8 +163,8 @@ export default function UnlimitedPricingCard() {
           </span>
           <span className="text-lg font-medium text-gray-600">/month</span>
         </p>
-        <p className="mt-2 text-sm font-medium text-blue-700">
-          {formatNumber(UNLIMITED_MONTHLY_EMAIL_CAP)} emails / month
+        <p className="mt-2 text-sm font-semibold text-blue-700">
+          Unlimited emails/month
         </p>
       </div>
 

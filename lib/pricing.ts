@@ -3,9 +3,7 @@ export const SEASONAL_MAX = 100_000;
 export const VOLUME_MIN = 1_000;
 export const VOLUME_STEP = 1_000;
 export const DEFAULT_VOLUME = 10_000;
-export const UNLIMITED_MONTHLY_EMAIL_CAP = 100_000;
-export const UNLIMITED_PRICE_MONTHLY =
-  (UNLIMITED_MONTHLY_EMAIL_CAP / 1000) * RATE_PER_THOUSAND; // $180 at $1.80/1K for 100K
+export const UNLIMITED_PRICE_MONTHLY = 299;
 export const UNLIMITED_TOTAL_SPOTS = 100;
 
 const DEFAULT_OFFER_ENDS_AT = "2026-09-10T23:59:59";
@@ -82,7 +80,7 @@ export const SEASONAL_FEATURES = [
 ] as const;
 
 export const UNLIMITED_FEATURES = [
-  "100,000 emails per month",
+  "Unlimited emails/month",
   "Bulk & Real-Time Verification",
   "API Access",
   "CSV List Cleaning",

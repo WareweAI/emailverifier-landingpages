@@ -13,12 +13,12 @@ const faqs = [
     {
         question: "What's the difference between Seasonal credits and Unlimited?",
         answer:
-            "Seasonal pricing is a one-time purchase for up to 100,000 verification credits — you pay only for the volume you need. Unlimited is a $180/month plan with 100,000 emails per month, available for a limited number of customers.",
+            "Seasonal pricing is a one-time purchase for up to 100,000 verification credits — you pay only for the volume you need. Unlimited is a $299/month plan with unlimited emails per month, available for a limited number of customers.",
     },
     {
         question: "Is there a subscription or recurring charge?",
         answer:
-            "Only if you choose Unlimited at $180/month. Seasonal credits are a one-time purchase with no recurring fees.",
+            "Only if you choose Unlimited at $299/month. Seasonal credits are a one-time purchase with no recurring fees.",
     },
     {
         question: "Can I buy more credits later or switch to Unlimited?",
