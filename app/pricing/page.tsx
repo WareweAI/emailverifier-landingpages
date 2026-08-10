@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 
 const title = "Pricing | Emailverifier.io";
 const description =
-    "Simple, transparent pricing for email verification. Validate bulk emails, reduce bounce rates, and improve deliverability with pay as you go plans - no hidden fees";
+    "Simple, transparent email verification pricing. Buy seasonal credits up to 100K, or join the limited Unlimited plan — 100K emails/month for $180.";
 
 export const metadata: Metadata = {
     title,
@@ -39,8 +39,8 @@ export default function PricingPage() {
             />
 
 
-            <section className="relative z-10 max-w-5xl mx-auto px-6 py-20">
-                <div className="text-center mb-8">
+            <section className="relative z-10 max-w-6xl mx-auto px-6 py-20">
+                <div className="text-center mb-10">
                     <p
                         className="text-sm text-black font-semibold mb-4 relative
                         before:absolute before:inset-0 before:top-1/2 before:-translate-y-0.75 
@@ -53,12 +53,10 @@ export default function PricingPage() {
                         Simple, Honest Pricing
                     </h1>
                     <p className="text-black text-sm lg:text-base">
-                        Pick your volume. See your price instantly. No hidden fees ever.
+                        Pay for the volume you need — or go Unlimited for continuous verification.
                     </p>
                 </div>
 
-
-                {/* Pricing Calculator */}
                 <PricingCalculator />
 
             </section>

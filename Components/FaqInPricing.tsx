@@ -8,22 +8,27 @@ const faqs = [
     {
         question: "Do my verification credits ever expire?",
         answer:
-            "No, your credits never expire. You can use them anytime — whether it's today, next month, or next year.",
+            "No. Seasonal one-time credits never expire. You can use them anytime — whether it's today, next month, or next year.",
+    },
+    {
+        question: "What's the difference between Seasonal credits and Unlimited?",
+        answer:
+            "Seasonal pricing is a one-time purchase for up to 100,000 verification credits — you pay only for the volume you need. Unlimited is a $180/month plan with 100,000 emails per month, available for a limited number of customers.",
     },
     {
         question: "Is there a subscription or recurring charge?",
         answer:
-            "No. You pay only once for the credits you buy. There are no hidden or recurring fees - it's a one-time purchase.",
+            "Only if you choose Unlimited at $180/month. Seasonal credits are a one-time purchase with no recurring fees.",
     },
     {
-        question: "Can I upgrade or buy more credits later?",
+        question: "Can I buy more credits later or switch to Unlimited?",
         answer:
-            "Absolutely! You can purchase additional credits anytime as you verifications needs grow - no need to change plans.",
+            "Yes. You can purchase additional seasonal credits anytime. If Unlimited spots are still available, you can also start the monthly plan for continuous verification.",
     },
     {
-        question: "What's included with the credits I purchase?",
+        question: "What's included with either option?",
         answer:
-            "Every plan includes real-time verrification, API access, CSV list cleaning, disposable email detection, and role-based filtering - at no extra cost.",
+            "Both include bulk and real-time verification, API access, CSV list cleaning, disposable email detection, and role-based filtering — at no extra cost.",
     },
     {
         question: "Do you offer refunds if I'm not satisfied?",
