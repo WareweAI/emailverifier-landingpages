@@ -1,5 +1,6 @@
 import VerifierDemo from "@/Components/VerifierDemo";
 import HeroScene from "@/Components/home/HeroScene";
+import PaperPlaneAnimation from "@/Components/home/PaperPlaneAnimation";
 import { DesktopMockup } from "@/Components/ui/DesktopMockup";
 import { StarRating } from "@/Components/ui/StarRating";
 
@@ -11,7 +12,8 @@ export default function HeroSection() {
         className="relative pt-8 pb-16 md:pt-12 md:pb-24 lg:pb-28"
         aria-labelledby="hero-heading"
       >
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <PaperPlaneAnimation />
+        <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
             <div
               data-hero-el
@@ -65,7 +67,7 @@ export default function HeroSection() {
 
           <div
             data-hero-el
-            className="relative mx-auto mt-10 max-w-3xl md:mt-12"
+            className="relative z-10 mx-auto mt-10 max-w-3xl md:mt-12"
           >
             <DesktopMockup chromeLabel="Enter an email address to check its deliverability">
               <VerifierDemo variant="hero" location="hero" />

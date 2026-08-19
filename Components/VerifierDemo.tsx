@@ -114,6 +114,14 @@ export default function VerifierDemo({
     setDetails(null);
     setLoading(true);
 
+    if (location === "hero" && typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("hero-verify-start", {
+          detail: { email: email.trim() },
+        })
+      );
+    }
+
     try {
       const res = await fetch(
         `/api/verify-email?email=${encodeURIComponent(email.trim())}`
