@@ -1,18 +1,53 @@
 @import "tailwindcss";
 
 @theme {
-  --animate-infinite-scroll: marquee 25s linear infinite;
-  --font-sans: var(--inter-font);
+  /* Brand */
+  --color-primary: #1f5dd8;
+  --color-primary-hover: #184bb0;
+  --color-primary-foreground: #ffffff;
+  --color-primary-soft: #eaf1ff;
+  --color-primary-deep: #0e2a6b;
+
+  /* Surfaces */
+  --color-background: #f7f8fc;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f3f5fa;
+  --color-ink: #0b1220;
+  --color-ink-muted: #5b6578;
+  --color-line: #e6eaf2;
+
+  /* Status */
+  --color-success: #0f9f6e;
+  --color-success-soft: #e6f8f1;
+  --color-warning: #b45309;
+  --color-warning-soft: #fff7ed;
+  --color-danger: #dc2626;
+  --color-danger-soft: #fef2f2;
+  --color-unknown: #64748b;
+  --color-unknown-soft: #f1f5f9;
+
+  /* Reviews */
+  --color-rating: #c2410c;
+
+  /* Typography */
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Radius, shadow, z-index */
+  --radius-control: 0.625rem;
+  --radius-card: 1rem;
+  --radius-pill: 9999px;
+  --shadow-card: 0 1px 2px rgb(11 18 32 / 0.06), 0 8px 24px rgb(11 18 32 / 0.06);
+  --z-sticky: 50;
+  --z-overlay: 60;
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-100%);
-  }
+body {
+  background-color: var(--color-background);
+  color: var(--color-ink);
+  font-family: var(--font-body);
 }
 
 @keyframes price-in {
@@ -29,6 +64,20 @@
 
 @utility animate-price-in {
   animation: price-in 180ms ease-out;
+}
+
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-logo-marquee {
+  animation: logo-marquee 40s linear infinite;
 }
 
 @keyframes coming-soon-dot-pulse {
@@ -67,5 +116,13 @@
     animation: none;
     opacity: 0.85;
     transform: none;
+  }
+
+  .animate-price-in {
+    animation: none;
+  }
+
+  .animate-logo-marquee {
+    animation: none;
   }
 }

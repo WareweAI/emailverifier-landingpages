@@ -16,12 +16,16 @@ import {
 type VolumeSelectorProps = {
   volume: number;
   onVolumeChange: (volume: number) => void;
+  /** When set, only show these presets (homepage: no disabled mega chips) */
+  presetList?: readonly number[];
 };
 
 export default function VolumeSelector({
   volume,
   onVolumeChange,
+  presetList,
 }: VolumeSelectorProps) {
+  const presets = presetList ?? PRESETS;
   const baseId = useId();
   const inputId = `${baseId}-volume-input`;
   const sliderId = `${baseId}-volume-slider`;
@@ -102,9 +106,9 @@ export default function VolumeSelector({
     <div className="space-y-4">
       <label
         htmlFor={inputId}
-        className="block text-gray-800 font-medium text-sm sm:text-base"
+        className="block text-sm font-medium text-ink sm:text-base"
       >
-        Email Volume
+        Email volume
       </label>
 
       <div className="flex flex-wrap items-center gap-2 sm:gap-3">
@@ -113,11 +117,9 @@ export default function VolumeSelector({
           aria-label="Decrease email volume by 1,000"
           onClick={decrease}
           disabled={volume <= VOLUME_MIN}
-          className="h-11 w-11 border border-gray-300 rounded-md grid place-items-center
-            hover:bg-gray-100 active:scale-95 transition disabled:opacity-40 disabled:pointer-events-none
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+          className="grid h-11 w-11 place-items-center rounded-lg border border-line transition hover:bg-surface-muted disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         >
-          <MinusIcon className="w-4 h-4" aria-hidden="true" />
+          <MinusIcon className="h-4 w-4" aria-hidden />
         </button>
 
         <input
@@ -132,8 +134,7 @@ export default function VolumeSelector({
           onKeyDown={handleInputKeyDown}
           aria-label="Email volume"
           aria-describedby={`${scaleId}${showClampHint ? ` ${hintId}` : ""}`}
-          className="text-center min-w-0 flex-1 border border-gray-300 rounded-md py-2.5 text-lg font-medium
-            text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
+          className="min-w-0 flex-1 rounded-lg border border-line py-2.5 text-center text-lg font-medium tabular-nums text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
         />
 
         <button
@@ -141,17 +142,16 @@ export default function VolumeSelector({
           aria-label="Increase email volume by 1,000"
           onClick={increase}
           disabled={volume >= SEASONAL_MAX}
-          className="h-11 w-11 border border-gray-300 rounded-md grid place-items-center
-            hover:bg-gray-100 active:scale-95 transition disabled:opacity-40 disabled:pointer-events-none
-            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+          className="grid h-11 w-11 place-items-center rounded-lg border border-line transition hover:bg-surface-muted disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         >
-          <PlusIcon className="w-4 h-4" aria-hidden="true" />
+          <PlusIcon className="h-4 w-4" aria-hidden />
         </button>
       </div>
 
       {showClampHint && (
-        <p id={hintId} className="text-xs text-gray-500" role="status">
-          Seasonal pricing max is {formatNumber(SEASONAL_MAX)} emails.
+        <p id={hintId} className="text-xs text-ink-muted" role="status">
+          Max purchase is {formatNumber(SEASONAL_MAX)} emails.
+          {presetList ? " Need more? Contact us." : ""}
         </p>
       )}
 
@@ -168,22 +168,18 @@ export default function VolumeSelector({
         aria-valuemin={VOLUME_MIN}
         aria-valuemax={SEASONAL_MAX}
         aria-valuenow={volume}
-        className="w-full accent-blue-600 cursor-pointer"
+        className="w-full cursor-pointer accent-primary"
       />
 
-      <div id={scaleId} className="flex justify-between text-xs text-gray-600">
+      <div id={scaleId} className="flex justify-between text-xs text-ink-muted">
         <span>1K</span>
         <span>50K</span>
         <span>100K max</span>
       </div>
 
-      <div
-        className="flex flex-wrap gap-2"
-        role="group"
-        aria-label="Volume presets"
-      >
-        {PRESETS.map((preset) => {
-          const available = isSeasonalPreset(preset);
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Volume presets">
+        {presets.map((preset) => {
+          const available = presetList ? true : isSeasonalPreset(preset);
           const selected = available && preset === volume;
 
           if (!available) {
@@ -193,9 +189,8 @@ export default function VolumeSelector({
                 type="button"
                 disabled
                 title="Not available in Seasonal pricing"
-                aria-label={`${formatPresetLabel(preset)} — not available in Seasonal pricing`}
-                className="px-2.5 py-1.5 rounded-md border border-gray-200 text-sm font-medium
-                  text-gray-400 bg-gray-50 cursor-not-allowed opacity-60"
+                aria-label={`${formatPresetLabel(preset)} — not available`}
+                className="cursor-not-allowed rounded-lg border border-line px-2.5 py-1.5 text-sm font-medium text-ink-muted opacity-60"
               >
                 {formatPresetLabel(preset)}
               </button>
@@ -212,12 +207,11 @@ export default function VolumeSelector({
                 setShowClampHint(false);
               }}
               aria-pressed={selected}
-              className={`px-2.5 py-1.5 rounded-md border text-sm font-medium transition
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 ${
-                  selected
-                    ? "bg-blue-100 text-gray-900 border-blue-600"
-                    : "bg-white border-gray-300 text-gray-800 hover:bg-gray-100"
-                }`}
+              className={`rounded-lg border px-2.5 py-1.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+                selected
+                  ? "border-primary bg-primary-soft text-primary"
+                  : "border-line bg-surface text-ink hover:bg-surface-muted"
+              }`}
             >
               {formatPresetLabel(preset)}
             </button>

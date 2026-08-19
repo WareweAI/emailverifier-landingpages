@@ -3,17 +3,31 @@
 import { useState } from "react";
 import SeasonalPricingCard from "./SeasonalPricingCard";
 import UnlimitedPricingCard from "./UnlimitedPricingCard";
+import HomepagePricingCard from "./HomepagePricingCard";
 import { DEFAULT_VOLUME } from "@/lib/pricing";
+import { SectionShell } from "@/Components/ui/SectionShell";
 
 export type PricingSectionProps = {
   /** Full homepage section vs embedded grid on /pricing */
-  variant?: "section" | "embedded";
+  variant?: "section" | "embedded" | "homepage";
 };
 
 export default function PricingSection({
   variant = "section",
 }: PricingSectionProps) {
   const [volume, setVolume] = useState(DEFAULT_VOLUME);
+
+  if (variant === "homepage") {
+    return (
+      <SectionShell
+        id="pricing"
+        ariaLabelledBy="pricing-heading"
+        className="relative mx-3 overflow-hidden rounded-3xl bg-ink py-12 md:py-16 lg:py-20"
+      >
+        <HomepagePricingCard volume={volume} onVolumeChange={setVolume} />
+      </SectionShell>
+    );
+  }
 
   const grid = (
     <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
@@ -33,19 +47,20 @@ export default function PricingSection({
   return (
     <section
       id="pricing"
-      className="w-full bg-blue-50 py-14 sm:py-20 flex flex-col items-center px-4"
+      className="flex w-full flex-col items-center bg-primary-soft px-4 py-14 sm:py-20"
       aria-labelledby="pricing-heading"
       role="region"
     >
-      <div className="max-w-3xl text-center mb-10">
+      <div className="mb-10 max-w-3xl text-center">
         <h2
           id="pricing-heading"
-          className="text-2xl font-semibold text-gray-900 mb-2 sm:text-3xl"
+          className="mb-2 text-2xl font-semibold text-ink sm:text-3xl"
         >
           Simple, Honest Pricing
         </h2>
-        <p className="text-gray-700 text-sm sm:text-base">
-          Pay for the volume you need — or choose Unlimited for continuous verification.
+        <p className="text-sm text-ink-muted sm:text-base">
+          Pay for the volume you need — or choose Unlimited for continuous
+          verification.
         </p>
       </div>
 

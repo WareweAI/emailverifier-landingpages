@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import Link from "next/link";
 import "./globals.css";
 import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
-import { Inter } from "next/font/google"
-// import OfferBanner from "@/Components/OfferBanner";
+import SmoothScroll from "@/Components/SmoothScroll";
+import { Inter } from "next/font/google";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -19,11 +20,11 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Email Verifier",
+        alt: "EmailVerifier.io",
       },
     ],
     type: "website",
-    siteName: "Email Verifier",
+    siteName: "EmailVerifier.io",
   },
   twitter: {
     card: "summary_large_image",
@@ -32,12 +33,13 @@ export const metadata: Metadata = {
   },
 };
 
-const InterFont = Inter({
-  subsets: ['latin'],
-  variable: '--inter-font',
-  display: 'swap',
-})
-
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-inter",
+  display: "swap",
+  adjustFontFallback: true,
+});
 
 export default function RootLayout({
   children,
@@ -45,9 +47,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html
+      lang="en"
+      className={`scroll-smooth scroll-pt-28 ${inter.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        {/* Google Tag Manager */}
         <Script
           id="gtm-script"
           strategy="afterInteractive"
@@ -67,21 +72,27 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`antialiased ${InterFont.variable} font-sans flex flex-col min-h-screen`}>
-        {/* Google Tag Manager (noscript) */}
+      <body className="flex min-h-screen flex-col font-body antialiased">
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-KFKDF433"
             height="0"
             width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
+            style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
 
-        <Header />
-        {/* <OfferBanner /> */}
-        {children}
-        <Footer />
+        <Link
+          href="#main-page"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-70 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+        >
+          Skip to main content
+        </Link>
+
+        <SmoothScroll header={<Header />}>
+          {children}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

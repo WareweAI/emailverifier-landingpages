@@ -22,6 +22,9 @@ export const PRESETS = [
   10_000_000,
 ] as const;
 
+/** Homepage calculator — no disabled mega presets */
+export const HOMEPAGE_PRESETS = [10_000, 25_000, 50_000, 100_000] as const;
+
 export type VolumePreset = (typeof PRESETS)[number];
 
 export function isSeasonalPreset(volume: number): boolean {

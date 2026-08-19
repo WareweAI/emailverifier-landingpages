@@ -14,8 +14,8 @@ export function StarRating({
   rating,
   max = 5,
   size = 24,
-  activeColor = "#8134af",
-  inactiveColor = "#d3d3d3",
+  activeColor = "var(--color-rating)",
+  inactiveColor = "var(--color-line)",
   className,
 }: StarRatingProps) {
   const fullStars = Math.floor(rating);

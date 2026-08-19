@@ -1,38 +1,50 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://emailverifier.io'
+  const baseUrl = "https://emailverifier.io";
 
   return [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: "weekly",
       priority: 1,
+    },
+    {
+      url: `${baseUrl}/bulk-email-verifier`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/email-verification-api`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/pricing`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/validate-email`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/privacy-policy`,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
+      changeFrequency: "yearly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/terms-of-service`,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
+      changeFrequency: "yearly",
       priority: 0.5,
     },
-  ]
+  ];
 }
