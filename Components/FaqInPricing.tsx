@@ -28,7 +28,7 @@ const faqs = [
     {
         question: "What's included with either option?",
         answer:
-            "Both include bulk and real-time verification, API access, CSV list cleaning, disposable email detection, and role-based filtering — at no extra cost.",
+            "Both include bulk email verifier and real-time verification, email verification API access, CSV list cleaning, disposable email detection, and role-based filtering — at no extra cost.",
     },
     {
         question: "Do you offer refunds if I'm not satisfied?",
@@ -52,7 +52,7 @@ export default function FAQSection() {
                     id="faq-heading"
                     className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-10"
                 >
-                    Frequently asked questions
+                    Email verifier pricing FAQs
                 </h2>
 
                 <div className="space-y-4">

@@ -76,10 +76,11 @@ export default function HomepagePricingCard({
             id="pricing-heading"
             className="font-display text-3xl font-semibold tracking-tight text-primary-foreground lg:text-4xl"
           >
-            Flexible pricing
+            Bulk email verifier pricing
           </h2>
           <p className="mt-3 max-w-sm text-primary-foreground/70">
-            Pay only for the volume you need. No subscription required.
+            Pay only for the volume you need. Same credits for lists and the
+            email verification API — no subscription required.
           </p>
 
           <div
@@ -97,7 +98,7 @@ export default function HomepagePricingCard({
                   aria-checked={selected}
                   onClick={() => selectPreset(preset)}
                   className={cn(
-                    "flex min-h-11 w-full items-center justify-between gap-3 rounded-xl px-4 py-3 text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ink",
+                    "flex min-h-11 w-full cursor-pointer items-center justify-between gap-3 rounded-xl px-4 py-3 text-left transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-ink",
                     selected
                       ? "bg-primary-foreground/12 text-primary-foreground"
                       : "text-primary-foreground/75 hover:bg-primary-foreground/8"

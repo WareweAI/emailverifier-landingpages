@@ -23,7 +23,7 @@ export interface ButtonProps
 }
 
 const baseButtonClasses =
-  "inline-flex items-center justify-center gap-2 rounded-lg text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg text-sm font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
 
 const sizeClasses: Record<ButtonSize, string> = {
   xs: "h-9 px-4 text-sm",
@@ -33,14 +33,17 @@ const sizeClasses: Record<ButtonSize, string> = {
 };
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: "bg-primary text-primary-foreground hover:bg-primary-hover",
-  default: "bg-primary text-primary-foreground hover:bg-primary-hover",
+  primary:
+    "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-deep",
+  default:
+    "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-deep",
   secondary:
-    "bg-surface text-ink border border-line hover:bg-surface-muted",
+    "bg-surface text-ink border border-line hover:bg-surface-muted hover:border-primary active:bg-primary-soft",
   outline:
-    "bg-surface text-ink border border-line hover:bg-surface-muted",
-  ghost: "bg-transparent text-ink hover:bg-surface-muted",
-  onDeep: "bg-surface text-primary hover:bg-primary-soft",
+    "bg-surface text-ink border border-line hover:bg-surface-muted hover:border-primary active:bg-primary-soft",
+  ghost: "bg-transparent text-ink hover:bg-surface-muted active:bg-primary-soft",
+  onDeep:
+    "bg-surface text-primary hover:bg-primary-soft active:bg-primary-soft",
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(

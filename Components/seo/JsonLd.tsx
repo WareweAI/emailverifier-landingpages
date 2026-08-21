@@ -31,6 +31,9 @@ export function softwareApplicationJsonLd() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "EmailVerifier.io",
+    alternateName: "Email Verifier",
+    description:
+      "Email verifier for bulk CSV cleaning and real-time API checks.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     offers: {

@@ -1,7 +1,22 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { useRef, useState, type ComponentType } from "react";
+import {
+  Braces,
+  ChevronDown,
+  Code2,
+  FileSpreadsheet,
+  Gauge,
+  Globe,
+  MailCheck,
+  Menu,
+  Search,
+  ShieldCheck,
+  Trash2,
+  Users,
+  X,
+  type LucideProps,
+} from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/Button";
 import LogoMark from "./ui/LogoMark";
@@ -10,30 +25,113 @@ import { cn } from "@/lib/utils";
 
 const REGISTER_URL = "https://app.emailverifier.io/register";
 const SIGNIN_URL = "https://app.emailverifier.io/signin";
+const FIND_EMAILS_URL = "https://app.emailverifier.io";
 
-const PRODUCT_LINKS = [
-  { title: "Free email tool", href: "/validate-email", desc: "Check any address" },
-  { title: "Bulk verifier", href: "/bulk-email-verifier", desc: "Clean CSV lists" },
-  { title: "Email verification API", href: "/email-verification-api", desc: "Real-time signup checks" },
-  { title: "How it works", href: "/#how-it-works", desc: "Three-step workflow" },
+type ProductLink = {
+  title: string;
+  href: string;
+  desc: string;
+  icon: ComponentType<LucideProps>;
+  external?: boolean;
+};
+
+const PRODUCT_LINKS: ProductLink[] = [
+  {
+    title: "Free email verifier tool",
+    href: "/validate-email",
+    desc: "Check any address",
+    icon: MailCheck,
+  },
+  {
+    title: "Bulk verifier",
+    href: "/bulk-email-verifier",
+    desc: "Clean CSV lists",
+    icon: FileSpreadsheet,
+  },
+  {
+    title: "Email verification API",
+    href: "/email-verification-api",
+    desc: "Real-time signup checks",
+    icon: Code2,
+  },
+  {
+    title: "Find Emails",
+    href: FIND_EMAILS_URL,
+    desc: "Discover email addresses",
+    icon: Search,
+    external: true,
+  },
+];
+
+const FEATURE_LINKS: ProductLink[] = [
+  {
+    title: "Advanced Syntax Validation",
+    href: "/#syntax-check",
+    desc: "Catch malformed addresses",
+    icon: Braces,
+  },
+  {
+    title: "Domain & MX Record Checks",
+    href: "/#mx-check",
+    desc: "Confirm the domain can receive mail",
+    icon: Globe,
+  },
+  {
+    title: "Real-Time SMTP Verification",
+    href: "/#mailbox-check",
+    desc: "Verify the mailbox without sending",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Disposable Email Detection",
+    href: "/#disposable-check",
+    desc: "Filter throwaway inboxes",
+    icon: Trash2,
+  },
+  {
+    title: "Role-Based Email Detection",
+    href: "/#role-based-filtering",
+    desc: "Spot info@, admin@, and support@",
+    icon: Users,
+  },
+  {
+    title: "Smart Risk Scoring",
+    href: "/#risk-check",
+    desc: "Classify deliverable vs risky",
+    icon: Gauge,
+  },
 ];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductOpen, setIsProductOpen] = useState(false);
+  const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const menuOpenRef = useRef(false);
   const productCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const featuresCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   menuOpenRef.current = isMenuOpen;
 
   const openProduct = () => {
     if (productCloseTimer.current) clearTimeout(productCloseTimer.current);
+    setIsFeaturesOpen(false);
     setIsProductOpen(true);
   };
 
   const closeProduct = () => {
     if (productCloseTimer.current) clearTimeout(productCloseTimer.current);
     productCloseTimer.current = setTimeout(() => setIsProductOpen(false), 120);
+  };
+
+  const openFeatures = () => {
+    if (featuresCloseTimer.current) clearTimeout(featuresCloseTimer.current);
+    setIsProductOpen(false);
+    setIsFeaturesOpen(true);
+  };
+
+  const closeFeatures = () => {
+    if (featuresCloseTimer.current) clearTimeout(featuresCloseTimer.current);
+    featuresCloseTimer.current = setTimeout(() => setIsFeaturesOpen(false), 120);
   };
 
   useGSAP(
@@ -155,7 +253,7 @@ export default function Header() {
                   isProductOpen ? setIsProductOpen(false) : openProduct()
                 }
               >
-                Product
+                Products
                 <ChevronDown
                   className={cn(
                     "h-4 w-4 transition-transform",
@@ -178,21 +276,111 @@ export default function Header() {
                   role="menu"
                   className="grid w-80 gap-1 rounded-2xl border border-line bg-surface p-3 shadow-[var(--shadow-card)]"
                 >
-                  {PRODUCT_LINKS.map((item) => (
-                    <li key={item.href} role="none">
-                      <Link
-                        href={item.href}
-                        role="menuitem"
-                        className="block rounded-lg px-3 py-2 hover:bg-surface-muted"
-                        onClick={() => setIsProductOpen(false)}
-                      >
-                        <span className="block font-medium text-ink">
-                          {item.title}
-                        </span>
-                        <span className="text-xs text-ink-muted">{item.desc}</span>
-                      </Link>
-                    </li>
-                  ))}
+                  {PRODUCT_LINKS.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <li key={item.href} role="none">
+                        <Link
+                          href={item.href}
+                          role="menuitem"
+                          className="flex items-start gap-3 rounded-lg px-3 py-2 hover:bg-surface-muted"
+                          onClick={() => setIsProductOpen(false)}
+                          {...(item.external
+                            ? {
+                                target: "_blank",
+                                rel: "noopener noreferrer",
+                              }
+                            : {})}
+                        >
+                          <Icon
+                            className="mt-0.5 h-4 w-4 shrink-0 text-primary"
+                            strokeWidth={1.75}
+                            aria-hidden
+                          />
+                          <span>
+                            <span className="block text-xs font-medium text-ink">
+                              {item.title}
+                            </span>
+                            <span className="text-xs leading-snug text-ink-muted">
+                              {item.desc}
+                            </span>
+                          </span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+            <div
+              className="relative"
+              onMouseEnter={openFeatures}
+              onMouseLeave={closeFeatures}
+              onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                  setIsFeaturesOpen(false);
+                }
+              }}
+            >
+              <button
+                type="button"
+                className="flex min-h-11 items-center gap-1 text-sm font-medium text-ink-muted transition hover:text-primary"
+                aria-haspopup="true"
+                aria-expanded={isFeaturesOpen}
+                aria-controls="features-menu"
+                onClick={() =>
+                  isFeaturesOpen ? setIsFeaturesOpen(false) : openFeatures()
+                }
+              >
+                Features
+                <ChevronDown
+                  className={cn(
+                    "h-4 w-4 transition-transform",
+                    isFeaturesOpen && "rotate-180"
+                  )}
+                  aria-hidden
+                />
+              </button>
+              <div
+                id="features-menu"
+                className={cn(
+                  "absolute left-0 top-full z-60 pt-2 transition",
+                  isFeaturesOpen
+                    ? "visible opacity-100"
+                    : "invisible pointer-events-none opacity-0"
+                )}
+              >
+                <ul
+                  role="menu"
+                  className="grid w-[36rem] grid-cols-2 gap-1 rounded-2xl border border-line bg-surface p-3 shadow-[var(--shadow-card)]"
+                >
+                  {FEATURE_LINKS.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <li key={item.href} role="none">
+                        <Link
+                          href={item.href}
+                          role="menuitem"
+                          className="flex items-start gap-3 rounded-lg px-3 py-2 hover:bg-surface-muted"
+                          onClick={() => setIsFeaturesOpen(false)}
+                        >
+                          <Icon
+                            className="mt-0.5 h-4 w-4 shrink-0 text-primary"
+                            strokeWidth={1.75}
+                            aria-hidden
+                          />
+                          <span>
+                            <span className="block text-xs font-medium text-ink">
+                              {item.title}
+                            </span>
+                            <span className="text-xs leading-snug text-ink-muted">
+                              {item.desc}
+                            </span>
+                          </span>
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </div>
@@ -234,7 +422,7 @@ export default function Header() {
             <Button
               size="sm"
               asChild
-              className="rounded-full bg-ink text-primary-foreground transition hover:scale-105 hover:bg-ink hover:opacity-90 motion-reduce:hover:scale-100"
+              className="rounded-full bg-ink text-primary-foreground transition-colors duration-200 hover:bg-primary-deep motion-reduce:transition-none"
             >
               <Link
                 href={REGISTER_URL}
@@ -249,7 +437,7 @@ export default function Header() {
 
           <button
             type="button"
-            className="flex min-h-11 min-w-11 items-center justify-center justify-self-end rounded-full md:hidden"
+            className="flex min-h-11 min-w-11 cursor-pointer items-center justify-center justify-self-end rounded-full md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -266,17 +454,50 @@ export default function Header() {
             aria-label="Mobile"
           >
             <ul className="flex flex-col gap-3">
-              {PRODUCT_LINKS.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="block py-2 text-ink-muted hover:text-primary"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
+              {PRODUCT_LINKS.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="flex min-h-11 items-center gap-3 py-2 text-ink-muted hover:text-primary"
+                      onClick={() => setIsMenuOpen(false)}
+                      {...(item.external
+                        ? {
+                            target: "_blank",
+                            rel: "noopener noreferrer",
+                          }
+                        : {})}
+                    >
+                      <Icon
+                        className="h-4 w-4 shrink-0 text-primary"
+                        strokeWidth={1.75}
+                        aria-hidden
+                      />
+                      {item.title}
+                    </Link>
+                  </li>
+                );
+              })}
+              {FEATURE_LINKS.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="flex min-h-11 items-center gap-3 py-2 text-ink-muted hover:text-primary"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <Icon
+                        className="h-4 w-4 shrink-0 text-primary"
+                        strokeWidth={1.75}
+                        aria-hidden
+                      />
+                      {item.title}
+                    </Link>
+                  </li>
+                );
+              })}
               <li>
                 <Link
                   href="/pricing"
@@ -296,7 +517,7 @@ export default function Header() {
               </li>
               <li>
                 <Button
-                  className="w-full rounded-full bg-ink text-primary-foreground hover:bg-ink hover:opacity-90"
+                  className="w-full rounded-full bg-ink text-primary-foreground transition-colors duration-200 hover:bg-primary-deep"
                   asChild
                 >
                   <Link href={REGISTER_URL}>Get 100 free credits</Link>

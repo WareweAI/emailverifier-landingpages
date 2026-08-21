@@ -27,11 +27,16 @@ declare global {
 
 type ApiSnippetProps = {
   showCtas?: boolean;
+  showNote?: boolean;
+  /** Fill parent height and clip overflow (for paired card mockups). */
+  fillHeight?: boolean;
   className?: string;
 };
 
 export default function ApiSnippet({
   showCtas = true,
+  showNote = true,
+  fillHeight = false,
   className,
 }: ApiSnippetProps) {
   const [tab, setTab] = useState<ApiSnippetTab>("curl");
@@ -60,16 +65,21 @@ export default function ApiSnippet({
   ];
 
   return (
-    <div className={className}>
-      <div className="relative overflow-hidden rounded-2xl border border-line bg-ink text-primary-foreground">
-        <div className="flex gap-1 border-b border-white/10 px-3 pt-2 text-xs font-medium">
+    <div className={cn(fillHeight && "flex h-full min-h-0 flex-col", className)}>
+      <div
+        className={cn(
+          "relative overflow-hidden rounded-2xl border border-line bg-ink text-primary-foreground",
+          fillHeight && "flex min-h-0 flex-1 flex-col"
+        )}
+      >
+        <div className="flex shrink-0 gap-1 border-b border-white/10 px-3 pt-2 text-xs font-medium">
           {tabs.map(({ id, label }) => (
             <button
               key={id}
               type="button"
               onClick={() => setTab(id)}
               className={cn(
-                "rounded-t-md px-3 py-1.5 transition-colors",
+                "cursor-pointer rounded-t-md px-3 py-1.5 transition-colors duration-200",
                 tab === id ? "bg-white/10" : "text-white/70 hover:text-white"
               )}
             >
@@ -77,12 +87,12 @@ export default function ApiSnippet({
             </button>
           ))}
         </div>
-        <div className="relative">
+        <div className="relative shrink-0">
           <button
             type="button"
             onClick={handleCopy}
             data-ev-event="api_docs_click"
-            className="absolute right-3 top-3 inline-flex h-9 items-center gap-1.5 rounded-lg bg-white/10 px-3 text-xs font-semibold hover:bg-white/20"
+            className="absolute right-3 top-3 inline-flex h-9 cursor-pointer items-center gap-1.5 rounded-lg bg-white/10 px-3 text-xs font-semibold transition-colors duration-200 hover:bg-white/20"
             aria-label="Copy code snippet"
           >
             {copied ? (
@@ -101,17 +111,24 @@ export default function ApiSnippet({
             <code>{API_SNIPPETS[tab]}</code>
           </pre>
         </div>
-        <div className="border-t border-white/10 px-4 py-3">
+        <div
+          className={cn(
+            "border-t border-white/10 px-4 py-3",
+            fillHeight && "min-h-0 flex-1 overflow-hidden"
+          )}
+        >
           <p className="mb-2 text-xs font-medium text-white/70">Example response</p>
           <pre className="overflow-x-auto font-mono text-xs leading-relaxed text-success-soft">
             <code>{responseJson}</code>
           </pre>
         </div>
       </div>
-      <p className="mt-3 text-sm text-ink-muted">
-        Same credits as bulk. Exact endpoint URL is shown in your dashboard after
-        you register.
-      </p>
+      {showNote ? (
+        <p className="mt-3 text-sm text-ink-muted">
+          Same credits as bulk. Exact endpoint URL is shown in your dashboard after
+          you register.
+        </p>
+      ) : null}
       {showCtas && (
         <div className="mt-4 flex flex-wrap gap-3">
           <Button asChild size="md">

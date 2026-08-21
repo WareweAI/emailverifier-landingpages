@@ -1,73 +1,49 @@
 import FAQSection from "@/Components/FaqInPricing";
 import CTA from "@/Components/CTA";
 import PricingCalculator from "@/Components/PricingPage/PricingCalculator";
-import type { Metadata } from "next";
+import { HeroWash } from "@/Components/ui/HeroWash";
+import { buildMetadata } from "@/lib/metadata";
 
-const title = "Pricing | Emailverifier.io";
-const description =
-    "Simple, transparent email verification pricing. Buy seasonal credits up to 100K, or join the limited Unlimited plan for $299/month.";
-
-export const metadata: Metadata = {
-    title,
-    description,
-    alternates: { canonical: "/pricing" },
-    openGraph: {
-        title,
-        description,
-        url: "/pricing",
-    },
-    twitter: {
-        title,
-        description,
-    },
-};
+export const metadata = buildMetadata({
+  title: "Email Verifier Pricing — $1.80 per 1,000 Credits",
+  description:
+    "Email verifier pricing for bulk lists and the email verification API. $1.80 per 1,000 credits that never expire — buy only the volume you need.",
+  path: "/pricing",
+  imageAlt: "Email verifier pricing calculator for bulk and API credits",
+});
 
 export default function PricingPage() {
-    return (
-        <main className="relative bg-white text-gray-800 overflow-hidden isolate"
-            id="pricing-main-content" aria-labelledby="pricing-heading">
+  return (
+    <main
+      className="relative isolate overflow-hidden bg-background text-ink"
+      id="pricing-main-content"
+      aria-labelledby="pricing-heading"
+    >
+      <section className="relative z-10 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <HeroWash />
+        <div className="relative z-10 mx-auto max-w-6xl">
+          <div className="mb-10 text-center">
+            <p className="mb-4 text-sm font-semibold text-ink">Pricing</p>
+            <h1
+              id="pricing-heading"
+              className="mb-3 font-display text-3xl font-semibold tracking-tight text-ink lg:text-4xl"
+            >
+              Email verifier pricing that stays simple
+            </h1>
+            <p className="mx-auto max-w-2xl text-base text-ink-muted lg:text-lg">
+              Pay for the volume you need with our bulk email verifier and email
+              verification API — same credits, never expire. Or join the limited
+              Unlimited plan for continuous verification when checkout is
+              available.
+            </p>
+          </div>
 
-            <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -top-20 -left-40 w-125 h-125 rounded-full 
-                 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.15),transparent_70%)] -z-10"
-            />
-            <div
-                aria-hidden="true"
-                className="pointer-events-none absolute top-40 -right-40 w-125 h-125 rounded-full 
-                bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.15),transparent_70%)] -z-10"
-            />
+          <PricingCalculator />
+        </div>
+      </section>
 
-
-            <section className="relative z-10 max-w-6xl mx-auto px-6 py-20">
-                <div className="text-center mb-10">
-                    <p
-                        className="text-sm text-black font-semibold mb-4 relative
-                        before:absolute before:inset-0 before:top-1/2 before:-translate-y-0.75 
-                        before:left-[39%] sm:before:left-[43.5%] md:before:left-[45.5%] lg:before:left-[46.5%]
-                        before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#1F5DD8]"
-                    >
-                        Pricing
-                    </p>
-                    <h1 id="pricing-heading" className="text-3xl lg:text-4xl font-semibold text-gray-900 mb-3">
-                        Simple, Honest Pricing
-                    </h1>
-                    <p className="text-black text-sm lg:text-base">
-                        Pay for the volume you need — or go Unlimited for continuous verification.
-                    </p>
-                </div>
-
-                <PricingCalculator />
-
-            </section>
-
-
-            {/* faq section */}
-            <FAQSection />
-
-            {/* Contact section */}
-            <CTA />
-
-        </main >
-    );
+      <FAQSection />
+      <CTA />
+    </main>
+  );
 }

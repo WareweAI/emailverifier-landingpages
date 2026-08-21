@@ -73,7 +73,7 @@ export default function MethodSection() {
           id="method-heading"
           className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-4xl"
         >
-          What we check on every address
+          What our email verifier checks on every address
         </h2>
         <p className="mt-4 text-lg leading-relaxed text-ink-muted">
           Same status chips you see in the live verifier — mapped to six checks.
@@ -85,7 +85,7 @@ export default function MethodSection() {
           <article
             key={check.id}
             id={articleId(check.id)}
-            className="flex flex-col rounded-2xl border border-line bg-surface p-6 shadow-[var(--shadow-card)] md:p-8"
+            className="flex scroll-mt-28 flex-col rounded-2xl border border-line bg-surface p-6 shadow-[var(--shadow-card)] md:p-8"
           >
             <StatusChip
               label={check.label}

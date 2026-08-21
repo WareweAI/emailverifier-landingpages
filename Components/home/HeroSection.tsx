@@ -3,6 +3,7 @@ import HeroScene from "@/Components/home/HeroScene";
 import PaperPlaneAnimation from "@/Components/home/PaperPlaneAnimation";
 import { DesktopMockup } from "@/Components/ui/DesktopMockup";
 import { StarRating } from "@/Components/ui/StarRating";
+import { CheckCircle2 } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -28,7 +29,7 @@ export default function HeroSection() {
               className="font-display text-4xl font-semibold leading-tight tracking-tight text-ink lg:text-5xl"
             >
               <span className="relative inline-block pb-1">
-                Verify emails
+                Email Verification Tool
                 <svg
                   className="pointer-events-none absolute -bottom-0.5 left-0 h-3 w-full text-primary"
                   viewBox="0 0 220 14"
@@ -44,25 +45,18 @@ export default function HeroSection() {
                     strokeLinecap="round"
                   />
                 </svg>
-              </span>{" "}
-              in seconds.
+              </span>
+              <br />
+              that works in seconds.
             </h1>
             <p
               data-hero-el
               className="mt-4 max-w-xl text-lg leading-relaxed text-ink-muted"
             >
-              See if an address is real, deliverable, and safe to send — without
-              sending mail. Then clean a full list or verify signups through the
-              API.
+              This email verifier shows if an address is real, deliverable, and
+              safe to send — without sending mail. Then clean a full list or
+              check signups through the API.
             </p>
-            <ul
-              data-hero-el
-              className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-ink-muted"
-            >
-              <li>GDPR-ready</li>
-              <li>30-day deletion</li>
-              <li>Credits never expire</li>
-            </ul>
           </div>
 
           <div
@@ -73,6 +67,23 @@ export default function HeroSection() {
               <VerifierDemo variant="hero" location="hero" />
             </DesktopMockup>
           </div>
+          <ul
+              data-hero-el
+              className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-ink-muted"
+            >
+              {(
+                [
+                  "GDPR-ready",
+                  "30-day deletion",
+                  "Credits never expire",
+                ] as const
+              ).map((label) => (
+                <li key={label} className="inline-flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden />
+                  {label}
+                </li>
+              ))}
+            </ul>
         </div>
       </section>
     </HeroScene>

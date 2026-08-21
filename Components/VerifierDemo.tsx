@@ -3,11 +3,13 @@
 import { validateEmail } from "@/lib/utils";
 import { Loader2, Mail } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 import { statusToVariant } from "./ui/StatusChip";
 import { VerificationResultCard } from "./ui/VerificationResultCard";
+import { VerificationProgress } from "./FreeValidationPage/VerificationProgress";
+import { ToolResultPanel } from "./FreeValidationPage/ToolResultPanel";
 import { API_DOCS_PATH } from "@/lib/api-snippet";
 import { cn } from "@/lib/utils";
 
@@ -64,6 +66,7 @@ export default function VerifierDemo({
   location = "hero",
   className,
 }: VerifierDemoProps) {
+  const inputId = useId();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"valid" | "invalid" | null>(null);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
@@ -72,6 +75,8 @@ export default function VerifierDemo({
   const [error, setError] = useState<string | null>(null);
   const [useCount, setUseCount] = useState(0);
   const [invalidInput, setInvalidInput] = useState(false);
+
+  const isToolPage = variant === "tool-page";
 
   useEffect(() => {
     setUseCount(getStoredCount());
@@ -103,6 +108,7 @@ export default function VerifierDemo({
       setInvalidInput(true);
       setStatus("invalid");
       setStatusMessage("Invalid email format.");
+      setDetails(null);
       incrementUseCount();
       return;
     }
@@ -182,9 +188,16 @@ export default function VerifierDemo({
       ? "danger"
       : "neutral";
 
+  const showResult = Boolean(details) || status === "invalid";
+
   return (
     <div className={cn("w-full", className)} data-ev-loc={location}>
       <form onSubmit={handleSubmit} className="space-y-3">
+        {isToolPage && (
+          <label htmlFor={inputId} className="sr-only">
+            Enter an email address to check its deliverability
+          </label>
+        )}
         <div className="flex flex-col gap-2 sm:flex-row">
           <div className="relative min-w-0 flex-1">
             <Mail
@@ -192,10 +205,11 @@ export default function VerifierDemo({
               aria-hidden
             />
             <Input
+              id={isToolPage ? inputId : undefined}
               type="email"
               value={email}
               onChange={handleChange}
-              placeholder="Enter email address (e.g. name@company.com)"
+              placeholder="you@company.com"
               required
               disabled={atLimit || loading}
               aria-invalid={invalidInput}
@@ -207,7 +221,7 @@ export default function VerifierDemo({
             type="submit"
             size="lg"
             disabled={atLimit || loading}
-            className="shrink-0 sm:w-auto w-full"
+            className="min-h-12 w-full shrink-0 sm:w-auto"
           >
             {loading ? (
               <>
@@ -221,20 +235,20 @@ export default function VerifierDemo({
         </div>
 
         {!atLimit && (
-  <p id={`${location}-remaining`} className="text-sm text-ink-muted">
-    {useCount === 0 ? (
-      <>
-        {remaining} free check{remaining !== 1 ? "s" : ""}. 100 more when
-        you sign up. No credit card.
-      </>
-    ) : (
-      <>
-        {remaining} free check{remaining !== 1 ? "s" : ""} left. 100 more when
-        you sign up. No credit card.
-      </>
-    )}
-  </p>
-)}
+          <p id={`${location}-remaining`} className="text-sm text-ink-muted">
+            {useCount === 0 ? (
+              <>
+                {remaining} free check{remaining !== 1 ? "s" : ""}. 100 more when
+                you sign up. No credit card.
+              </>
+            ) : (
+              <>
+                {remaining} free check{remaining !== 1 ? "s" : ""} left. 100 more
+                when you sign up. No credit card.
+              </>
+            )}
+          </p>
+        )}
 
         {error && (
           <p className="text-sm font-medium text-danger" role="alert">
@@ -265,17 +279,33 @@ export default function VerifierDemo({
           </div>
         )}
 
-        {(details || status === "invalid") && (
-          <VerificationResultCard
-            email={email}
-            statusLabel={statusMessage ?? (status === "invalid" ? "Invalid" : "Unknown")}
-            variant={mainVariant}
-            score={details?.score ?? 0}
-            catchAll={details?.catch_all}
-            disposable={details?.disposable}
-            roleBased={details?.role_based}
-            footer={
-              variant === "hero" ? (
+        {isToolPage && <VerificationProgress active={loading} />}
+
+        {showResult &&
+          (isToolPage ? (
+            <ToolResultPanel
+              email={email}
+              statusLabel={
+                statusMessage ?? (status === "invalid" ? "Invalid" : "Unknown")
+              }
+              variant={mainVariant}
+              score={details?.score ?? 0}
+              catchAll={details?.catch_all}
+              disposable={details?.disposable}
+              roleBased={details?.role_based}
+            />
+          ) : (
+            <VerificationResultCard
+              email={email}
+              statusLabel={
+                statusMessage ?? (status === "invalid" ? "Invalid" : "Unknown")
+              }
+              variant={mainVariant}
+              score={details?.score ?? 0}
+              catchAll={details?.catch_all}
+              disposable={details?.disposable}
+              roleBased={details?.role_based}
+              footer={
                 <p className="mt-3 text-sm">
                   <Link
                     href={API_DOCS_PATH}
@@ -294,10 +324,9 @@ export default function VerifierDemo({
                     Clean a full list — 100 free
                   </Link>
                 </p>
-              ) : undefined
-            }
-          />
-        )}
+              }
+            />
+          ))}
       </form>
     </div>
   );

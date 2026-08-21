@@ -42,7 +42,7 @@ export default function ProofBar() {
 
   return (
     <section
-      className="border-b border-line bg-surface py-0"
+      className="bg-surface py-0"
       aria-labelledby="proof-bar-heading"
     >
       <p

@@ -7,12 +7,14 @@ type BuildMetadataOptions = {
   title: string;
   description: string;
   path: string;
+  imageAlt?: string;
 };
 
 export function buildMetadata({
   title,
   description,
   path,
+  imageAlt = "Email verifier — bulk list cleaning and real-time API",
 }: BuildMetadataOptions): Metadata {
   const fullTitle = title.includes(SITE_NAME)
     ? title
@@ -35,7 +37,7 @@ export function buildMetadata({
           url: DEFAULT_OG_IMAGE,
           width: 1200,
           height: 630,
-          alt: "EmailVerifier.io",
+          alt: imageAlt,
         },
       ],
     },

@@ -4,7 +4,6 @@ import Image from "next/image";
 import { StarRating } from "./ui/StarRating";
 import Link from "next/link";
 import HappyUsers from "./HappyUsers";
-import LeadingBrand from "./LeadingBrand";
 
 export default function Hero() {
     return (
@@ -155,7 +154,6 @@ export default function Hero() {
             </div>
 
             {/* Brands row */}
-            <LeadingBrand />
         </section>
     );
 }

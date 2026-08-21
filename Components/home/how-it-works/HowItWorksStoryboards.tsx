@@ -192,7 +192,7 @@ export function VerifyStoryboard() {
 
 export function ProjectsStoryboard() {
   return (
-    <StoryboardShell className="overflow-visible">
+    <StoryboardShell>
       <div className="border-b border-success/20 bg-success-soft px-4 py-2.5 text-center text-sm font-medium text-success">
         Uploaded! 18 unique emails queued for verification.
       </div>
@@ -215,7 +215,7 @@ export function ProjectsStoryboard() {
           </Button>
         </div>
 
-        <div className="mt-4 overflow-x-auto rounded-xl border border-line">
+        <div className="mt-4 min-w-0 overflow-x-auto rounded-xl border border-line">
           <table className="w-full min-w-[28rem] text-left text-sm">
             <thead>
               <tr className="border-b border-line bg-surface-muted text-xs text-ink-muted">

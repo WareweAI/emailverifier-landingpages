@@ -117,7 +117,7 @@ export default function VolumeSelector({
           aria-label="Decrease email volume by 1,000"
           onClick={decrease}
           disabled={volume <= VOLUME_MIN}
-          className="grid h-11 w-11 place-items-center rounded-lg border border-line transition hover:bg-surface-muted disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          className="grid h-11 w-11 cursor-pointer place-items-center rounded-lg border border-line transition-colors duration-200 hover:border-primary hover:bg-surface-muted disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         >
           <MinusIcon className="h-4 w-4" aria-hidden />
         </button>
@@ -142,7 +142,7 @@ export default function VolumeSelector({
           aria-label="Increase email volume by 1,000"
           onClick={increase}
           disabled={volume >= SEASONAL_MAX}
-          className="grid h-11 w-11 place-items-center rounded-lg border border-line transition hover:bg-surface-muted disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          className="grid h-11 w-11 cursor-pointer place-items-center rounded-lg border border-line transition-colors duration-200 hover:border-primary hover:bg-surface-muted disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         >
           <PlusIcon className="h-4 w-4" aria-hidden />
         </button>
@@ -207,10 +207,10 @@ export default function VolumeSelector({
                 setShowClampHint(false);
               }}
               aria-pressed={selected}
-              className={`rounded-lg border px-2.5 py-1.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+              className={`cursor-pointer rounded-lg border px-2.5 py-1.5 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                 selected
                   ? "border-primary bg-primary-soft text-primary"
-                  : "border-line bg-surface text-ink hover:bg-surface-muted"
+                  : "border-line bg-surface text-ink hover:border-primary hover:bg-surface-muted"
               }`}
             >
               {formatPresetLabel(preset)}

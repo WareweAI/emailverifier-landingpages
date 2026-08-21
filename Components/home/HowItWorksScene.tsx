@@ -13,7 +13,7 @@ import { Download, Mail, ShieldCheck, type LucideProps } from "lucide-react";
 const STEPS = [
   {
     title: "Add Emails",
-    desc: "Paste one address, upload a CSV, or call the API.",
+    desc: "Email verify one address, upload a CSV, or call the API.",
     icon: Mail,
   },
   {
@@ -63,7 +63,7 @@ function StoryboardCard({
   return (
     <article
       className={cn(
-        "relative flex flex-col rounded-2xl border border-line bg-surface p-5 pb-10 sm:p-6",
+        "relative flex min-w-0 flex-col rounded-2xl border border-line bg-surface p-5 pb-10 sm:p-6",
         fill
           ? "h-full"
           : "shadow-[var(--shadow-card)]"
@@ -78,7 +78,7 @@ function StoryboardCard({
           <p className="mt-1 text-sm text-ink-muted">{step.desc}</p>
         </div>
       </div>
-      <div className="mt-4">{children}</div>
+      <div className="mt-4 min-w-0">{children}</div>
       <span className="absolute right-4 bottom-4 flex h-8 w-8 items-center justify-center rounded-full bg-surface-muted text-xs font-medium tabular-nums text-ink-muted">
         {badge}
       </span>
@@ -207,7 +207,7 @@ export default function HowItWorksScene() {
     <div ref={scope}>
       <div
         data-hiw-pin
-        className="grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-x-16"
+        className="grid w-full min-w-0 gap-10 lg:grid-cols-12 lg:items-start lg:gap-x-16"
       >
         <div className="lg:col-span-5 lg:self-start">
           <p className="relative inline-flex min-h-8 items-center py-0.5 pl-0.5 pr-9 text-xs font-semibold text-primary">
@@ -288,11 +288,11 @@ export default function HowItWorksScene() {
         </div>
 
         {/* Tablet + mobile: sequential cards, no pin */}
-        <div className="flex flex-col gap-6 lg:hidden">
+        <div className="flex w-full min-w-0 flex-col gap-6 lg:hidden">
           {STEPS.map((step, i) => {
             const Storyboard = STORYBOARDS[i];
             return (
-              <div key={step.title} data-hiw-mobile-card>
+              <div key={step.title} data-hiw-mobile-card className="min-w-0 w-full">
                 <StoryboardCard step={step} index={i}>
                   <Storyboard />
                 </StoryboardCard>

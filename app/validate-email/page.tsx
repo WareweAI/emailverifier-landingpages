@@ -1,117 +1,133 @@
+import VerifierDemo from "@/Components/VerifierDemo";
+import ProofBar from "@/Components/home/ProofBar";
+import DashboardVerifyDemo from "@/Components/FreeValidationPage/DashboardVerifyDemo";
+import WhyValidate from "@/Components/FreeValidationPage/WhyValidate";
+import WhyChoose from "@/Components/FreeValidationPage/WhyChoose";
+import MethodSection from "@/Components/home/MethodSection";
+import NextPaths from "@/Components/FreeValidationPage/NextPaths";
+import ValidateEmailFaq from "@/Components/FreeValidationPage/ValidateEmailFaq";
+import CTA from "@/Components/CTA";
+import JsonLd, {
+  faqPageJsonLd,
+  organizationJsonLd,
+} from "@/Components/seo/JsonLd";
+import { DesktopMockup } from "@/Components/ui/DesktopMockup";
+import { HeroWash } from "@/Components/ui/HeroWash";
+import { buildMetadata } from "@/lib/metadata";
+import { VALIDATE_EMAIL_FAQS } from "@/lib/validate-email-faq";
+import { CheckCircle2 } from "lucide-react";
 
-import CTA from "@/Components/CTA"
-import FAQInValidation from "@/Components/FreeValidationPage/FAQInValidation"
-import Features from "@/Components/FreeValidationPage/Features"
-import InputForm from "@/Components/FreeValidationPage/InputForm"
-import UseCaseSection from "@/Components/FreeValidationPage/UseCaseSection"
-import WhyChoose from "@/Components/FreeValidationPage/WhyChoose"
-import LeadingBrand from "@/Components/LeadingBrand"
-import Testimonials from "@/Components/Testimonials"
-import { Metadata } from "next"
+export const metadata = buildMetadata({
+  title: "Free Email Verifier — Check Deliverability Instantly",
+  description:
+    "Free email verifier: check if an address is deliverable, risky, or invalid. Syntax, domain, mailbox, and risk flags — without sending mail. 3 free checks, 100 more on signup.",
+  path: "/validate-email",
+  imageAlt: "Free email verifier checking deliverability without sending mail",
+});
 
-
-const title = "Free Email Validator and Checker | Emailverifier.io";
-const description =
-    "Free email verifier tool you can trust for accurate email validation. Instantly check email validity, reduce bounces, and protect sender reputation.";
-
-export const metadata: Metadata = {
-    title,
-    description,
-    alternates: { canonical: "/validate-email" },
-    openGraph: {
-        title,
-        description,
-        url: "/validate-email",
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://emailverifier.io",
     },
-    twitter: {
-        title,
-        description,
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Free Email Verifier",
+      item: "https://emailverifier.io/validate-email",
     },
+  ],
 };
 
-
-
 export default function ValidateEmailPage() {
-    return (
-        <main className="relative bg-white text-gray-800 overflow-hidden isolate grow"
-            id="pricing-main-content" aria-labelledby="validate-email-heading">
+  return (
+    <>
+      <JsonLd data={organizationJsonLd()} />
+      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={faqPageJsonLd(VALIDATE_EMAIL_FAQS)} />
 
-            <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -top-20 -left-40 w-125 h-125 rounded-full 
-                 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.1),transparent_70%)] -z-10"
-            />
-            <div
-                aria-hidden="true"
-                className="pointer-events-none absolute top-10 -right-60 w-125 h-125 rounded-full 
-                bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.1),transparent_70%)] -z-10"
-            />
-
-            <div className="relative">
-                {/* dotted background */}
-                <div
-                    aria-hidden="true"
-                    className="absolute inset-0 -z-10 pointer-events-none"
-                    style={{
-                        backgroundImage:
-                            "radial-gradient(circle, rgba(209,226,255,1) 2px, transparent 2px), linear-gradient(180deg, rgba(59,130,246,0.03), rgba(99,102,241,0.01))",
-                        backgroundSize: "50px 50px, 100% 100%",
-                    }}
-                />
-
-                <section className="relative z-10 max-w-5xl mx-auto px-6 py-20 text-center">
-                    {/* Badge */}
-                    <div className="mb-6">
-                        <span className="inline-flex items-center rounded-full bg-white
-                    px-4 py-1 text-sm font-medium text-blue-600 shadow-xs">
-                            #1 Email Verification Tool
-                        </span>
-                    </div>
-
-                    <h1
-                        id="validate-email-heading"
-                        className="text-4xl lg:text-5xl font-semibold text-gray-900 leading-tight mb-4"
-                    >
-                        Free Email Verifier Tool You Can Trust the most for{" "}
-                        <span className="text-blue-600">accurate Email Validation</span>
-                    </h1>
-
-                    <p className="text-gray-500 mb-10">
-                        Enter an email address to check its deliverability
-                    </p>
-
-                    <div className="mx-auto max-w-xl space-y-3">
-                        {/* Input Card */}
-                        <InputForm />
-                    </div>
-
-                    {/* Trust line */}
-                    <p className="mt-4 text-sm text-blue-900 font-medium">
-                        Trusted by 1000+ businesses across 100+ countries
-                    </p>
-                </section>
-
+      <main
+        className="flex-1 bg-background text-ink"
+        id="main-page"
+        role="main"
+        aria-labelledby="validate-email-heading"
+      >
+        <section
+          className="relative pt-10 pb-12 md:pt-14 md:pb-16 lg:pb-20"
+          aria-labelledby="validate-email-heading"
+        >
+          <HeroWash />
+          <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-2xl text-center">
+              <p className="text-sm font-medium text-ink-muted">
+                Free Email Verification Tool
+              </p>
+              <h1
+                id="validate-email-heading"
+                className="mt-5 font-display text-3xl font-semibold leading-snug tracking-tight text-ink sm:text-4xl lg:text-5xl"
+              >
+                Free Email Verifier Tool for{" "}
+                <span className="relative inline-block pb-1">
+                  accurate Email Validation
+                  <svg
+                    className="pointer-events-none absolute -bottom-0.5 left-0 h-3 w-full text-primary"
+                    viewBox="0 0 220 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      d="M3 8.5C28 4.2 52 11.8 78 7.4C104 3 128 11.2 156 6.8C178 3.6 198 9.4 217 5.2"
+                      stroke="currentColor"
+                      strokeWidth="2.4"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </span>
+              </h1>
+              <p className="mt-4 text-lg leading-relaxed text-ink-muted">
+                Email verify deliverability, risk, and mailbox status — syntax,
+                domain, and flags — without sending mail. Try 3 free checks,
+                then get 100 more on signup.
+              </p>
             </div>
 
-            <LeadingBrand />
-
-            {/* features section */}
-            <Features />
-
-            {/* Why choose us section */}
-            <WhyChoose />
-
-            {/* faq section */}
-            <FAQInValidation />
-
-            {/* use cases section */}
-            <UseCaseSection />
-
-            {/* testiominals */}
-            <Testimonials />
-
-            {/* cta section */}
-            <CTA />
-        </main>
-    )
+            <div className="mx-auto mt-8 max-w-3xl md:mt-10">
+              <DesktopMockup chromeLabel="Enter an email address to check its deliverability">
+                <VerifierDemo variant="tool-page" location="validate-email" />
+              </DesktopMockup>
+            </div>
+            <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-ink-muted">
+                {(
+                  [
+                    "GDPR-ready",
+                    "30-day deletion",
+                    "No credit card",
+                  ] as const
+                ).map((label) => (
+                  <li key={label} className="inline-flex items-center gap-1.5">
+                    <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden />
+                    {label}
+                  </li>
+                ))}
+              </ul>
+          </div>
+        </section>
+        <ProofBar />
+        <WhyValidate />
+        <DashboardVerifyDemo />
+        <MethodSection />
+        <WhyChoose />
+        <NextPaths />
+        <ValidateEmailFaq />
+        <CTA />
+      </main>
+    </>
+  );
 }

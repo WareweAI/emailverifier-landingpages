@@ -1,122 +1,134 @@
+import { AlertCircle, Check, X } from "lucide-react";
+import { SectionShell } from "@/Components/ui/SectionShell";
+import { cn } from "@/lib/utils";
 
-import { Check, X, AlertCircle } from "lucide-react";
+type CellState = "yes" | "partial" | "no";
 
-const comparisonRows = [
-    {
-        feature: "Accurate email verification",
-        emailverifier: "check",
-        others: "alert",
-    },
-    {
-        feature: "No emails sent",
-        emailverifier: "check",
-        others: "cross",
-    },
-    {
-        feature: "Bulk + API",
-        emailverifier: "check",
-        others: "alert",
-    },
-    {
-        feature: "Fast processing",
-        emailverifier: "check",
-        others: "alert",
-    },
-    {
-        feature: "Transparent pricing",
-        emailverifier: "check",
-        others: "cross",
-    },
+const ROWS: {
+  feature: string;
+  ours: CellState;
+  others: CellState;
+}[] = [
+  {
+    feature: "Accurate email verification",
+    ours: "yes",
+    others: "partial",
+  },
+  {
+    feature: "No emails sent",
+    ours: "yes",
+    others: "no",
+  },
+  {
+    feature: "Bulk + API",
+    ours: "yes",
+    others: "partial",
+  },
+  {
+    feature: "Fast processing",
+    ours: "yes",
+    others: "partial",
+  },
+  {
+    feature: "Transparent pricing",
+    ours: "yes",
+    others: "no",
+  },
 ];
 
-
+function StatusIcon({ state }: { state: CellState }) {
+  if (state === "yes") {
+    return (
+      <Check
+        className="mx-auto h-5 w-5 text-success"
+        strokeWidth={2.5}
+        aria-label="Yes"
+      />
+    );
+  }
+  if (state === "partial") {
+    return (
+      <AlertCircle
+        className="mx-auto h-5 w-5 text-warning"
+        aria-label="Limited"
+      />
+    );
+  }
+  return (
+    <X className="mx-auto h-5 w-5 text-danger" strokeWidth={2.5} aria-label="No" />
+  );
+}
 
 export default function WhyChoose() {
-    return (
-        <section
-            className="py-20 bg-white"
-            aria-labelledby="comparison-heading"
+  return (
+    <SectionShell
+      className="bg-surface"
+      ariaLabelledBy="why-choose-heading"
+    >
+      <div className="mx-auto max-w-2xl text-center">
+        <h2
+          id="why-choose-heading"
+          className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
         >
-            <div className="mx-auto max-w-5xl px-6">
-                <div className="text-center mb-12">
-                    <h2
-                        id="comparison-heading"
-                        className="text-2xl sm:text-3xl font-semibold text-gray-900"
-                    >
-                        Why Choose Emailverifier.io?
-                    </h2>
-                    <p className="mt-3 text-gray-600">
-                        Accurate, fast, and reliable email verification you can trust.
-                    </p>
-                </div>
+          Why Choose Emailverifier.io?
+        </h2>
+        <p className="mt-3 text-ink-muted">
+          Accurate, fast, and reliable email verification you can trust.
+        </p>
+      </div>
 
-                {/* Table */}
-                <div className="overflow-x-auto">
-                    <table className="w-full border-collapse">
-                        <thead>
-                            <tr className="border-b border-blue-200">
-                                <th
-                                    scope="col"
-                                    className="py-4 text-left font-semibold text-gray-700"
-                                >
-                                    Feature
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="py-4 text-center font-semibold text-gray-700"
-                                >
-                                    Emailverifier.io
-                                </th>
-                                <th
-                                    scope="col"
-                                    className="py-4 text-center font-semibold text-gray-700"
-                                >
-                                    Other Tools
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {comparisonRows.map((row) => (
-                                <tr
-                                    key={row.feature}
-                                    className="border-b last:border-b-0 border-blue-100"
-                                >
-                                    <td className="py-4 text-gray-800">
-                                        {row.feature}
-                                    </td>
-
-                                    {/* Emailverifier */}
-                                    <td className="py-4 text-center">
-                                        <Check
-                                            className="inline-block text-green-500"
-                                            size={18}
-                                            aria-label="Available"
-                                        />
-                                    </td>
-
-                                    {/* Other tools */}
-                                    <td className="py-4 text-center">
-                                        {row.others === "alert" ? (
-                                            <AlertCircle
-                                                className="inline-block text-orange-400"
-                                                size={18}
-                                                aria-label="Limited"
-                                            />
-                                        ) : (
-                                            <X
-                                                className="inline-block text-red-500"
-                                                size={18}
-                                                aria-label="Not available"
-                                            />
-                                        )}
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-    )
+      <div className="mx-auto mt-10 max-w-3xl overflow-x-auto">
+        <table className="w-full min-w-[28rem] border-collapse text-left">
+          <caption className="sr-only">
+            Comparison of Emailverifier.io features versus other tools
+          </caption>
+          <thead>
+            <tr className="border-b border-line">
+              <th
+                scope="col"
+                className="py-3 pr-4 text-sm font-semibold text-ink"
+              >
+                Feature
+              </th>
+              <th
+                scope="col"
+                className="px-3 py-3 text-center text-sm font-semibold text-ink"
+              >
+                Emailverifier.io
+              </th>
+              <th
+                scope="col"
+                className="py-3 pl-3 text-center text-sm font-semibold text-ink"
+              >
+                Other Tools
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {ROWS.map((row) => (
+              <tr key={row.feature} className="border-b border-line">
+                <th
+                  scope="row"
+                  className="py-4 pr-4 text-sm font-normal text-ink"
+                >
+                  {row.feature}
+                </th>
+                <td className="px-3 py-4 text-center">
+                  <StatusIcon state={row.ours} />
+                </td>
+                <td
+                  className={cn(
+                    "py-4 pl-3 text-center",
+                    row.others === "no" && "align-middle"
+                  )}
+                >
+                  <StatusIcon state={row.others} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </SectionShell>
+  );
 }

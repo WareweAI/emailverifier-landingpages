@@ -2,6 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import { CloudBackground } from "@/Components/ui/CloudBackground";
+import { HeroWash } from "@/Components/ui/HeroWash";
 import { gsap, useGSAP } from "@/lib/gsap";
 
 type HeroSceneProps = {
@@ -36,10 +37,7 @@ export default function HeroScene({ children }: HeroSceneProps) {
 
   return (
     <div ref={scope} className="relative">
-      <div
-        className="pointer-events-none absolute inset-x-0 -top-24 bottom-0 z-0 bg-linear-to-b from-primary-soft via-primary-soft via-55% to-surface"
-        aria-hidden
-      />
+      <HeroWash />
       <CloudBackground />
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-28 bg-linear-to-b from-transparent to-surface md:h-36 lg:h-44"
