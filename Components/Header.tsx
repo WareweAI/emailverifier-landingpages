@@ -27,6 +27,9 @@ const REGISTER_URL = "https://app.emailverifier.io/register";
 const SIGNIN_URL = "https://app.emailverifier.io/signin";
 const FIND_EMAILS_URL = "https://app.emailverifier.io";
 
+const REGISTER_CTA_CLASS =
+  "rounded-full bg-ink text-primary-foreground hover:bg-ink-muted active:bg-ink motion-reduce:transition-none";
+
 type ProductLink = {
   title: string;
   href: string;
@@ -332,7 +335,7 @@ export default function Header() {
                   isFeaturesOpen ? setIsFeaturesOpen(false) : openFeatures()
                 }
               >
-                Features
+                Solutions
                 <ChevronDown
                   className={cn(
                     "h-4 w-4 transition-transform",
@@ -421,8 +424,9 @@ export default function Header() {
             </Link>
             <Button
               size="sm"
+              variant="ghost"
               asChild
-              className="rounded-full bg-ink text-primary-foreground transition-colors duration-200 hover:bg-primary-deep motion-reduce:transition-none"
+              className={REGISTER_CTA_CLASS}
             >
               <Link
                 href={REGISTER_URL}
@@ -517,10 +521,18 @@ export default function Header() {
               </li>
               <li>
                 <Button
-                  className="w-full rounded-full bg-ink text-primary-foreground transition-colors duration-200 hover:bg-primary-deep"
+                  variant="ghost"
+                  className={cn("w-full", REGISTER_CTA_CLASS)}
                   asChild
                 >
-                  <Link href={REGISTER_URL}>Get 100 free credits</Link>
+                  <Link
+                    href={REGISTER_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-ev-event="cta_register_click"
+                  >
+                    Get 100 free credits
+                  </Link>
                 </Button>
               </li>
             </ul>

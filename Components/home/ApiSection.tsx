@@ -1,12 +1,11 @@
 import Link from "next/link";
 import ApiSnippet from "@/Components/ui/ApiSnippet";
-import { BulkPreview } from "@/Components/ui/BulkPreview";
+import { JobFlowStrip } from "@/Components/ui/JobFlowStrip";
 import { Button } from "@/Components/ui/Button";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { REGISTER_URL } from "@/lib/api-snippet";
 
 type ApiSectionProps = {
-  /** Optional page-level heading above the API + bulk columns */
   sectionTitle?: string;
   title?: string;
 };
@@ -65,11 +64,8 @@ export default function ApiSection({
             per 1,000 as the API — credits never expire.
           </p>
           <div className="mt-6">
-            <BulkPreview />
+            <JobFlowStrip />
           </div>
-          <p className="mt-3 text-sm text-ink-muted">
-            Upload CSV, TXT, or XLSX. Download valid, risky, and invalid results.
-          </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <Button asChild size="md">
               <Link

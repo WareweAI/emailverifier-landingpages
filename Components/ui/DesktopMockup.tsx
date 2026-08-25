@@ -5,35 +5,42 @@ type DesktopMockupProps = {
   children: ReactNode;
   className?: string;
   chromeLabel?: string;
+  compact?: boolean;
 };
 
 export function DesktopMockup({
   children,
   className,
   chromeLabel = "emailverifier.io",
+  compact = false,
 }: DesktopMockupProps) {
   return (
-    <div className={cn(className)}>
-      <div className="overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)]">
-        <div className="flex items-center gap-2 border-b border-line bg-surface-muted px-4 py-3">
-          {/* 1-off: lighter mock chrome traffic lights */}
-          <span
-            className="h-2.5 w-2.5 rounded-full bg-[color-mix(in_srgb,var(--color-danger)_45%,white)]"
-            aria-hidden
-          />
-          <span
-            className="h-2.5 w-2.5 rounded-full bg-[color-mix(in_srgb,var(--color-warning)_45%,white)]"
-            aria-hidden
-          />
-          <span
-            className="h-2.5 w-2.5 rounded-full bg-[color-mix(in_srgb,var(--color-success)_45%,white)]"
-            aria-hidden
-          />
-          <span className="ml-2 flex-1 truncate rounded-full bg-background px-3 py-1 text-center text-xs text-ink-muted">
-            {chromeLabel}
-          </span>
-        </div>
-        <div className="bg-surface p-6 md:p-8">{children}</div>
+    <div
+      className={cn(
+        "overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)]",
+        className
+      )}
+    >
+      <div className="flex items-center gap-2 border-b border-line bg-surface-muted px-4 py-3">
+        {/* 1-off: lighter mock chrome traffic lights */}
+        <span
+          className="h-2.5 w-2.5 rounded-full bg-[color-mix(in_srgb,var(--color-danger)_45%,white)]"
+          aria-hidden
+        />
+        <span
+          className="h-2.5 w-2.5 rounded-full bg-[color-mix(in_srgb,var(--color-warning)_45%,white)]"
+          aria-hidden
+        />
+        <span
+          className="h-2.5 w-2.5 rounded-full bg-[color-mix(in_srgb,var(--color-success)_45%,white)]"
+          aria-hidden
+        />
+        <span className="ml-2 flex-1 truncate rounded-full bg-background px-3 py-1 text-center text-xs text-ink-muted">
+          {chromeLabel}
+        </span>
+      </div>
+      <div className={cn("bg-surface", compact ? "p-4 sm:p-5" : "p-6 md:p-8")}>
+        {children}
       </div>
     </div>
   );

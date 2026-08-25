@@ -35,7 +35,7 @@ function MockFrame({
   return (
     <div
       className={cn(
-        "h-44 overflow-hidden rounded-xl border border-line bg-surface-muted p-4",
+        "h-full min-h-44 overflow-hidden rounded-xl border border-line bg-surface-muted p-4",
         className
       )}
     >
@@ -562,7 +562,7 @@ export function MethodCheckVisual({
   );
 
   return (
-    <div ref={scope} className={cn(className)} aria-hidden>
+    <div ref={scope} className={cn("h-full min-h-0", className)} aria-hidden>
       <Mock />
     </div>
   );

@@ -107,9 +107,9 @@ export default function ApiSnippet({
               </>
             )}
           </button>
-          <pre className="overflow-x-auto p-4 font-mono text-sm leading-relaxed">
+          <div className="overflow-x-auto whitespace-pre p-4 font-mono text-sm leading-relaxed">
             <code>{API_SNIPPETS[tab]}</code>
-          </pre>
+          </div>
         </div>
         <div
           className={cn(
@@ -118,9 +118,9 @@ export default function ApiSnippet({
           )}
         >
           <p className="mb-2 text-xs font-medium text-white/70">Example response</p>
-          <pre className="overflow-x-auto font-mono text-xs leading-relaxed text-success-soft">
+          <div className="overflow-x-auto whitespace-pre font-mono text-xs leading-relaxed text-success-soft">
             <code>{responseJson}</code>
-          </pre>
+          </div>
         </div>
       </div>
       {showNote ? (

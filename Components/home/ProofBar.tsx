@@ -49,7 +49,7 @@ export default function ProofBar() {
         id="proof-bar-heading"
         className="mb-8 py-3 text-center text-base font-medium text-ink md:text-lg lg:text-xl"
       >
-        Leading Brands and Agencies Using Emailverifier.io
+        Used by agencies and SaaS teams
       </p>
 
       <div className="group relative mx-auto max-w-3xl overflow-hidden py-3 mask-[linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">

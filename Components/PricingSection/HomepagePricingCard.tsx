@@ -264,11 +264,11 @@ function SocialProof() {
     <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-primary-foreground/70">
       <span className="flex items-center gap-2">
         <StarRating
-          rating={4.8}
+          rating={4.1}
           size={14}
-          inactiveColor="color-mix(in srgb, var(--color-primary-foreground) 25%, transparent)"
+          variant="trustpilot"
         />
-        <span className="font-medium text-primary-foreground">Capterra 4.8</span>
+        <span className="font-medium text-primary-foreground">Trustpilot 4.1</span>
       </span>
       <span>1,000+ users</span>
     </div>

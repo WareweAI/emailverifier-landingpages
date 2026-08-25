@@ -49,7 +49,10 @@ export default function NextPaths() {
           >
             {path.mockup === "bulk" ? (
               <div className="mb-5 h-64">
-                <BulkPreview className="h-full overflow-hidden rounded-2xl border border-line bg-surface-muted shadow-none" />
+                <BulkPreview
+                  compact
+                  className="h-full overflow-hidden rounded-2xl border border-line bg-surface-muted shadow-none"
+                />
               </div>
             ) : null}
             {path.mockup === "api" ? (

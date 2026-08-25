@@ -80,6 +80,24 @@ body {
   animation: logo-marquee 40s linear infinite;
 }
 
+/* How-it-works storyboard mockups — dot grid anchored top-left behind inset card */
+@utility hiw-storyboard-dots {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-primary) 16%, transparent) 1px,
+    transparent 1px
+  );
+  background-position: 0 0;
+  background-size: 20px 20px;
+}
+
+/* Slightly stronger than --shadow-card so the inset mockup lifts off the peek mesh */
+@utility hiw-storyboard-elevate {
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--color-ink) 8%, transparent),
+    0 12px 28px color-mix(in srgb, var(--color-ink) 12%, transparent);
+}
+
 @keyframes coming-soon-dot-pulse {
   0%,
   80%,

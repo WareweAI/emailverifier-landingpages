@@ -8,6 +8,7 @@ import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 import { statusToVariant } from "./ui/StatusChip";
 import { VerificationResultCard } from "./ui/VerificationResultCard";
+import { PostVerifyUpsell } from "./ui/PostVerifyUpsell";
 import { VerificationProgress } from "./FreeValidationPage/VerificationProgress";
 import { ToolResultPanel } from "./FreeValidationPage/ToolResultPanel";
 import { API_DOCS_PATH } from "@/lib/api-snippet";
@@ -15,7 +16,6 @@ import { cn } from "@/lib/utils";
 
 const MAX_VERIFICATIONS = 3;
 const STORAGE_KEY = "email-verifier-use-count";
-const REGISTER_URL = "https://app.emailverifier.io/register";
 
 function getStoredCount(): number {
   if (typeof window === "undefined") return 0;
@@ -256,76 +256,56 @@ export default function VerifierDemo({
           </p>
         )}
 
-        {atLimit && (
-          <div
-            className="rounded-2xl border border-warning/30 bg-warning-soft px-4 py-3 text-sm text-ink"
-            role="alert"
-          >
-            You&apos;ve used all {MAX_VERIFICATIONS} free verifications.{" "}
-            <Link
-              href={REGISTER_URL}
-              className="font-semibold text-primary underline"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-ev-event="cta_register_click"
-            >
-              Get 100 free credits
-            </Link>{" "}
-            or{" "}
-            <Link href="/pricing" className="font-semibold text-primary underline">
-              see pricing
-            </Link>
-            .
-          </div>
-        )}
+        {atLimit && <PostVerifyUpsell mode="at-limit" />}
 
         {isToolPage && <VerificationProgress active={loading} />}
 
         {showResult &&
           (isToolPage ? (
-            <ToolResultPanel
-              email={email}
-              statusLabel={
-                statusMessage ?? (status === "invalid" ? "Invalid" : "Unknown")
-              }
-              variant={mainVariant}
-              score={details?.score ?? 0}
-              catchAll={details?.catch_all}
-              disposable={details?.disposable}
-              roleBased={details?.role_based}
-            />
+            <>
+              <ToolResultPanel
+                email={email}
+                statusLabel={
+                  statusMessage ??
+                  (status === "invalid" ? "Invalid" : "Unknown")
+                }
+                variant={mainVariant}
+                score={details?.score ?? 0}
+                catchAll={details?.catch_all}
+                disposable={details?.disposable}
+                roleBased={details?.role_based}
+              />
+              {!atLimit && (
+                <PostVerifyUpsell mode="after-result" className="mt-3" />
+              )}
+            </>
           ) : (
-            <VerificationResultCard
-              email={email}
-              statusLabel={
-                statusMessage ?? (status === "invalid" ? "Invalid" : "Unknown")
-              }
-              variant={mainVariant}
-              score={details?.score ?? 0}
-              catchAll={details?.catch_all}
-              disposable={details?.disposable}
-              roleBased={details?.role_based}
-              footer={
-                <p className="mt-3 text-sm">
-                  <Link
-                    href={API_DOCS_PATH}
-                    className="font-medium text-primary hover:underline"
-                    data-ev-event="api_docs_click"
-                  >
-                    View API Docs
-                  </Link>
-                  {" · "}
-                  <Link
-                    href={REGISTER_URL}
-                    className="font-medium text-primary hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Clean a full list — 100 free
-                  </Link>
-                </p>
-              }
-            />
+            <>
+              <VerificationResultCard
+                email={email}
+                statusLabel={
+                  statusMessage ??
+                  (status === "invalid" ? "Invalid" : "Unknown")
+                }
+                variant={mainVariant}
+                score={details?.score ?? 0}
+                catchAll={details?.catch_all}
+                disposable={details?.disposable}
+                roleBased={details?.role_based}
+                footer={
+                  <p className="mt-3 text-sm">
+                    <Link
+                      href={API_DOCS_PATH}
+                      className="font-medium text-primary hover:underline"
+                      data-ev-event="api_docs_click"
+                    >
+                      View API Docs
+                    </Link>
+                  </p>
+                }
+              />
+              {!atLimit && <PostVerifyUpsell mode="after-result" className="mt-3" />}
+            </>
           ))}
       </form>
     </div>

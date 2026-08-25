@@ -1,25 +1,40 @@
 import Image from "next/image";
 import { SectionShell } from "@/Components/ui/SectionShell";
+import { StarRating } from "@/Components/ui/StarRating";
 import { cn } from "@/lib/utils";
 
-const testimonials = [
+type Testimonial = {
+  name: string;
+  role?: string;
+  company: string;
+  image?: string;
+  initials: string;
+  headline?: string;
+  content: string;
+  rating?: number;
+  ratingSource?: "Trustpilot" | "Capterra";
+};
+
+const testimonials: Testimonial[] = [
   {
-    name: "Lilly Daniels",
-    role: "Marketing lead",
+    name: "Lorrta",
     company: "GB",
-    image: "/assets/LDProfile.webp",
-    initials: "LD",
+    initials: "L",
+    headline: "Simple, Fast",
     content:
-      "Their pricing is fair, and the results are always consistent. EmailVerifier.io has become a must-have tool in my marketing toolkit.",
+      "Cleaned 5k subs in 10 mins, bounced down to 0.5% instantly. now my deliverability is rock solid and opens are actually decent. Simple, fast, and credits are cheap.",
+    rating: 5,
+    ratingSource: "Trustpilot",
   },
   {
-    name: "Isa Hamilton",
-    role: "Email marketer",
+    name: "Sherwin patricia",
     company: "US",
-    image: "/assets/IHProfile.webp",
-    initials: "IH",
+    initials: "SP",
+    headline: "saved my warmup big time.",
     content:
-      "I used EmailVerifier.io for cleaning my email list, and the accuracy was amazing. It removed all fake and invalid emails in minutes.",
+      "Other verifiers let role-based + catch-all thru and my domain got wrecked. this one actually says 'risky - dont send' clear af. dropped my bounce to 0.8% last campaign. saved my warmup big time.",
+    rating: 5,
+    ratingSource: "Trustpilot",
   },
 ];
 
@@ -56,7 +71,46 @@ export default function Testimonials() {
             )}
           >
             <article className="flex h-full min-h-64 flex-col rounded-3xl border border-line bg-surface p-6 shadow-[var(--shadow-card)] sm:p-8">
-              <blockquote className="flex flex-1 gap-3">
+              {t.headline ? (
+                <p className="font-display text-lg font-semibold tracking-tight text-ink">
+                  {t.headline}
+                </p>
+              ) : null}
+
+              {t.rating != null && t.ratingSource ? (
+                <div
+                  className={cn(
+                    "flex flex-wrap items-center gap-2",
+                    t.headline ? "mt-2" : undefined
+                  )}
+                >
+                  <span className="text-sm font-medium text-ink">
+                    {t.ratingSource}
+                  </span>
+                  <StarRating
+                    rating={t.rating}
+                    size={14}
+                    variant={
+                      t.ratingSource === "Trustpilot" ? "trustpilot" : "default"
+                    }
+                    activeColor={
+                      t.ratingSource === "Trustpilot"
+                        ? undefined
+                        : "var(--color-rating)"
+                    }
+                  />
+                  <span className="sr-only">
+                    {t.rating} out of 5 stars
+                  </span>
+                </div>
+              ) : null}
+
+              <blockquote
+                className={cn(
+                  "flex flex-1 gap-3",
+                  t.headline || t.rating != null ? "mt-4" : undefined
+                )}
+              >
                 <span
                   className="font-display text-5xl leading-none text-ink-muted/30"
                   aria-hidden
@@ -69,7 +123,7 @@ export default function Testimonials() {
                 <cite className="min-w-0 not-italic">
                   <span className="block font-semibold text-ink">{t.name}</span>
                   <span className="text-sm text-ink-muted">
-                    {t.role} · {t.company}
+                    {t.role ? `${t.role} · ${t.company}` : t.company}
                   </span>
                 </cite>
                 <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-primary-soft">
@@ -79,15 +133,17 @@ export default function Testimonials() {
                   >
                     {t.initials}
                   </span>
-                  <Image
-                    src={t.image}
-                    alt=""
-                    width={56}
-                    height={56}
-                    sizes="56px"
-                    className="relative h-14 w-14 object-cover"
-                    loading="lazy"
-                  />
+                  {t.image ? (
+                    <Image
+                      src={t.image}
+                      alt=""
+                      width={56}
+                      height={56}
+                      sizes="56px"
+                      className="relative h-14 w-14 object-cover"
+                      loading="lazy"
+                    />
+                  ) : null}
                 </div>
               </footer>
             </article>

@@ -37,13 +37,13 @@ export default function Hero() {
 
                         <div className="flex flex-col leading-tight">
                             <span className="text-base sm:text-lg font-semibold text-gray-900">
-                                Capterra
+                                Trustpilot
                             </span>
 
                             {/* Rating row */}
                             <div className="flex items-center gap-1 sm:gap-2 text-[10px] sm:text-xs text-gray-500">
-                                <span className="font-medium text-gray-600">4.8</span>
-                                <StarRating rating={4.8} size={14} activeColor="#fdc700" />
+                                <span className="font-medium text-gray-600">4.1</span>
+                                <StarRating rating={4.1} size={14} variant="trustpilot" />
                                 <span>Rating</span>
                             </div>
                         </div>

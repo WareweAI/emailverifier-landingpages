@@ -1,7 +1,9 @@
 import HeroSection from "@/Components/home/HeroSection";
 import ProofBar from "@/Components/home/ProofBar";
 import HowItWorks from "@/Components/HowItWorks";
+import ListCleanSection from "@/Components/home/ListCleanSection";
 import MethodSection from "@/Components/home/MethodSection";
+import UseCasesSection from "@/Components/home/UseCasesSection";
 import Pricing from "@/Components/Pricing";
 import ApiSection from "@/Components/home/ApiSection";
 import Testimonials from "@/Components/Testimonials";
@@ -35,7 +37,9 @@ export default function Home() {
         <HeroSection />
         <ProofBar />
         <HowItWorks />
+        <ListCleanSection />
         <MethodSection />
+        <UseCasesSection />
         <Pricing />
         <ApiSection />
         <Testimonials />
