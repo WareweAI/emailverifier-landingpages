@@ -16,7 +16,9 @@ export default function PricingSection({
   const [volume, setVolume] = useState(DEFAULT_VOLUME);
 
   const grid = (
-    <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
+    <div
+      className="grid w-full grid-cols-1 gap-6 pt-3 lg:grid-cols-2 lg:grid-rows-[auto_auto_auto] lg:gap-x-8 lg:gap-y-0"
+    >
       <SeasonalPricingCard volume={volume} onVolumeChange={setVolume} />
       <UnlimitedPricingCard />
     </div>

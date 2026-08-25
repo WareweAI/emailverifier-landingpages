@@ -10,7 +10,6 @@ import {
   clampSeasonalVolume,
   formatNumber,
   formatPresetLabel,
-  isSeasonalPreset,
 } from "@/lib/pricing";
 
 type VolumeSelectorProps = {
@@ -151,7 +150,7 @@ export default function VolumeSelector({
 
       {showClampHint && (
         <p id={hintId} className="text-xs text-gray-500" role="status">
-          Seasonal pricing max is {formatNumber(SEASONAL_MAX)} emails.
+          Pay As You Go max is {formatNumber(SEASONAL_MAX)} emails.
         </p>
       )}
 
@@ -173,8 +172,9 @@ export default function VolumeSelector({
 
       <div id={scaleId} className="flex justify-between text-xs text-gray-600">
         <span>1K</span>
-        <span>50K</span>
-        <span>100K max</span>
+        <span>100K</span>
+        <span>1M</span>
+        <span>10M</span>
       </div>
 
       <div
@@ -183,24 +183,7 @@ export default function VolumeSelector({
         aria-label="Volume presets"
       >
         {PRESETS.map((preset) => {
-          const available = isSeasonalPreset(preset);
-          const selected = available && preset === volume;
-
-          if (!available) {
-            return (
-              <button
-                key={preset}
-                type="button"
-                disabled
-                title="Not available in Seasonal pricing"
-                aria-label={`${formatPresetLabel(preset)} — not available in Seasonal pricing`}
-                className="px-2.5 py-1.5 rounded-md border border-gray-200 text-sm font-medium
-                  text-gray-400 bg-gray-50 cursor-not-allowed opacity-60"
-              >
-                {formatPresetLabel(preset)}
-              </button>
-            );
-          }
+          const selected = preset === volume;
 
           return (
             <button

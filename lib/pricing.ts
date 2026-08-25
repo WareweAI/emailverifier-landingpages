@@ -1,10 +1,31 @@
 export const RATE_PER_THOUSAND = 1.8;
-export const SEASONAL_MAX = 100_000;
+export const SEASONAL_MAX = 10_000_000;
 export const VOLUME_MIN = 1_000;
 export const VOLUME_STEP = 1_000;
 export const DEFAULT_VOLUME = 10_000;
+/** Advertised Unlimited base price (maps to the 10K volume tier). */
 export const UNLIMITED_PRICE_MONTHLY = 299;
 export const UNLIMITED_TOTAL_SPOTS = 100;
+export const DEFAULT_UNLIMITED_VOLUME = 10_000;
+
+/**
+ * Explicit Unlimited volume → monthly USD tiers.
+ * Lowest tier (10K) = advertised $299/mo. Higher volumes scale up;
+ * not derived from RATE_PER_THOUSAND (Pay As You Go stays separate).
+ */
+export const UNLIMITED_VOLUME_TIERS = [
+  { volume: 10_000, priceMonthly: 299 },
+  { volume: 25_000, priceMonthly: 399 },
+  { volume: 50_000, priceMonthly: 549 },
+  { volume: 100_000, priceMonthly: 799 },
+  { volume: 500_000, priceMonthly: 1_499 },
+  { volume: 1_000_000, priceMonthly: 2_499 },
+  { volume: 5_000_000, priceMonthly: 6_999 },
+  { volume: 10_000_000, priceMonthly: 9_999 },
+] as const;
+
+export type UnlimitedVolume =
+  (typeof UNLIMITED_VOLUME_TIERS)[number]["volume"];
 
 const DEFAULT_OFFER_ENDS_AT = "2026-09-10T23:59:59";
 
@@ -37,6 +58,16 @@ export function formatPresetLabel(volume: number): string {
     return `${volume / 1_000_000}M`;
   }
   return `${volume / 1_000}K`;
+}
+
+/** Monthly USD for an Unlimited volume tier. Falls back to base $299. */
+export function getUnlimitedMonthlyPrice(volume: number): number {
+  const tier = UNLIMITED_VOLUME_TIERS.find((t) => t.volume === volume);
+  return tier?.priceMonthly ?? UNLIMITED_PRICE_MONTHLY;
+}
+
+export function isUnlimitedVolume(volume: number): volume is UnlimitedVolume {
+  return UNLIMITED_VOLUME_TIERS.some((t) => t.volume === volume);
 }
 
 export function calculatePrice(emails: number): { usd: string } {
@@ -79,11 +110,4 @@ export const SEASONAL_FEATURES = [
   "No Expiration",
 ] as const;
 
-export const UNLIMITED_FEATURES = [
-  "Unlimited emails/month",
-  "Bulk & Real-Time Verification",
-  "API Access",
-  "CSV List Cleaning",
-  "Disposable Email Detection",
-  "Role-based Filtering",
-] as const;
+export const UNLIMITED_FEATURES = ["Discover leads"] as const;

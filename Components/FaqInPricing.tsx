@@ -8,22 +8,22 @@ const faqs = [
     {
         question: "Do my verification credits ever expire?",
         answer:
-            "No. Seasonal one-time credits never expire. You can use them anytime — whether it's today, next month, or next year.",
+            "No. Pay As You Go one-time credits never expire. You can use them anytime — whether it's today, next month, or next year.",
     },
     {
-        question: "What's the difference between Seasonal credits and Unlimited?",
+        question: "What's the difference between Pay As You Go credits and Unlimited?",
         answer:
-            "Seasonal pricing is a one-time purchase for up to 100,000 verification credits — you pay only for the volume you need. Unlimited is a $299/month plan with unlimited emails per month, available for a limited number of customers.",
+            "Pay As You Go is a one-time purchase for the volume you need — credits never expire. Unlimited is a $299/month plan with unlimited emails per month, available for a limited number of customers.",
     },
     {
         question: "Is there a subscription or recurring charge?",
         answer:
-            "Only if you choose Unlimited at $299/month. Seasonal credits are a one-time purchase with no recurring fees.",
+            "Only if you choose Unlimited at $299/month. Pay As You Go credits are a one-time purchase with no recurring fees.",
     },
     {
         question: "Can I buy more credits later or switch to Unlimited?",
         answer:
-            "Yes. You can purchase additional seasonal credits anytime. If Unlimited spots are still available, you can also start the monthly plan for continuous verification.",
+            "Yes. You can purchase additional Pay As You Go credits anytime. If Unlimited spots are still available, you can also start the monthly plan for continuous verification.",
     },
     {
         question: "What's included with either option?",

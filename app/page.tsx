@@ -1,4 +1,5 @@
 import Hero from "@/Components/Hero";
+import FreeEmailVerifierSection from "@/Components/FreeEmailVerifierSection";
 import LogoCloud from "@/Components/LogoCloud";
 import Features from "@/Components/Features";
 import HowItWorks from "@/Components/HowItWorks";
@@ -30,6 +31,7 @@ export default function Home() {
   return (
     <main className="min-h-screen" id="main-page" role="main">
       <Hero />
+      <FreeEmailVerifierSection />
       <HowItWorks />
       <Features />
       <Pricing />

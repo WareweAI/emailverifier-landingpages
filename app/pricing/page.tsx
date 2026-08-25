@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 
 const title = "Pricing | Emailverifier.io";
 const description =
-    "Simple, transparent email verification pricing. Buy seasonal credits up to 100K, or join the limited Unlimited plan for $299/month.";
+    "Simple, transparent email verification pricing. Buy Pay As You Go credits, or join the limited Unlimited plan for $299/month.";
 
 export const metadata: Metadata = {
     title,

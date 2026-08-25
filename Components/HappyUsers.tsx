@@ -16,7 +16,7 @@ export default function HappyUsers() {
 
         <div className="relative h-8 w-8 rounded-full border border-white overflow-hidden">
           <Image
-            src="/users/1.png"
+            src="/users/2.png"
             alt="User 2"
             fill
             className="object-cover"

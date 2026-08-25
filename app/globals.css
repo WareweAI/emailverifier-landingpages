@@ -1,6 +1,35 @@
 @import "tailwindcss";
 
 @theme {
+  /* Brand — DESIGN.md source of truth */
+  --color-primary: #1f5dd8;
+  --color-primary-hover: #184bb0;
+  --color-primary-foreground: #ffffff;
+  --color-primary-soft: #eaf1ff;
+  --color-primary-deep: #0e2a6b;
+
+  /* Surfaces */
+  --color-background: #f7f8fc;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f3f5fa;
+  --color-ink: #0b1220;
+  --color-ink-muted: #5b6578;
+  --color-line: #e6eaf2;
+
+  /* Status */
+  --color-success: #0f9f6e;
+  --color-success-soft: #e6f8f1;
+  --color-warning: #b45309;
+  --color-warning-soft: #fff7ed;
+  --color-danger: #dc2626;
+  --color-danger-soft: #fef2f2;
+  --color-unknown: #64748b;
+  --color-unknown-soft: #f1f5f9;
+
+  --color-rating: #c2410c;
+
+  --shadow-card: 0 1px 2px rgb(11 18 32 / 0.06), 0 8px 24px rgb(11 18 32 / 0.06);
+
   --animate-infinite-scroll: marquee 25s linear infinite;
   --font-sans: var(--inter-font);
 }
