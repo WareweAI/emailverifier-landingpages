@@ -131,7 +131,7 @@ function TestimonialCard({
   return (
     <article
       className={cn(
-        "flex min-h-[280px] w-[min(300px,82vw)] shrink-0 flex-col rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card)] sm:min-h-[300px] sm:w-[300px] sm:p-6 lg:w-[320px]",
+        "flex min-h-[280px] w-[min(300px,82vw)] shrink-0 flex-col rounded-2xl border border-line bg-surface p-6 shadow-[var(--shadow-card)] sm:min-h-[300px] sm:w-[300px] sm:p-7 lg:w-[320px]",
         className
       )}
     >
@@ -145,22 +145,22 @@ function TestimonialCard({
         >
           {initials(review.username)}
         </span>
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0 flex-1 pt-0.5">
           <a
             href={review.userUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="block truncate text-sm font-semibold text-ink hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="block truncate text-sm font-bold text-ink hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             u/{review.username}
           </a>
-          <p className="mt-0.5 text-xs text-ink-muted">
+          <p className="mt-0.5 text-xs leading-snug text-ink-muted">
             commented on{" "}
             <a
               href={review.subredditUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-ink hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="font-medium text-ink-muted hover:text-ink hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               r/{review.subreddit}
             </a>
@@ -169,15 +169,13 @@ function TestimonialCard({
         <RedditBadge subreddit={review.subreddit} />
       </header>
 
-      <div className="my-4 h-px w-full bg-line" aria-hidden />
-
-      <blockquote className="flex-1">
+      <blockquote className="mt-5 flex-1">
         <p className="text-sm leading-relaxed text-ink">
           &ldquo;{review.quote}&rdquo;
         </p>
       </blockquote>
 
-      <footer className="mt-5 flex items-center justify-between gap-3">
+      <footer className="mt-6 flex items-center justify-between gap-3">
         <p className="text-xs font-semibold tracking-widest text-ink-muted uppercase">
           r/{review.subreddit} / {review.year}
         </p>
@@ -185,7 +183,7 @@ function TestimonialCard({
           href={review.commentUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="shrink-0 text-xs font-medium text-ink-muted underline-offset-2 hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="shrink-0 text-xs font-medium text-ink underline-offset-2 hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           View on Reddit
         </a>

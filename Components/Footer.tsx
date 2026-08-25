@@ -1,4 +1,4 @@
-import { Mail, MapPin } from 'lucide-react';
+import { Mail, MapPin, Youtube } from 'lucide-react';
 import Link from 'next/link';
 
 
@@ -17,8 +17,13 @@ const LinkedInIcon = () => (
 
 );
 
+const YoutubeIcon = () => (
+    <Youtube size={24} color="#131313" aria-hidden="true" focusable="false" />
+);
+
 const socialLinks = [
     { href: 'https://www.linkedin.com/company/email-verifier/', icon: LinkedInIcon, label: 'Email Verifier LinkedIn' },
+    { href: 'https://www.youtube.com/@emailverifierio', icon: YoutubeIcon, label: 'Email Verifier on YouTube' },
 ];
 
 export default function Footer() {
