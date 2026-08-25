@@ -129,7 +129,7 @@ export default function Hero() {
                             <div className="flex h-12 w-12 items-center justify-center">
                                 <div className="border border-blue-800/20 rounded-full p-1.5
                              bg-blue-800/10 text-xs font-semibold">
-                                    <span className="w-5 h-5 flex items-center justify-center">99%</span>
+                                    <span className="min-w-7 h-5 flex items-center justify-center text-[10px]">99.9%</span>
                                 </div>
                             </div>
                             <span className="text-xs font-medium tracking-wide">
