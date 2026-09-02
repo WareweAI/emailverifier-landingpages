@@ -238,13 +238,11 @@ export default function VerifierDemo({
           <p id={`${location}-remaining`} className="text-sm text-ink-muted">
             {useCount === 0 ? (
               <>
-                {remaining} free check{remaining !== 1 ? "s" : ""}. 100 more when
-                you sign up. No credit card.
+                {remaining} free check{remaining !== 1 ? "s" : ""}.
               </>
             ) : (
               <>
-                {remaining} free check{remaining !== 1 ? "s" : ""} left. 100 more
-                when you sign up. No credit card.
+                {remaining} free check{remaining !== 1 ? "s" : ""} left.
               </>
             )}
           </p>

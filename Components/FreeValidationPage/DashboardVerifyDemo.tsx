@@ -258,11 +258,18 @@ function HandCursor({ className }: { className?: string }) {
   );
 }
 
-export default function DashboardVerifyDemo() {
+export default function DashboardVerifyDemo({
+  variant = "section",
+}: {
+  variant?: "section" | "embedded";
+}) {
+  const embedded = variant === "embedded";
   const scope = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
-  const buildDemoRef = useRef<(() => void) | null>(null);
+  const buildDemoRef = useRef<(() => gsap.core.Timeline | void) | null>(null);
+  const loopActiveRef = useRef(false);
+  const loopDelayRef = useRef<gsap.core.Tween | null>(null);
   const [phase, setPhase] = useState<Phase>("idle");
   const [emailValue, setEmailValue] = useState("");
   const [inputFocused, setInputFocused] = useState(false);
@@ -355,6 +362,14 @@ export default function DashboardVerifyDemo() {
               setPhase("result");
               setIsVerifying(false);
               gsap.to(cursor, { autoAlpha: 0, duration: 0.25 });
+              if (embedded && loopActiveRef.current) {
+                loopDelayRef.current?.kill();
+                loopDelayRef.current = gsap.delayedCall(2, () => {
+                  if (loopActiveRef.current) {
+                    buildTimeline();
+                  }
+                });
+              }
             },
           });
           timelineRef.current = tl;
@@ -499,50 +514,72 @@ export default function DashboardVerifyDemo() {
 
         buildDemoRef.current = buildTimeline;
 
+        const startDemo = () => {
+          if (embedded && !loopActiveRef.current) return;
+          gsap.delayedCall(0, () => buildTimeline());
+        };
+
+        const stopDemo = () => {
+          loopDelayRef.current?.kill();
+          loopDelayRef.current = null;
+          timelineRef.current?.kill();
+          timelineRef.current = null;
+        };
+
+        if (embedded) {
+          const hero = document.getElementById("hero");
+          if (!hero) return;
+
+          const observer = new IntersectionObserver(
+            ([entry]) => {
+              const visible = entry?.isIntersecting ?? false;
+              loopActiveRef.current = visible;
+              if (visible) {
+                if (!timelineRef.current?.isActive()) {
+                  startDemo();
+                }
+              } else {
+                stopDemo();
+              }
+            },
+            { threshold: 0.15 }
+          );
+
+          observer.observe(hero);
+
+          return () => {
+            observer.disconnect();
+            loopActiveRef.current = false;
+            stopDemo();
+            buildDemoRef.current = null;
+          };
+        }
+
         ScrollTrigger.create({
           trigger: root,
           start: "top 72%",
           once: true,
-          onEnter: () => {
-            // Defer so we never start React updates during setup/commit
-            gsap.delayedCall(0, () => buildTimeline());
-          },
+          onEnter: startDemo,
         });
 
         return () => {
-          timelineRef.current?.kill();
+          stopDemo();
           buildDemoRef.current = null;
         };
       });
 
       return () => mm.revert();
     },
-    { scope }
+    { scope, dependencies: [embedded] }
   );
 
   const buttonLabel = isVerifying ? "Verifying..." : "Verify Email";
 
-  return (
-    <SectionShell
-      className="bg-linear-to-t from-primary-soft via-primary-soft via-55% to-surface"
-      ariaLabelledBy="dashboard-demo-heading"
+  const demoStage = (
+    <div
+      ref={scope}
+      className={cn(embedded ? "w-full" : "mx-auto max-w-5xl", !embedded && "mt-10")}
     >
-      <div className="mx-auto max-w-2xl text-center">
-        <h2
-          id="dashboard-demo-heading"
-          className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
-        >
-          See the email verifier in action
-        </h2>
-        <p className="mt-3 text-ink-muted">
-          Watch a single-check flow play automatically.
-        </p>
-      </div>
-
-      <div
-        ref={scope}
-        className="mx-auto mt-10 max-w-5xl"
-      >
         <div
           ref={stageRef}
           className="relative h-[34rem] overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)] md:h-[40rem]"
@@ -555,34 +592,36 @@ export default function DashboardVerifyDemo() {
           <HandCursor />
 
           <div className="flex h-full">
-            <aside className="hidden w-52 shrink-0 flex-col border-r border-line bg-surface p-4 lg:flex">
-              <div className="flex items-center gap-2 px-1">
-                <LogoMark />
-                <span className="text-sm font-semibold text-ink">
-                  Email Verifier
-                </span>
-              </div>
-              <nav className="mt-6 space-y-1" aria-label="Demo dashboard">
-                {NAV_ITEMS.map((item) => {
-                  const Icon = item.icon;
-                  const active = "active" in item && item.active;
-                  return (
-                    <span
-                      key={item.label}
-                      className={cn(
-                        "flex items-center gap-2 rounded-lg px-3 py-2 text-sm",
-                        active
-                          ? "bg-primary-soft font-medium text-primary"
-                          : "text-ink-muted"
-                      )}
-                    >
-                      <Icon className="h-4 w-4 shrink-0" aria-hidden />
-                      {item.label}
-                    </span>
-                  );
-                })}
-              </nav>
-            </aside>
+            {!embedded ? (
+              <aside className="hidden w-52 shrink-0 flex-col border-r border-line bg-surface p-4 lg:flex">
+                <div className="flex items-center gap-2 px-1">
+                  <LogoMark />
+                  <span className="text-sm font-semibold text-ink">
+                    Email Verifier
+                  </span>
+                </div>
+                <nav className="mt-6 space-y-1" aria-label="Demo dashboard">
+                  {NAV_ITEMS.map((item) => {
+                    const Icon = item.icon;
+                    const active = "active" in item && item.active;
+                    return (
+                      <span
+                        key={item.label}
+                        className={cn(
+                          "flex items-center gap-2 rounded-lg px-3 py-2 text-sm",
+                          active
+                            ? "bg-primary-soft font-medium text-primary"
+                            : "text-ink-muted"
+                        )}
+                      >
+                        <Icon className="h-4 w-4 shrink-0" aria-hidden />
+                        {item.label}
+                      </span>
+                    );
+                  })}
+                </nav>
+              </aside>
+            ) : null}
 
             <div className="flex min-w-0 flex-1 flex-col">
               <header className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-4 py-3 sm:px-5">
@@ -671,10 +710,10 @@ export default function DashboardVerifyDemo() {
                         type="button"
                         size="md"
                         data-demo-verify
-                        tabIndex={isVerifying ? -1 : 0}
+                        tabIndex={-1}
                         disabled={isVerifying}
                         onClick={() => {
-                          if (phase !== "result") return;
+                          if (embedded || phase !== "result") return;
                           if (timelineRef.current?.isActive()) return;
                           buildDemoRef.current?.();
                         }}
@@ -752,26 +791,54 @@ export default function DashboardVerifyDemo() {
         </div>
 
         <div className="mt-3 flex flex-wrap items-center justify-center gap-3">
-          <p className="text-xs text-ink-muted">
-            Example email verifier flow.
+          <p className="text-center text-xs text-ink-muted sm:text-sm">
+            {embedded
+              ? "Get 100 free verifications - no setup, no credit card, no stress."
+              : "Example email verifier flow."}
           </p>
-          <button
-            type="button"
-            data-demo-replay
-            disabled={phase === "running"}
-            onClick={() => {
-              if (timelineRef.current?.isActive()) return;
-              buildDemoRef.current?.();
-            }}
-            className={cn(
-              "text-xs font-semibold text-primary hover:text-primary-hover disabled:pointer-events-none cursor-pointer disabled:opacity-40",
-              phase !== "result" && "invisible"
-            )}
-          >
-            Play again
-          </button>
+          {!embedded ? (
+            <button
+              type="button"
+              data-demo-replay
+              disabled={phase === "running"}
+              onClick={() => {
+                if (timelineRef.current?.isActive()) return;
+                buildDemoRef.current?.();
+              }}
+              className={cn(
+                "text-xs font-semibold text-primary hover:text-primary-hover disabled:pointer-events-none cursor-pointer disabled:opacity-40",
+                phase !== "result" && "invisible"
+              )}
+            >
+              Play again
+            </button>
+          ) : null}
         </div>
       </div>
+  );
+
+  if (embedded) {
+    return demoStage;
+  }
+
+  return (
+    <SectionShell
+      className="bg-linear-to-t from-primary-soft via-primary-soft via-55% to-surface"
+      ariaLabelledBy="dashboard-demo-heading"
+    >
+      <div className="mx-auto max-w-2xl text-center">
+        <h2
+          id="dashboard-demo-heading"
+          className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+        >
+          See the email verifier in action
+        </h2>
+        <p className="mt-3 text-ink-muted">
+          Watch a single-check flow play automatically.
+        </p>
+      </div>
+
+      {demoStage}
     </SectionShell>
   );
 }

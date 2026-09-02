@@ -4,6 +4,7 @@ type SectionShellProps = {
   id?: string;
   className?: string;
   innerClassName?: string;
+  style?: React.CSSProperties;
   children: React.ReactNode;
   ariaLabelledBy?: string;
 };
@@ -12,6 +13,7 @@ export function SectionShell({
   id,
   className,
   innerClassName,
+  style,
   children,
   ariaLabelledBy,
 }: SectionShellProps) {
@@ -19,6 +21,7 @@ export function SectionShell({
     <section
       id={id}
       className={cn("py-16 md:py-24 lg:py-28", className)}
+      style={style}
       aria-labelledby={ariaLabelledBy}
     >
       <div

@@ -11,20 +11,20 @@ import { cn } from "@/lib/utils";
 
 const STEPS = [
   {
-    title: "Add Emails",
-    desc: "One address, CSV upload, or API.",
+    title: "Upload Your List",
+    desc: "Drop in your file, connect your app, or use our API - whatever works for you.",
     icon: Mail,
     Storyboard: AddEmailsStoryboard,
   },
   {
-    title: "We Verify",
-    desc: "Syntax, MX, mailbox, and risk flags.",
+    title: "Real-time Verification",
+    desc: "We check every address using smart, multi-layer validation.",
     icon: ShieldCheck,
     Storyboard: VerifyStoryboard,
   },
   {
-    title: "Download or Act",
-    desc: "Statuses in a file — or block bad signups.",
+    title: "Download Your Clean List",
+    desc: "Export your verified list and send your next campaign with confidence.",
     icon: Download,
     Storyboard: ProjectsStoryboard,
   },
@@ -47,10 +47,10 @@ export default function HowItWorksCompact() {
           id="how-it-works-heading"
           className="mt-2 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
         >
-          From list to clean results
+          How Emailverifier.io Works
         </h2>
         <p className="mt-3 text-ink-muted">
-          Three steps. No platform subscription required.
+        Emailverifier.io is an email verification and validation tool that checks whether an email address is real, deliverable, and safe to send without sending an email
         </p>
       </div>
 

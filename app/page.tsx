@@ -1,5 +1,6 @@
 import HeroSection from "@/Components/home/HeroSection";
 import ProofBar from "@/Components/home/ProofBar";
+import HomeVerifySection from "@/Components/home/HomeVerifySection";
 import HowItWorks from "@/Components/HowItWorks";
 import ListCleanSection from "@/Components/home/ListCleanSection";
 import MethodSection from "@/Components/home/MethodSection";
@@ -36,6 +37,7 @@ export default function Home() {
       <main className="min-h-screen flex-1" id="main-page" role="main">
         <HeroSection />
         <ProofBar />
+        <HomeVerifySection />
         <HowItWorks />
         <ListCleanSection />
         <MethodSection />
