@@ -20,7 +20,6 @@ import {
 import Link from "next/link";
 import { Button } from "./ui/Button";
 import LogoMark from "./ui/LogoMark";
-import { gsap, useGSAP, ScrollTrigger, ScrollSmoother } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
 
 const REGISTER_URL = "https://app.emailverifier.io/register";
@@ -109,11 +108,8 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductOpen, setIsProductOpen] = useState(false);
   const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
-  const headerRef = useRef<HTMLElement>(null);
-  const menuOpenRef = useRef(false);
   const productCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const featuresCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  menuOpenRef.current = isMenuOpen;
 
   const openProduct = () => {
     if (productCloseTimer.current) clearTimeout(productCloseTimer.current);
@@ -137,86 +133,10 @@ export default function Header() {
     featuresCloseTimer.current = setTimeout(() => setIsFeaturesOpen(false), 120);
   };
 
-  useGSAP(
-    () => {
-      const header = headerRef.current;
-      if (!header) return;
-
-      const mm = gsap.matchMedia();
-
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        let hidden = false;
-        let lastY = 0;
-        const delta = 8;
-
-        const show = () => {
-          if (!hidden) return;
-          hidden = false;
-          gsap.to(header, {
-            yPercent: 0,
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.35,
-            ease: "power2.out",
-            overwrite: true,
-          });
-        };
-
-        const hide = () => {
-          if (hidden || menuOpenRef.current) return;
-          hidden = true;
-          gsap.to(header, {
-            yPercent: -100,
-            y: -24,
-            autoAlpha: 0,
-            duration: 0.3,
-            ease: "power2.in",
-            overwrite: true,
-          });
-        };
-
-        const scrollY = () =>
-          ScrollSmoother.get()?.scrollTop() ?? window.scrollY;
-
-        const pastHero = () => {
-          const hero = document.getElementById("hero");
-          if (hero) return hero.getBoundingClientRect().bottom <= 48;
-          return scrollY() > 96;
-        };
-
-        ScrollTrigger.create({
-          start: 0,
-          end: "max",
-          invalidateOnRefresh: true,
-          onUpdate: () => {
-            const y = scrollY();
-            if (!pastHero()) {
-              show();
-              lastY = y;
-              return;
-            }
-            if (menuOpenRef.current) {
-              show();
-              lastY = y;
-              return;
-            }
-            if (Math.abs(y - lastY) < delta) return;
-            if (y > lastY) hide();
-            else show();
-            lastY = y;
-          },
-        });
-      });
-
-      return () => mm.revert();
-    },
-    { scope: headerRef }
-  );
 
   return (
     <header
-      ref={headerRef}
-      className="fixed inset-x-0 top-4 z-50 px-4 sm:px-6 lg:px-8"
+      className="relative z-50 px-4 pt-4 sm:px-6 lg:px-8"
     >
       <div className="relative mx-auto max-w-6xl">
         {/* 1-off: pill header columns — logo | nav | actions */}
@@ -411,6 +331,12 @@ export default function Header() {
             >
               Pricing
             </Link>
+            <Link
+              href="/blog"
+              className="text-sm font-medium text-ink-muted hover:text-primary"
+            >
+              Blog
+            </Link>
           </nav>
 
           <div className="hidden items-center gap-3 justify-self-end md:flex">
@@ -509,6 +435,15 @@ export default function Header() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Pricing
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="block py-2 text-ink-muted hover:text-primary"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Blog
                 </Link>
               </li>
               <li>

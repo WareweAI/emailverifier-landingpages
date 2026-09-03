@@ -14,8 +14,8 @@ const ENABLE_QUERY = "(prefers-reduced-motion: no-preference)";
 /** Seconds for content to catch up to native scroll (wheel / trackpad). */
 const SMOOTH_SECONDS = 0.85;
 
-/** Matches How It Works pin offset (header top-4 + h-16 + gap). */
-const HEADER_SCROLL_POS = "top 112px";
+/** Offset for in-page hash targets (header is in normal flow, not fixed). */
+const HEADER_SCROLL_POS = "top top";
 
 function samePageHash(href: string): string | null {
   let url: URL;
@@ -165,19 +165,13 @@ export default function SmoothScroll({
 
   return (
     <>
-      {header}
       <div
         id="smooth-wrapper"
         ref={wrapperRef}
         className="flex min-h-0 w-full flex-1 flex-col"
       >
-        <div
-          id="smooth-content"
-          ref={contentRef}
-          className="w-full"
-        >
-          {/* Holds the space the fixed header used to occupy in document flow. */}
-          <div aria-hidden className="h-20 shrink-0" />
+        <div id="smooth-content" ref={contentRef} className="w-full">
+          {header}
           {children}
         </div>
       </div>

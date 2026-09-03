@@ -60,3 +60,58 @@ export function faqPageJsonLd(faqs: { question: string; answer: string }[]) {
     })),
   };
 }
+
+export function breadcrumbJsonLd(
+  items: { name: string; path: string }[],
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `https://emailverifier.io${item.path === "/" ? "" : item.path}`,
+    })),
+  };
+}
+
+export function articleJsonLd(post: {
+  title: string;
+  excerpt: string;
+  slug: string;
+  date: string;
+  modified: string;
+  featuredImage?: { url: string };
+  author: { name: string };
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    dateModified: post.modified || post.date,
+    author: {
+      "@type": "Person",
+      name: post.author.name,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "EmailVerifier.io",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://emailverifier.io/og-image.jpg",
+      },
+    },
+    image: post.featuredImage?.url
+      ? post.featuredImage.url.startsWith("http")
+        ? post.featuredImage.url
+        : `https://emailverifier.io${post.featuredImage.url}`
+      : "https://emailverifier.io/og-image.jpg",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://emailverifier.io/blog/${post.slug}`,
+    },
+  };
+}

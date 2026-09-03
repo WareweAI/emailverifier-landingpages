@@ -8,6 +8,7 @@ const productLinks = [
   { href: "/bulk-email-verifier", label: "Bulk verifier" },
   { href: "/email-verification-api", label: "Email verification API" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/blog", label: "Blog" },
 ];
 
 const legalLinks = [
