@@ -99,7 +99,7 @@ export function VerificationResultCard({
         </div>
       </div>
 
-      <dl className="mt-4 grid grid-cols-2 gap-x-8 gap-y-4">
+      <dl className="mt-4 grid grid-cols-2 gap-x-8 gap-y-4 rounded-xl border border-line bg-surface-muted/60 p-4">
         <div>
           <dt className="text-sm text-ink-muted">Catch-all</dt>
           <dd className="mt-0.5 font-semibold text-ink">{catchAll ? "Yes" : "No"}</dd>

@@ -1,21 +1,7 @@
-import dynamic from "next/dynamic";
-import HeroDemoWithFloats from "@/Components/home/HeroFeatureFloats";
 import HeroScene from "@/Components/home/HeroScene";
 import HeroSocialProof from "@/Components/home/HeroSocialProof";
+import HeroToolTabs from "@/Components/home/HeroToolTabs";
 import { CheckCircle2 } from "lucide-react";
-
-const DashboardVerifyDemo = dynamic(
-  () => import("@/Components/FreeValidationPage/DashboardVerifyDemo"),
-  {
-    loading: () => (
-      <div
-        className="h-[34rem] w-full animate-pulse rounded-2xl border border-line bg-surface-muted md:h-[40rem]"
-        aria-busy="true"
-        aria-label="Loading product demo"
-      />
-    ),
-  }
-);
 
 export default function HeroSection() {
   return (
@@ -26,8 +12,7 @@ export default function HeroSection() {
         aria-labelledby="hero-heading"
       >
         <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-            <HeroSocialProof />
+          <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
             <h1
               id="hero-heading"
               data-hero-el
@@ -47,26 +32,29 @@ export default function HeroSection() {
                 >
                   <path
                     d="M1.66382 6.88859C1.99342 6.76873 2.32302 6.64887 4.47793 6.01781C6.63284 5.38675 10.6031 4.24812 15.9893 3.36192C21.3756 2.47571 28.0575 1.87643 34.234 1.72502C40.4104 1.57361 45.8788 1.88824 49.6023 2.28253C53.3258 2.67683 55.1386 3.14127 56.2148 3.44046C57.291 3.73965 57.5756 3.8595 57.8689 4.02839"
-                    stroke="#FFE100"
+                    stroke="var(--color-cta)"
                     strokeWidth="2"
                     strokeLinecap="round"
                   />
                 </svg>
               </span>
-              Email Verification Tool
+              <span className="text-primary">Email verifier</span>
+              {" "}that gets{" "} <br />more{" "}
+              <span className="text-primary whitespace-nowrap">valid emails</span>{" "}
+              <span className="whitespace-nowrap">from your lists</span>
             </h1>
-            <p
+            {/* <p
               data-hero-el
               className="mt-4 max-w-xl text-lg leading-relaxed text-ink-muted"
             >
               Clean your email lists in seconds with our email checker and prevent bounces, spam traps, and invalid emails.
-            </p>
+            </p> */}
           </div>
 
           <div data-hero-el className="mt-10 flex w-full flex-col md:mt-12">
-            <HeroDemoWithFloats>
-              <DashboardVerifyDemo variant="embedded" />
-            </HeroDemoWithFloats>
+            <HeroToolTabs>
+              <HeroSocialProof />
+            </HeroToolTabs>
 
             <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-ink-muted md:mt-8">
               {(

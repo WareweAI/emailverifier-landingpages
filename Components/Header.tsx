@@ -27,7 +27,7 @@ const SIGNIN_URL = "https://app.emailverifier.io/signin";
 const FIND_EMAILS_URL = "https://app.emailverifier.io";
 
 const REGISTER_CTA_CLASS =
-  "rounded-full bg-ink text-primary-foreground hover:bg-ink-muted active:bg-ink motion-reduce:transition-none";
+  "rounded-full border border-ink bg-cta text-cta-foreground hover:bg-cta-hover active:bg-cta-hover motion-reduce:transition-none";
 
 type ProductLink = {
   title: string;
@@ -140,7 +140,7 @@ export default function Header() {
     >
       <div className="relative mx-auto max-w-6xl">
         {/* 1-off: pill header columns — logo | nav | actions */}
-        <div className="grid h-16 grid-cols-[1fr_auto] items-center rounded-full border border-line bg-surface px-4 shadow-[var(--shadow-card)] md:grid-cols-[1fr_auto_1fr] md:px-6">
+        <div className="grid h-16 grid-cols-[1fr_auto] items-center rounded-full border border-line/70 bg-surface/20 px-4 shadow-[var(--shadow-card)] backdrop-blur-md md:grid-cols-[1fr_auto_1fr] md:px-6">
           <Link
             className="flex items-center gap-2 justify-self-start"
             href="/"
@@ -307,35 +307,12 @@ export default function Header() {
                 </ul>
               </div>
             </div>
-            <Link
-              href="/validate-email"
-              className="text-sm font-medium text-ink-muted hover:text-primary"
-            >
-              Free tool
-            </Link>
-            <Link
-              href="/bulk-email-verifier"
-              className="text-sm font-medium text-ink-muted hover:text-primary"
-            >
-              Bulk
-            </Link>
-            <Link
-              href="/email-verification-api"
-              className="text-sm font-medium text-ink-muted hover:text-primary"
-            >
-              API
-            </Link>
+            
             <Link
               href="/pricing"
               className="text-sm font-medium text-ink-muted hover:text-primary"
             >
               Pricing
-            </Link>
-            <Link
-              href="/blog"
-              className="text-sm font-medium text-ink-muted hover:text-primary"
-            >
-              Blog
             </Link>
           </nav>
 
@@ -435,15 +412,6 @@ export default function Header() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Pricing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="block py-2 text-ink-muted hover:text-primary"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Blog
                 </Link>
               </li>
               <li>

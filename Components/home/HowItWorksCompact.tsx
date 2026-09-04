@@ -40,17 +40,19 @@ export default function HowItWorksCompact() {
   return (
     <div>
       <div className="mx-auto max-w-2xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-wide text-primary">
+        <p className="text-xs font-semibold uppercase tracking-wide text-primary-foreground/70">
           How it works
         </p>
         <h2
           id="how-it-works-heading"
-          className="mt-2 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+          className="mt-2 font-display text-2xl font-semibold tracking-tight text-primary-foreground lg:text-3xl"
         >
           How Emailverifier.io Works
         </h2>
-        <p className="mt-3 text-ink-muted">
-        Emailverifier.io is an email verification and validation tool that checks whether an email address is real, deliverable, and safe to send without sending an email
+        <p className="mt-3 text-primary-foreground/75">
+          Emailverifier.io is an email verification and validation tool that
+          checks whether an email address is real, deliverable, and safe to send
+          without sending an email
         </p>
       </div>
 
@@ -75,9 +77,9 @@ export default function HowItWorksCompact() {
             >
               <article
                 className={cn(
-                  "flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface p-4 shadow-[var(--shadow-card)] sm:p-5",
+                  "flex h-full flex-col overflow-hidden rounded-2xl border border-primary-foreground/15 bg-surface p-4 shadow-[var(--shadow-card)] sm:p-5",
                   "lg:flex-row lg:items-stretch lg:gap-0 lg:p-6",
-                  expanded && "border-primary/25 lg:gap-5"
+                  expanded && "border-primary/40 lg:gap-5"
                 )}
                 aria-expanded={expanded}
               >

@@ -2,7 +2,6 @@
 
 import { validateEmail } from "@/lib/utils";
 import { Loader2, Mail } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
@@ -11,7 +10,6 @@ import { VerificationResultCard } from "./ui/VerificationResultCard";
 import { PostVerifyUpsell } from "./ui/PostVerifyUpsell";
 import { VerificationProgress } from "./FreeValidationPage/VerificationProgress";
 import { ToolResultPanel } from "./FreeValidationPage/ToolResultPanel";
-import { API_DOCS_PATH } from "@/lib/api-snippet";
 import { cn } from "@/lib/utils";
 
 const MAX_VERIFICATIONS = 3;
@@ -290,19 +288,7 @@ export default function VerifierDemo({
                 catchAll={details?.catch_all}
                 disposable={details?.disposable}
                 roleBased={details?.role_based}
-                footer={
-                  <p className="mt-3 text-sm">
-                    <Link
-                      href={API_DOCS_PATH}
-                      className="font-medium text-primary hover:underline"
-                      data-ev-event="api_docs_click"
-                    >
-                      View API Docs
-                    </Link>
-                  </p>
-                }
               />
-              {!atLimit && <PostVerifyUpsell mode="after-result" className="mt-3" />}
             </>
           ))}
       </form>

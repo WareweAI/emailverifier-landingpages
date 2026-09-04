@@ -8,6 +8,11 @@
   --color-primary-soft: #eaf1ff;
   --color-primary-deep: #0e2a6b;
 
+  /* CTA accent (matches hero #1 underline) */
+  --color-cta: #ffe100;
+  --color-cta-hover: #f0d400;
+  --color-cta-foreground: #0b1220;
+
   /* Surfaces */
   --color-background: #f7f8fc;
   --color-surface: #ffffff;

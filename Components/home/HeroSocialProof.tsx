@@ -12,7 +12,7 @@ export default function HeroSocialProof({ className }: HeroSocialProofProps) {
     <div
       data-hero-el
       className={cn(
-        "mb-4 flex flex-row flex-wrap items-center justify-center gap-y-1.5 md:mb-5",
+        "mt-4 flex flex-row gap-6 flex-wrap items-center justify-center gap-y-1.5 md:mt-5",
         className
       )}
       aria-label="Capterra 4.8 rating from 1000+ happy users"
@@ -26,7 +26,7 @@ export default function HeroSocialProof({ className }: HeroSocialProofProps) {
           className="h-5 w-5 object-contain"
           priority
         />
-        <div className="flex flex-col leading-none text-left">
+        <div className="flex gap-1 leading-none text-left">
           <span className="text-xs font-semibold text-ink">
             Capterra
           </span>
@@ -37,12 +37,6 @@ export default function HeroSocialProof({ className }: HeroSocialProofProps) {
           </div>
         </div>
       </div>
-
-      <div
-        className="mx-2.5 h-7 w-0.5 shrink-0 rounded-full bg-ink-muted/45"
-        role="separator"
-        aria-orientation="vertical"
-      />
 
       <HappyUsers className="justify-center" compact />
     </div>
