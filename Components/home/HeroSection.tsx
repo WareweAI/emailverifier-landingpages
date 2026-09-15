@@ -12,7 +12,7 @@ export default function HeroSection() {
         aria-labelledby="hero-heading"
       >
         <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
+          <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
             <h1
               id="hero-heading"
               data-hero-el
@@ -39,7 +39,7 @@ export default function HeroSection() {
                 </svg>
               </span>
               <span className="text-primary">Email verifier</span>
-              {" "}that gets{" "} <br />more{" "}
+              {" "}that gets{" "}more{" "}
               <span className="text-primary whitespace-nowrap">valid emails</span>{" "}
               <span className="whitespace-nowrap">from your lists</span>
             </h1>

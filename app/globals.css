@@ -31,6 +31,12 @@
   --color-unknown: #64748b;
   --color-unknown-soft: #f1f5f9;
 
+  /* Score scale (verification result bar) */
+  --color-score-low: #ee4444;
+  --color-score-mid-low: #f97316;
+  --color-score-mid-high: #f59e0b;
+  --color-score-high: #10b981;
+
   /* Reviews */
   --color-rating: #c2410c;
 

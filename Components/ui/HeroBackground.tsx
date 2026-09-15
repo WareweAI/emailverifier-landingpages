@@ -10,7 +10,7 @@ export function HeroBackground() {
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-x-0 -top-24 bottom-0 z-0 hero-grain opacity-[0.32] mix-blend-multiply"
+        className="pointer-events-none absolute inset-x-0 -top-24 bottom-0 z-0 hero-grain opacity-[0.14] mix-blend-multiply"
         aria-hidden
       />
       <div
