@@ -31,7 +31,7 @@ export function HeroDemoSignupGate({
       <Button
         size="lg"
         asChild
-        className="mt-4 min-h-12 w-full max-w-xs rounded-full border border-ink bg-cta text-cta-foreground hover:bg-cta-hover active:bg-cta-hover sm:w-auto"
+        className="group mt-4 min-h-12 w-full max-w-xs rounded-full border border-primary bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-deep sm:w-auto"
       >
         <Link
           href={REGISTER_URL}
@@ -41,7 +41,10 @@ export function HeroDemoSignupGate({
           data-ev-loc={location}
         >
           Get 100 free credits
-          <ArrowRight className="h-4 w-4" aria-hidden />
+          <ArrowRight
+            className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
+            aria-hidden
+          />
         </Link>
       </Button>
     </div>

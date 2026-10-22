@@ -2,12 +2,8 @@
 
 import FindEmailsForm from "@/Components/home/FindEmailsForm";
 import VerifierDemo from "@/Components/VerifierDemo";
-import { Button } from "@/Components/ui/Button";
-import { REGISTER_URL } from "@/lib/api-snippet";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { useId, useState, type ReactNode } from "react";
+import { useId, useState } from "react";
 
 function pushEvent(event: string, detail?: Record<string, unknown>) {
   if (typeof window !== "undefined" && window.dataLayer) {
@@ -22,11 +18,7 @@ const TABS: { id: ToolTab; label: string }[] = [
   { id: "find", label: "Find Emails" },
 ];
 
-type HeroToolTabsProps = {
-  children?: ReactNode;
-};
-
-export default function HeroToolTabs({ children }: HeroToolTabsProps) {
+export default function HeroToolTabs() {
   const [tab, setTab] = useState<ToolTab>("verify");
   const baseId = useId();
   const verifyPanelId = `${baseId}-verify`;
@@ -38,7 +30,7 @@ export default function HeroToolTabs({ children }: HeroToolTabsProps) {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-3xl flex-col items-center">
+    <div className="flex w-full flex-col items-center">
       <div
         role="tablist"
         aria-label="Email tools"
@@ -83,7 +75,7 @@ export default function HeroToolTabs({ children }: HeroToolTabsProps) {
         })}
       </div>
 
-      <div className="mt-6 w-full rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card)] ring-1 ring-line/60 sm:p-6 md:p-8">
+      <div className="mt-4 w-full rounded-2xl border border-line bg-surface p-4 shadow-[var(--shadow-card)] ring-1 ring-line/60 sm:mt-5 sm:p-5 md:p-6">
         <div
           role="tabpanel"
           id={verifyPanelId}
@@ -101,28 +93,6 @@ export default function HeroToolTabs({ children }: HeroToolTabsProps) {
           <FindEmailsForm location="hero" />
         </div>
       </div>
-
-      <Button
-        size="lg"
-        asChild
-        className="mt-6 h-14 min-h-14 w-full rounded-full border border-ink bg-cta px-8 text-base text-cta-foreground hover:bg-cta-hover active:bg-cta-hover"
-      >
-        <Link
-          href={REGISTER_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-ev-event="cta_register_click"
-          data-ev-loc="hero-tool-cta"
-        >
-          Get 100 Free Credits
-          <ArrowRight className="h-5 w-5" aria-hidden />
-        </Link>
-      </Button>
-
-      <p className="mt-4 text-center text-sm text-ink-muted">
-        No setup, No credit card, No stress.
-      </p>
-      {children}
     </div>
   );
 }

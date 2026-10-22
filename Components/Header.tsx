@@ -27,7 +27,7 @@ const SIGNIN_URL = "https://app.emailverifier.io/signin";
 const FIND_EMAILS_URL = "https://app.emailverifier.io";
 
 const REGISTER_CTA_CLASS =
-  "rounded-full border border-ink bg-cta text-cta-foreground hover:bg-cta-hover active:bg-cta-hover motion-reduce:transition-none";
+  "rounded-full border border-primary bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-deep motion-reduce:transition-none";
 
 type ProductLink = {
   title: string;

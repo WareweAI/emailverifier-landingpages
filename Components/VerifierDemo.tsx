@@ -328,8 +328,13 @@ export default function VerifierDemo({
           <Button
             type="submit"
             size="lg"
+            variant={isHeroDemo ? "outline" : "primary"}
             disabled={atLimit || loading}
-            className="min-h-12 w-full shrink-0 sm:w-auto"
+            className={cn(
+              "min-h-12 w-full shrink-0 sm:w-auto",
+              isHeroDemo &&
+                "border-primary bg-transparent text-primary hover:bg-primary-soft hover:border-primary active:bg-primary-soft"
+            )}
           >
             {loading ? (
               <>

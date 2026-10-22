@@ -136,7 +136,7 @@ export function StarRating({
   const defaultEmpty = max - defaultFull - (defaultPartial ? 1 : 0);
 
   return (
-    <div className={cn("flex items-center gap-1.5", className)}>
+    <div className={cn("flex items-center gap-0.5", className)}>
       {Array.from({ length: defaultFull }).map((_, index) => (
         <svg
           key={`full-${index}`}

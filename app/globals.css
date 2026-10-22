@@ -23,6 +23,8 @@
 
   /* Status */
   --color-success: #0f9f6e;
+  --color-success-hover: #0d875e;
+  --color-success-foreground: #ffffff;
   --color-success-soft: #e6f8f1;
   --color-warning: #b45309;
   --color-warning-soft: #fff7ed;
