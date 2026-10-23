@@ -1,4 +1,3 @@
-import HappyUsers from "@/Components/HappyUsers";
 import { StarRating } from "@/Components/ui/StarRating";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -12,10 +11,10 @@ export default function HeroSocialProof({ className }: HeroSocialProofProps) {
     <div
       data-hero-el
       className={cn(
-        "mt-4 flex flex-row gap-6 flex-wrap items-center justify-center gap-y-1.5 md:mt-5",
+        "mt-4 flex flex-row flex-wrap items-center justify-center gap-y-1.5 md:mt-5",
         className
       )}
-      aria-label="Capterra 4.8 rating from 1000+ happy users"
+      aria-label="Capterra 4.8 rating"
     >
       <div className="flex items-center gap-1.5">
         <Image
@@ -37,8 +36,6 @@ export default function HeroSocialProof({ className }: HeroSocialProofProps) {
           </div>
         </div>
       </div>
-
-      <HappyUsers className="justify-center" compact />
     </div>
   );
 }

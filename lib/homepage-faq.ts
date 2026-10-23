@@ -22,7 +22,7 @@ export const HOMEPAGE_FAQS: FaqItem[] = [
   {
     question: "How much does email verification cost?",
     answer:
-      "Pay-as-you-go credits are $1.80 per 1,000 emails. You choose your volume — 10K costs $18.00. Credits never expire.",
+      "Pay-as-you-go credits start at $1.80 per 1,000 (25K for $45). Larger packs cost less per email — 100K is $140. Credits never expire.",
   },
   {
     question: "Do credits expire?",

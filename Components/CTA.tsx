@@ -54,7 +54,6 @@ export default function CTA() {
     <SectionShell
       id="cta"
       className="bg-surface-muted py-12 md:py-16"
-      innerClassName="max-w-6xl"
       ariaLabelledBy="cta-heading"
     >
       <div

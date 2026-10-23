@@ -5,7 +5,6 @@ import CheckSvg from "../assets/CheckSvg";
 import VolumeSelector from "./VolumeSelector";
 import {
   BUY_CREDITS_URL,
-  RATE_PER_THOUSAND,
   SEASONAL_FEATURES,
   calculatePrice,
   formatNumber,
@@ -70,7 +69,12 @@ export default function SeasonalPricingCard({
           <span className="sr-only">Current total price: </span>${price.usd}
         </p>
         <p className="mt-1 text-sm text-gray-600">
-          ${RATE_PER_THOUSAND.toFixed(2)} per 1,000 emails
+          <span className="line-through">${price.listUsdFormatted}</span>
+          {" · "}
+          Save {price.savePct}% vs 10K packs
+        </p>
+        <p className="mt-1 text-sm text-gray-600">
+          ${price.ratePerEmail.toFixed(4)} per email verification
         </p>
       </div>
 

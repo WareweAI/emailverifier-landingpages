@@ -1,50 +1,87 @@
 import Image from "next/image";
 
-const logos = [
-    { src: "/logos/google.webp", alt: "Google" },
-    { src: "/logos/microsoft.webp", alt: "Microsoft" },
-    { src: "/logos/slack.webp", alt: "Slack" },
-    { src: "/logos/deepmind.webp", alt: "DeepMind" },
-    { src: "/logos/zoho.webp", alt: "Zoho" },
-    { src: "/logos/google.webp", alt: "Google" },
-    { src: "/logos/microsoft.webp", alt: "Microsoft" },
-    { src: "/logos/slack.webp", alt: "Slack" },
-    { src: "/logos/deepmind.webp", alt: "DeepMind" },
-    { src: "/logos/zoho.webp", alt: "Zoho" },
-];
+/** Approved LogoCloud marks allowlist (AGENTS.md). Transparent WebPs. */
+const LOGOS = [
+  {
+    src: "/logos/google.webp",
+    alt: "Google",
+    width: 140,
+    height: 40,
+  },
+  {
+    src: "/logos/microsoft.webp",
+    alt: "Microsoft",
+    width: 160,
+    height: 40,
+  },
+  {
+    src: "/logos/slack.webp",
+    alt: "Slack",
+    width: 120,
+    height: 40,
+  },
+  {
+    src: "/logos/deepmind.webp",
+    alt: "DeepMind",
+    width: 160,
+    height: 40,
+  },
+] as const;
+
+/** Repeat so one marquee half is wide enough on large screens. */
+const TRACK_LOGOS = [...LOGOS, ...LOGOS, ...LOGOS];
+
+function LogoTrack({ ariaHidden = false }: { ariaHidden?: boolean }) {
+  return (
+    <ul
+      className="flex shrink-0 items-center gap-10 px-5 sm:gap-14 sm:px-7"
+      aria-hidden={ariaHidden || undefined}
+      aria-label={ariaHidden ? undefined : "Brand marks"}
+    >
+      {TRACK_LOGOS.map((logo, index) => (
+        <li
+          key={`${ariaHidden ? "b" : "a"}-${logo.src}-${index}`}
+          className="shrink-0"
+        >
+          <Image
+            src={logo.src}
+            alt={ariaHidden ? "" : logo.alt}
+            width={logo.width}
+            height={logo.height}
+            unoptimized
+            className="h-9 w-auto max-w-[9rem] object-contain sm:h-10"
+            loading="lazy"
+          />
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export default function LogoCloud() {
-    return (
-        <section className="py-12 md:py-20 bg-gray-50 overflow-hidden relative" aria-labelledby="integration-heading">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
-                <h2 id="integration-heading" className="text-3xl lg:text-4xl font-semibold text-gray-900">
-                    Integrate with Trusted Platforms
-                </h2>
-            </div>
+  return (
+    <section
+      className="overflow-hidden bg-background py-12 md:py-16"
+      aria-labelledby="logo-cloud-heading"
+    >
+      <div className="mx-auto px-4 text-center sm:px-6 lg:px-20">
+        <h2
+          id="logo-cloud-heading"
+          className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl lg:text-4xl"
+        >
+          Trusted by teams at
+        </h2>
+      </div>
 
-            <div role="presentation" aria-label="Scrolling logos of trusted platform partners"
-                className="group relative w-full flex overflow-hidden py-4 mask-[linear-gradient(to_right,transparent_0,black_128px,black_calc(100%-128px),transparent_100%)]">
-                <ul aria-label="List of integrated platforms"
-                    className="flex items-center justify-center md:justify-start [&_li]:mx-2
-                    [&_img]:max-w-none animate-infinite-scroll group-hover:[animation-play-state:paused] list-none">
-                    {logos.map((logo, index) => (
-                        <li key={index}>
-                            <Image src={logo.src} alt={logo.alt} width={140} height={40} loading="eager"
-                                decoding="async" className="h-10 mx-8 object-contain" />
-                        </li>
-                    ))}
-                </ul>
-                <ul aria-hidden="true"
-                    className="flex items-center justify-center [&_li]:mx-2 [&_img]:max-w-none 
-                    animate-infinite-scroll group-hover:[animation-play-state:paused] list-none">
-                    {logos.map((logo, index) => (
-                        <li key={index + logos.length}>
-                            <Image src={logo.src} alt={logo.alt} width={140} height={40} loading="eager"
-                                decoding="async" className="h-10 mx-8 object-contain" />
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </section>
-    );
+      <div
+        className="group relative mt-10 mask-[linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+        role="presentation"
+      >
+        <div className="flex w-max animate-logo-marquee group-hover:[animation-play-state:paused] motion-reduce:animate-none">
+          <LogoTrack />
+          <LogoTrack ariaHidden />
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -4,19 +4,18 @@ import { useEffect, useId, useState } from "react";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import {
   PRESETS,
-  SEASONAL_MAX,
+  VOLUME_MAX,
   VOLUME_MIN,
-  VOLUME_STEP,
   clampSeasonalVolume,
   formatNumber,
   formatPresetLabel,
-  isSeasonalPreset,
+  stepCreditPack,
 } from "@/lib/pricing";
 
 type VolumeSelectorProps = {
   volume: number;
   onVolumeChange: (volume: number) => void;
-  /** When set, only show these presets (homepage: no disabled mega chips) */
+  /** When set, only show these presets (homepage: fewer chips) */
   presetList?: readonly number[];
 };
 
@@ -30,11 +29,15 @@ export default function VolumeSelector({
   const inputId = `${baseId}-volume-input`;
   const sliderId = `${baseId}-volume-slider`;
   const scaleId = `${baseId}-volume-scale`;
-  const hintId = `${baseId}-volume-hint`;
 
   const [inputValue, setInputValue] = useState(formatNumber(volume));
   const [isEditing, setIsEditing] = useState(false);
-  const [showClampHint, setShowClampHint] = useState(false);
+
+  const packIndex = Math.max(
+    0,
+    presets.findIndex((p) => p === volume)
+  );
+  const sliderMax = Math.max(presets.length - 1, 1);
 
   useEffect(() => {
     if (!isEditing) {
@@ -43,27 +46,23 @@ export default function VolumeSelector({
   }, [volume, isEditing]);
 
   const commitVolume = (raw: number) => {
-    const exceededMax = raw > SEASONAL_MAX;
     const next = clampSeasonalVolume(raw);
     onVolumeChange(next);
     setInputValue(formatNumber(next));
-    setShowClampHint(exceededMax);
   };
 
   const decrease = () => {
-    commitVolume(volume - VOLUME_STEP);
+    onVolumeChange(stepCreditPack(volume, -1));
   };
 
   const increase = () => {
-    if (volume >= SEASONAL_MAX) {
-      setShowClampHint(true);
-      return;
-    }
-    commitVolume(volume + VOLUME_STEP);
+    onVolumeChange(stepCreditPack(volume, 1));
   };
 
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    commitVolume(Number(e.target.value));
+    const idx = Number(e.target.value);
+    const next = presets[idx] ?? presets[0];
+    onVolumeChange(next);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,16 +72,8 @@ export default function VolumeSelector({
     const parsed = Number(raw.replace(/,/g, ""));
     if (!Number.isFinite(parsed) || raw.trim() === "") return;
 
-    if (parsed > SEASONAL_MAX) {
-      onVolumeChange(SEASONAL_MAX);
-      setInputValue(formatNumber(SEASONAL_MAX));
-      setShowClampHint(true);
-      return;
-    }
-
     if (parsed >= VOLUME_MIN) {
       onVolumeChange(clampSeasonalVolume(parsed));
-      setShowClampHint(false);
     }
   };
 
@@ -114,7 +105,7 @@ export default function VolumeSelector({
       <div className="flex flex-wrap items-center gap-2 sm:gap-3">
         <button
           type="button"
-          aria-label="Decrease email volume by 1,000"
+          aria-label="Fewer credits"
           onClick={decrease}
           disabled={volume <= VOLUME_MIN}
           className="grid h-11 w-11 cursor-pointer place-items-center rounded-lg border border-line transition-colors duration-200 hover:border-primary hover:bg-surface-muted disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
@@ -133,69 +124,47 @@ export default function VolumeSelector({
           onBlur={handleInputBlur}
           onKeyDown={handleInputKeyDown}
           aria-label="Email volume"
-          aria-describedby={`${scaleId}${showClampHint ? ` ${hintId}` : ""}`}
+          aria-describedby={scaleId}
           className="min-w-0 flex-1 rounded-lg border border-line py-2.5 text-center text-lg font-medium tabular-nums text-ink focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
         />
 
         <button
           type="button"
-          aria-label="Increase email volume by 1,000"
+          aria-label="More credits"
           onClick={increase}
-          disabled={volume >= SEASONAL_MAX}
+          disabled={volume >= VOLUME_MAX}
           className="grid h-11 w-11 cursor-pointer place-items-center rounded-lg border border-line transition-colors duration-200 hover:border-primary hover:bg-surface-muted disabled:pointer-events-none disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         >
           <PlusIcon className="h-4 w-4" aria-hidden />
         </button>
       </div>
 
-      {showClampHint && (
-        <p id={hintId} className="text-xs text-ink-muted" role="status">
-          Max purchase is {formatNumber(SEASONAL_MAX)} emails.
-          {presetList ? " Need more? Contact us." : ""}
-        </p>
-      )}
-
       <input
         id={sliderId}
         type="range"
-        min={VOLUME_MIN}
-        max={SEASONAL_MAX}
-        step={VOLUME_STEP}
-        value={volume}
+        min={0}
+        max={sliderMax}
+        step={1}
+        value={packIndex >= 0 ? packIndex : 0}
         onChange={handleSliderChange}
         aria-label="Email volume slider"
         aria-describedby={scaleId}
         aria-valuemin={VOLUME_MIN}
-        aria-valuemax={SEASONAL_MAX}
+        aria-valuemax={VOLUME_MAX}
         aria-valuenow={volume}
         className="w-full cursor-pointer accent-primary"
       />
 
       <div id={scaleId} className="flex justify-between text-xs text-ink-muted">
-        <span>1K</span>
-        <span>50K</span>
-        <span>100K max</span>
+        <span>25K</span>
+        <span>100K</span>
+        <span>10M</span>
       </div>
 
       <div className="flex flex-wrap gap-2" role="group" aria-label="Volume presets">
         {presets.map((preset) => {
-          const available = presetList ? true : isSeasonalPreset(preset);
-          const selected = available && preset === volume;
-
-          if (!available) {
-            return (
-              <button
-                key={preset}
-                type="button"
-                disabled
-                title="Not available in Seasonal pricing"
-                aria-label={`${formatPresetLabel(preset)} — not available`}
-                className="cursor-not-allowed rounded-lg border border-line px-2.5 py-1.5 text-sm font-medium text-ink-muted opacity-60"
-              >
-                {formatPresetLabel(preset)}
-              </button>
-            );
-          }
+          const selected = preset === volume;
+          const mostValue = preset === 100_000;
 
           return (
             <button
@@ -204,7 +173,6 @@ export default function VolumeSelector({
               onClick={() => {
                 setIsEditing(false);
                 onVolumeChange(preset);
-                setShowClampHint(false);
               }}
               aria-pressed={selected}
               className={`cursor-pointer rounded-lg border px-2.5 py-1.5 text-sm font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
@@ -214,6 +182,11 @@ export default function VolumeSelector({
               }`}
             >
               {formatPresetLabel(preset)}
+              {mostValue ? (
+                <span className="ml-1 text-[10px] font-semibold uppercase tracking-wide text-primary/80">
+                  Most value
+                </span>
+              ) : null}
             </button>
           );
         })}

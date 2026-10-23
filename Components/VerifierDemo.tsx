@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 const MAX_VERIFICATIONS = 3;
 const STORAGE_KEY = "email-verifier-use-count";
 const HERO_DEMO_DURATION_MS = 2800;
-const HERO_DEMO_EMAIL = "jacob.schmidt@gmail.com";
+const HERO_DEMO_EMAIL = "satyanadella@microsoft.com";
 const HERO_UPLOAD_ACCEPT =
   ".csv,.txt,.xlsx,.xls,text/csv,text/plain,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
@@ -120,6 +120,9 @@ export default function VerifierDemo({
 
   const atLimit = !isHeroDemo && useCount >= MAX_VERIFICATIONS;
   const remaining = Math.max(0, MAX_VERIFICATIONS - useCount);
+  const heroCheckLocked =
+    isHeroDemo && (heroPhase === "progress" || heroPhase === "gated");
+  const submitDisabled = atLimit || loading || heroCheckLocked;
 
   const startHeroDemo = (
     nextEmail: string,
@@ -159,7 +162,7 @@ export default function VerifierDemo({
   };
 
   const handleUploadClick = () => {
-    if (loading) return;
+    if (loading || heroCheckLocked) return;
     fileInputRef.current?.click();
   };
 
@@ -179,7 +182,7 @@ export default function VerifierDemo({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
+    if (!email.trim() || submitDisabled) return;
 
     pushEvent("hero_verify_submit", { location });
 
@@ -317,7 +320,7 @@ export default function VerifierDemo({
               onChange={handleChange}
               placeholder="you@company.com"
               required
-              disabled={atLimit || loading}
+              disabled={submitDisabled}
               aria-invalid={invalidInput}
               aria-describedby={
                 isHeroDemo ? undefined : `${location}-remaining`
@@ -329,7 +332,7 @@ export default function VerifierDemo({
             type="submit"
             size="lg"
             variant={isHeroDemo ? "outline" : "primary"}
-            disabled={atLimit || loading}
+            disabled={submitDisabled}
             className={cn(
               "min-h-12 w-full shrink-0 sm:w-auto",
               isHeroDemo &&
@@ -426,7 +429,7 @@ export default function VerifierDemo({
                         type="button"
                         size="lg"
                         variant="secondary"
-                        disabled={loading}
+                        disabled={submitDisabled}
                         onClick={handleUploadClick}
                         data-ev-event="hero_upload_list_click"
                         data-ev-loc={`${location}-upload-list`}

@@ -5,7 +5,7 @@ import type { LucideIcon } from "lucide-react";
 const STATS = [
   {
     id: "emails-checked",
-    value: "10+ billion",
+    value: "1+ billion",
     label: "Emails Checked",
     icon: MailCheck,
   },
@@ -18,7 +18,7 @@ const STATS = [
   {
     id: "deliverability",
     value: "99.9%",
-    label: "Deliverability ensured",
+    label: "Deliverability Guarantee",
     icon: ShieldCheck,
   },
 ] as const satisfies ReadonlyArray<{
@@ -39,7 +39,7 @@ export default function HomeStatsStrip() {
         aria-hidden
       />
 
-      <ul className="mx-auto grid max-w-4xl justify-items-center gap-8 px-4 sm:grid-cols-3 sm:px-6 lg:px-8">
+      <ul className="mx-auto grid max-w-4xl justify-items-center gap-8 px-4 sm:grid-cols-3 sm:px-6 lg:px-20">
         {STATS.map((stat) => {
           const Icon = stat.icon;
           return (

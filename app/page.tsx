@@ -1,12 +1,10 @@
 import HeroSection from "@/Components/home/HeroSection";
 import ProofBar from "@/Components/home/ProofBar";
 import HomeStatsStrip from "@/Components/home/HomeStatsStrip";
-import HowItWorks from "@/Components/HowItWorks";
-import ListCleanSection from "@/Components/home/ListCleanSection";
+import FeaturePillarsSection from "@/Components/home/FeaturePillarsSection";
+import LogoCloud from "@/Components/LogoCloud";
 import MethodSection from "@/Components/home/MethodSection";
-import UseCasesSection from "@/Components/home/UseCasesSection";
 import Pricing from "@/Components/Pricing";
-import ApiSection from "@/Components/home/ApiSection";
 import Testimonials from "@/Components/Testimonials";
 import HomeFaqSection from "@/Components/home/HomeFaqSection";
 import CTA from "@/Components/CTA";
@@ -38,13 +36,11 @@ export default function Home() {
         <HeroSection />
         <ProofBar />
         <HomeStatsStrip />
-        <HowItWorks />
-        <ListCleanSection />
-        <MethodSection />
-        <UseCasesSection />
-        <Pricing />
-        <ApiSection />
+        <FeaturePillarsSection />
         <Testimonials />
+        <Pricing />
+        <LogoCloud />
+        <MethodSection />
         <HomeFaqSection />
         <CTA />
       </main>

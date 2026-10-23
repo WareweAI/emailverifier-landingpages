@@ -8,7 +8,7 @@ import { Button } from "@/Components/ui/Button";
 import { Input } from "@/Components/ui/Input";
 import { cn } from "@/lib/utils";
 
-const DEMO_EMAIL = "jacob.schmidt@gmail.com";
+const DEMO_EMAIL = "satyanadella@microsoft.com";
 
 const VERIFY_STEPS = [
   { label: "Initializing verification...", status: "done" as const },

@@ -46,7 +46,7 @@ function FooterLink({ href, label }: { href: string; label: string }) {
 export default function Footer() {
   return (
     <footer id="contact" className="bg-surface-muted">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 py-16 sm:px-6 lg:px-20">
         <div className="flex items-center gap-4">
           <Link
             href="/"

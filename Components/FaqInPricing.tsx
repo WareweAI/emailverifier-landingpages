@@ -13,7 +13,7 @@ const faqs = [
     {
         question: "What's the difference between Seasonal credits and Unlimited?",
         answer:
-            "Seasonal pricing is a one-time purchase for up to 100,000 verification credits — you pay only for the volume you need. Unlimited is a $299/month plan with unlimited emails per month, available for a limited number of customers.",
+            "Pay-as-you-go credits are a one-time purchase — packs from 25K to 10M, with volume discounts. Unlimited is a $299/month plan with unlimited emails per month, available for a limited number of customers.",
     },
     {
         question: "Is there a subscription or recurring charge?",
@@ -44,7 +44,7 @@ export default function FAQSection() {
     return (
         <section
             aria-labelledby="faq-heading"
-            className="bg-blue-50 py-16 px-4 sm:px-6 lg:px-8"
+            className="bg-blue-50 py-16 px-4 sm:px-6 lg:px-20"
             id="faqs"
         >
             <div className="max-w-3xl mx-auto">

@@ -8,10 +8,18 @@
   --color-primary-soft: #eaf1ff;
   --color-primary-deep: #0e2a6b;
 
-  /* CTA accent (matches hero #1 underline) */
+  /* CTA accent */
   --color-cta: #ffe100;
   --color-cta-hover: #f0d400;
   --color-cta-foreground: #0b1220;
+
+  /* Hand-drawn mark (hero title circle) */
+  --color-mark: #ffd375;
+
+  /* Feature pillar card pastels (homepage product band) */
+  --color-teal-soft: #e6f5f2;
+  --color-lavender-soft: #eeeaf8;
+  --color-peach-soft: #faf3ea;
 
   /* Surfaces */
   --color-background: #f7f8fc;

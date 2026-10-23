@@ -19,9 +19,9 @@ export default function PricingPage() {
       id="pricing-main-content"
       aria-labelledby="pricing-heading"
     >
-      <section className="relative z-10 px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="relative z-10 px-4 py-16 sm:px-6 lg:px-20 lg:py-20">
         <HeroWash />
-        <div className="relative z-10 mx-auto max-w-6xl">
+        <div className="relative z-10 mx-auto">
           <div className="mb-10 text-center">
             <p className="mb-4 text-sm font-semibold text-ink">Pricing</p>
             <h1

@@ -1,9 +1,10 @@
 import HeroScene from "@/Components/home/HeroScene";
 import HeroSocialProof from "@/Components/home/HeroSocialProof";
 import HeroToolTabs from "@/Components/home/HeroToolTabs";
+import HowItWorksVideo from "@/Components/home/HowItWorksVideo";
 import { Button } from "@/Components/ui/Button";
 import { REGISTER_URL } from "@/lib/api-snippet";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, BadgeCheck, MailCheck, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 export default function HeroSection() {
@@ -14,7 +15,7 @@ export default function HeroSection() {
         className="relative pt-8 pb-16 md:pt-12 md:pb-20 lg:pb-24"
         aria-labelledby="hero-heading"
       >
-        <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto px-4 sm:px-6 lg:px-20">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
             {/* Tools first on mobile (form-first); left column on desktop */}
             <div
@@ -30,82 +31,105 @@ export default function HeroSection() {
               <h1
                 id="hero-heading"
                 data-hero-el
-                className="mt-8 font-display text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl lg:text-4xl xl:text-5xl"
+                className="mt-12 font-display text-2xl font-semibold leading-tight tracking-tight text-ink sm:mt-14 sm:text-3xl lg:text-3xl xl:text-4xl"
               >
-                <span className="relative mr-2 inline-block align-middle pb-2 text-primary">
-                  #1
+                <span className="relative inline-block">
+                  {/* 1-off: circle mark sized to this phrase only (not the line below) */}
                   <svg
-                    className="absolute -bottom-0.5 left-0 w-10 lg:w-14.75"
-                    width="59"
-                    height="8"
-                    viewBox="0 0 59 8"
+                    width="503"
+                    height="127"
+                    viewBox="0 0 503 127"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="none"
+                    className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[2.6em] w-[108%] max-w-none -translate-x-1/2 -translate-y-1/2"
                     aria-hidden
                     focusable="false"
                   >
                     <path
-                      d="M1.66382 6.88859C1.99342 6.76873 2.32302 6.64887 4.47793 6.01781C6.63284 5.38675 10.6031 4.24812 15.9893 3.36192C21.3756 2.47571 28.0575 1.87643 34.234 1.72502C40.4104 1.57361 45.8788 1.88824 49.6023 2.28253C53.3258 2.67683 55.1386 3.14127 56.2148 3.44046C57.291 3.73965 57.5756 3.8595 57.8689 4.02839"
-                      stroke="var(--color-primary)"
-                      strokeWidth="2"
+                      d="M497.259 30.427C436.753 13.6132 279.438 -12.9029 134.223 15.5427C-47.295 51.0997 -39.1915 108.983 150.43 121.386C340.052 133.79 524.809 99.8867 497.259 65.1569C469.71 30.427 367.606 28.773 323.847 24.6385"
+                      stroke="var(--color-mark)"
+                      strokeWidth="5"
                       strokeLinecap="round"
+                      vectorEffect="non-scaling-stroke"
                     />
                   </svg>
+                  <span className="relative z-10">
+                    <span className="text-primary">#1</span>{" "}
+                    <span className="text-ink">Email Verification Tool</span>
+                  </span>
                 </span>
-                <span className="text-primary">Email verifier</span> that gets
-                more{" "}
-                <span className="whitespace-nowrap text-primary">
-                  valid emails
-                </span>{" "}
-                <span className="whitespace-nowrap">from your lists</span>
               </h1>
+              <h2 className="mt-8 font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl xl:text-6xl">
+                For Clean Lists and Verified Leads
+              </h2>
 
-              <ul
+              <p
                 data-hero-el
-                className="mt-8 mb-8 flex flex-wrap items-center gap-x-8 gap-y-2 text-ink-muted"
+                className="mt-4 max-w-lg text-base leading-relaxed text-ink-muted sm:text-lg"
               >
-                {(
-                  [
-                    { id: "gdpr", lines: ["GDPR", "COMPLIANT"] },
-                    {
-                      id: "deliverability",
-                      lines: ["99.9% DELIVERABILITY", "GUARANTEE"],
-                    },
-                  ] as const
-                ).map((item) => (
-                  <li key={item.id} className="inline-flex items-center gap-2">
-                    <CheckCircle2 className="h-5 w-5 shrink-0" aria-hidden />
-                    <span className="text-sm font-medium uppercase tracking-wide">
-                      {item.lines[0]} {item.lines[1]}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              <Button
-                size="lg"
-                asChild
-                data-hero-el
-                className="group h-14 min-h-14 w-full max-w-sm rounded-full border border-primary bg-primary px-8 text-base text-primary-foreground hover:bg-primary-hover active:bg-primary-deep sm:w-auto"
-              >
-                <Link
-                  href={REGISTER_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-ev-event="cta_register_click"
-                  data-ev-loc="hero-tool-cta"
-                >
-                  Get 100 Free Credits
-                  <ArrowRight
-                    className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
-                    aria-hidden
-                  />
-                </Link>
-              </Button>
-
-              <p data-hero-el className="mt-4 text-sm text-ink-muted">
-                No setup, No credit card, No stress.
+                Stop chasing invalid, fake disposable emails and spam traps that
+                cost your sender reputation.
               </p>
+
+              <div
+                data-hero-el
+                className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3"
+              >
+                <Button
+                  size="lg"
+                  asChild
+                  className="group h-14 min-h-14 w-full max-w-sm rounded-full border border-primary bg-primary px-8 text-base text-primary-foreground hover:bg-primary-hover active:bg-primary-deep sm:w-auto"
+                >
+                  <Link
+                    href={REGISTER_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-ev-event="cta_register_click"
+                    data-ev-loc="hero-tool-cta"
+                  >
+                    Verify Emails Free
+                    <ArrowRight
+                      className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                      aria-hidden
+                    />
+                  </Link>
+                </Button>
+                <HowItWorksVideo />
+              </div>
+
+              <div data-hero-el className="mt-5 max-w-2xl">
+                <p className="text-sm leading-relaxed text-ink-muted sm:text-base">
+                  Get{" "}
+                  <span className="font-semibold text-primary">
+                    100 free verifications
+                  </span>
+                  . No setup, no credit card, no stress.
+                </p>
+                <ul className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink-muted">
+                  <li className="inline-flex items-center gap-1.5">
+                    <ShieldCheck
+                      className="h-4 w-4 shrink-0 text-primary"
+                      aria-hidden
+                    />
+                    <span className="font-medium"><span className="font-bold">GDPR</span> Compliant</span>
+                  </li>
+                  <li className="inline-flex items-center gap-1.5">
+                    <BadgeCheck
+                      className="h-4 w-4 shrink-0 text-primary"
+                      aria-hidden
+                    />
+                    <span className="font-medium"><span className="font-bold">99.9%</span> Deliverability Guarantee</span>
+                  </li>
+                  <li className="inline-flex items-center gap-1.5">
+                    <MailCheck
+                      className="h-4 w-4 shrink-0 text-primary"
+                      aria-hidden
+                    />
+                    <span className="font-medium"><span className="font-bold">1 Billion+</span> Emails checked</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

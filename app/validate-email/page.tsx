@@ -62,7 +62,7 @@ export default function ValidateEmailPage() {
           aria-labelledby="validate-email-heading"
         >
           <HeroWash />
-          <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="relative z-10 mx-auto px-4 sm:px-6 lg:px-20">
             <div className="mx-auto max-w-2xl text-center">
               <p className="text-sm font-medium text-ink-muted">
                 Free Email Verification Tool

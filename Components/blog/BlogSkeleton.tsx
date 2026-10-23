@@ -1,6 +1,6 @@
 export function BlogSkeleton() {
   return (
-    <div className="mx-auto max-w-6xl animate-pulse px-4 py-16 sm:px-6 lg:px-8">
+    <div className="mx-auto animate-pulse px-4 py-16 sm:px-6 lg:px-20">
       <div className="h-10 w-2/3 max-w-md rounded-lg bg-line" />
       <div className="mt-4 h-4 w-full max-w-xl rounded bg-line" />
       <div className="mt-4 h-4 w-3/4 max-w-lg rounded bg-line" />

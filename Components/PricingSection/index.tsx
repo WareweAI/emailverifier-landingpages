@@ -4,7 +4,7 @@ import { useState } from "react";
 import SeasonalPricingCard from "./SeasonalPricingCard";
 import UnlimitedPricingCard from "./UnlimitedPricingCard";
 import HomepagePricingCard from "./HomepagePricingCard";
-import { DEFAULT_VOLUME } from "@/lib/pricing";
+import { DEFAULT_VOLUME, nearestCreditPack } from "@/lib/pricing";
 import { SectionShell } from "@/Components/ui/SectionShell";
 
 export type PricingSectionProps = {
@@ -15,14 +15,16 @@ export type PricingSectionProps = {
 export default function PricingSection({
   variant = "section",
 }: PricingSectionProps) {
-  const [volume, setVolume] = useState(DEFAULT_VOLUME);
+  const [volume, setVolume] = useState(
+    () => nearestCreditPack(DEFAULT_VOLUME).credits
+  );
 
   if (variant === "homepage") {
     return (
       <SectionShell
         id="pricing"
         ariaLabelledBy="pricing-heading"
-        className="relative mx-3 overflow-hidden rounded-3xl bg-ink py-12 md:py-16 lg:py-20"
+        className="bg-background pt-8 pb-12 md:pt-10 md:pb-16 lg:pt-12 lg:pb-20"
       >
         <HomepagePricingCard volume={volume} onVolumeChange={setVolume} />
       </SectionShell>
@@ -38,7 +40,7 @@ export default function PricingSection({
 
   if (variant === "embedded") {
     return (
-      <div className="w-full max-w-6xl mx-auto" data-pricing-layout="embedded">
+      <div className="w-full mx-auto" data-pricing-layout="embedded">
         {grid}
       </div>
     );
@@ -47,7 +49,7 @@ export default function PricingSection({
   return (
     <section
       id="pricing"
-      className="flex w-full flex-col items-center bg-primary-soft px-4 py-14 sm:py-20"
+      className="flex w-full flex-col items-center bg-primary-soft px-4 py-14 sm:px-6 sm:py-20 lg:px-20"
       aria-labelledby="pricing-heading"
       role="region"
     >
@@ -64,7 +66,7 @@ export default function PricingSection({
         </p>
       </div>
 
-      <div className="w-full max-w-6xl">{grid}</div>
+      <div className="w-full">{grid}</div>
     </section>
   );
 }

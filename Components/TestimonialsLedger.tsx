@@ -338,7 +338,7 @@ function TestimonialMarquee({
 
 function StaticReviewsGrid() {
   return (
-    <ul className="mx-auto grid max-w-6xl list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="mx-auto grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
       {REVIEWS.map((review) => (
         <li key={review.commentUrl} className="min-w-0">
           <TestimonialCard

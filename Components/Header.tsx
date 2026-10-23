@@ -136,9 +136,9 @@ export default function Header() {
 
   return (
     <header
-      className="relative z-50 px-4 pt-4 sm:px-6 lg:px-8"
+      className="relative z-50 px-4 pt-4 sm:px-6 lg:px-20"
     >
-      <div className="relative mx-auto max-w-6xl">
+      <div className="relative mx-auto">
         {/* 1-off: pill header columns — logo | nav | actions */}
         <div className="grid h-16 grid-cols-[1fr_auto] items-center rounded-full border border-line/70 bg-surface/20 px-4 shadow-[var(--shadow-card)] backdrop-blur-md md:grid-cols-[1fr_auto_1fr] md:px-6">
           <Link

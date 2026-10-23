@@ -16,7 +16,7 @@ import { Button } from "@/Components/ui/Button";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
 
-const DEMO_EMAIL = "jacob.schmidt@gmail.com";
+const DEMO_EMAIL = "satyanadella@microsoft.com";
 const SCORE = 95;
 const SCORE_MARKS = [0, 40, 70, 100] as const;
 

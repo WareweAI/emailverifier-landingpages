@@ -54,7 +54,7 @@ export default async function BlogSearchPage({ searchParams }: PageProps) {
         ])}
       />
 
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <div className="mx-auto px-4 py-12 sm:px-6 lg:px-20 lg:py-16">
         <header className="max-w-3xl">
           <p className="text-sm font-medium text-primary">
             <Link href="/blog" className="hover:underline">

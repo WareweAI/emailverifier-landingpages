@@ -1,34 +1,63 @@
+/**
+ * Credit pack prices — source of truth from
+ * https://app.emailverifier.io/dashboard/billing (captured Oct 2026).
+ * Comparison baseline: 10K packs at $20 ($2.00 / 1,000).
+ */
+export const PACK_COMPARE_PER_THOUSAND = 2;
+
+/** Entry rate at the 25K pack ($0.0018 / email). */
 export const RATE_PER_THOUSAND = 1.8;
-export const SEASONAL_MAX = 100_000;
-export const VOLUME_MIN = 1_000;
+
+export const CREDIT_PACKS = [
+  { credits: 25_000, priceUsd: 45, listUsd: 50, savePct: 10 },
+  { credits: 50_000, priceUsd: 80, listUsd: 100, savePct: 20 },
+  { credits: 100_000, priceUsd: 140, listUsd: 200, savePct: 30 },
+  { credits: 500_000, priceUsd: 500, listUsd: 1_000, savePct: 50 },
+  { credits: 1_000_000, priceUsd: 800, listUsd: 2_000, savePct: 60 },
+  { credits: 10_000_000, priceUsd: 5_000, listUsd: 20_000, savePct: 75 },
+] as const;
+
+export type CreditPack = (typeof CREDIT_PACKS)[number];
+
+export const PRESETS = CREDIT_PACKS.map((p) => p.credits);
+
+/** Homepage calculator — same packs as dashboard billing. */
+export const HOMEPAGE_PRESETS = PRESETS;
+
+export const VOLUME_MIN = CREDIT_PACKS[0].credits;
+export const VOLUME_MAX = CREDIT_PACKS[CREDIT_PACKS.length - 1].credits;
+/** @deprecated Use VOLUME_MAX — kept for older seasonal naming */
+export const SEASONAL_MAX = VOLUME_MAX;
 export const VOLUME_STEP = 1_000;
-export const DEFAULT_VOLUME = 10_000;
+export const DEFAULT_VOLUME = 25_000;
+
 export const UNLIMITED_PRICE_MONTHLY = 299;
 export const UNLIMITED_TOTAL_SPOTS = 100;
 
 const DEFAULT_OFFER_ENDS_AT = "2026-09-10T23:59:59";
 
-export const BUY_CREDITS_URL = "https://app.emailverifier.io/signin";
+export const BUY_CREDITS_URL = "https://app.emailverifier.io/dashboard/billing";
 export const START_UNLIMITED_URL = "https://app.emailverifier.io/register";
-
-export const PRESETS = [
-  10_000,
-  25_000,
-  50_000,
-  100_000,
-  500_000,
-  1_000_000,
-  5_000_000,
-  10_000_000,
-] as const;
-
-/** Homepage calculator — no disabled mega presets */
-export const HOMEPAGE_PRESETS = [10_000, 25_000, 50_000, 100_000] as const;
 
 export type VolumePreset = (typeof PRESETS)[number];
 
 export function isSeasonalPreset(volume: number): boolean {
-  return volume <= SEASONAL_MAX;
+  return CREDIT_PACKS.some((p) => p.credits === volume);
+}
+
+export function getCreditPack(credits: number): CreditPack | undefined {
+  return CREDIT_PACKS.find((p) => p.credits === credits);
+}
+
+/** Nearest purchasable pack (rounds up when between packs). */
+export function nearestCreditPack(credits: number): CreditPack {
+  if (!Number.isFinite(credits) || credits <= CREDIT_PACKS[0].credits) {
+    return CREDIT_PACKS[0];
+  }
+  for (const pack of CREDIT_PACKS) {
+    if (credits <= pack.credits) return pack;
+  }
+  return CREDIT_PACKS[CREDIT_PACKS.length - 1];
 }
 
 export function formatNumber(num: number): string {
@@ -42,16 +71,54 @@ export function formatPresetLabel(volume: number): string {
   return `${volume / 1_000}K`;
 }
 
-export function calculatePrice(emails: number): { usd: string } {
-  const priceUSD = (emails / 1000) * RATE_PER_THOUSAND;
-  return { usd: priceUSD.toFixed(2) };
+export type PriceQuote = {
+  usd: string;
+  priceUsd: number;
+  listUsd: number;
+  listUsdFormatted: string;
+  savePct: number;
+  ratePerEmail: number;
+  ratePerThousand: number;
+};
+
+export function calculatePrice(emails: number): PriceQuote {
+  const pack = nearestCreditPack(emails);
+  const ratePerEmail = pack.priceUsd / pack.credits;
+  return {
+    usd: pack.priceUsd.toLocaleString("en-US", {
+      minimumFractionDigits: pack.priceUsd % 1 === 0 ? 0 : 2,
+      maximumFractionDigits: 2,
+    }),
+    priceUsd: pack.priceUsd,
+    listUsd: pack.listUsd,
+    listUsdFormatted: pack.listUsd.toLocaleString("en-US", {
+      minimumFractionDigits: pack.listUsd % 1 === 0 ? 0 : 2,
+      maximumFractionDigits: 2,
+    }),
+    savePct: pack.savePct,
+    ratePerEmail,
+    ratePerThousand: ratePerEmail * 1000,
+  };
 }
 
-/** Snap to step, then clamp within the seasonal range. */
+/** Snap to a purchasable credit pack. */
 export function clampSeasonalVolume(value: number): number {
-  if (!Number.isFinite(value)) return DEFAULT_VOLUME;
-  const stepped = Math.round(value / VOLUME_STEP) * VOLUME_STEP;
-  return Math.min(SEASONAL_MAX, Math.max(VOLUME_MIN, stepped));
+  return nearestCreditPack(value).credits;
+}
+
+/** Step to the previous/next pack. */
+export function stepCreditPack(
+  current: number,
+  direction: -1 | 1
+): number {
+  const idx = CREDIT_PACKS.findIndex((p) => p.credits === current);
+  const from =
+    idx >= 0 ? idx : CREDIT_PACKS.indexOf(nearestCreditPack(current));
+  const next = Math.min(
+    CREDIT_PACKS.length - 1,
+    Math.max(0, from + direction)
+  );
+  return CREDIT_PACKS[next].credits;
 }
 
 /** Remaining Unlimited spots from env (manual). Clamped to 0…100. */
@@ -73,13 +140,16 @@ export function getUnlimitedOfferEndsAt(): Date {
   return date;
 }
 
+/** Included with every credit pack (matches dashboard billing checklist). */
 export const SEASONAL_FEATURES = [
-  "Bulk & Real-Time Verification",
+  "Verify Emails",
+  "Find Emails",
   "API Access",
-  "CSV List Cleaning",
-  "Disposable Email Detection",
-  "Role-based Filtering",
-  "No Expiration",
+  "Unlimited API Keys",
+  "Search Leads",
+  "Lead lists",
+  "Team",
+  "Credits never expire",
 ] as const;
 
 export const UNLIMITED_FEATURES = [

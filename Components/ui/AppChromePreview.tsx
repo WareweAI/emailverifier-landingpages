@@ -110,7 +110,7 @@ function VerifyPanel() {
             </span>
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold text-ink">
-                jacob.schmidt@gmail.com
+                satyanadella@microsoft.com
               </p>
               <div className="mt-1.5 flex flex-wrap gap-1.5">
                 <StatusChip label="Mailbox verified" variant="neutral" />

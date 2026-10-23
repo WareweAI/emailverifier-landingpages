@@ -6,7 +6,7 @@ const TestimonialsLedger = dynamic(
   {
     loading: () => (
       <div
-        className="mx-auto min-h-[280px] max-w-6xl"
+        className="mx-auto min-h-[280px]"
         aria-busy="true"
         aria-label="Loading reviews"
       />
@@ -19,7 +19,7 @@ export default function Testimonials() {
     <SectionShell
       id="testimonials"
       ariaLabelledBy="testimonials-heading"
-      className="overflow-x-hidden bg-surface-muted"
+      className="overflow-x-hidden bg-background pt-8 pb-8 md:pt-12 md:pb-10 lg:pt-16 lg:pb-12"
       innerClassName="max-w-none"
     >
       <div className="mx-auto max-w-3xl text-center">

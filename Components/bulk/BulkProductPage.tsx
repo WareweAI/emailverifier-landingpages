@@ -13,11 +13,11 @@ export default function BulkProductPage() {
   return (
     <main className="relative flex-1">
       <section
-        className="relative px-4 pt-12 pb-16 sm:px-6 lg:px-8 lg:pt-16 lg:pb-20"
+        className="relative px-4 pt-12 pb-16 sm:px-6 lg:px-20 lg:pt-16 lg:pb-20"
         aria-labelledby="bulk-hero-heading"
       >
         <HeroWash />
-        <div className="relative z-10 mx-auto max-w-6xl">
+        <div className="relative z-10 mx-auto">
           <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:max-w-xl lg:text-left">
             <h1
               id="bulk-hero-heading"
@@ -31,7 +31,7 @@ export default function BulkProductPage() {
               credits as the email verification API; credits never expire.
             </p>
             <p className="mt-3 rounded-xl bg-primary-soft px-4 py-3 text-sm text-ink lg:inline-block">
-              10,000 emails = <strong>$18.00</strong> · Example mix shown below
+              25,000 emails = <strong>$45</strong> · Example mix shown below
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
               <Button asChild size="lg">

@@ -19,7 +19,7 @@ const PRESS_LOGOS = [
     alt: "Financial Post",
     width: 180,
     height: 36,
-    className: "h-8 max-w-[11rem] sm:h-9",
+    className: "h-9 max-w-[12rem] sm:h-10 sm:max-w-[13rem] md:h-10 md:max-w-[13rem]",
   },
   {
     src: "/logos/press/national-post.svg",
@@ -27,59 +27,9 @@ const PRESS_LOGOS = [
     width: 140,
     height: 28,
   },
-  {
-    src: "/logos/press/ottawa-citizen.png",
-    alt: "Ottawa Citizen",
-    width: 150,
-    height: 28,
-  },
-  {
-    src: "/logos/press/vancouver-sun.png",
-    alt: "Vancouver Sun",
-    width: 140,
-    height: 28,
-  },
 ] as const;
 
-type PressLogo = (typeof PRESS_LOGOS)[number];
-
-function LogoRow({
-  logos,
-  ariaHidden,
-}: {
-  logos: readonly PressLogo[];
-  ariaHidden?: boolean;
-}) {
-  return (
-    <ul
-      className="flex shrink-0 items-center"
-      aria-hidden={ariaHidden}
-      aria-label={ariaHidden ? undefined : "Press logos"}
-    >
-      {logos.map((logo, i) => (
-        <li key={`${logo.src}-${i}`} className="shrink-0 px-8 md:px-12">
-          <Image
-            src={logo.src}
-            alt={ariaHidden ? "" : logo.alt}
-            width={logo.width}
-            height={logo.height}
-            unoptimized={logo.src.endsWith(".svg")}
-            sizes={`${logo.width}px`}
-            className={cn(
-              "h-6 w-auto max-w-[9rem] object-contain opacity-70 grayscale sm:h-7",
-              "className" in logo ? logo.className : undefined
-            )}
-            loading="lazy"
-          />
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 export default function ProofBar() {
-  const track = [...PRESS_LOGOS, ...PRESS_LOGOS];
-
   return (
     <section
       className="bg-surface py-0"
@@ -92,13 +42,29 @@ export default function ProofBar() {
         As seen on
       </p>
 
-      <div className="group relative mx-auto max-w-3xl overflow-hidden py-3 mask-[linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-        <div className="flex w-max motion-safe:animate-logo-marquee group-hover:motion-safe:[animation-play-state:paused] motion-reduce:w-full motion-reduce:justify-center motion-reduce:flex-wrap">
-          <LogoRow logos={track} />
-          <div className="motion-reduce:hidden">
-            <LogoRow logos={track} ariaHidden />
-          </div>
-        </div>
+      <div className="mx-auto max-w-6xl overflow-x-auto px-4 py-3 sm:px-6 lg:px-20">
+        <ul
+          className="flex flex-nowrap items-center justify-center gap-x-6 sm:gap-x-8 md:gap-x-10 lg:gap-x-12"
+          aria-label="Press logos"
+        >
+          {PRESS_LOGOS.map((logo) => (
+            <li key={logo.src} className="shrink-0">
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                width={logo.width}
+                height={logo.height}
+                unoptimized={logo.src.endsWith(".svg")}
+                sizes={`${logo.width}px`}
+                className={cn(
+                  "h-5 w-auto max-w-[7.5rem] object-contain opacity-100 brightness-0 sm:h-6 sm:max-w-[8.5rem] md:h-7 md:max-w-[9rem]",
+                  "className" in logo ? logo.className : undefined
+                )}
+                loading="lazy"
+              />
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
