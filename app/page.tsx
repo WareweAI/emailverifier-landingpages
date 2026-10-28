@@ -1,5 +1,4 @@
 import HeroSection from "@/Components/home/HeroSection";
-import ProofBar from "@/Components/home/ProofBar";
 import HomeStatsStrip from "@/Components/home/HomeStatsStrip";
 import FeaturePillarsSection from "@/Components/home/FeaturePillarsSection";
 import LogoCloud from "@/Components/LogoCloud";
@@ -34,7 +33,6 @@ export default function Home() {
 
       <main className="min-h-screen flex-1" id="main-page" role="main">
         <HeroSection />
-        <ProofBar />
         <HomeStatsStrip />
         <FeaturePillarsSection />
         <Testimonials />

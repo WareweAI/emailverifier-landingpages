@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-const PRESS_LOGOS = [
+export const PRESS_LOGOS = [
   {
     src: "/logos/press/business-insider.png",
     alt: "Business Insider",
@@ -15,11 +15,13 @@ const PRESS_LOGOS = [
     height: 28,
   },
   {
-    src: "/logos/press/financial-post.png",
+    src: "/logos/press/financial-post-wordmark.png",
     alt: "Financial Post",
-    width: 180,
-    height: 36,
-    className: "h-9 max-w-[12rem] sm:h-10 sm:max-w-[13rem] md:h-10 md:max-w-[13rem]",
+    width: 372,
+    height: 61,
+    // Tight crop reads larger than the other marks at the shared height.
+    heroClassName: "max-w-[5.75rem] sm:max-w-[6.625rem]",
+    barClassName: "max-w-[6.625rem] sm:max-w-[7.5rem] md:max-w-[7.875rem]",
   },
   {
     src: "/logos/press/national-post.svg",
@@ -28,6 +30,42 @@ const PRESS_LOGOS = [
     height: 28,
   },
 ] as const;
+
+/** Compact press row for the hero column under the primary CTA. */
+export function HeroAsSeenOn({ className }: { className?: string }) {
+  return (
+    <div className={cn("w-full", className)} aria-labelledby="hero-as-seen-on">
+      <p
+        id="hero-as-seen-on"
+        className="text-xs font-medium uppercase tracking-[0.2em] text-ink-muted"
+      >
+        As seen on
+      </p>
+      <ul
+        className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 lg:justify-start"
+        aria-label="Press logos"
+      >
+        {PRESS_LOGOS.map((logo) => (
+          <li key={logo.src} className="shrink-0">
+            <Image
+              src={logo.src}
+              alt={logo.alt}
+              width={logo.width}
+              height={logo.height}
+              unoptimized={logo.src.endsWith(".svg")}
+              sizes={`${logo.width}px`}
+              className={cn(
+                "h-5 w-auto max-w-[6.5rem] object-contain opacity-70 brightness-0 sm:h-6 sm:max-w-[7.5rem]",
+                "heroClassName" in logo ? logo.heroClassName : undefined
+              )}
+              loading="lazy"
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 export default function ProofBar() {
   return (
@@ -58,7 +96,7 @@ export default function ProofBar() {
                 sizes={`${logo.width}px`}
                 className={cn(
                   "h-5 w-auto max-w-[7.5rem] object-contain opacity-100 brightness-0 sm:h-6 sm:max-w-[8.5rem] md:h-7 md:max-w-[9rem]",
-                  "className" in logo ? logo.className : undefined
+                  "barClassName" in logo ? logo.barClassName : undefined
                 )}
                 loading="lazy"
               />

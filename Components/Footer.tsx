@@ -7,6 +7,8 @@ const productLinks = [
   { href: "/validate-email", label: "Free email tool" },
   { href: "/bulk-email-verifier", label: "Bulk verifier" },
   { href: "/email-verification-api", label: "Email verification API" },
+  { href: "/find-emails", label: "Find emails" },
+  { href: "/find-leads", label: "Find leads" },
   { href: "/pricing", label: "Pricing" },
   { href: "/blog", label: "Blog" },
 ];

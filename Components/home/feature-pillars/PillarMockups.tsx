@@ -52,7 +52,7 @@ export function VerifyEmailsMockup({ className }: { className?: string }) {
       <div className="flex items-center justify-between gap-2 border-b border-line px-4 py-3">
         <p className="text-sm font-semibold text-ink">Bulk Verify</p>
         <div className="flex rounded-full bg-surface-muted p-0.5 text-[10px] font-semibold">
-          <span className="rounded-full bg-surface px-2.5 py-1 text-ink shadow-[var(--shadow-card)] ring-1 ring-line">
+          <span className="rounded-full bg-ink px-2.5 py-1 text-primary-foreground">
             Bulk Verify
           </span>
           <span className="px-2.5 py-1 text-ink-muted">Single Email</span>
@@ -283,7 +283,7 @@ export function FindLeadsMockup({ className }: { className?: string }) {
       <div className="flex items-center justify-between gap-2 border-b border-line px-4 py-3">
         <p className="text-sm font-semibold text-ink">Find Prospects with AI</p>
         <div className="flex rounded-full bg-surface-muted p-0.5 text-[10px] font-semibold">
-          <span className="rounded-full bg-surface px-2.5 py-1 text-ink shadow-[var(--shadow-card)] ring-1 ring-line">
+          <span className="rounded-full bg-ink px-2.5 py-1 text-primary-foreground">
             Person
           </span>
           <span className="px-2.5 py-1 text-ink-muted">Company</span>

@@ -1,161 +1,159 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { ArrowRight, X } from "lucide-react";
+import { formatPresetLabel, getCreditPack } from "@/lib/pricing";
+import { cn } from "@/lib/utils";
+
+/** End of Halloween day, 31 Oct 2026, in UTC. */
+const SALE_ENDS_AT = Date.parse("2026-11-01T00:00:00.000Z");
+const DISMISS_KEY = "ev-halloween-sale-2026";
+
+const DEAL = getCreditPack(100_000);
+const OFFER_COPY = DEAL
+  ? `${DEAL.savePct}% off ${formatPresetLabel(DEAL.credits)} credits`
+  : null;
+const OFFER_HREF = DEAL ? `/pricing?credits=${DEAL.credits}` : "/pricing";
 
 type TimeLeft = {
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
 };
 
+function remaining(now: number): TimeLeft | null {
+  const diff = SALE_ENDS_AT - now;
+  if (diff <= 0) return null;
+
+  const totalSeconds = Math.floor(diff / 1000);
+  return {
+    days: Math.floor(totalSeconds / 86400),
+    hours: Math.floor((totalSeconds % 86400) / 3600),
+    minutes: Math.floor((totalSeconds % 3600) / 60),
+    seconds: totalSeconds % 60,
+  };
+}
+
+function pad(value: number): string {
+  return String(value).padStart(2, "0");
+}
+
+function Divider({ className }: { className?: string }) {
+  return (
+    <span
+      className={cn("h-3.5 w-px shrink-0 bg-primary-foreground/25", className)}
+      aria-hidden="true"
+    />
+  );
+}
+
+function Tick({ value, unit }: { value: number; unit: string }) {
+  return (
+    <span className="inline-flex h-7 min-w-8 items-center justify-center gap-px rounded-md border border-primary-foreground/15 bg-primary-foreground/10 px-1 leading-none">
+      <span className="text-sm font-semibold tabular-nums" suppressHydrationWarning>
+        {pad(value)}
+      </span>
+      <span className="text-xs font-medium text-primary-foreground/75">{unit}</span>
+    </span>
+  );
+}
+
 export default function OfferBanner() {
-    // Target date/time (midnight at the start of Nov 8, 2025)
-    const targetDate = useMemo(() => new Date("2026-01-21T00:00:00"), []);
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(() =>
+    remaining(Date.now())
+  );
+  const [dismissed, setDismissed] = useState(false);
 
-    // typed helper
-    const computeFromDiff = (diffMs: number): TimeLeft => {
-        if (diffMs <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem(DISMISS_KEY) === "1") {
+        setDismissed(true);
+        return;
+      }
+    } catch {
+      // sessionStorage can throw in private mode; keep the banner visible.
+    }
 
-        const totalSeconds = Math.floor(diffMs / 1000);
-        const days = Math.floor(totalSeconds / 86400);
-        const hours = Math.floor((totalSeconds % 86400) / 3600);
-        const minutes = Math.floor((totalSeconds % 3600) / 60);
-        const seconds = totalSeconds % 60;
-
-        return { days, hours, minutes, seconds };
+    const tick = () => {
+      const next = remaining(Date.now());
+      setTimeLeft(next);
+      return next === null;
     };
 
+    if (tick()) return;
 
-    const getTimeLeft = useCallback((): TimeLeft => {
-        return computeFromDiff(targetDate.getTime() - Date.now());
-    }, [targetDate]);
+    const id = window.setInterval(() => {
+      if (tick()) window.clearInterval(id);
+    }, 1000);
 
-    // initialize immediately from remaining time
-    const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => getTimeLeft());
-    const [visible, setVisible] = useState<boolean>(() => Date.now() < targetDate.getTime());
+    return () => window.clearInterval(id);
+  }, []);
 
-    useEffect(() => {
-        if (!visible) return;
+  if (!OFFER_COPY || !timeLeft || dismissed) return null;
 
-        const tick = (): boolean => {
-            const tl = getTimeLeft();
+  const endsIn = `${timeLeft.days} days, ${timeLeft.hours} hours, ${timeLeft.minutes} minutes`;
 
-            const expired =
-                tl.days === 0 &&
-                tl.hours === 0 &&
-                tl.minutes === 0 &&
-                tl.seconds === 0;
+  const dismiss = () => {
+    try {
+      sessionStorage.setItem(DISMISS_KEY, "1");
+    } catch {
+      // Dismissal still hides the bar for this view.
+    }
+    document.documentElement.setAttribute("data-sale-dismissed", "1");
+    setDismissed(true);
+  };
 
-            setTimeLeft(tl);
-
-            if (expired) {
-                setVisible(false);
-                return true;
-            }
-
-            return false;
-        };
-
-        // handle immediate expiration without sync setState
-        if (tick()) return;
-
-        const timer = setInterval(() => {
-            if (tick()) clearInterval(timer);
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, [getTimeLeft, visible]);
-
-
-    if (!visible) return null;
-
-    return (
-        <div
-            role="region"
-            aria-label="Limited time launch offer"
-            className={`w-full bg-linear-to-b from-[#7AA1EE] to-[#5105FF]
-            text-white text-sm sm:text-md xl:text-xl
-            flex flex-col lg:flex-row justify-center items-center py-4 pr-6 px-2 lg:px-6 gap-3 xl:gap-10
-            relative transition-all duration-500 
-            ${visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
-        >
-            <span className="flex items-center justify-center gap-2 flex-wrap text-center lg:text-left max-w-[95%]">
-                <Image
-                    src="/assets/fire.webp"
-                    alt="Fire Icon"
-                    width="22"
-                    height="22"
-                    className="w-5 h-5"
-                />
-                Launch Offer: Verify 1,000 Emails for &nbsp;-&nbsp;
-                <b>Just $1.80!</b>
+  return (
+    <div
+      role="region"
+      aria-label={`Halloween sale. ${OFFER_COPY}. Ends in ${endsIn}.`}
+      data-sale-banner=""
+      className="relative z-50 bg-ink text-primary-foreground"
+    >
+      <div className="flex min-h-11 items-center justify-center py-1.5 pr-12 pl-3 sm:px-14 sm:py-0">
+        <div className="flex max-w-full flex-wrap items-center justify-center gap-x-3 gap-y-1.5 md:flex-nowrap md:gap-x-3.5">
+          <div className="flex items-center gap-2.5 sm:gap-3.5">
+            <span className="inline-flex items-center gap-1.5 text-sm font-semibold whitespace-nowrap text-score-mid-low">
+              <span className="text-base leading-none" aria-hidden="true">
+                🎃
+              </span>
+              Halloween Sale
             </span>
+            <Divider />
+            <p className="text-sm font-semibold whitespace-nowrap">{OFFER_COPY}</p>
+          </div>
 
-            {/* Countdown */}
-            <div className="flex items-center gap-1 lg:gap-3 text-sm lg:text-lg ml-2" aria-hidden={false}>
-                <span id="offer-countdown-label" className="flex items-center gap-1">
-                    <Image
-                        src="/assets/timer.webp"
-                        alt="Fire Icon"
-                        width="22"
-                        height="22"
-                    /><b>Offer ends in:</b></span>
+          <Divider className="hidden md:block" />
 
-                <div
-                    aria-live="polite" aria-atomic="true" aria-describedby="offer-countdown-label"
-                    className="px-3 py-1 bg-linear-to-b from-white/40 to-white/10 rounded-lg lg:rounded-xl 
-                 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.15)]">
-                    <time dateTime={`${timeLeft.days}d`}>{String(timeLeft.days).padStart(2, "0")}D</time>
-                </div>
-                <span aria-hidden="true">:</span>
-                <div
-                    aria-live="polite" aria-atomic="true" aria-describedby="offer-countdown-label"
-                    className="px-3 py-1 bg-linear-to-b from-white/40 to-white/10 rounded-lg lg:rounded-xl 
-                backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.15)]">
-                    <time dateTime={`${timeLeft.hours}h`}>{String(timeLeft.hours).padStart(2, "0")}H</time>
-                </div>
-                <span aria-hidden="true">:</span>
-                <div
-                    aria-live="polite" aria-atomic="true" aria-describedby="offer-countdown-label"
-                    className="px-3 py-1 bg-linear-to-b from-white/40 to-white/10 rounded-lg lg:rounded-xl 
-                backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.15)]">
-                    <time dateTime={`${timeLeft.minutes}m`}>{String(timeLeft.minutes).padStart(2, "0")}M</time>
-                </div>
+          <div className="flex items-center gap-2.5 sm:gap-3.5">
+            <div className="flex items-center gap-1" aria-hidden="true">
+              <Tick value={timeLeft.days} unit="d" />
+              <Tick value={timeLeft.hours} unit="h" />
+              <Tick value={timeLeft.minutes} unit="m" />
+              <Tick value={timeLeft.seconds} unit="s" />
             </div>
-            <a
-                href="https://app.emailverifier.io/register" target="_blank" rel="noopener noreferrer"
-                className="bg-linear-to-b from-white to-white/70 text-[#5105FF] px-5 py-2 rounded-md 
-                text-sm font-medium transition inline-flex items-center gap-2"
-                aria-label="Get Started — opens registration in a new tab"
-            >
-                Get Started
-                <svg
-                    width="14"
-                    height="10"
-                    viewBox="0 0 14 10"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true" focusable="false"
-                >
-                    <path
-                        d="M10.9038 4.1012L8.34615 1.53964C8.16667 1.35988 8.08066 1.15016 8.08814 0.91048C8.09562 0.670802 8.18162 0.461082 8.34615 0.281323C8.52564 0.101564 8.73878 0.00794029 8.98558 0.000450134C9.23237 -0.00704002 9.44551 0.0790949 9.625 0.258854L13.7308 4.37084C13.9103 4.5506 14 4.76032 14 5C14 5.23968 13.9103 5.4494 13.7308 5.62916L9.625 9.74115C9.44551 9.92091 9.23237 10.007 8.98558 9.99955C8.73878 9.99206 8.52564 9.89844 8.34615 9.71868C8.18162 9.53892 8.09562 9.3292 8.08814 9.08952C8.08066 8.84984 8.16667 8.64012 8.34615 8.46036L10.9038 5.8988H0.897435C0.643162 5.8988 0.430021 5.81266 0.258013 5.64039C0.0860043 5.46812 0 5.25466 0 5C0 4.74534 0.0860043 4.53188 0.258013 4.35961C0.430021 4.18734 0.643162 4.1012 0.897435 4.1012H10.9038Z"
-                        fill="#1F5DD8"
-                    />
-                </svg>
-            </a>
 
-            {/* Dismiss button */}
-            <button
-                onClick={() => setVisible(false)}
-                className="absolute top-4 lg:top-1/2 lg:-translate-y-1/2 right-4
-                 text-white/80 hover:text-white text-lg leading-none"
-                aria-label="Close offer banner"
-                title="Close"
+            <Link
+              href={OFFER_HREF}
+              className="inline-flex h-8 shrink-0 items-center gap-1 rounded-full bg-score-mid-low px-3.5 text-sm font-semibold whitespace-nowrap text-ink transition-colors duration-200 hover:bg-score-mid-low/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-ink motion-reduce:transition-none"
             >
-                ✕
-            </button>
+              Grab the deal
+              <ArrowRight className="size-3.5" strokeWidth={2.5} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
-    );
+      </div>
+
+      <button
+        type="button"
+        onClick={dismiss}
+        aria-label="Dismiss sale announcement"
+        className="absolute top-1/2 right-1 flex size-11 -translate-y-1/2 items-center justify-center rounded-full text-primary-foreground/70 transition-colors duration-200 hover:bg-primary-foreground/10 hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground motion-reduce:transition-none"
+      >
+        <X className="size-4" aria-hidden="true" />
+      </button>
+    </div>
+  );
 }

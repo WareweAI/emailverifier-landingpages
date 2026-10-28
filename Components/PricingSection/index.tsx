@@ -10,13 +10,18 @@ import { SectionShell } from "@/Components/ui/SectionShell";
 export type PricingSectionProps = {
   /** Full homepage section vs embedded grid on /pricing */
   variant?: "section" | "embedded" | "homepage";
+  /** Preselect a credit pack, e.g. from the sale banner. */
+  initialCredits?: number;
 };
 
 export default function PricingSection({
   variant = "section",
+  initialCredits,
 }: PricingSectionProps) {
-  const [volume, setVolume] = useState(
-    () => nearestCreditPack(DEFAULT_VOLUME).credits
+  const [volume, setVolume] = useState(() =>
+    nearestCreditPack(
+      initialCredits && initialCredits > 0 ? initialCredits : DEFAULT_VOLUME
+    ).credits
   );
 
   if (variant === "homepage") {

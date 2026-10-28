@@ -12,7 +12,16 @@ export const metadata = buildMetadata({
   imageAlt: "Email verifier pricing calculator for bulk and API credits",
 });
 
-export default function PricingPage() {
+type PricingPageProps = {
+  searchParams: Promise<{ credits?: string }>;
+};
+
+export default async function PricingPage({ searchParams }: PricingPageProps) {
+  const params = await searchParams;
+  const parsed = Number(params.credits);
+  const initialCredits =
+    Number.isFinite(parsed) && parsed > 0 ? parsed : undefined;
+
   return (
     <main
       className="relative isolate overflow-hidden bg-background text-ink"
@@ -38,7 +47,7 @@ export default function PricingPage() {
             </p>
           </div>
 
-          <PricingCalculator />
+          <PricingCalculator initialCredits={initialCredits} />
         </div>
       </section>
 

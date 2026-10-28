@@ -1,10 +1,10 @@
 import HeroScene from "@/Components/home/HeroScene";
-import HeroSocialProof from "@/Components/home/HeroSocialProof";
 import HeroToolTabs from "@/Components/home/HeroToolTabs";
 import HowItWorksVideo from "@/Components/home/HowItWorksVideo";
+import { HeroAsSeenOn } from "@/Components/home/ProofBar";
 import { Button } from "@/Components/ui/Button";
 import { REGISTER_URL } from "@/lib/api-snippet";
-import { ArrowRight, BadgeCheck, MailCheck, ShieldCheck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export default function HeroSection() {
@@ -17,21 +17,16 @@ export default function HeroSection() {
       >
         <div className="relative z-10 mx-auto px-4 sm:px-6 lg:px-20">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
-            {/* Tools first on mobile (form-first); left column on desktop */}
-            <div
-              data-hero-el
-              className="order-1 w-full min-w-0 lg:order-2"
-            >
+            {/* Copy first on small screens; left column on desktop */}
+            <div data-hero-el className="order-2 w-full min-w-0">
               <HeroToolTabs />
             </div>
 
-            <div className="order-2 flex w-full min-w-0 flex-col items-start text-left lg:order-1">
-              <HeroSocialProof className="mt-0 justify-start md:mt-0" />
-
+            <div className="order-1 flex w-full min-w-0 flex-col items-center text-center lg:items-start lg:text-left">
               <h1
                 id="hero-heading"
                 data-hero-el
-                className="mt-12 font-display text-2xl font-semibold leading-tight tracking-tight text-ink sm:mt-14 sm:text-3xl lg:text-3xl xl:text-4xl"
+                className="mt-0 w-full font-display text-base font-normal leading-tight tracking-tight text-primary sm:text-lg lg:text-xl"
               >
                 <span className="relative inline-block">
                   {/* 1-off: circle mark sized to this phrase only (not the line below) */}
@@ -54,14 +49,12 @@ export default function HeroSection() {
                       vectorEffect="non-scaling-stroke"
                     />
                   </svg>
-                  <span className="relative z-10">
-                    <span className="text-primary">#1</span>{" "}
-                    <span className="text-ink">Email Verification Tool</span>
-                  </span>
+                  <span className="relative z-10">#1 Email Verification Tool</span>
                 </span>
               </h1>
-              <h2 className="mt-8 font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl xl:text-6xl">
-                For Clean Lists and Verified Leads
+              <h2 className="mt-8 w-full font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl xl:text-6xl">
+                For Clean Lists and{" "}
+                <span className="text-primary">Verified Leads</span>
               </h2>
 
               <p
@@ -74,12 +67,12 @@ export default function HeroSection() {
 
               <div
                 data-hero-el
-                className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3"
+                className="mt-8 flex w-full flex-col items-center gap-y-4 lg:flex-row lg:flex-wrap lg:items-center lg:justify-start lg:gap-x-6 lg:gap-y-3"
               >
                 <Button
                   size="lg"
                   asChild
-                  className="group h-14 min-h-14 w-full max-w-sm rounded-full border border-primary bg-primary px-8 text-base text-primary-foreground hover:bg-primary-hover active:bg-primary-deep sm:w-auto"
+                  className="group h-14 min-h-14 w-full max-w-sm rounded-lg border border-primary bg-primary px-8 text-base text-primary-foreground hover:bg-primary-hover active:bg-primary-deep sm:w-auto"
                 >
                   <Link
                     href={REGISTER_URL}
@@ -98,37 +91,8 @@ export default function HeroSection() {
                 <HowItWorksVideo />
               </div>
 
-              <div data-hero-el className="mt-5 max-w-2xl">
-                <p className="text-sm leading-relaxed text-ink-muted sm:text-base">
-                  Get{" "}
-                  <span className="font-semibold text-primary">
-                    100 free verifications
-                  </span>
-                  . No setup, no credit card, no stress.
-                </p>
-                <ul className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-ink-muted">
-                  <li className="inline-flex items-center gap-1.5">
-                    <ShieldCheck
-                      className="h-4 w-4 shrink-0 text-primary"
-                      aria-hidden
-                    />
-                    <span className="font-medium"><span className="font-bold">GDPR</span> Compliant</span>
-                  </li>
-                  <li className="inline-flex items-center gap-1.5">
-                    <BadgeCheck
-                      className="h-4 w-4 shrink-0 text-primary"
-                      aria-hidden
-                    />
-                    <span className="font-medium"><span className="font-bold">99.9%</span> Deliverability Guarantee</span>
-                  </li>
-                  <li className="inline-flex items-center gap-1.5">
-                    <MailCheck
-                      className="h-4 w-4 shrink-0 text-primary"
-                      aria-hidden
-                    />
-                    <span className="font-medium"><span className="font-bold">1 Billion+</span> Emails checked</span>
-                  </li>
-                </ul>
+              <div data-hero-el className="mt-8 max-w-2xl">
+                <HeroAsSeenOn />
               </div>
             </div>
           </div>

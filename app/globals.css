@@ -281,6 +281,11 @@ body {
   margin: 2em 0;
 }
 
+/* Sale bar: hide before paint when this session already dismissed it. */
+html[data-sale-dismissed="1"] [data-sale-banner] {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .coming-soon-dot {
     animation: none;

@@ -3,6 +3,7 @@ import Script from "next/script";
 import Link from "next/link";
 import "./globals.css";
 import Header from "@/Components/Header";
+import OfferBanner from "@/Components/OfferBanner";
 import Footer from "@/Components/Footer";
 import SmoothScroll from "@/Components/SmoothScroll";
 import { Inter } from "next/font/google";
@@ -54,6 +55,13 @@ export default function RootLayout({
     >
       <head>
         <Script
+          id="sale-banner-dismiss"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem("ev-halloween-sale-2026")==="1")document.documentElement.setAttribute("data-sale-dismissed","1")}catch(e){}`,
+          }}
+        />
+        <Script
           id="gtm-script"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -89,7 +97,14 @@ export default function RootLayout({
           Skip to main content
         </Link>
 
-        <SmoothScroll header={<Header />}>
+        <SmoothScroll
+          header={
+            <>
+              <OfferBanner />
+              <Header />
+            </>
+          }
+        >
           {children}
           <Footer />
         </SmoothScroll>

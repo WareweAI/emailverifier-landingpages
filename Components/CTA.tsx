@@ -96,7 +96,7 @@ export default function CTA() {
             <Button
               size="lg"
               asChild
-              className="rounded-full bg-surface text-ink hover:bg-surface-muted"
+              className="rounded-lg bg-surface text-ink hover:bg-surface-muted"
             >
               <Link
                 href={REGISTER_URL}
@@ -111,7 +111,7 @@ export default function CTA() {
               size="lg"
               variant="secondary"
               asChild
-              className="rounded-full border-primary-foreground/25 bg-transparent text-primary-foreground hover:bg-primary-foreground/10"
+              className="rounded-lg border-primary-foreground/25 bg-transparent text-primary-foreground hover:bg-primary-foreground/10"
             >
               <Link href="/pricing">See pricing</Link>
             </Button>

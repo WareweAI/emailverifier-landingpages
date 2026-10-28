@@ -31,7 +31,7 @@ export function HeroDemoSignupGate({
       <Button
         size="lg"
         asChild
-        className="group mt-4 min-h-12 w-full max-w-xs rounded-full border border-primary bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-deep sm:w-auto"
+        className="group mt-4 min-h-12 w-full max-w-xs rounded-lg border border-primary bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-deep sm:w-auto"
       >
         <Link
           href={REGISTER_URL}

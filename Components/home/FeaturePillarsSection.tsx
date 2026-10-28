@@ -148,7 +148,7 @@ export default function FeaturePillarsSection() {
                 <Button
                   size="lg"
                   asChild
-                  className="group mt-6 rounded-full border border-ink bg-ink text-primary-foreground hover:bg-ink/90 active:bg-ink"
+                  className="group mt-6 rounded-lg border border-ink bg-ink text-primary-foreground hover:bg-ink/90 active:bg-ink"
                 >
                   <Link
                     href={pillar.href}

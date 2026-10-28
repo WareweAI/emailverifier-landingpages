@@ -438,6 +438,13 @@ export default function VerifierDemo({
                         <Upload className="h-4 w-4" aria-hidden />
                         Upload a list
                       </Button>
+                      <p className="text-center text-xs leading-relaxed text-ink-muted">
+                        Get{" "}
+                        <span className="font-semibold text-primary">
+                          100 free verifications
+                        </span>
+                        . No setup, no credit card, no stress.
+                      </p>
                     </div>
                   }
                 />
