@@ -18,7 +18,7 @@ export default function PricingSection({
   variant = "section",
   initialCredits,
 }: PricingSectionProps) {
-  const [volume, setVolume] = useState(() =>
+  const [volume, setVolume] = useState<number>(() =>
     nearestCreditPack(
       initialCredits && initialCredits > 0 ? initialCredits : DEFAULT_VOLUME
     ).credits

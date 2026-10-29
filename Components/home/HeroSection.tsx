@@ -23,10 +23,11 @@ export default function HeroSection() {
             </div>
 
             <div className="order-1 flex w-full min-w-0 flex-col items-center text-center lg:items-start lg:text-left">
+              {/* 1-off: 3.25rem keeps this line on one row in the hero column */}
               <h1
                 id="hero-heading"
                 data-hero-el
-                className="mt-0 w-full font-display text-base font-normal leading-tight tracking-tight text-primary sm:text-lg lg:text-xl"
+                className="mt-0 w-full font-display text-4xl font-semibold leading-tight tracking-tight text-primary sm:text-5xl lg:text-[3.25rem]"
               >
                 <span className="relative inline-block">
                   {/* 1-off: circle mark sized to this phrase only (not the line below) */}
@@ -52,7 +53,7 @@ export default function HeroSection() {
                   <span className="relative z-10">#1 Email Verification Tool</span>
                 </span>
               </h1>
-              <h2 className="mt-8 w-full font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl xl:text-6xl">
+              <h2 className="mt-10 w-full font-display text-xl font-normal leading-tight tracking-tight text-ink sm:mt-12 sm:text-2xl lg:mt-14 lg:text-3xl">
                 For Clean Lists and{" "}
                 <span className="text-primary">Verified Leads</span>
               </h2>

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ComponentType } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -27,7 +27,7 @@ type Pillar = {
   description: string;
   href: string;
   cardClass: string;
-  Mockup: () => ReactNode;
+  Mockup: ComponentType<{ className?: string }>;
 };
 
 const PILLARS: Pillar[] = [
