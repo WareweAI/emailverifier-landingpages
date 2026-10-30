@@ -24,12 +24,7 @@ export function SectionShell({
       style={style}
       aria-labelledby={ariaLabelledBy}
     >
-      <div
-        className={cn(
-          "mx-auto px-4 sm:px-6 lg:px-20",
-          innerClassName
-        )}
-      >
+      <div className={cn("site-container", innerClassName)}>
         {children}
       </div>
     </section>

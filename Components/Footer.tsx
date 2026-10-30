@@ -4,13 +4,12 @@ import type { ReactNode } from "react";
 import LogoMark from "./ui/LogoMark";
 
 const productLinks = [
-  { href: "/validate-email", label: "Free email tool" },
-  { href: "/bulk-email-verifier", label: "Bulk verifier" },
-  { href: "/email-verification-api", label: "Email verification API" },
-  { href: "/find-emails", label: "Find emails" },
-  { href: "/find-leads", label: "Find leads" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/blog", label: "Blog" },
+  { href: "/validate-email", label: "Email Validator" },
+  { href: "/bulk-email-verifier", label: "Bulk Email Verifier" },
+  { href: "/email-verification-api", label: "Email Verification API" },
+  { href: "/find-emails", label: "By Name" },
+  { href: "/find-emails#bulk-find", label: "By Company" },
+  { href: "/find-emails", label: "By LinkedIn" },
 ];
 
 const legalLinks = [
@@ -47,8 +46,8 @@ function FooterLink({ href, label }: { href: string; label: string }) {
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-surface-muted">
-      <div className="mx-auto px-4 py-16 sm:px-6 lg:px-20">
+    <footer id="contact" className="bg-background">
+      <div className="site-container py-16">
         <div className="flex items-center gap-4">
           <Link
             href="/"
@@ -68,16 +67,15 @@ export default function Footer() {
         </div>
 
         <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-muted">
-          Bulk, single-check, and API email verification at $1.80 per 1,000.
-          Credits never expire.
+          Professional email verification trusted by thousands worldwide.
         </p>
 
         <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          <FooterCard title="Product">
-            <nav aria-label="Footer — Product">
+          <FooterCard title="Products">
+            <nav aria-label="Footer — Products">
               <ul className="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
                 {productLinks.map((link) => (
-                  <li key={link.href}>
+                  <li key={`${link.href}-${link.label}`}>
                     <FooterLink href={link.href} label={link.label} />
                   </li>
                 ))}

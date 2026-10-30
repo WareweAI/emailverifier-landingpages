@@ -38,9 +38,10 @@ export default function EmailVerificationApiPage() {
     <>
       <JsonLd data={breadcrumbJsonLd} />
       <main className="relative flex-1">
-        <section className="relative px-4 pt-16 pb-16 sm:px-6 lg:px-20 lg:pt-24 lg:pb-24">
+        <section className="relative pt-16 pb-16 lg:pt-24 lg:pb-24">
           <HeroWash />
-          <div className="relative z-10 mx-auto max-w-4xl">
+          <div className="site-container relative z-10">
+          <div className="mx-auto max-w-4xl">
             <h1 className="font-display text-4xl font-semibold tracking-tight text-ink">
               Email verification API for real-time checks
             </h1>
@@ -90,6 +91,7 @@ export default function EmailVerificationApiPage() {
                 See pricing
               </Link>
             </p>
+          </div>
           </div>
         </section>
       </main>

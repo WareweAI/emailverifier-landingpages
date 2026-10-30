@@ -46,11 +46,11 @@ export default function FindEmailsPage() {
   return (
     <main id="main-page" className="relative flex-1">
       <section
-        className="relative px-4 pt-12 pb-16 sm:px-6 lg:px-20 lg:pt-16 lg:pb-20"
+        className="relative pt-12 pb-16 lg:pt-16 lg:pb-20"
         aria-labelledby="find-emails-heading"
       >
         <HeroWash />
-        <div className="relative z-10 mx-auto grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+        <div className="site-container relative z-10 grid min-w-0 items-center gap-10 lg:grid-cols-2 lg:gap-12">
           <div className="mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
             <p className="text-sm font-medium text-ink-muted">Find Emails</p>
             <h1

@@ -37,7 +37,7 @@ export function ArticleLayout({
   const image = post.featuredImage;
 
   return (
-    <div className="mx-auto px-4 py-12 sm:px-6 lg:px-20 lg:py-16">
+    <div className="site-container py-12 lg:py-16">
       <div
         data-blog-article-grid
         className="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-12 xl:grid-cols-[200px_minmax(0,1fr)_260px] xl:gap-8"

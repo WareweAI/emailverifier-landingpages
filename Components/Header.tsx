@@ -9,12 +9,12 @@ import {
   FileSpreadsheet,
   Gauge,
   Globe,
+  Linkedin,
   MailCheck,
   Menu,
   Search,
   ShieldCheck,
   Trash2,
-  UserSearch,
   Users,
   X,
   type LucideProps,
@@ -107,22 +107,22 @@ const PRODUCT_GROUPS: ProductGroup[] = [
     label: "Email Finder",
     items: [
       {
-        title: "Email Finder",
+        title: "By Name",
         href: "/find-emails",
-        desc: "Find verified work emails from a name, company, or LinkedIn.",
+        desc: "Find a verified work email from a person's name and company domain.",
         icon: Search,
       },
       {
-        title: "Bulk Email Finder",
+        title: "By Company",
         href: "/find-emails#bulk-find",
-        desc: "Upload a CSV of names and domains to find emails at scale.",
+        desc: "Upload a CSV of names and company domains to find emails at scale.",
         icon: FileSpreadsheet,
       },
       {
-        title: "Find Leads",
-        href: "/find-leads",
-        desc: "Turn a plain-language brief into people or companies to pursue.",
-        icon: UserSearch,
+        title: "By LinkedIn",
+        href: "/find-emails",
+        desc: "Look up a work email from a LinkedIn profile.",
+        icon: Linkedin,
       },
     ],
   },
@@ -476,10 +476,10 @@ export default function Header() {
   const desktopMenuOpen = isProductOpen || isFeaturesOpen;
 
   return (
-    <header className="relative z-50 px-4 pt-4 sm:px-6 lg:px-20">
+    <header className="relative z-50 pt-4">
       {/* 1-off: floating nav shell — ~20px radius, detached from viewport edges */}
       <div
-        className="relative mx-auto"
+        className="site-container relative"
         onMouseLeave={() => {
           closeProduct();
           closeFeatures();

@@ -44,10 +44,11 @@ export default function FAQSection() {
     return (
         <section
             aria-labelledby="faq-heading"
-            className="bg-blue-50 py-16 px-4 sm:px-6 lg:px-20"
+            className="bg-blue-50 py-16"
             id="faqs"
         >
-            <div className="max-w-3xl mx-auto">
+            <div className="site-container">
+                <div className="mx-auto max-w-3xl">
                 <h2
                     id="faq-heading"
                     className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-10"
@@ -66,6 +67,7 @@ export default function FAQSection() {
                             onToggle={() => setOpenIndex(openIndex === i ? null : i)}
                         />
                     ))}
+                </div>
                 </div>
             </div>
         </section>

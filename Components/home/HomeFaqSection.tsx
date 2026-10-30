@@ -12,7 +12,7 @@ export default function HomeFaqSection() {
   return (
     <SectionShell
       id="faqs"
-      className="bg-surface-muted"
+      className="bg-background pt-6 md:pt-8 lg:pt-10 pb-6 md:pb-8 lg:pb-10"
       ariaLabelledBy="faq-heading"
     >
       <div className="mx-auto max-w-3xl">

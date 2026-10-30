@@ -1,42 +1,26 @@
 import { SectionShell } from "@/Components/ui/SectionShell";
 import MethodSolutionsPanel from "@/Components/home/MethodSolutionsPanel";
-import Link from "next/link";
 
 export default function MethodSection() {
   return (
-    <SectionShell ariaLabelledBy="method-heading">
-      <div className="mx-auto max-w-xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-wide text-primary">
-          Solutions
-        </p>
+    <SectionShell
+      ariaLabelledBy="method-heading"
+      className="pb-6 md:pb-8 lg:pb-10"
+    >
+      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center lg:gap-16">
         <h2
           id="method-heading"
-          className="mt-2 font-display text-2xl font-semibold tracking-tight text-ink lg:text-4xl"
+          className="max-w-xl font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl lg:text-5xl lg:leading-tight"
         >
           What our email verifier checks on every address
         </h2>
-        <p className="mt-4 text-lg leading-relaxed text-ink-muted">
-          Six checks on every address — select one to preview the result in the
-          app.
+        <p className="max-w-md text-base leading-relaxed text-ink-muted lg:justify-self-end">
+          Six checks on every address — syntax, domain, mailbox, disposable,
+          role, and risk — before a send goes out.
         </p>
       </div>
 
       <MethodSolutionsPanel />
-
-      <div className="mt-10 flex flex-wrap justify-center gap-4 text-sm font-medium">
-        <Link href="/bulk-email-verifier" className="text-primary hover:underline">
-          See bulk
-        </Link>
-        <span className="text-ink-muted" aria-hidden>
-          ·
-        </span>
-        <Link
-          href="/email-verification-api"
-          className="text-primary hover:underline"
-        >
-          View API Docs
-        </Link>
-      </div>
     </SectionShell>
   );
 }

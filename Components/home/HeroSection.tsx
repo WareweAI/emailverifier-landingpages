@@ -15,7 +15,7 @@ export default function HeroSection() {
         className="relative pt-8 pb-16 md:pt-12 md:pb-20 lg:pb-24"
         aria-labelledby="hero-heading"
       >
-        <div className="relative z-10 mx-auto px-4 sm:px-6 lg:px-20">
+        <div className="site-container relative z-10">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12 xl:gap-16">
             {/* Copy first on small screens; left column on desktop */}
             <div data-hero-el className="order-2 w-full min-w-0">

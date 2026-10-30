@@ -46,7 +46,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
         ])}
       />
 
-      <div className="mx-auto px-4 py-12 sm:px-6 lg:px-20 lg:py-16">
+      <div className="site-container py-12 lg:py-16">
         <header className="max-w-3xl">
           <p className="text-sm font-medium text-primary">Blog</p>
           <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">

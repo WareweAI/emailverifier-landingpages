@@ -28,9 +28,9 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
       id="pricing-main-content"
       aria-labelledby="pricing-heading"
     >
-      <section className="relative z-10 px-4 py-16 sm:px-6 lg:px-20 lg:py-20">
+      <section className="relative z-10 py-16 lg:py-20">
         <HeroWash />
-        <div className="relative z-10 mx-auto">
+        <div className="site-container relative z-10 min-w-0">
           <div className="mb-10 text-center">
             <p className="mb-4 text-sm font-semibold text-ink">Pricing</p>
             <h1

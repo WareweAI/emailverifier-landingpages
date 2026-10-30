@@ -63,6 +63,15 @@
   --shadow-card: 0 1px 2px rgb(11 18 32 / 0.06), 0 8px 24px rgb(11 18 32 / 0.06);
   --z-sticky: 50;
   --z-overlay: 60;
+
+  /* Wide centered content column — stays centered on zoom-out */
+  --max-width-site: 100rem;
+}
+
+@layer components {
+  .site-container {
+    @apply mx-auto w-full max-w-site px-4 sm:px-6 lg:px-20;
+  }
 }
 
 body {
@@ -299,5 +308,86 @@ html[data-sale-dismissed="1"] [data-sale-banner] {
 
   .animate-logo-marquee {
     animation: none;
+  }
+}
+
+/* Feature-pillar demos. Payoff frames stay visible when motion is off.
+   !important beats the `invisible` utility on those layers. */
+.pillar-demo [data-hit] {
+  cursor: pointer;
+  transition:
+    box-shadow 200ms ease,
+    background-color 200ms ease;
+}
+
+.pillar-demo [data-hit]:hover {
+  box-shadow: var(--shadow-card);
+}
+
+.pillar-demo [data-status-dot] {
+  background-color: var(--color-ink-muted);
+}
+
+.pillar-demo [data-status-dot][data-tone="busy"] {
+  background-color: var(--color-primary);
+  animation: pillar-dot 0.9s ease-in-out infinite;
+}
+
+.pillar-demo [data-status-dot][data-tone="ok"] {
+  background-color: var(--color-success);
+}
+
+.pillar-demo [data-status-dot][data-tone="warn"] {
+  background-color: var(--color-warning);
+}
+
+.pillar-caret {
+  animation: pillar-caret 1.05s steps(1) infinite;
+}
+
+@keyframes pillar-caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pillar-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.45);
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pillar-demo [data-reduced-hide] {
+    visibility: hidden !important;
+  }
+
+  .pillar-demo [data-reduced-show] {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .pillar-demo [data-reduced-copy] {
+    display: revert !important;
+  }
+
+  .pillar-demo [data-motion-only] {
+    display: none !important;
+  }
+
+  .pillar-caret {
+    display: none;
+  }
+
+  .pillar-demo [data-status-dot] {
+    background-color: var(--color-success) !important;
+    animation: none !important;
   }
 }

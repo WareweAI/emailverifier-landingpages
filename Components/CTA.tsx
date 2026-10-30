@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/Button";
 import { SectionShell } from "./ui/SectionShell";
+import { StarRating } from "./ui/StarRating";
 
 const REGISTER_URL = "https://app.emailverifier.io/register";
 
@@ -53,7 +55,7 @@ export default function CTA() {
   return (
     <SectionShell
       id="cta"
-      className="bg-surface-muted py-12 md:py-16"
+      className="bg-background pt-6 md:pt-8 lg:pt-10 pb-12 md:pb-16 lg:pb-16"
       ariaLabelledBy="cta-heading"
     >
       <div
@@ -66,37 +68,23 @@ export default function CTA() {
       >
         <CtaDecor />
 
-        <div className="relative mx-auto max-w-2xl text-center">
-          <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-primary-foreground/80">
-            <li className="inline-flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-primary-foreground" aria-hidden />
-              No setup
-            </li>
-            <li className="inline-flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-primary-foreground" aria-hidden />
-              No credit card
-            </li>
-            <li className="inline-flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-primary-foreground" aria-hidden />
-              Credits never expire
-            </li>
-          </ul>
-
+        <div className="relative mx-auto max-w-4xl text-center">
           <h2
             id="cta-heading"
-            className="mt-5 font-display text-3xl font-semibold tracking-tight text-primary-foreground lg:text-4xl"
+            className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-primary-foreground sm:text-5xl lg:whitespace-nowrap lg:text-6xl"
           >
-            Ready to clean your list?
+            Ready to Clean Your List?
           </h2>
-          <p className="mt-4 text-lg text-primary-foreground/80">
-            Start with 100 free verifications — no credit card required.
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-foreground/80">
+            Join thousands of marketers keeping their email lists healthy and
+            their emails reaching inboxes.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-8 flex flex-col items-center gap-4">
             <Button
               size="lg"
               asChild
-              className="rounded-lg bg-surface text-ink hover:bg-surface-muted"
+              className="group h-14 min-h-14 rounded-lg border border-primary bg-primary px-8 text-base text-primary-foreground hover:bg-primary-hover active:bg-primary-deep"
             >
               <Link
                 href={REGISTER_URL}
@@ -104,17 +92,37 @@ export default function CTA() {
                 rel="noopener noreferrer"
                 data-ev-event="cta_register_click"
               >
-                Try it free — 100 verifications on us
+                Try it Free — 100 Verification on us
+                <ArrowRight
+                  className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                  aria-hidden
+                />
               </Link>
             </Button>
-            <Button
-              size="lg"
-              variant="secondary"
-              asChild
-              className="rounded-lg border-primary-foreground/25 bg-transparent text-primary-foreground hover:bg-primary-foreground/10"
+            <p className="text-sm text-primary-foreground/80">
+              No setup, No credit card, No stress — Just results.
+            </p>
+            <div
+              className="flex items-center gap-2 text-sm text-primary-foreground/80"
+              aria-label="Capterra 4.8 rating"
             >
-              <Link href="/pricing">See pricing</Link>
-            </Button>
+              <Image
+                src="/assets/capterra.svg"
+                alt=""
+                width={20}
+                height={20}
+                className="h-5 w-5 object-contain"
+              />
+              <span className="font-semibold text-primary-foreground">
+                Capterra
+              </span>
+              <span className="font-semibold text-primary-foreground">4.8</span>
+              <StarRating
+                rating={4.8}
+                size={14}
+                activeColor="var(--color-score-mid-high)"
+              />
+            </div>
           </div>
         </div>
       </div>

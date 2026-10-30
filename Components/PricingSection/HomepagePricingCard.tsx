@@ -2,9 +2,8 @@
 
 import { useMemo, useRef } from "react";
 import Image from "next/image";
-import { Check, ChevronLeft, ChevronRight, Minus, Plus } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, MailCheck, Minus, Plus } from "lucide-react";
 import { Button } from "../ui/Button";
-import HappyUsers from "@/Components/HappyUsers";
 import { StarRating } from "@/Components/ui/StarRating";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
@@ -300,24 +299,32 @@ export default function HomepagePricingCard({
 
           <div
             className="mt-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-line pt-5"
-            aria-label="Capterra 4.8 rating from 1000+ happy users"
+            aria-label="Capterra 4.8 rating and 1+ billion emails checked"
           >
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-2">
               <Image
                 src="/assets/capterra.svg"
                 alt="Capterra logo"
-                width={20}
-                height={20}
-                className="h-5 w-5 object-contain"
+                width={28}
+                height={28}
+                className="h-7 w-7 object-contain"
               />
-              <span className="text-sm font-semibold text-ink">Capterra</span>
-              <div className="flex items-center gap-1 text-xs text-ink-muted">
-                <span className="font-medium">4.8</span>
-                <StarRating rating={4.8} size={12} activeColor="#fdc700" />
+              <span className="text-base font-semibold text-ink">Capterra</span>
+              <div className="flex items-center gap-1.5 text-sm text-ink-muted">
+                <span className="font-semibold text-ink">4.8</span>
+                <StarRating rating={4.8} size={16} activeColor="#fdc700" />
                 <span>Rating</span>
               </div>
             </div>
-            <HappyUsers className="justify-start" compact />
+            <div className="flex items-center gap-1.5">
+              <MailCheck
+                className="h-5 w-5 shrink-0 text-primary"
+                aria-hidden
+              />
+              <span className="text-sm font-semibold text-ink-muted">
+                <span className="text-ink">1+ billion</span> Emails checked
+              </span>
+            </div>
           </div>
         </div>
       </article>

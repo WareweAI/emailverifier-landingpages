@@ -60,7 +60,7 @@ export default function HomeStatsStrip() {
       className="relative bg-surface"
       aria-label="Email verification stats"
     >
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-6 px-4 pt-8 pb-6 sm:px-6 md:flex-row md:gap-10 md:pt-10 lg:px-8">
+      <div className="site-container flex flex-col items-center justify-center gap-6 pt-8 pb-6 md:flex-row md:gap-10 md:pt-10">
         <div
           className="flex items-center gap-3"
           aria-label="Capterra 4.8 rating"
@@ -111,7 +111,8 @@ export default function HomeStatsStrip() {
         aria-hidden
       />
 
-      <ul className="mx-auto grid max-w-5xl justify-items-center gap-8 px-4 py-10 sm:grid-cols-3 sm:px-6 md:py-12">
+      <div className="site-container py-10 md:py-12">
+      <ul className="mx-auto grid max-w-5xl justify-items-center gap-8 sm:grid-cols-3">
         {STATS.map((stat) => {
           const Icon = stat.icon;
           return (
@@ -139,6 +140,7 @@ export default function HomeStatsStrip() {
           );
         })}
       </ul>
+      </div>
     </section>
   );
 }

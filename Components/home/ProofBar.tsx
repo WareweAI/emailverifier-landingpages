@@ -80,7 +80,7 @@ export default function ProofBar() {
         As seen on
       </p>
 
-      <div className="mx-auto max-w-6xl overflow-x-auto px-4 py-3 sm:px-6 lg:px-20">
+      <div className="site-container overflow-x-auto py-3">
         <ul
           className="flex flex-nowrap items-center justify-center gap-x-6 sm:gap-x-8 md:gap-x-10 lg:gap-x-12"
           aria-label="Press logos"

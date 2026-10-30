@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { createContext, useContext, useRef } from "react";
 import {
   AlertTriangle,
   CheckCircle2,
@@ -25,6 +25,8 @@ export type MethodCheckId =
 const RING_R = 16;
 const RING_C = 2 * Math.PI * RING_R;
 
+const FrameContext = createContext(true);
+
 function MockFrame({
   children,
   className,
@@ -32,10 +34,15 @@ function MockFrame({
   children: React.ReactNode;
   className?: string;
 }) {
+  const framed = useContext(FrameContext);
+
   return (
     <div
       className={cn(
-        "h-full min-h-44 overflow-hidden rounded-xl border border-line bg-surface-muted p-4",
+        "relative h-full overflow-hidden",
+        framed
+          ? "min-h-44 rounded-xl border border-line bg-surface-muted p-4"
+          : "flex min-h-40 flex-col justify-center",
         className
       )}
     >
@@ -67,7 +74,7 @@ function SyntaxMock() {
         </div>
         <div
           data-syntax-bad
-          className="absolute inset-0 flex items-center gap-2 text-sm font-medium text-danger"
+          className="absolute inset-0 flex items-center gap-2 text-sm font-medium text-danger opacity-0"
         >
           <XCircle className="h-4 w-4 shrink-0" aria-hidden />
           Invalid format
@@ -78,6 +85,8 @@ function SyntaxMock() {
 }
 
 function MxMock() {
+  const framed = useContext(FrameContext);
+
   return (
     <MockFrame className="relative">
       <p
@@ -88,14 +97,17 @@ function MxMock() {
       </p>
       <div
         data-mx-lookup
-        className="mt-3 flex items-center justify-center gap-2 text-xs text-ink-muted"
+        className="mt-3 flex items-center justify-center gap-2 text-xs text-ink-muted opacity-0"
       >
         <Loader2 className="h-3.5 w-3.5 text-primary" data-mx-spin aria-hidden />
         Looking up…
       </div>
       <div
         data-mx-result
-        className="absolute inset-x-4 bottom-4 flex items-center gap-3 rounded-xl border border-line bg-surface p-3 shadow-[var(--shadow-card)]"
+        className={cn(
+          "flex items-center gap-3 rounded-xl border border-line bg-surface p-3 shadow-[var(--shadow-card)]",
+          framed ? "absolute inset-x-4 bottom-4" : "mt-4"
+        )}
       >
         <span className="flex h-9 w-9 items-center justify-center rounded-full bg-success-soft text-success">
           <Globe className="h-4 w-4" aria-hidden />
@@ -187,13 +199,33 @@ function RoleMock() {
 }
 
 function RiskMock() {
+  const framed = useContext(FrameContext);
+
   return (
     <MockFrame className="flex flex-col items-center justify-center">
-      <p data-risk-email className="text-sm font-medium text-ink">
+      <p
+        data-risk-email
+        className={cn(
+          "font-medium text-ink",
+          framed ? "text-sm" : "text-base"
+        )}
+      >
         name@company.com
       </p>
-      <div className="relative mt-3 h-16 w-16">
-        <svg className="h-16 w-16 -rotate-90" viewBox="0 0 40 40" aria-hidden>
+      <div
+        className={cn(
+          "relative mt-3",
+          framed ? "h-16 w-16" : "h-28 w-28 sm:h-32 sm:w-32"
+        )}
+      >
+        <svg
+          className={cn(
+            "-rotate-90",
+            framed ? "h-16 w-16" : "h-28 w-28 sm:h-32 sm:w-32"
+          )}
+          viewBox="0 0 40 40"
+          aria-hidden
+        >
           <circle
             cx="20"
             cy="20"
@@ -212,7 +244,7 @@ function RiskMock() {
             strokeWidth="3"
             strokeLinecap="round"
             strokeDasharray={RING_C}
-            strokeDashoffset={RING_C}
+            strokeDashoffset={RING_C * (1 - 0.86)}
           />
         </svg>
       </div>
@@ -227,7 +259,7 @@ function RiskMock() {
 }
 
 function bindVisibility(tl: gsap.core.Timeline, trigger: Element) {
-  ScrollTrigger.create({
+  const st = ScrollTrigger.create({
     trigger,
     start: "top bottom",
     end: "bottom top",
@@ -236,6 +268,10 @@ function bindVisibility(tl: gsap.core.Timeline, trigger: Element) {
     onLeave: () => tl.pause(),
     onLeaveBack: () => tl.pause(),
   });
+
+  const rect = trigger.getBoundingClientRect();
+  const inView = rect.top < window.innerHeight && rect.bottom > 0;
+  if (st.isActive || inView) tl.play();
 }
 
 function buildSyntax(root: HTMLElement, trigger: Element) {
@@ -536,11 +572,14 @@ const BUILDERS = {
 type MethodCheckVisualProps = {
   checkId: MethodCheckId;
   className?: string;
+  /** Bordered preview chrome. Off when the mock sits inside a bento card. */
+  framed?: boolean;
 };
 
 export function MethodCheckVisual({
   checkId,
   className,
+  framed = true,
 }: MethodCheckVisualProps) {
   const scope = useRef<HTMLDivElement>(null);
   const Mock = MOCKS[checkId];
@@ -562,8 +601,10 @@ export function MethodCheckVisual({
   );
 
   return (
-    <div ref={scope} className={cn("h-full min-h-0", className)} aria-hidden>
-      <Mock />
-    </div>
+    <FrameContext.Provider value={framed}>
+      <div ref={scope} className={cn("h-full min-h-0", className)} aria-hidden>
+        <Mock />
+      </div>
+    </FrameContext.Provider>
   );
 }

@@ -13,11 +13,11 @@ export default function BulkProductPage() {
   return (
     <main className="relative flex-1">
       <section
-        className="relative px-4 pt-12 pb-16 sm:px-6 lg:px-20 lg:pt-16 lg:pb-20"
+        className="relative pt-12 pb-16 lg:pt-16 lg:pb-20"
         aria-labelledby="bulk-hero-heading"
       >
         <HeroWash />
-        <div className="relative z-10 mx-auto">
+        <div className="site-container relative z-10 min-w-0">
           <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:max-w-xl lg:text-left">
             <h1
               id="bulk-hero-heading"

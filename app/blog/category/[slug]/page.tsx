@@ -81,7 +81,7 @@ export default async function BlogCategoryPage({
         ])}
       />
 
-      <div className="mx-auto px-4 py-12 sm:px-6 lg:px-20 lg:py-16">
+      <div className="site-container py-12 lg:py-16">
         <header className="max-w-3xl">
           <p className="text-sm font-medium text-primary">
             <Link href="/blog" className="hover:underline">

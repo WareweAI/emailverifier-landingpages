@@ -73,7 +73,7 @@ export default async function BlogAuthorPage({
         ])}
       />
 
-      <div className="mx-auto px-4 py-12 sm:px-6 lg:px-20 lg:py-16">
+      <div className="site-container py-12 lg:py-16">
         <header className="flex max-w-3xl flex-col gap-4 sm:flex-row sm:items-start">
           {author.avatarUrl ? (
             <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-line bg-surface-muted">

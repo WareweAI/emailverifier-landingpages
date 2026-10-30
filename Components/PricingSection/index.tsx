@@ -54,24 +54,26 @@ export default function PricingSection({
   return (
     <section
       id="pricing"
-      className="flex w-full flex-col items-center bg-primary-soft px-4 py-14 sm:px-6 sm:py-20 lg:px-20"
+      className="flex w-full flex-col items-center bg-primary-soft py-14 sm:py-20"
       aria-labelledby="pricing-heading"
       role="region"
     >
-      <div className="mb-10 max-w-3xl text-center">
-        <h2
-          id="pricing-heading"
-          className="mb-2 text-2xl font-semibold text-ink sm:text-3xl"
-        >
-          Simple, Honest Pricing
-        </h2>
-        <p className="text-sm text-ink-muted sm:text-base">
-          Pay for the volume you need — or choose Unlimited for continuous
-          verification.
-        </p>
-      </div>
+      <div className="site-container flex w-full min-w-0 flex-col items-center">
+        <div className="mb-10 max-w-3xl text-center">
+          <h2
+            id="pricing-heading"
+            className="mb-2 text-2xl font-semibold text-ink sm:text-3xl"
+          >
+            Simple, Honest Pricing
+          </h2>
+          <p className="text-sm text-ink-muted sm:text-base">
+            Pay for the volume you need — or choose Unlimited for continuous
+            verification.
+          </p>
+        </div>
 
-      <div className="w-full">{grid}</div>
+        <div className="w-full min-w-0">{grid}</div>
+      </div>
     </section>
   );
 }
