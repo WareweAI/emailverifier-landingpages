@@ -378,7 +378,7 @@ function MegaMenuPanel({
     <div
       id={id}
       className={cn(
-        /* -mt-px seals the seam so the panel reads as one floating card with the bar */
+        /* -mt-px overlaps the bar border so the open panel reads as one card */
         "absolute inset-x-0 top-full z-60 -mt-px transition",
         open
           ? "visible opacity-100"
@@ -485,9 +485,11 @@ export default function Header() {
           closeFeatures();
         }}
       >
+        {/* Positioning context matches the bar's outer width — not the padded site column */}
+        <div className="relative">
         <div
           className={cn(
-            "relative border border-line/70 bg-surface shadow-[var(--shadow-card)] backdrop-blur-md",
+            "border border-line/70 bg-surface shadow-[var(--shadow-card)] backdrop-blur-md",
             desktopMenuOpen
               ? "rounded-t-[1.25rem] border-b-transparent"
               : "rounded-[1.25rem]"
@@ -617,37 +619,40 @@ export default function Header() {
           </div>
         </div>
 
-        <div
-          className="hidden md:block"
-          onMouseEnter={openProduct}
-          onMouseLeave={closeProduct}
-        >
-          <MegaMenuPanel
-            id="product-menu"
-            groups={PRODUCT_GROUPS}
-            open={isProductOpen}
-            onNavigate={() => setIsProductOpen(false)}
-            promo={
-              <ProductMenuPromo onNavigate={() => setIsProductOpen(false)} />
-            }
-            showImportStrip
-          />
-        </div>
+          <div
+            className="hidden md:block"
+            onMouseEnter={openProduct}
+            onMouseLeave={closeProduct}
+          >
+            <MegaMenuPanel
+              id="product-menu"
+              groups={PRODUCT_GROUPS}
+              open={isProductOpen}
+              onNavigate={() => setIsProductOpen(false)}
+              promo={
+                <ProductMenuPromo onNavigate={() => setIsProductOpen(false)} />
+              }
+              showImportStrip
+            />
+          </div>
 
-        <div
-          className="hidden md:block"
-          onMouseEnter={openFeatures}
-          onMouseLeave={closeFeatures}
-        >
-          <MegaMenuPanel
-            id="features-menu"
-            groups={FEATURE_GROUPS}
-            open={isFeaturesOpen}
-            onNavigate={() => setIsFeaturesOpen(false)}
-            promo={
-              <SolutionsMenuPromo onNavigate={() => setIsFeaturesOpen(false)} />
-            }
-          />
+          <div
+            className="hidden md:block"
+            onMouseEnter={openFeatures}
+            onMouseLeave={closeFeatures}
+          >
+            <MegaMenuPanel
+              id="features-menu"
+              groups={FEATURE_GROUPS}
+              open={isFeaturesOpen}
+              onNavigate={() => setIsFeaturesOpen(false)}
+              promo={
+                <SolutionsMenuPromo
+                  onNavigate={() => setIsFeaturesOpen(false)}
+                />
+              }
+            />
+          </div>
         </div>
 
         {isMenuOpen && (
