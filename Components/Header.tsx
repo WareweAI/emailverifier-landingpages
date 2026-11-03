@@ -3,19 +3,20 @@
 import { useRef, useState, type ComponentType, type ReactNode } from "react";
 import {
   ArrowRight,
-  Braces,
+  Ban,
+  Blocks,
+  BookOpen,
   ChevronDown,
   Code2,
+  Database,
+  FileCheck,
   FileSpreadsheet,
-  Gauge,
-  Globe,
-  Linkedin,
   MailCheck,
   Menu,
+  Newspaper,
   Search,
   ShieldCheck,
-  Trash2,
-  Users,
+  UserSearch,
   X,
   type LucideProps,
 } from "lucide-react";
@@ -28,36 +29,19 @@ import { cn } from "@/lib/utils";
 
 const REGISTER_URL = "https://app.emailverifier.io/register";
 
-/** Same import sources as the homepage bulk mockup. Soon marks are not live yet. */
 const IMPORT_SOURCES = [
   { id: "gdrive", label: "Google Drive", src: "/logos/integrations/google-drive.svg" },
+  { id: "onedrive", label: "OneDrive", src: "/logos/integrations/onedrive.svg" },
+  { id: "hubspot", label: "HubSpot", src: "/logos/integrations/hubspot.svg" },
   {
-    id: "onedrive",
-    label: "OneDrive",
-    src: "/logos/integrations/onedrive.svg",
-    soon: true,
-  },
-  {
-    id: "dropbox",
-    label: "Dropbox",
-    src: "/logos/integrations/dropbox.svg",
-    soon: true,
-  },
-  {
-    id: "airtable",
-    label: "Airtable",
-    src: "/logos/integrations/airtable.svg",
-    soon: true,
+    id: "salesforce",
+    label: "Salesforce",
+    src: "/logos/integrations/salesforce.svg",
   },
 ] as const;
 
 const EXAMPLE_FLAGS = ["Syntax", "MX", "Mailbox", "Not disposable"] as const;
 
-const SOLUTION_CHECKS = [
-  { label: "Syntax", result: "Pass", tone: "success" },
-  { label: "MX", result: "Pass", tone: "success" },
-  { label: "Role", result: "Flagged", tone: "warning" },
-] as const;
 const SIGNIN_URL = "https://app.emailverifier.io/signin";
 
 const REGISTER_CTA_CLASS =
@@ -85,98 +69,94 @@ const PRODUCT_GROUPS: ProductGroup[] = [
       {
         title: "Email Validator",
         href: "/validate-email",
-        desc: "Verify any email address in seconds before you send.",
+        desc: "Verify any email address for free in seconds before you send.",
         icon: MailCheck,
       },
       {
         title: "Bulk Email Verifier",
         href: "/bulk-email-verifier",
-        desc: "Clean CSV lists and remove invalid, disposable, and risky emails.",
+        desc: "Clean CSV lists or import directly from your Drive and CRM.",
         icon: FileSpreadsheet,
       },
       {
-        title: "Email Verification API",
+        title: "Email Validation API",
         href: "/email-verification-api",
-        desc: "Real-time checks for signups, forms, and your product stack.",
+        desc: "Real-time checks for signups, forms, CRMs, and other applications.",
         icon: Code2,
       },
     ],
   },
   {
-    id: "email-finder",
-    label: "Email Finder",
+    id: "lead-generation",
+    label: "Lead Generation",
     items: [
       {
-        title: "By Name",
+        title: "Email Finder",
         href: "/find-emails",
-        desc: "Find a verified work email from a person's name and company domain.",
+        desc: "Find verified emails by name, company, or LinkedIn profile.",
         icon: Search,
       },
       {
-        title: "By Company",
-        href: "/find-emails#bulk-find",
-        desc: "Upload a CSV of names and company domains to find emails at scale.",
-        icon: FileSpreadsheet,
+        title: "Lead Finder",
+        href: "/find-leads",
+        desc: "Discover enriched B2B leads tailored to your ICP with AI.",
+        icon: UserSearch,
       },
       {
-        title: "By LinkedIn",
-        href: "/find-emails",
-        desc: "Look up a work email from a LinkedIn profile.",
-        icon: Linkedin,
+        title: "Data Enrichment",
+        href: "/find-emails#bulk-find",
+        desc: "Enrich lists in bulk with verified emails, roles, and company data.",
+        icon: Database,
       },
     ],
   },
 ];
 
-const FEATURE_LINKS: ProductLink[] = [
+const SOLUTION_LINKS: ProductLink[] = [
   {
-    title: "Advanced Syntax Validation",
-    href: "/#syntax-check",
-    desc: "Catch malformed and invalid addresses before deeper checks.",
-    icon: Braces,
+    title: "Cold Outreach List Cleaning",
+    href: "/bulk-email-verifier",
+    desc: "Clean cold lists before you send so bounces don’t hurt deliverability.",
+    icon: FileCheck,
   },
   {
-    title: "Domain & MX Record Checks",
-    href: "/#mx-check",
-    desc: "Confirm the domain exists and can receive mail.",
-    icon: Globe,
-  },
-  {
-    title: "Real-Time SMTP Verification",
-    href: "/#mailbox-check",
-    desc: "Verify the mailbox without sending a message.",
+    title: "Signup Form Validation",
+    href: "/email-verification-api",
+    desc: "Block disposable and invalid emails in real time at signup.",
     icon: ShieldCheck,
   },
   {
-    title: "Disposable Email Detection",
-    href: "/#disposable-check",
-    desc: "Filter throwaway and temporary inboxes from your lists.",
-    icon: Trash2,
+    title: "Prospecting",
+    href: "/find-leads",
+    desc: "Find B2B leads matched to your ICP, then verify before outreach.",
+    icon: Search,
   },
   {
-    title: "Role-Based Email Detection",
-    href: "/#role-based-filtering",
-    desc: "Spot info@, admin@, support@, and other shared inboxes.",
-    icon: Users,
-  },
-  {
-    title: "Smart Risk Scoring",
-    href: "/#risk-check",
-    desc: "Classify deliverable vs risky so you know what is safe to send.",
-    icon: Gauge,
+    title: "Blacklist Avoidance",
+    href: "/validate-email",
+    desc: "Catch risky and spam-trap addresses before they damage reputation.",
+    icon: Ban,
   },
 ];
 
-const FEATURE_GROUPS: ProductGroup[] = [
+const RESOURCE_LINKS: ProductLink[] = [
   {
-    id: "verification-checks",
-    label: "Verification Checks",
-    items: FEATURE_LINKS.slice(0, 3),
+    title: "Guides",
+    href: "/blog",
+    desc: "How-to articles on list cleaning, verification, and deliverability.",
+    icon: BookOpen,
   },
   {
-    id: "risk-filters",
-    label: "Risk & Filters",
-    items: FEATURE_LINKS.slice(3),
+    title: "Integrations",
+    href: "/#features",
+    desc: "Import from Drive, HubSpot, Salesforce, and other tools you use.",
+    icon: Blocks,
+  },
+  {
+    title: "Blog",
+    href: "/blog",
+    desc: "Product updates, email tips, and deliverability insights.",
+    icon: Newspaper,
   },
 ];
 
@@ -261,62 +241,6 @@ function ProductMenuPromo({ onNavigate }: { onNavigate: () => void }) {
   );
 }
 
-function SolutionsMenuPromo({ onNavigate }: { onNavigate: () => void }) {
-  return (
-    <aside className="rounded-xl border border-line bg-primary-soft p-4">
-      <div className="rounded-lg border border-line bg-surface p-3">
-        <div className="flex items-center justify-between gap-2">
-          <p className="text-xs font-medium text-ink-muted">Example check</p>
-          <StatusChip
-            label="Risky"
-            variant="warning"
-            className="shrink-0 px-2 py-0.5"
-          />
-        </div>
-        <p className="mt-2 truncate text-sm font-semibold text-ink">
-          info@example.com
-        </p>
-        <ul className="mt-3 grid gap-1.5" aria-label="Example check results">
-          {SOLUTION_CHECKS.map((check) => (
-            <li
-              key={check.label}
-              className="flex items-center justify-between gap-2 text-xs"
-            >
-              <span className="text-ink">{check.label}</span>
-              <span
-                className={
-                  check.tone === "success"
-                    ? "font-medium text-success"
-                    : "font-medium text-warning"
-                }
-              >
-                {check.result}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <p className="mt-4 text-sm font-semibold text-ink">
-        See what is safe to send
-      </p>
-      <p className="mt-1 text-xs leading-relaxed text-ink-muted">
-        Role, disposable, and mailbox checks run on every address. 100 free
-        credits, no card.
-      </p>
-      <Link
-        href={REGISTER_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={onNavigate}
-        className="mt-3 inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-primary hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-primary-soft"
-      >
-        Run a free check
-        <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-      </Link>
-    </aside>
-  );
-}
-
 function ImportStrip({ onNavigate }: { onNavigate: () => void }) {
   return (
     <div className="mt-6 flex flex-col gap-3 border-t border-line pt-5 md:flex-row md:items-center">
@@ -338,9 +262,6 @@ function ImportStrip({ onNavigate }: { onNavigate: () => void }) {
               className="h-4 w-4 object-contain"
             />
             <span>{source.label}</span>
-            {"soon" in source && source.soon ? (
-              <span className="text-xs font-medium text-ink-muted">Soon</span>
-            ) : null}
           </li>
         ))}
       </ul>
@@ -352,6 +273,58 @@ function ImportStrip({ onNavigate }: { onNavigate: () => void }) {
         All integrations
         <ArrowRight className="h-3.5 w-3.5" aria-hidden />
       </Link>
+    </div>
+  );
+}
+
+function LinkMegaPanel({
+  id,
+  items,
+  open,
+  onNavigate,
+  columns = 4,
+}: {
+  id: string;
+  items: ProductLink[];
+  open: boolean;
+  onNavigate: () => void;
+  columns?: 3 | 4;
+}) {
+  return (
+    <div
+      id={id}
+      className={cn(
+        /* -mt-px overlaps the bar border so the open panel reads as one card */
+        "absolute inset-x-0 top-full z-60 -mt-px transition",
+        open
+          ? "visible opacity-100"
+          : "invisible pointer-events-none opacity-0"
+      )}
+    >
+      <div className="rounded-b-[1.25rem] border border-line border-t-line/60 bg-surface px-4 py-6 shadow-[var(--shadow-card)] sm:px-6 lg:px-8 lg:py-8">
+        <ul
+          role="menu"
+          className={cn(
+            "grid gap-2 sm:grid-cols-2 lg:gap-0",
+            columns === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"
+          )}
+        >
+          {items.map((item, index) => (
+            <li
+              key={item.title}
+              role="none"
+              className={cn(
+                "lg:px-4",
+                index === 0 && "lg:pl-2",
+                index === items.length - 1 && "lg:pr-2",
+                index > 0 && "lg:border-l lg:border-line"
+              )}
+            >
+              <MenuItemLink item={item} onNavigate={onNavigate} />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
@@ -443,12 +416,15 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductOpen, setIsProductOpen] = useState(false);
   const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const productCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const featuresCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const resourcesCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const openProduct = () => {
     if (productCloseTimer.current) clearTimeout(productCloseTimer.current);
     setIsFeaturesOpen(false);
+    setIsResourcesOpen(false);
     setIsProductOpen(true);
   };
 
@@ -460,6 +436,7 @@ export default function Header() {
   const openFeatures = () => {
     if (featuresCloseTimer.current) clearTimeout(featuresCloseTimer.current);
     setIsProductOpen(false);
+    setIsResourcesOpen(false);
     setIsFeaturesOpen(true);
   };
 
@@ -468,12 +445,29 @@ export default function Header() {
     featuresCloseTimer.current = setTimeout(() => setIsFeaturesOpen(false), 120);
   };
 
+  const openResources = () => {
+    if (resourcesCloseTimer.current) clearTimeout(resourcesCloseTimer.current);
+    setIsProductOpen(false);
+    setIsFeaturesOpen(false);
+    setIsResourcesOpen(true);
+  };
+
+  const closeResources = () => {
+    if (resourcesCloseTimer.current) clearTimeout(resourcesCloseTimer.current);
+    resourcesCloseTimer.current = setTimeout(
+      () => setIsResourcesOpen(false),
+      120
+    );
+  };
+
   const closeDesktopMenus = () => {
     setIsProductOpen(false);
     setIsFeaturesOpen(false);
+    setIsResourcesOpen(false);
   };
 
-  const desktopMenuOpen = isProductOpen || isFeaturesOpen;
+  const desktopMenuOpen =
+    isProductOpen || isFeaturesOpen || isResourcesOpen;
 
   return (
     <header className="relative z-50 pt-4">
@@ -483,6 +477,7 @@ export default function Header() {
         onMouseLeave={() => {
           closeProduct();
           closeFeatures();
+          closeResources();
         }}
       >
         {/* Positioning context matches the bar's outer width — not the padded site column */}
@@ -547,7 +542,7 @@ export default function Header() {
                 )}
                 aria-haspopup="true"
                 aria-expanded={isFeaturesOpen}
-                aria-controls="features-menu"
+                aria-controls="solutions-menu"
                 onMouseEnter={openFeatures}
                 onFocus={openFeatures}
                 onClick={() => {
@@ -574,6 +569,34 @@ export default function Header() {
               >
                 Pricing
               </Link>
+
+              <button
+                type="button"
+                className={cn(
+                  "flex min-h-11 items-center gap-1 rounded-lg px-2.5 text-sm font-medium text-ink transition hover:bg-primary-soft hover:text-primary focus-visible:bg-primary-soft focus-visible:text-primary",
+                  isResourcesOpen && "bg-primary-soft text-primary"
+                )}
+                aria-haspopup="true"
+                aria-expanded={isResourcesOpen}
+                aria-controls="resources-menu"
+                onMouseEnter={openResources}
+                onFocus={openResources}
+                onClick={() => {
+                  if (!isResourcesOpen) openResources();
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Escape") setIsResourcesOpen(false);
+                }}
+              >
+                Resources
+                <ChevronDown
+                  className={cn(
+                    "h-4 w-4 transition-transform",
+                    isResourcesOpen && "rotate-180"
+                  )}
+                  aria-hidden
+                />
+              </button>
             </nav>
 
             <div className="hidden items-center gap-3 justify-self-end md:flex">
@@ -641,16 +664,26 @@ export default function Header() {
             onMouseEnter={openFeatures}
             onMouseLeave={closeFeatures}
           >
-            <MegaMenuPanel
-              id="features-menu"
-              groups={FEATURE_GROUPS}
+            <LinkMegaPanel
+              id="solutions-menu"
+              items={SOLUTION_LINKS}
               open={isFeaturesOpen}
               onNavigate={() => setIsFeaturesOpen(false)}
-              promo={
-                <SolutionsMenuPromo
-                  onNavigate={() => setIsFeaturesOpen(false)}
-                />
-              }
+              columns={4}
+            />
+          </div>
+
+          <div
+            className="hidden md:block"
+            onMouseEnter={openResources}
+            onMouseLeave={closeResources}
+          >
+            <LinkMegaPanel
+              id="resources-menu"
+              items={RESOURCE_LINKS}
+              open={isResourcesOpen}
+              onNavigate={() => setIsResourcesOpen(false)}
+              columns={3}
             />
           </div>
         </div>
@@ -708,10 +741,10 @@ export default function Header() {
               <li>
                 <p className="text-sm font-medium text-ink-muted">Solutions</p>
                 <ul className="mt-2 grid gap-1">
-                  {FEATURE_LINKS.map((item) => {
+                  {SOLUTION_LINKS.map((item) => {
                     const Icon = item.icon;
                     return (
-                      <li key={item.href}>
+                      <li key={item.title}>
                         <Link
                           href={item.href}
                           className="flex min-h-11 items-start gap-3 rounded-lg py-2 text-ink hover:bg-primary-soft focus-visible:bg-primary-soft"
@@ -746,6 +779,39 @@ export default function Header() {
                 >
                   Pricing
                 </Link>
+              </li>
+              <li>
+                <p className="text-sm font-medium text-ink-muted">Resources</p>
+                <ul className="mt-2 grid gap-1">
+                  {RESOURCE_LINKS.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <li key={item.title}>
+                        <Link
+                          href={item.href}
+                          className="flex min-h-11 items-start gap-3 rounded-lg py-2 text-ink hover:bg-primary-soft focus-visible:bg-primary-soft"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-primary-soft text-primary">
+                            <Icon
+                              className="h-5 w-5"
+                              strokeWidth={1.6}
+                              aria-hidden
+                            />
+                          </span>
+                          <span className="min-w-0 pt-0.5">
+                            <span className="block text-sm font-semibold">
+                              {item.title}
+                            </span>
+                            <span className="mt-0.5 block text-xs leading-snug text-ink-muted">
+                              {item.desc}
+                            </span>
+                          </span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
               </li>
               <li>
                 <Link

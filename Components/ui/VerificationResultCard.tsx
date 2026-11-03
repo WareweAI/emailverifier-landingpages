@@ -13,6 +13,8 @@ function clampScore(score: number): number {
 type VerificationResultCardProps = {
   email: string;
   statusLabel: string;
+  /** Extra chip next to the primary status (e.g. Mailbox not found). */
+  secondaryStatusLabel?: string;
   variant: StatusVariant;
   score: number;
   catchAll?: boolean;
@@ -28,6 +30,7 @@ type VerificationResultCardProps = {
 export function VerificationResultCard({
   email,
   statusLabel,
+  secondaryStatusLabel,
   variant,
   score,
   catchAll = false,
@@ -39,16 +42,21 @@ export function VerificationResultCard({
 }: VerificationResultCardProps) {
   const value = clampScore(score);
   const initial = (email.trim().charAt(0) || "?").toUpperCase();
-  const mailboxVerified = variant === "success" && !catchAll && !disposable;
+  const mailboxVerified =
+    !secondaryStatusLabel &&
+    variant === "success" &&
+    !catchAll &&
+    !disposable;
   const tintedSuccess = variant === "success";
+  const tintedDanger = variant === "danger";
 
   return (
     <div
       className={cn(
         "overflow-hidden rounded-2xl border shadow-[var(--shadow-card)]",
-        tintedSuccess
-          ? "border-success/20 bg-success-soft"
-          : "border-line bg-surface"
+        tintedSuccess && "border-success/20 bg-success-soft",
+        tintedDanger && "border-danger/20 bg-danger-soft",
+        !tintedSuccess && !tintedDanger && "border-line bg-surface"
       )}
       role="status"
       aria-live="polite"
@@ -87,9 +95,23 @@ export function VerificationResultCard({
                   className={
                     tintedSuccess
                       ? "bg-surface text-success ring-1 ring-success/25"
-                      : undefined
+                      : tintedDanger
+                        ? "bg-surface text-danger ring-1 ring-danger/25"
+                        : undefined
                   }
                 />
+                {secondaryStatusLabel ? (
+                  <StatusChip
+                    label={secondaryStatusLabel}
+                    variant="neutral"
+                    showIcon={false}
+                    className={cn(
+                      "uppercase tracking-wide",
+                      (tintedSuccess || tintedDanger) &&
+                        "bg-surface ring-1 ring-line"
+                    )}
+                  />
+                ) : null}
                 {mailboxVerified && (
                   <StatusChip
                     label="Mailbox verified"

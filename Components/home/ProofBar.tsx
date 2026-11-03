@@ -9,10 +9,10 @@ export const PRESS_LOGOS = [
     height: 28,
   },
   {
-    src: "/logos/press/yahoo-finance.svg",
-    alt: "Yahoo Finance",
-    width: 150,
-    height: 28,
+    src: "/logos/press/yahoo.png",
+    alt: "Yahoo",
+    width: 120,
+    height: 35,
   },
   {
     src: "/logos/press/financial-post-wordmark.png",
@@ -55,7 +55,8 @@ export function HeroAsSeenOn({ className }: { className?: string }) {
               unoptimized={logo.src.endsWith(".svg")}
               sizes={`${logo.width}px`}
               className={cn(
-                "h-5 w-auto max-w-[6.5rem] object-contain opacity-70 brightness-0 sm:h-6 sm:max-w-[7.5rem]",
+                /* Shared muted mono so every mark reads the same weight */
+                "h-5 w-auto max-w-[6.5rem] object-contain brightness-0 opacity-40 sm:h-6 sm:max-w-[7.5rem]",
                 "heroClassName" in logo ? logo.heroClassName : undefined
               )}
               loading="lazy"
@@ -95,7 +96,7 @@ export default function ProofBar() {
                 unoptimized={logo.src.endsWith(".svg")}
                 sizes={`${logo.width}px`}
                 className={cn(
-                  "h-5 w-auto max-w-[7.5rem] object-contain opacity-100 brightness-0 sm:h-6 sm:max-w-[8.5rem] md:h-7 md:max-w-[9rem]",
+                  "h-5 w-auto max-w-[7.5rem] object-contain brightness-0 opacity-40 sm:h-6 sm:max-w-[8.5rem] md:h-7 md:max-w-[9rem]",
                   "barClassName" in logo ? logo.barClassName : undefined
                 )}
                 loading="lazy"

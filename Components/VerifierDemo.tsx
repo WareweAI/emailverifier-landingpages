@@ -30,8 +30,8 @@ type VerificationDetails = {
 };
 
 const HERO_EXAMPLE_RESULT: VerificationDetails = {
-  score: 98,
-  status: "Deliverable",
+  score: 15,
+  status: "Undeliverable",
   catch_all: false,
   disposable: false,
   role_based: false,
@@ -283,7 +283,7 @@ export default function VerifierDemo({
   };
 
   const previewEmail = email.trim() || HERO_DEMO_EMAIL;
-  const heroExampleVariant = statusToVariant(HERO_EXAMPLE_RESULT.status, true);
+  const heroExampleVariant = statusToVariant(HERO_EXAMPLE_RESULT.status, false);
 
   const mainVariant = details
     ? statusToVariant(details.status, status === "valid")
@@ -396,8 +396,9 @@ export default function VerifierDemo({
               >
                 <VerificationResultCard
                   email={previewEmail}
-                  headline="This email address is valid"
+                  headline="This email address is undeliverable"
                   statusLabel={HERO_EXAMPLE_RESULT.status}
+                  secondaryStatusLabel="Mailbox not found"
                   variant={heroExampleVariant}
                   score={HERO_EXAMPLE_RESULT.score}
                   catchAll={HERO_EXAMPLE_RESULT.catch_all}

@@ -59,6 +59,14 @@ export function statusToVariant(
   isDeliverable?: boolean
 ): StatusVariant {
   const normalized = status.toLowerCase();
+  // Check undeliverable before deliverable — "undeliverable".includes("deliverable") is true.
+  if (
+    normalized.includes("invalid") ||
+    normalized.includes("undeliverable") ||
+    normalized.includes("disposable")
+  ) {
+    return "danger";
+  }
   if (
     isDeliverable ||
     normalized.includes("valid") ||
@@ -73,13 +81,6 @@ export function statusToVariant(
     normalized.includes("unknown")
   ) {
     return "warning";
-  }
-  if (
-    normalized.includes("invalid") ||
-    normalized.includes("undeliverable") ||
-    normalized.includes("disposable")
-  ) {
-    return "danger";
   }
   return "neutral";
 }

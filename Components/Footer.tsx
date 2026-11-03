@@ -3,13 +3,28 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import LogoMark from "./ui/LogoMark";
 
+/** Footer nav mirrors Header mega menus (Products / Solutions / Resources). */
 const productLinks = [
   { href: "/validate-email", label: "Email Validator" },
   { href: "/bulk-email-verifier", label: "Bulk Email Verifier" },
-  { href: "/email-verification-api", label: "Email Verification API" },
-  { href: "/find-emails", label: "By Name" },
-  { href: "/find-emails#bulk-find", label: "By Company" },
-  { href: "/find-emails", label: "By LinkedIn" },
+  { href: "/email-verification-api", label: "Email Validation API" },
+  { href: "/find-emails", label: "Email Finder" },
+  { href: "/find-leads", label: "Lead Finder" },
+  { href: "/find-emails#bulk-find", label: "Data Enrichment" },
+];
+
+const solutionLinks = [
+  { href: "/bulk-email-verifier", label: "Cold Outreach List Cleaning" },
+  { href: "/email-verification-api", label: "Signup Form Validation" },
+  { href: "/find-leads", label: "Prospecting" },
+  { href: "/validate-email", label: "Blacklist Avoidance" },
+];
+
+const resourceLinks = [
+  { href: "/blog", label: "Guides" },
+  { href: "/#features", label: "Integrations" },
+  { href: "/blog", label: "Blog" },
+  { href: "/pricing", label: "Pricing" },
 ];
 
 const legalLinks = [
@@ -44,6 +59,26 @@ function FooterLink({ href, label }: { href: string; label: string }) {
   );
 }
 
+function FooterNavList({
+  label,
+  links,
+}: {
+  label: string;
+  links: ReadonlyArray<{ href: string; label: string }>;
+}) {
+  return (
+    <nav aria-label={label}>
+      <ul className="grid grid-cols-1 gap-x-4">
+        {links.map((link) => (
+          <li key={`${link.href}-${link.label}`}>
+            <FooterLink href={link.href} label={link.label} />
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
 export default function Footer() {
   return (
     <footer id="contact" className="bg-background">
@@ -70,29 +105,21 @@ export default function Footer() {
           Professional email verification trusted by thousands worldwide.
         </p>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 lg:gap-6">
           <FooterCard title="Products">
-            <nav aria-label="Footer — Products">
-              <ul className="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
-                {productLinks.map((link) => (
-                  <li key={`${link.href}-${link.label}`}>
-                    <FooterLink href={link.href} label={link.label} />
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <FooterNavList label="Footer — Products" links={productLinks} />
+          </FooterCard>
+
+          <FooterCard title="Solutions">
+            <FooterNavList label="Footer — Solutions" links={solutionLinks} />
+          </FooterCard>
+
+          <FooterCard title="Resources">
+            <FooterNavList label="Footer — Resources" links={resourceLinks} />
           </FooterCard>
 
           <FooterCard title="Legal">
-            <nav aria-label="Footer — Legal">
-              <ul className="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
-                {legalLinks.map((link) => (
-                  <li key={link.href}>
-                    <FooterLink href={link.href} label={link.label} />
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <FooterNavList label="Footer — Legal" links={legalLinks} />
           </FooterCard>
 
           <FooterCard title="Contact">
