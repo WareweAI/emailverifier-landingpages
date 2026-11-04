@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SectionHeading } from "@/Components/ui/SectionHeading";
 
 /** Approved LogoCloud marks allowlist (AGENTS.md). Transparent WebPs. */
 const LOGOS = [
@@ -65,12 +66,9 @@ export default function LogoCloud() {
       aria-labelledby="logo-cloud-heading"
     >
       <div className="site-container text-center">
-        <h2
-          id="logo-cloud-heading"
-          className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl lg:text-4xl"
-        >
+        <SectionHeading id="logo-cloud-heading">
           Trusted by teams at
-        </h2>
+        </SectionHeading>
       </div>
 
       <div

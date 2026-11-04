@@ -1,11 +1,10 @@
-import FindEmailsPage, {
-  FIND_EMAILS_FAQS,
-} from "@/Components/find/FindEmailsPage";
+import FindEmailsPage from "@/Components/find/FindEmailsPage";
 import JsonLd, {
   breadcrumbJsonLd,
   faqPageJsonLd,
   organizationJsonLd,
 } from "@/Components/seo/JsonLd";
+import { FIND_EMAILS_FAQS } from "@/lib/find-emails-faq";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { SectionHeading } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { HOMEPAGE_FAQS } from "@/lib/homepage-faq";
 import { cn } from "@/lib/utils";
@@ -16,12 +17,9 @@ export default function HomeFaqSection() {
       ariaLabelledBy="faq-heading"
     >
       <div className="mx-auto max-w-3xl">
-        <h2
-          id="faq-heading"
-          className="text-center font-display text-2xl font-semibold tracking-tight text-ink lg:text-4xl"
-        >
+        <SectionHeading id="faq-heading" className="text-center">
           Frequently asked questions
-        </h2>
+        </SectionHeading>
         <div className="mt-10 space-y-3">
           {HOMEPAGE_FAQS.map((faq, i) => {
             const isOpen = openIndex === i;

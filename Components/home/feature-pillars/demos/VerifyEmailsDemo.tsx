@@ -37,7 +37,7 @@ const COPY = {
   singleEmail: "satyanadella@microsoft.com",
   singlePlaceholder: "name@company.com",
   checking: "Verifying…",
-  singleDone: "Valid · safe to send",
+  singleDone: "Undeliverable · do not send",
 } as const;
 
 /** Seconds. Idle → drop → verify → result → single check → reset. */
@@ -405,7 +405,7 @@ export function VerifyEmailsDemo({ className }: { className?: string }) {
           </div>
           <div
             data-single-result
-            className="invisible rounded-xl border border-success/30 bg-success-soft p-4"
+            className="invisible rounded-xl border border-danger/30 bg-danger-soft p-4"
           >
             <p className="text-[10px] font-semibold uppercase tracking-wide text-ink-muted">
               Example
@@ -413,12 +413,15 @@ export function VerifyEmailsDemo({ className }: { className?: string }) {
             <p className="mt-1 truncate text-sm font-semibold text-ink">
               {COPY.singleEmail}
             </p>
-            <div className="mt-3 flex flex-wrap gap-1.5">
+            <div className="mt-3 flex flex-wrap items-center gap-1.5">
               <StatusChip
-                label="Valid"
-                variant="success"
+                label="Undeliverable"
+                variant="danger"
                 className="px-2 py-0.5 text-[10px]"
               />
+              <span className="text-[10px] font-semibold tabular-nums text-ink">
+                Score 15
+              </span>
               <StatusChip
                 label="Not disposable"
                 variant="neutral"

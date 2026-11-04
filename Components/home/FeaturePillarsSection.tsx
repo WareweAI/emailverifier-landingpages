@@ -2,19 +2,26 @@ import type { ComponentType } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
-  Code2,
   MailCheck,
   Search,
   UserSearch,
   type LucideIcon,
 } from "lucide-react";
 import {
-  ApiKeysMockup,
+  FeaturePointList,
+  type FeaturePoint,
+} from "@/Components/home/feature-pillars/FeaturePointList";
+import {
   FindEmailsMockup,
   FindLeadsMockup,
   VerifyEmailsMockup,
 } from "@/Components/home/feature-pillars/PillarMockups";
 import { Button } from "@/Components/ui/Button";
+import {
+  SectionEyebrow,
+  SectionHeading,
+  sectionLeadClassName,
+} from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { cn } from "@/lib/utils";
 
@@ -24,7 +31,8 @@ type Pillar = {
   iconClass: string;
   iconWrapClass: string;
   title: string;
-  description: string;
+  points: readonly FeaturePoint[];
+  cta: string;
   href: string;
   cardClass: string;
   Mockup: ComponentType<{ className?: string }>;
@@ -36,9 +44,22 @@ const PILLARS: Pillar[] = [
     icon: MailCheck,
     iconClass: "text-success",
     iconWrapClass: "bg-success/15",
-    title: "Verify Emails",
-    description:
-      "Bulk-upload CSV, XLS, or XLSX, or verify a single inbox. Get valid, risky, and invalid with catch-all, disposable, and role flags so you know what is safe to send.",
+    title: "Email Verifier",
+    points: [
+      {
+        title: "Verify a single email or a list",
+        body: "Check individual email addresses in seconds, or upload bulk CSV/XLS lists — or import directly from Google Drive, OneDrive, and your CRM to clean thousands of contacts at once.",
+      },
+      {
+        title: "Deliverability score",
+        body: "Get an instant 0–100 confidence score and catch-all status for every address so you know exactly which emails are safe to send and which to suppress.",
+      },
+      {
+        title: "Accurate and most reliable verifier",
+        body: "Prevent bounce rates and protect your sender reputation with multi-step verification across syntax, DNS/MX records, disposable providers, spam traps, and real-time SMTP server responses.",
+      },
+    ],
+    cta: "Verify Emails Free",
     href: "https://app.emailverifier.io/dashboard/verify",
     cardClass: "bg-success-soft",
     Mockup: VerifyEmailsMockup,
@@ -48,9 +69,22 @@ const PILLARS: Pillar[] = [
     icon: Search,
     iconClass: "text-primary",
     iconWrapClass: "bg-primary/15",
-    title: "Find Emails",
-    description:
-      "Search by name and domain or LinkedIn, or bulk-find from a CSV. Only keep addresses that verify — enrichment is optional, and you are not charged when nothing is found.",
+    title: "Email Finder",
+    points: [
+      {
+        title: "Find an email by name and company",
+        body: "Enter any prospect's full name and company name or domain to uncover their verified professional email address in real time.",
+      },
+      {
+        title: "Find by LinkedIn profile",
+        body: "Turn LinkedIn profiles into reachable decision-makers with pre-verified work emails that pass strict deliverability checks before export.",
+      },
+      {
+        title: "Enrich data in bulk",
+        body: "Upload contact lists in bulk and automatically append verified emails, job titles, seniority, LinkedIn URLs, and company metadata.",
+      },
+    ],
+    cta: "Find Verified Emails",
     href: "https://app.emailverifier.io/dashboard/find",
     cardClass: "bg-lavender-soft",
     Mockup: FindEmailsMockup,
@@ -60,24 +94,25 @@ const PILLARS: Pillar[] = [
     icon: UserSearch,
     iconClass: "text-primary-deep",
     iconWrapClass: "bg-primary-deep/10",
-    title: "Find Leads",
-    description:
-      "Search Leads turns a plain-language brief into people or companies to pursue. Filter, save lists, and move qualified contacts into outreach without leaving the product.",
+    title: "Lead Finder",
+    points: [
+      {
+        title: "Find leads with AI from an ICP",
+        body: "Describe your Ideal Customer Profile in plain English and let AI instantly build a targeted list of high-fit companies and decision-makers.",
+      },
+      {
+        title: "Find leads by person, company, and location",
+        body: "Filter millions of B2B contacts by job title, seniority, industry, company headcount, tech stack, and local or global geography.",
+      },
+      {
+        title: "Signal-based outreach",
+        body: "Identify accounts showing active buying intent — such as recent funding, leadership changes, or hiring surges — so you reach out at the right moment.",
+      },
+    ],
+    cta: "Find Leads with AI",
     href: "https://app.emailverifier.io/dashboard/leads",
     cardClass: "bg-teal-soft",
     Mockup: FindLeadsMockup,
-  },
-  {
-    id: "api",
-    icon: Code2,
-    iconClass: "text-warning",
-    iconWrapClass: "bg-warning/15",
-    title: "API",
-    description:
-      "A docs-lite email verification API plus finder and leads endpoints — same credit balance as bulk. Create keys, try requests, and ship signup checks without an SDK maze.",
-    href: "https://app.emailverifier.io/dashboard/api-keys",
-    cardClass: "bg-peach-soft",
-    Mockup: ApiKeysMockup,
   },
 ];
 
@@ -89,89 +124,97 @@ export default function FeaturePillarsSection() {
       ariaLabelledBy="feature-pillars-heading"
     >
       <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-        <div className="max-w-xl">
-          <p className="inline-flex items-center gap-2.5 text-sm font-medium text-ink-muted">
-            <span
-              className="h-1 w-5 shrink-0 rounded-full bg-ink-muted"
-              aria-hidden
-            />
-            What EmailVerifier does
-          </p>
-          <h2
-            id="feature-pillars-heading"
-            className="mt-3 font-display text-3xl font-semibold leading-[1.15] tracking-tight text-ink sm:text-4xl lg:text-5xl"
-          >
-            Four ways our email verifier works.
-          </h2>
+        <div className="max-w-2xl">
+          <SectionEyebrow>Features</SectionEyebrow>
+          <SectionHeading id="feature-pillars-heading" withEyebrow>
+            EmailVerifier.io Standout Features to Ensure 99.7% Deliverability
+          </SectionHeading>
         </div>
-        <p className="max-w-md text-lg leading-relaxed text-ink-muted lg:pb-1 lg:text-right">
-        Your must have tool in your email outreach that saves sender reputation, prevents bounces and enrich fresh leads with valid emails.
+        <p
+          className={cn(
+            sectionLeadClassName,
+            "mt-0 max-w-md lg:pb-1 lg:text-right"
+          )}
+        >
+          Your must have tool in your email outreach that saves sender
+          reputation, prevents bounces and enrich fresh leads with valid emails.
         </p>
       </div>
 
       <ol className="mt-12 list-none space-y-0 p-0 lg:mt-16">
-        {PILLARS.map((pillar, index) => (
-          <li
-            key={pillar.id}
-            className={cn(
-              "relative",
-              index > 0 && "-mt-4 sm:-mt-5 lg:-mt-6"
-            )}
-            style={{ zIndex: index + 1 }}
-          >
-            <article
+        {PILLARS.map((pillar, index) => {
+          const imageFirst = index % 2 === 1;
+
+          return (
+            <li
+              key={pillar.id}
               className={cn(
-                /* 1-off: 5px white edge so stacked pastel cards separate cleanly */
-                "grid items-center gap-8 rounded-3xl border-[5px] border-surface p-6 shadow-[var(--shadow-card)] sm:p-8 lg:grid-cols-2 lg:gap-10 lg:p-10",
-                pillar.cardClass
+                "relative",
+                index > 0 && "-mt-4 sm:-mt-5 lg:-mt-6"
               )}
+              style={{ zIndex: index + 1 }}
             >
-              <div className="min-w-0">
-                <span
+              <article
+                className={cn(
+                  /* 1-off: 5px white edge so stacked pastel cards separate cleanly */
+                  "grid items-center gap-8 rounded-3xl border-[5px] border-surface p-6 shadow-[var(--shadow-card)] sm:p-8 lg:grid-cols-2 lg:gap-10 lg:p-10",
+                  pillar.cardClass
+                )}
+              >
+                <div className={cn("min-w-0", imageFirst && "lg:order-2")}>
+                  <span
+                    className={cn(
+                      "inline-flex h-12 w-12 items-center justify-center rounded-2xl sm:h-14 sm:w-14",
+                      pillar.iconWrapClass
+                    )}
+                    aria-hidden
+                  >
+                    <pillar.icon
+                      className={cn("h-7 w-7 sm:h-8 sm:w-8", pillar.iconClass)}
+                      strokeWidth={1.75}
+                    />
+                  </span>
+                  <h3 className="mt-5 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                    {pillar.title}
+                  </h3>
+                  <FeaturePointList
+                    points={pillar.points}
+                    idPrefix={`pillar-${pillar.id}`}
+                  />
+                  <Button
+                    size="lg"
+                    asChild
+                    className="group mt-6 rounded-lg border border-ink bg-ink text-primary-foreground hover:bg-ink/90 active:bg-ink"
+                  >
+                    <Link
+                      href={pillar.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-ev-event="feature_pillar_cta"
+                      data-ev-loc={`pillar-${pillar.id}`}
+                    >
+                      {pillar.cta}
+                      <ArrowRight
+                        className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                        aria-hidden
+                      />
+                    </Link>
+                  </Button>
+                </div>
+
+                <div
                   className={cn(
-                    "inline-flex h-12 w-12 items-center justify-center rounded-2xl sm:h-14 sm:w-14",
-                    pillar.iconWrapClass
+                    "min-w-0",
+                    imageFirst ? "lg:order-1 lg:pr-2" : "lg:pl-2"
                   )}
                   aria-hidden
                 >
-                  <pillar.icon
-                    className={cn("h-7 w-7 sm:h-8 sm:w-8", pillar.iconClass)}
-                    strokeWidth={1.75}
-                  />
-                </span>
-                <h3 className="mt-5 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-                  {pillar.title}
-                </h3>
-                <p className="mt-3 max-w-md text-base leading-relaxed text-ink-muted">
-                  {pillar.description}
-                </p>
-                <Button
-                  size="lg"
-                  asChild
-                  className="group mt-6 rounded-lg border border-ink bg-ink text-primary-foreground hover:bg-ink/90 active:bg-ink"
-                >
-                  <Link
-                    href={pillar.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-ev-event="feature_pillar_cta"
-                    data-ev-loc={`pillar-${pillar.id}`}
-                  >
-                    Start for free
-                    <ArrowRight
-                      className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
-                      aria-hidden
-                    />
-                  </Link>
-                </Button>
-              </div>
-
-              <div className="min-w-0 lg:pl-2" aria-hidden>
-                <pillar.Mockup />
-              </div>
-            </article>
-          </li>
-        ))}
+                  <pillar.Mockup />
+                </div>
+              </article>
+            </li>
+          );
+        })}
       </ol>
     </SectionShell>
   );

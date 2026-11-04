@@ -1,10 +1,10 @@
 import {
-  CheckCircle2,
   Download,
   FolderOpen,
   LayoutDashboard,
   MailCheck,
   Search,
+  XCircle,
 } from "lucide-react";
 import LogoMark from "@/Components/ui/LogoMark";
 import { StatusChip } from "@/Components/ui/StatusChip";
@@ -99,27 +99,27 @@ function VerifyPanel() {
             Single check · example result
           </p>
         </div>
-        <StatusChip label="Deliverable" variant="success" />
+        <StatusChip label="Undeliverable" variant="danger" />
       </div>
 
-      <div className="mt-4 rounded-xl border border-line bg-surface-muted/60 p-4">
+      <div className="mt-4 rounded-xl border border-danger/30 bg-danger-soft/40 p-4">
         <div className="flex items-start justify-between gap-3">
           <div className="flex min-w-0 items-start gap-3">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
-              J
+              S
             </span>
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold text-ink">
                 satyanadella@microsoft.com
               </p>
               <div className="mt-1.5 flex flex-wrap gap-1.5">
-                <StatusChip label="Mailbox verified" variant="neutral" />
+                <StatusChip label="Mailbox not found" variant="danger" />
               </div>
             </div>
           </div>
           <div className="shrink-0 text-right">
             <p className="font-display text-2xl font-semibold tabular-nums text-ink">
-              95
+              15
             </p>
             <p className="text-xs text-ink-muted">Score</p>
           </div>
@@ -142,9 +142,9 @@ function VerifyPanel() {
         </dl>
       </div>
 
-      <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-success">
-        <CheckCircle2 className="h-3.5 w-3.5" />
-        Ready to send — same credits for bulk &amp; API
+      <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-danger">
+        <XCircle className="h-3.5 w-3.5" />
+        Undeliverable — do not send this address
       </p>
     </>
   );

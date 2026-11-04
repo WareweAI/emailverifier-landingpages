@@ -17,7 +17,7 @@ import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
 
 const DEMO_EMAIL = "satyanadella@microsoft.com";
-const SCORE = 95;
+const SCORE = 15;
 const SCORE_MARKS = [0, 40, 70, 100] as const;
 
 const NAV_ITEMS = [
@@ -91,14 +91,14 @@ function ResultPanel() {
             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground"
             aria-hidden
           >
-            J
+            S
           </span>
           <div className="min-w-0">
             <p className="truncate font-semibold text-ink">{DEMO_EMAIL}</p>
             <div className="mt-2 flex flex-wrap gap-1.5">
-              <StatusChip label="Deliverable" variant="success" />
+              <StatusChip label="Undeliverable" variant="danger" />
               <StatusChip
-                label="Mailbox verified"
+                label="Mailbox not found"
                 variant="neutral"
                 showIcon={false}
                 className="uppercase tracking-wide"
@@ -141,22 +141,22 @@ function ResultPanel() {
             <div className="flex items-center justify-between gap-3">
               <dt className="text-ink-muted">State</dt>
               <dd>
-                <AttrValue value="Deliverable" tone="success" />
+                <AttrValue value="Undeliverable" tone="danger" />
               </dd>
             </div>
             <div className="flex items-center justify-between gap-3">
               <dt className="text-ink-muted">Reason</dt>
               <dd className="font-semibold uppercase tracking-wide text-ink">
-                Mailbox verified
+                Mailbox not found
               </dd>
             </div>
             <div className="flex items-center justify-between gap-3">
               <dt className="text-ink-muted">Domain</dt>
-              <dd className="font-semibold text-ink">gmail.com</dd>
+              <dd className="font-semibold text-ink">microsoft.com</dd>
             </div>
             <div className="flex items-center justify-between gap-3">
               <dt className="text-ink-muted">Username</dt>
-              <dd className="font-semibold text-ink">jacob.schmidt</dd>
+              <dd className="font-semibold text-ink">satyanadella</dd>
             </div>
           </dl>
         </div>
@@ -167,7 +167,7 @@ function ResultPanel() {
             <div className="flex items-center justify-between gap-2">
               <dt className="text-ink-muted">Free</dt>
               <dd>
-                <AttrValue value="Yes" tone="warning" />
+                <AttrValue value="No" />
               </dd>
             </div>
             <div className="flex items-center justify-between gap-2">
@@ -199,7 +199,7 @@ function ResultPanel() {
         <dl className="mt-3 grid gap-2.5 text-sm sm:grid-cols-2">
           <div className="flex items-center justify-between gap-3">
             <dt className="text-ink-muted">SMTP Provider</dt>
-            <dd className="font-semibold text-ink">Google</dd>
+            <dd className="font-semibold text-ink">Microsoft</dd>
           </div>
           <div className="flex items-center justify-between gap-3">
             <dt className="text-ink-muted">SPF</dt>
@@ -216,7 +216,7 @@ function ResultPanel() {
           <div className="flex items-center justify-between gap-3 sm:col-span-2">
             <dt className="shrink-0 text-ink-muted">MX Record</dt>
             <dd className="truncate text-right text-ink">
-              gmail-smtp-in.l.google.com
+              microsoft-com.mail.protection.outlook.com
             </dd>
           </div>
           <div className="flex items-center justify-between gap-3 sm:col-span-2">

@@ -1,9 +1,10 @@
-import FindLeadsPage, { FIND_LEADS_FAQS } from "@/Components/find/FindLeadsPage";
+import FindLeadsPage from "@/Components/find/FindLeadsPage";
 import JsonLd, {
   breadcrumbJsonLd,
   faqPageJsonLd,
   organizationJsonLd,
 } from "@/Components/seo/JsonLd";
+import { FIND_LEADS_FAQS } from "@/lib/find-leads-faq";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({

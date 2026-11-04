@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/Button";
+import { SectionHeading, SectionLead } from "./ui/SectionHeading";
 import { SectionShell } from "./ui/SectionShell";
 import { StarRating } from "./ui/StarRating";
 
@@ -69,16 +70,13 @@ export default function CTA() {
         <CtaDecor />
 
         <div className="relative mx-auto max-w-4xl text-center">
-          <h2
-            id="cta-heading"
-            className="font-display text-4xl font-semibold leading-[1.05] tracking-tight text-primary-foreground sm:text-5xl lg:whitespace-nowrap lg:text-6xl"
-          >
+          <SectionHeading id="cta-heading" tone="onDark">
             Ready to Clean Your List?
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-primary-foreground/80">
+          </SectionHeading>
+          <SectionLead className="mx-auto max-w-2xl text-primary-foreground/80">
             Join thousands of marketers keeping their email lists healthy and
             their emails reaching inboxes.
-          </p>
+          </SectionLead>
 
           <div className="mt-8 flex flex-col items-center gap-4">
             <Button

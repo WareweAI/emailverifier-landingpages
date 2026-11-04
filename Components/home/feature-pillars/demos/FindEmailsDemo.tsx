@@ -42,7 +42,8 @@ const COPY = {
   namePh: "John Smith",
   companyPh: "Acme or acme.com",
   finding: "Finding email…",
-  found: "Found 1 email · safe to send",
+  foundEmail: "satyanadella@microsoft.com",
+  found: "Found 1 email · undeliverable",
   bulk: "6 of 9 found",
 } as const;
 
@@ -233,7 +234,7 @@ export function FindEmailsDemo({ className }: { className?: string }) {
             </div>
             <div
               data-found
-              className="invisible absolute inset-x-0 top-0 rounded-xl border border-success/25 bg-success-soft p-3"
+              className="invisible absolute inset-x-0 top-0 rounded-xl border border-danger/25 bg-danger-soft p-3"
             >
               <p className="text-[10px] font-semibold uppercase tracking-wide text-ink-muted">
                 Example
@@ -241,13 +242,13 @@ export function FindEmailsDemo({ className }: { className?: string }) {
               <p className="mt-1 text-sm font-semibold text-ink">{COPY.name}</p>
               <p className="text-xs text-ink-muted">{COPY.company}</p>
               <p className="mt-2 flex items-center gap-1.5 text-xs font-medium text-ink">
-                <span className="h-1.5 w-1.5 rounded-full bg-success" />
-                s•••••@microsoft.com
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-danger" />
+                <span className="truncate">{COPY.foundEmail}</span>
               </p>
               <div className="mt-2">
                 <StatusChip
-                  label="Safe to send"
-                  variant="success"
+                  label="Undeliverable"
+                  variant="danger"
                   className="px-2 py-0.5 text-[10px]"
                 />
               </div>

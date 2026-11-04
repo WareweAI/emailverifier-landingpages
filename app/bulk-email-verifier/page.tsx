@@ -1,8 +1,11 @@
 import BulkProductPage from "@/Components/bulk/BulkProductPage";
 import JsonLd, {
+  breadcrumbJsonLd,
+  faqPageJsonLd,
   organizationJsonLd,
   softwareApplicationJsonLd,
 } from "@/Components/seo/JsonLd";
+import { BULK_PAGE_FAQS } from "@/lib/bulk-page-faq";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
@@ -13,31 +16,18 @@ export const metadata = buildMetadata({
   imageAlt: "Bulk email verifier CSV upload with deliverability status results",
 });
 
-const breadcrumbJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: "https://emailverifier.io",
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Bulk Email Verifier",
-      item: "https://emailverifier.io/bulk-email-verifier",
-    },
-  ],
-};
-
 export default function BulkEmailVerifierPage() {
   return (
     <>
       <JsonLd data={organizationJsonLd()} />
       <JsonLd data={softwareApplicationJsonLd()} />
-      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Bulk Email Verifier", path: "/bulk-email-verifier" },
+        ])}
+      />
+      <JsonLd data={faqPageJsonLd([...BULK_PAGE_FAQS])} />
       <BulkProductPage />
     </>
   );

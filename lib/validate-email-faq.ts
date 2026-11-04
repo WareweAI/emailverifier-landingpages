@@ -26,4 +26,9 @@ export const VALIDATE_EMAIL_FAQS: FaqItem[] = [
     answer:
       "Sign up for 100 free credits, then upload a CSV, TXT, or XLSX in the dashboard. Bulk and API use the same credits at $1.80 per 1,000 — credits never expire.",
   },
+  {
+    question: "Can this email verifier help avoid blacklists?",
+    answer:
+      "Catching invalid, disposable, and high-risk addresses before you send reduces bounce and spam-trap exposure that can damage sender reputation. It does not replace proper authentication or content practices.",
+  },
 ];

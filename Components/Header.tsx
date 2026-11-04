@@ -148,7 +148,7 @@ const RESOURCE_LINKS: ProductLink[] = [
   },
   {
     title: "Integrations",
-    href: "/#features",
+    href: "/integrations",
     desc: "Import from Drive, HubSpot, Salesforce, and other tools you use.",
     icon: Blocks,
   },
@@ -266,7 +266,7 @@ function ImportStrip({ onNavigate }: { onNavigate: () => void }) {
         ))}
       </ul>
       <Link
-        href="/#features"
+        href="/integrations"
         onClick={onNavigate}
         className="inline-flex min-h-11 shrink-0 items-center gap-1 text-sm font-semibold text-primary hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:ml-auto"
       >

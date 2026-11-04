@@ -1,5 +1,10 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import {
+  SectionEyebrow,
+  SectionHeading,
+  SectionLead,
+} from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { StarRating } from "@/Components/ui/StarRating";
 
@@ -24,16 +29,14 @@ export default function Testimonials() {
       className="overflow-x-hidden bg-background pt-8 pb-8 md:pt-12 md:pb-10 lg:pt-16 lg:pb-12"
     >
       <div className="mx-auto max-w-3xl text-center">
-        <h2
-          id="testimonials-heading"
-          className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-4xl"
-        >
+      <SectionEyebrow>Reviews</SectionEyebrow>
+        <SectionHeading id="testimonials-heading">
           Loved by Thousands of Businesses
-        </h2>
-        <p className="mt-3 text-lg text-ink-muted">
+        </SectionHeading>
+        <SectionLead>
           See what our customers have to say about their experience with
           Emailverifier.io
-        </p>
+        </SectionLead>
       </div>
 
       <div className="mt-10">

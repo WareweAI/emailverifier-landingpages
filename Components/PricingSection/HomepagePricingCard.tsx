@@ -4,6 +4,11 @@ import { useMemo, useRef } from "react";
 import Image from "next/image";
 import { Check, ChevronLeft, ChevronRight, MailCheck, Minus, Plus } from "lucide-react";
 import { Button } from "../ui/Button";
+import {
+  SectionEyebrow,
+  SectionHeading,
+  SectionLead,
+} from "@/Components/ui/SectionHeading";
 import { StarRating } from "@/Components/ui/StarRating";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
@@ -71,22 +76,11 @@ export default function HomepagePricingCard({
   return (
     <div ref={scope} className="relative">
       <div className="mx-auto max-w-2xl text-center">
-        <p className="inline-flex items-center justify-center gap-2.5 text-sm font-medium text-ink-muted">
-          <span
-            className="h-1 w-5 shrink-0 rounded-full bg-ink-muted"
-            aria-hidden
-          />
-          Pricing
-        </p>
-        <h2
-          id="pricing-heading"
-          className="mt-3 font-display text-3xl font-semibold leading-[1.15] tracking-tight text-ink sm:text-4xl lg:text-5xl"
-        >
+        <SectionEyebrow align="center">Pricing</SectionEyebrow>
+        <SectionHeading id="pricing-heading" withEyebrow>
           Buy Credits
-        </h2>
-        <p className="mt-3 text-lg leading-relaxed text-ink-muted">
-          Outreach, or pay as you go.
-        </p>
+        </SectionHeading>
+        <SectionLead>Outreach, or pay as you go.</SectionLead>
       </div>
 
       {/* Mirrors app.emailverifier.io/dashboard/billing Buy Credits card */}
