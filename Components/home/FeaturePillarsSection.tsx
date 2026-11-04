@@ -20,7 +20,7 @@ import { Button } from "@/Components/ui/Button";
 import {
   SectionEyebrow,
   SectionHeading,
-  sectionLeadClassName,
+  SectionLead,
 } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { cn } from "@/lib/utils";
@@ -123,22 +123,15 @@ export default function FeaturePillarsSection() {
       className="bg-background pb-8 md:pb-12 lg:pb-16"
       ariaLabelledBy="feature-pillars-heading"
     >
-      <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-        <div className="max-w-2xl">
-          <SectionEyebrow>Features</SectionEyebrow>
-          <SectionHeading id="feature-pillars-heading" withEyebrow>
-            EmailVerifier.io Standout Features to Ensure 99.7% Deliverability
-          </SectionHeading>
-        </div>
-        <p
-          className={cn(
-            sectionLeadClassName,
-            "mt-0 max-w-md lg:pb-1 lg:text-right"
-          )}
-        >
+      <div className="mx-auto max-w-3xl text-center">
+        <SectionEyebrow align="center">Features</SectionEyebrow>
+        <SectionHeading id="feature-pillars-heading">
+          EmailVerifier.io Standout Features to Ensure 99.7% Deliverability
+        </SectionHeading>
+        <SectionLead>
           Your must have tool in your email outreach that saves sender
           reputation, prevents bounces and enrich fresh leads with valid emails.
-        </p>
+        </SectionLead>
       </div>
 
       <ol className="mt-12 list-none space-y-0 p-0 lg:mt-16">
