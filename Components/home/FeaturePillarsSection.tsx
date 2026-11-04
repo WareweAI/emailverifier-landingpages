@@ -123,12 +123,12 @@ export default function FeaturePillarsSection() {
       className="bg-background pb-8 md:pb-12 lg:pb-16"
       ariaLabelledBy="feature-pillars-heading"
     >
-      <div className="mx-auto max-w-3xl text-center">
+      <div className="mx-auto max-w-6xl text-center">
         <SectionEyebrow align="center">Features</SectionEyebrow>
         <SectionHeading id="feature-pillars-heading">
           EmailVerifier.io Standout Features to Ensure 99.7% Deliverability
         </SectionHeading>
-        <SectionLead>
+        <SectionLead className="mx-auto max-w-3xl">
           Your must have tool in your email outreach that saves sender
           reputation, prevents bounces and enrich fresh leads with valid emails.
         </SectionLead>
@@ -167,7 +167,7 @@ export default function FeaturePillarsSection() {
                       strokeWidth={1.75}
                     />
                   </span>
-                  <h3 className="mt-5 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                  <h3 className="mt-5 font-display text-2xl font-semibold tracking-tight text-ink">
                     {pillar.title}
                   </h3>
                   <FeaturePointList

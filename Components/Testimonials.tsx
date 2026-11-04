@@ -28,12 +28,12 @@ export default function Testimonials() {
       ariaLabelledBy="testimonials-heading"
       className="overflow-x-hidden bg-background pt-8 pb-8 md:pt-12 md:pb-10 lg:pt-16 lg:pb-12"
     >
-      <div className="mx-auto max-w-3xl text-center">
-      <SectionEyebrow>Reviews</SectionEyebrow>
+      <div className="mx-auto max-w-6xl text-center">
+        <SectionEyebrow align="center">Reviews</SectionEyebrow>
         <SectionHeading id="testimonials-heading">
           Loved by Thousands of Businesses
         </SectionHeading>
-        <SectionLead>
+        <SectionLead className="mx-auto max-w-3xl">
           See what our customers have to say about their experience with
           Emailverifier.io
         </SectionLead>

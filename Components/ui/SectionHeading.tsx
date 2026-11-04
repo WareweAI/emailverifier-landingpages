@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 /** Shared section H2 scale — use across Features, Reviews, Pricing, FAQ, etc. */
 export const sectionHeadingClassName =
-  "font-display text-3xl font-semibold leading-[1.15] tracking-tight sm:text-4xl lg:text-5xl";
+  "font-display text-xl font-semibold leading-[1.15] tracking-tight sm:text-2xl lg:text-3xl";
 
 export const sectionLeadClassName =
   "mt-3 text-lg leading-relaxed text-ink-muted";

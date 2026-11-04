@@ -65,10 +65,12 @@ export default function LogoCloud() {
       className="overflow-hidden bg-background py-12 md:py-16"
       aria-labelledby="logo-cloud-heading"
     >
-      <div className="site-container text-center">
-        <SectionHeading id="logo-cloud-heading">
-          Trusted by teams at
-        </SectionHeading>
+      <div className="site-container">
+        <div className="mx-auto max-w-6xl text-center">
+          <SectionHeading id="logo-cloud-heading">
+            Trusted by teams at
+          </SectionHeading>
+        </div>
       </div>
 
       <div

@@ -16,11 +16,13 @@ export default function HomeFaqSection() {
       className="bg-background pt-6 md:pt-8 lg:pt-10 pb-6 md:pb-8 lg:pb-10"
       ariaLabelledBy="faq-heading"
     >
-      <div className="mx-auto max-w-3xl">
-        <SectionHeading id="faq-heading" className="text-center">
+      <div className="mx-auto max-w-6xl text-center">
+        <SectionHeading id="faq-heading">
           Frequently asked questions
         </SectionHeading>
-        <div className="mt-10 space-y-3">
+      </div>
+      <div className="mx-auto mt-10 max-w-3xl">
+        <div className="space-y-3">
           {HOMEPAGE_FAQS.map((faq, i) => {
             const isOpen = openIndex === i;
             const panelId = `faq-panel-${i}`;

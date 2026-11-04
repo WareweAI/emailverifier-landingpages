@@ -75,12 +75,14 @@ export default function HomepagePricingCard({
 
   return (
     <div ref={scope} className="relative">
-      <div className="mx-auto max-w-2xl text-center">
+      <div className="mx-auto max-w-6xl text-center">
         <SectionEyebrow align="center">Pricing</SectionEyebrow>
         <SectionHeading id="pricing-heading" withEyebrow>
           Buy Credits
         </SectionHeading>
-        <SectionLead>Outreach, or pay as you go.</SectionLead>
+        <SectionLead className="mx-auto max-w-3xl">
+          Outreach, or pay as you go.
+        </SectionLead>
       </div>
 
       {/* Mirrors app.emailverifier.io/dashboard/billing Buy Credits card */}
