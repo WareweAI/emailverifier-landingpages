@@ -156,7 +156,7 @@ export default function VolumeSelector({
       />
 
       <div id={scaleId} className="flex justify-between text-xs text-ink-muted">
-        <span>25K</span>
+        <span>10K</span>
         <span>100K</span>
         <span>10M</span>
       </div>
@@ -164,7 +164,13 @@ export default function VolumeSelector({
       <div className="flex flex-wrap gap-2" role="group" aria-label="Volume presets">
         {presets.map((preset) => {
           const selected = preset === volume;
+          const mostPopular = preset === 25_000;
           const mostValue = preset === 100_000;
+          const badge = mostPopular
+            ? "Most popular"
+            : mostValue
+              ? "Most value"
+              : null;
 
           return (
             <button
@@ -182,9 +188,9 @@ export default function VolumeSelector({
               }`}
             >
               {formatPresetLabel(preset)}
-              {mostValue ? (
+              {badge ? (
                 <span className="ml-1 text-[10px] font-semibold uppercase tracking-wide text-primary/80">
-                  Most value
+                  {badge}
                 </span>
               ) : null}
             </button>

@@ -1,5 +1,5 @@
-import dynamic from "next/dynamic";
 import Image from "next/image";
+import TestimonialsLedger from "@/Components/TestimonialsLedger";
 import {
   SectionEyebrow,
   SectionHeading,
@@ -7,19 +7,6 @@ import {
 } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { StarRating } from "@/Components/ui/StarRating";
-
-const TestimonialsLedger = dynamic(
-  () => import("@/Components/TestimonialsLedger"),
-  {
-    loading: () => (
-      <div
-        className="mx-auto min-h-[280px]"
-        aria-busy="true"
-        aria-label="Loading reviews"
-      />
-    ),
-  }
-);
 
 export default function Testimonials() {
   return (
@@ -29,13 +16,12 @@ export default function Testimonials() {
       className="overflow-x-hidden bg-background pt-8 pb-8 md:pt-12 md:pb-10 lg:pt-16 lg:pb-12"
     >
       <div className="mx-auto max-w-6xl text-center">
-        <SectionEyebrow align="center">Reviews</SectionEyebrow>
+        <SectionEyebrow align="center">Testimonials</SectionEyebrow>
         <SectionHeading id="testimonials-heading">
-          Loved by Thousands of Businesses
+        Loved by Sales Teams, Marketers, Founders, Recruiters, and Professionals
         </SectionHeading>
         <SectionLead className="mx-auto max-w-3xl">
-          See what our customers have to say about their experience with
-          Emailverifier.io
+        See what our customers have to say about their experience with EmailVerifier.io
         </SectionLead>
       </div>
 
@@ -43,7 +29,7 @@ export default function Testimonials() {
         <TestimonialsLedger />
       </div>
 
-      <div className="mx-auto mt-8 flex max-w-4xl flex-wrap items-center justify-center gap-x-2.5 gap-y-2 px-4 text-base leading-snug text-ink sm:mt-10 sm:text-lg">
+      <p className="mx-auto mt-8 flex max-w-4xl flex-wrap items-center justify-center gap-x-2.5 gap-y-2 px-4 text-base leading-snug text-ink sm:mt-10 sm:text-lg">
         <StarRating
           rating={4.8}
           size={22}
@@ -51,31 +37,33 @@ export default function Testimonials() {
           className="gap-1"
         />
         <span className="font-display text-xl font-bold tracking-tight sm:text-2xl">
-          4.8
+          4.8/5
         </span>
-        <span>on</span>
-        <span className="inline-flex items-center gap-1.5">
+        <span>overall satisfaction across</span>
+        <span className="inline-flex items-center gap-2">
+          <Image
+            src="/assets/trustpilot-icon.svg"
+            alt="Trustpilot"
+            width={20}
+            height={20}
+            className="h-5 w-5 object-contain"
+          />
           <Image
             src="/assets/capterra.svg"
-            alt=""
+            alt="Capterra"
             width={20}
             height={20}
             className="h-5 w-5 object-contain"
           />
-          Capterra,
-        </span>
-        <span>and reviews from</span>
-        <span className="inline-flex items-center gap-1.5">
           <Image
             src="/assets/reddit.svg"
-            alt=""
+            alt="Reddit"
             width={20}
             height={20}
             className="h-5 w-5 object-contain"
           />
-          Reddit.
         </span>
-      </div>
+      </p>
     </SectionShell>
   );
 }

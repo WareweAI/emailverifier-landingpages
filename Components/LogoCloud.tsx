@@ -1,85 +1,95 @@
 import Image from "next/image";
-import { SectionHeading } from "@/Components/ui/SectionHeading";
+import Link from "next/link";
+import { Button } from "@/Components/ui/Button";
+import {
+  SectionEyebrow,
+  SectionHeading,
+  SectionLead,
+} from "@/Components/ui/SectionHeading";
 
-/** Approved LogoCloud marks allowlist (AGENTS.md). Transparent WebPs. */
+/** Product integration marks — matches this section’s claimed platforms. */
 const LOGOS = [
   {
-    src: "/logos/google.webp",
-    alt: "Google",
-    width: 140,
-    height: 40,
+    src: "/logos/integrations/google-sheets.svg",
+    alt: "Google Sheets",
+    label: "Google Sheets",
+    width: 40,
+    height: 54,
   },
   {
-    src: "/logos/microsoft.webp",
-    alt: "Microsoft",
-    width: 160,
-    height: 40,
+    src: "/logos/integrations/hubspot-wordmark.png",
+    alt: "HubSpot",
+    width: 150,
+    height: 42,
   },
   {
-    src: "/logos/slack.webp",
-    alt: "Slack",
+    src: "/logos/integrations/salesforce-wordmark.png",
+    alt: "Salesforce",
     width: 120,
-    height: 40,
+    height: 84,
   },
   {
-    src: "/logos/deepmind.webp",
-    alt: "DeepMind",
-    width: 160,
-    height: 40,
+    src: "/logos/integrations/onedrive-2025.svg",
+    alt: "OneDrive",
+    label: "OneDrive",
+    width: 72,
+    height: 48,
   },
 ] as const;
-
-/** Repeat so one marquee half is wide enough on large screens. */
-const TRACK_LOGOS = [...LOGOS, ...LOGOS, ...LOGOS];
-
-function LogoTrack({ ariaHidden = false }: { ariaHidden?: boolean }) {
-  return (
-    <ul
-      className="flex shrink-0 items-center gap-10 px-5 sm:gap-14 sm:px-7"
-      aria-hidden={ariaHidden || undefined}
-      aria-label={ariaHidden ? undefined : "Brand marks"}
-    >
-      {TRACK_LOGOS.map((logo, index) => (
-        <li
-          key={`${ariaHidden ? "b" : "a"}-${logo.src}-${index}`}
-          className="shrink-0"
-        >
-          <Image
-            src={logo.src}
-            alt={ariaHidden ? "" : logo.alt}
-            width={logo.width}
-            height={logo.height}
-            unoptimized
-            className="h-9 w-auto max-w-[9rem] object-contain sm:h-10"
-            loading="lazy"
-          />
-        </li>
-      ))}
-    </ul>
-  );
-}
 
 export default function LogoCloud() {
   return (
     <section
-      className="overflow-hidden bg-background py-12 md:py-16"
+      className="bg-background py-12 md:py-16"
       aria-labelledby="logo-cloud-heading"
     >
       <div className="site-container">
         <div className="mx-auto max-w-6xl text-center">
+          <SectionEyebrow align="center">Integrations</SectionEyebrow>
           <SectionHeading id="logo-cloud-heading">
-            Trusted by teams at
+            Integrate with trusted platforms
           </SectionHeading>
+          <SectionLead className="mx-auto max-w-3xl">
+            Connect EmailVerifier.io to Google Sheets, HubSpot, Salesforce, and
+            OneDrive to verify contacts where they already live, or use the API
+            to bring verification into any app that can make an HTTP request.
+          </SectionLead>
         </div>
-      </div>
 
-      <div
-        className="group relative mt-10 mask-[linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
-        role="presentation"
-      >
-        <div className="flex w-max animate-logo-marquee group-hover:[animation-play-state:paused] motion-reduce:animate-none">
-          <LogoTrack />
-          <LogoTrack ariaHidden />
+        <ul
+          className="mx-auto mt-10 flex max-w-5xl list-none flex-wrap items-center justify-center gap-x-10 gap-y-6 p-0 sm:gap-x-14"
+          aria-label="Integration platforms"
+        >
+          {LOGOS.map((logo) => {
+            const label = "label" in logo ? logo.label : undefined;
+            return (
+              <li
+                key={logo.src}
+                className="flex items-center gap-2.5"
+              >
+                <Image
+                  src={logo.src}
+                  alt={label ? "" : logo.alt}
+                  width={logo.width}
+                  height={logo.height}
+                  unoptimized
+                  className="h-9 w-auto object-contain sm:h-10"
+                  loading="lazy"
+                />
+                {label ? (
+                  <span className="text-base font-semibold tracking-tight text-ink sm:text-lg">
+                    {label}
+                  </span>
+                ) : null}
+              </li>
+            );
+          })}
+        </ul>
+
+        <div className="mt-10 flex justify-center">
+          <Button asChild variant="secondary" size="md">
+            <Link href="/integrations">View all Integrations</Link>
+          </Button>
         </div>
       </div>
     </section>

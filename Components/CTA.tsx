@@ -8,6 +8,29 @@ import { StarRating } from "./ui/StarRating";
 
 const REGISTER_URL = "https://app.emailverifier.io/register";
 
+const REVIEW_PLATFORMS = [
+  {
+    id: "trustpilot",
+    src: "/assets/trustpilot-icon.svg",
+    alt: "Trustpilot",
+  },
+  {
+    id: "capterra",
+    src: "/assets/capterra.svg",
+    alt: "Capterra",
+  },
+  {
+    id: "g2",
+    src: "/assets/g2.png",
+    alt: "G2",
+  },
+  {
+    id: "reddit",
+    src: "/assets/reddit.svg",
+    alt: "Reddit",
+  },
+] as const;
+
 function CtaDecor() {
   return (
     <svg
@@ -101,25 +124,29 @@ export default function CTA() {
               No setup, No credit card, No stress — Just results.
             </p>
             <div
-              className="flex items-center gap-2 text-sm text-primary-foreground/80"
-              aria-label="Capterra 4.8 rating"
+              className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-sm text-primary-foreground/80"
+              aria-label="4.8 out of 5 on Trustpilot, Capterra, G2, and Reddit"
             >
-              <Image
-                src="/assets/capterra.svg"
-                alt=""
-                width={20}
-                height={20}
-                className="h-5 w-5 object-contain"
-              />
-              <span className="font-semibold text-primary-foreground">
-                Capterra
-              </span>
               <span className="font-semibold text-primary-foreground">4.8</span>
               <StarRating
                 rating={4.8}
                 size={14}
                 activeColor="var(--color-score-mid-high)"
               />
+              <ul className="flex list-none items-center gap-2.5 p-0">
+                {REVIEW_PLATFORMS.map((platform) => (
+                  <li key={platform.id} className="shrink-0">
+                    <Image
+                      src={platform.src}
+                      alt={platform.alt}
+                      width={20}
+                      height={20}
+                      unoptimized={platform.src.endsWith(".svg")}
+                      className="h-5 w-5 object-contain"
+                    />
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

@@ -68,11 +68,13 @@ export default function SeasonalPricingCard({
         >
           <span className="sr-only">Current total price: </span>${price.usd}
         </p>
-        <p className="mt-1 text-sm text-gray-600">
-          <span className="line-through">${price.listUsdFormatted}</span>
-          {" · "}
-          Save {price.savePct}% vs 10K packs
-        </p>
+        {price.savePct > 0 ? (
+          <p className="mt-1 text-sm text-gray-600">
+            <span className="line-through">${price.listUsdFormatted}</span>
+            {" · "}
+            Save {price.savePct}% vs 10K packs
+          </p>
+        ) : null}
         <p className="mt-1 text-sm text-gray-600">
           ${price.ratePerEmail.toFixed(4)} per email verification
         </p>

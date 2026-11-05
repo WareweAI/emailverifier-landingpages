@@ -1,15 +1,21 @@
 "use client";
 
 import { useMemo, useRef } from "react";
-import Image from "next/image";
-import { Check, ChevronLeft, ChevronRight, MailCheck, Minus, Plus } from "lucide-react";
+import {
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  MailCheck,
+  Minus,
+  Plus,
+  ShieldCheck,
+} from "lucide-react";
 import { Button } from "../ui/Button";
 import {
   SectionEyebrow,
   SectionHeading,
   SectionLead,
 } from "@/Components/ui/SectionHeading";
-import { StarRating } from "@/Components/ui/StarRating";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
 import {
@@ -78,10 +84,10 @@ export default function HomepagePricingCard({
       <div className="mx-auto max-w-6xl text-center">
         <SectionEyebrow align="center">Pricing</SectionEyebrow>
         <SectionHeading id="pricing-heading" withEyebrow>
-          Buy Credits
+          Transparent Pay-As-You-Go credits
         </SectionHeading>
         <SectionLead className="mx-auto max-w-3xl">
-          Outreach, or pay as you go.
+          Start with 100 free credits. Buy more only when you need them.
         </SectionLead>
       </div>
 
@@ -180,7 +186,9 @@ export default function HomepagePricingCard({
             >
               {HOMEPAGE_PRESETS.map((preset) => {
                 const selected = pack.credits === preset;
+                const mostPopular = preset === 25_000;
                 const mostValue = preset === 100_000;
+                const hasBadge = mostPopular || mostValue;
                 return (
                   <button
                     key={preset}
@@ -193,19 +201,19 @@ export default function HomepagePricingCard({
                       selected
                         ? "border-primary bg-primary-soft text-primary"
                         : "border-line bg-surface text-ink hover:border-primary/50 hover:bg-surface-muted",
-                      mostValue &&
+                      hasBadge &&
                         "inline-flex min-w-24 flex-col items-center gap-0.5 px-5 py-1.5"
                     )}
                   >
                     {formatPresetLabel(preset)}
-                    {mostValue ? (
+                    {hasBadge ? (
                       <span
                         className={cn(
                           "whitespace-nowrap text-[9px] font-bold uppercase tracking-wide",
                           selected ? "text-primary" : "text-primary/80"
                         )}
                       >
-                        Most value
+                        {mostPopular ? "Most popular" : "Most value"}
                       </span>
                     ) : null}
                   </button>
@@ -239,13 +247,20 @@ export default function HomepagePricingCard({
               </span>
             </h3>
 
-            <p className="mt-2 text-sm text-ink-muted">
-              <span className="line-through">${price.listUsdFormatted}</span>
-              {" "}
-              Save {price.savePct}% vs 10K packs
-            </p>
+            {price.savePct > 0 ? (
+              <p className="mt-2 text-sm text-ink-muted">
+                <span className="line-through">${price.listUsdFormatted}</span>
+                {" "}
+                Save {price.savePct}% vs 10K packs
+              </p>
+            ) : null}
 
-            <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+            <p
+              className={cn(
+                "text-sm leading-relaxed text-ink-muted",
+                price.savePct > 0 ? "mt-3" : "mt-2"
+              )}
+            >
               ${price.ratePerEmail.toFixed(4)} per email verification. Credits
               never expire.
             </p>
@@ -295,23 +310,19 @@ export default function HomepagePricingCard({
 
           <div
             className="mt-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-t border-line pt-5"
-            aria-label="Capterra 4.8 rating and 1+ billion emails checked"
+            aria-label="Accuracy guarantee and 1+ billion emails checked"
           >
-            <div className="flex items-center gap-2">
-              <Image
-                src="/assets/capterra.svg"
-                alt="Capterra logo"
-                width={28}
-                height={28}
-                className="h-7 w-7 object-contain"
+            <p className="flex min-w-0 items-center gap-2 text-sm leading-snug whitespace-nowrap text-ink">
+              <ShieldCheck
+                className="h-5 w-5 shrink-0 text-success"
+                aria-hidden
               />
-              <span className="text-base font-semibold text-ink">Capterra</span>
-              <div className="flex items-center gap-1.5 text-sm text-ink-muted">
-                <span className="font-semibold text-ink">4.8</span>
-                <StarRating rating={4.8} size={16} activeColor="#fdc700" />
-                <span>Rating</span>
-              </div>
-            </div>
+              <span>
+                <span className="font-semibold">99.7% Accuracy Guarantee:</span>{" "}
+                If any other verifier beats our accuracy, get an instant 100%
+                credit refund.
+              </span>
+            </p>
             <div className="flex items-center gap-1.5">
               <MailCheck
                 className="h-5 w-5 shrink-0 text-primary"

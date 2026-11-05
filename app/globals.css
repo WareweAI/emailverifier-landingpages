@@ -96,20 +96,6 @@ body {
   animation: price-in 180ms ease-out;
 }
 
-@keyframes logo-marquee {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@utility animate-logo-marquee {
-  animation: logo-marquee 40s linear infinite;
-}
-
 /* Hero — tiled noise grain (SVG feTurbulence, no asset file) */
 @utility hero-grain {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -303,10 +289,6 @@ html[data-sale-dismissed="1"] [data-sale-banner] {
   }
 
   .animate-price-in {
-    animation: none;
-  }
-
-  .animate-logo-marquee {
     animation: none;
   }
 }

@@ -1,7 +1,3 @@
-"use client";
-
-import { useRef } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
 
 /**
@@ -82,31 +78,11 @@ const REVIEWS: LedgerReview[] = [
   },
 ];
 
-/** Interleaved split so each row shows a mix of quotes. */
-const ROW_TOP = REVIEWS.filter((_, i) => i % 2 === 0);
-const ROW_BOTTOM = REVIEWS.filter((_, i) => i % 2 === 1);
-
-const GAP_PX = 16;
-const MIN_SEQUENCE_CARDS = 4;
-
 function initials(username: string): string {
   const clean = username.replace(/^u\//i, "");
   const letters = clean.replace(/[^a-zA-Z0-9]/g, "");
   if (letters.length >= 2) return letters.slice(0, 2).toUpperCase();
   return (letters || "?").slice(0, 2).toUpperCase();
-}
-
-/** Pad short rows so the sequence is wide enough before the seamless 2× duplicate. */
-function padSequence(items: LedgerReview[]): LedgerReview[] {
-  if (items.length === 0) return [];
-  if (items.length >= MIN_SEQUENCE_CARDS) return items;
-  const out: LedgerReview[] = [];
-  let i = 0;
-  while (out.length < MIN_SEQUENCE_CARDS) {
-    out.push(items[i % items.length]);
-    i += 1;
-  }
-  return out;
 }
 
 function RedditBadge({ subreddit }: { subreddit: string }) {
@@ -124,19 +100,14 @@ function RedditBadge({ subreddit }: { subreddit: string }) {
 function TestimonialCard({
   review,
   className,
-  duplicate = false,
 }: {
   review: LedgerReview;
   className?: string;
-  duplicate?: boolean;
 }) {
-  const duplicateLinkProps = duplicate
-    ? ({ tabIndex: -1, "aria-hidden": true } as const)
-    : {};
   return (
     <article
       className={cn(
-        "flex min-h-[280px] w-[min(300px,82vw)] shrink-0 flex-col rounded-2xl border border-line bg-surface p-6 shadow-[var(--shadow-card)] sm:min-h-[300px] sm:w-[300px] sm:p-7 lg:w-[320px]",
+        "flex h-full min-h-[280px] w-full flex-col rounded-2xl border border-line bg-surface p-6 shadow-[var(--shadow-card)] sm:p-7",
         className
       )}
     >
@@ -155,7 +126,6 @@ function TestimonialCard({
             href={review.userUrl}
             target="_blank"
             rel="noopener noreferrer"
-            {...duplicateLinkProps}
             className="block truncate text-sm font-bold text-ink hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             u/{review.username}
@@ -166,7 +136,6 @@ function TestimonialCard({
               href={review.subredditUrl}
               target="_blank"
               rel="noopener noreferrer"
-              {...duplicateLinkProps}
               className="font-medium text-ink-muted hover:text-ink hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               r/{review.subreddit}
@@ -190,7 +159,6 @@ function TestimonialCard({
           href={review.commentUrl}
           target="_blank"
           rel="noopener noreferrer"
-          {...duplicateLinkProps}
           className="relative z-10 shrink-0 cursor-pointer text-xs font-medium text-ink underline underline-offset-2 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           View on Reddit
@@ -200,168 +168,20 @@ function TestimonialCard({
   );
 }
 
-function SequenceCards({
-  items,
-  keyPrefix,
-  duplicate = false,
-}: {
-  items: LedgerReview[];
-  keyPrefix: string;
-  duplicate?: boolean;
-}) {
+export default function TestimonialsLedger() {
   return (
-    <>
-      {items.map((review, i) => (
-        <TestimonialCard
-          key={`${keyPrefix}-${review.commentUrl}-${i}`}
-          review={review}
-          duplicate={duplicate}
-        />
-      ))}
-    </>
-  );
-}
-
-function TestimonialMarquee({
-  items,
-  direction,
-  duration,
-}: {
-  items: LedgerReview[];
-  direction: "left" | "right";
-  duration: number;
-}) {
-  const scope = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const sequenceRef = useRef<HTMLDivElement>(null);
-  const sequence = padSequence(items);
-
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const viewport = scope.current;
-        const track = trackRef.current;
-        const seq = sequenceRef.current;
-        if (!viewport || !track || !seq) return;
-
-        let tween: gsap.core.Tween | null = null;
-        const finePointer = window.matchMedia(
-          "(hover: hover) and (pointer: fine)"
-        );
-
-        const build = () => {
-          tween?.kill();
-          const gap =
-            Number.parseFloat(getComputedStyle(track).columnGap || "") ||
-            Number.parseFloat(getComputedStyle(track).gap || "") ||
-            GAP_PX;
-          const seqWidth = seq.offsetWidth + gap;
-          if (seqWidth <= 0) return;
-
-          const startX = direction === "left" ? 0 : -seqWidth;
-          const endX = direction === "left" ? -seqWidth : 0;
-
-          gsap.set(track, { x: startX });
-          tween = gsap.to(track, {
-            x: endX,
-            duration,
-            ease: "none",
-            repeat: -1,
-          });
-        };
-
-        build();
-
-        const pause = () => tween?.pause();
-        const resume = () => tween?.resume();
-
-        const onFocusOut = (e: FocusEvent) => {
-          if (!viewport.contains(e.relatedTarget as Node | null)) {
-            resume();
-          }
-        };
-
-        if (finePointer.matches) {
-          viewport.addEventListener("pointerenter", pause);
-          viewport.addEventListener("pointerleave", resume);
-        }
-        viewport.addEventListener("focusin", pause);
-        viewport.addEventListener("focusout", onFocusOut);
-        window.addEventListener("resize", build);
-
-        return () => {
-          tween?.kill();
-          tween = null;
-          viewport.removeEventListener("pointerenter", pause);
-          viewport.removeEventListener("pointerleave", resume);
-          viewport.removeEventListener("focusin", pause);
-          viewport.removeEventListener("focusout", onFocusOut);
-          window.removeEventListener("resize", build);
-        };
-      });
-
-      return () => mm.revert();
-    },
-    { scope, dependencies: [direction, duration, items] }
-  );
-
-  return (
-    <div
-      ref={scope}
-      className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]"
+    <ul
+      aria-label="Reddit customer reviews"
+      className="mx-auto flex list-none flex-wrap justify-center gap-4 p-0"
     >
-      <div
-        ref={trackRef}
-        className="flex w-max will-change-transform"
-        style={{ gap: GAP_PX }}
-      >
-        <div
-          ref={sequenceRef}
-          className="flex items-stretch"
-          style={{ gap: GAP_PX }}
-        >
-          <SequenceCards items={sequence} keyPrefix="a" />
-        </div>
-        <div
-          className="flex items-stretch"
-          style={{ gap: GAP_PX }}
-          aria-hidden="true"
-        >
-          <SequenceCards items={sequence} keyPrefix="b" duplicate />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function StaticReviewsGrid() {
-  return (
-    <ul className="mx-auto grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
       {REVIEWS.map((review) => (
-        <li key={review.commentUrl} className="min-w-0">
-          <TestimonialCard
-            review={review}
-            className="h-full w-full sm:w-full lg:w-full"
-          />
+        <li
+          key={review.commentUrl}
+          className="w-full min-w-0 sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.7rem)]"
+        >
+          <TestimonialCard review={review} />
         </li>
       ))}
     </ul>
-  );
-}
-
-export default function TestimonialsLedger() {
-  return (
-    <div role="region" aria-label="Reddit customer reviews" className="relative">
-      <div className="-mx-4 flex flex-col gap-4 sm:-mx-6 lg:-mx-8 motion-reduce:hidden">
-        <TestimonialMarquee items={ROW_TOP} direction="left" duration={45} />
-        <TestimonialMarquee items={ROW_BOTTOM} direction="right" duration={52} />
-      </div>
-
-      <div className="hidden motion-reduce:block">
-        <StaticReviewsGrid />
-      </div>
-    </div>
   );
 }

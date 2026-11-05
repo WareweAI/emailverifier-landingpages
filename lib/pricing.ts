@@ -9,6 +9,7 @@ export const PACK_COMPARE_PER_THOUSAND = 2;
 export const RATE_PER_THOUSAND = 1.8;
 
 export const CREDIT_PACKS = [
+  { credits: 10_000, priceUsd: 20, listUsd: 20, savePct: 0 },
   { credits: 25_000, priceUsd: 45, listUsd: 50, savePct: 10 },
   { credits: 50_000, priceUsd: 80, listUsd: 100, savePct: 20 },
   { credits: 100_000, priceUsd: 140, listUsd: 200, savePct: 30 },
@@ -21,7 +22,7 @@ export type CreditPack = (typeof CREDIT_PACKS)[number];
 
 export const PRESETS = CREDIT_PACKS.map((p) => p.credits);
 
-/** Homepage calculator — same packs as dashboard billing. */
+/** Homepage calculator — same packs as dashboard billing, including the 10K base. */
 export const HOMEPAGE_PRESETS = PRESETS;
 
 export const VOLUME_MIN = CREDIT_PACKS[0].credits;
