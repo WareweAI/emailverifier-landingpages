@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:comparison": "npx --yes tsx --test lib/competitor-comparison.test.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

@@ -12,11 +12,18 @@ export type PricingSectionProps = {
   variant?: "section" | "embedded" | "homepage";
   /** Preselect a credit pack, e.g. from the sale banner. */
   initialCredits?: number;
+  /** Page routes use h1; homepage section stays h2. */
+  headingAs?: "h1" | "h2";
+  heading?: string;
+  lead?: string;
 };
 
 export default function PricingSection({
   variant = "section",
   initialCredits,
+  headingAs = "h2",
+  heading,
+  lead,
 }: PricingSectionProps) {
   const [volume, setVolume] = useState<number>(() =>
     nearestCreditPack(
@@ -31,7 +38,13 @@ export default function PricingSection({
         ariaLabelledBy="pricing-heading"
         className="bg-background pt-8 pb-12 md:pt-10 md:pb-16 lg:pt-12 lg:pb-20"
       >
-        <HomepagePricingCard volume={volume} onVolumeChange={setVolume} />
+        <HomepagePricingCard
+          volume={volume}
+          onVolumeChange={setVolume}
+          headingAs={headingAs}
+          heading={heading}
+          lead={lead}
+        />
       </SectionShell>
     );
   }

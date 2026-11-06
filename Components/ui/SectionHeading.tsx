@@ -42,6 +42,8 @@ type SectionHeadingProps = {
   /** Space above the title when an eyebrow sits above it */
   withEyebrow?: boolean;
   tone?: "default" | "onDark";
+  /** Use h1 on dedicated pages (e.g. /pricing); sections stay h2. */
+  as?: "h1" | "h2";
   className?: string;
 } & Omit<HTMLAttributes<HTMLHeadingElement>, "id" | "children" | "className">;
 
@@ -50,11 +52,12 @@ export function SectionHeading({
   children,
   withEyebrow = false,
   tone = "default",
+  as: Tag = "h2",
   className,
   ...rest
 }: SectionHeadingProps) {
   return (
-    <h2
+    <Tag
       id={id}
       className={cn(
         sectionHeadingClassName,
@@ -65,7 +68,7 @@ export function SectionHeading({
       {...rest}
     >
       {children}
-    </h2>
+    </Tag>
   );
 }
 

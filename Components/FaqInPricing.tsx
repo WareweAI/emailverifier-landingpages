@@ -1,136 +1,74 @@
-
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
-import { Minus, Plus } from "lucide-react";
-
-const faqs = [
-    {
-        question: "Do my verification credits ever expire?",
-        answer:
-            "No. Seasonal one-time credits never expire. You can use them anytime — whether it's today, next month, or next year.",
-    },
-    {
-        question: "What's the difference between Seasonal credits and Unlimited?",
-        answer:
-            "Pay-as-you-go credits are a one-time purchase — packs from 25K to 10M, with volume discounts. Unlimited is a $299/month plan with unlimited emails per month, available for a limited number of customers.",
-    },
-    {
-        question: "Is there a subscription or recurring charge?",
-        answer:
-            "Only if you choose Unlimited at $299/month. Seasonal credits are a one-time purchase with no recurring fees.",
-    },
-    {
-        question: "Can I buy more credits later or switch to Unlimited?",
-        answer:
-            "Yes. You can purchase additional seasonal credits anytime. If Unlimited spots are still available, you can also start the monthly plan for continuous verification.",
-    },
-    {
-        question: "What's included with either option?",
-        answer:
-            "Both include bulk email verifier and real-time verification, email verification API access, CSV list cleaning, disposable email detection, and role-based filtering — at no extra cost.",
-    },
-    {
-        question: "Do you offer refunds if I'm not satisfied?",
-        answer:
-            "Yes, if you experience any technical issue or incorrect results, you can contact our support team within 7 days for review and possible refund.",
-    },
-];
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { SectionHeading } from "@/Components/ui/SectionHeading";
+import { SectionShell } from "@/Components/ui/SectionShell";
+import { PRICING_PAGE_FAQS } from "@/lib/pricing-page-faq";
+import { cn } from "@/lib/utils";
 
 export default function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-    const [openIndex, setOpenIndex] = useState<number | null>(0);
+  return (
+    <SectionShell
+      id="faqs"
+      className="bg-background pt-6 md:pt-8 lg:pt-10 pb-6 md:pb-8 lg:pb-10"
+      ariaLabelledBy="faq-heading"
+    >
+      <div className="mx-auto max-w-6xl text-center">
+        <SectionHeading id="faq-heading">
+          Frequently asked questions
+        </SectionHeading>
+      </div>
+      <div className="mx-auto mt-10 max-w-3xl">
+        <div className="space-y-3">
+          {PRICING_PAGE_FAQS.map((faq, i) => {
+            const isOpen = openIndex === i;
+            const panelId = `pricing-faq-panel-${i}`;
+            const buttonId = `pricing-faq-button-${i}`;
 
-    return (
-        <section
-            aria-labelledby="faq-heading"
-            className="bg-blue-50 py-16"
-            id="faqs"
-        >
-            <div className="site-container">
-                <div className="mx-auto max-w-3xl">
-                <h2
-                    id="faq-heading"
-                    className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-10"
+            return (
+              <div
+                key={faq.question}
+                className="overflow-hidden rounded-2xl border border-line bg-surface"
+              >
+                <button
+                  id={buttonId}
+                  type="button"
+                  className="flex w-full items-center justify-between p-5 text-left font-semibold text-ink"
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                  data-ev-event="faq_open"
                 >
-                    Email verifier pricing FAQs
-                </h2>
-
-                <div className="space-y-4">
-                    {faqs.map((faq, i) => (
-                        <FaqItem
-                            key={i}
-                            id={`faq-${i}`}
-                            question={faq.question}
-                            answer={faq.answer}
-                            isOpen={openIndex === i}
-                            onToggle={() => setOpenIndex(openIndex === i ? null : i)}
-                        />
-                    ))}
-                </div>
-                </div>
-            </div>
-        </section>
-    );
-}
-
-function FaqItem({
-    id,
-    question,
-    answer,
-    isOpen,
-    onToggle,
-}: {
-    id: string;
-    question: string;
-    answer: string;
-    isOpen: boolean;
-    onToggle: () => void;
-}) {
-    const ref = useRef<HTMLDivElement>(null);
-    const [height, setHeight] = useState(0);
-
-    useLayoutEffect(() => {
-        if (ref.current) {
-            requestAnimationFrame(() => {
-                setHeight(isOpen ? ref.current!.scrollHeight : 0);
-            });
-        }
-    }, [isOpen]);
-
-    return (
-        <article
-            className="border border-gray-200 rounded-xl bg-white shadow-sm hover:shadow-md transition p-5"
-        >
-            <button
-                onClick={onToggle}
-                className="flex w-full items-center justify-between text-left text-base sm:text-lg font-semibold text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
-                aria-controls={`${id}-panel`}
-                aria-expanded={isOpen}
-                id={`${id}-button`}
-            >
-                {question}
-                <span
-                    className={`ml-4 text-blue-600 border rounded-full p-1.5 inline-flex items-center justify-center transition-transform duration-300 ${isOpen ? "rotate-180 bg-blue-50" : ""
-                        }`}
+                  {faq.question}
+                  <ChevronDown
+                    className={cn(
+                      "h-5 w-5 shrink-0 text-ink-muted transition-transform",
+                      isOpen && "rotate-180"
+                    )}
+                    aria-hidden
+                  />
+                </button>
+                <div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={buttonId}
+                  className={cn(
+                    "grid transition-[grid-template-rows] duration-200",
+                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                  )}
                 >
-                    {isOpen ? <Minus size={14} /> : <Plus size={14} />}
-                </span>
-            </button>
-
-            <div
-                ref={ref}
-                id={`${id}-panel`}
-                role="region"
-                aria-labelledby={`${id}-button`}
-                className="overflow-hidden transition-all duration-500 ease-in-out"
-                style={{ maxHeight: height }}
-            >
-                <p className="mt-2 text-gray-600 leading-relaxed text-sm sm:text-base">
-                    {answer}
-                </p>
-            </div>
-
-        </article>
-    );
+                  <div className="overflow-hidden">
+                    <p className="px-5 pb-5 text-ink-muted">{faq.answer}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </SectionShell>
+  );
 }

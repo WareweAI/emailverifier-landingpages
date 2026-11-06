@@ -1,7 +1,13 @@
 import FAQSection from "@/Components/FaqInPricing";
 import CTA from "@/Components/CTA";
-import PricingCalculator from "@/Components/PricingPage/PricingCalculator";
-import { HeroWash } from "@/Components/ui/HeroWash";
+import PricingSection from "@/Components/PricingSection";
+import CompetitorComparisonSection from "@/Components/pricing-comparison/CompetitorComparisonSection";
+import JsonLd, {
+  faqPageJsonLd,
+  organizationJsonLd,
+  softwareApplicationJsonLd,
+} from "@/Components/seo/JsonLd";
+import { PRICING_PAGE_FAQS } from "@/lib/pricing-page-faq";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
@@ -23,36 +29,26 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
     Number.isFinite(parsed) && parsed > 0 ? parsed : undefined;
 
   return (
-    <main
-      className="relative isolate overflow-hidden bg-background text-ink"
-      id="pricing-main-content"
-      aria-labelledby="pricing-heading"
-    >
-      <section className="relative z-10 py-16 lg:py-20">
-        <HeroWash />
-        <div className="site-container relative z-10 min-w-0">
-          <div className="mb-10 text-center">
-            <p className="mb-4 text-sm font-semibold text-ink">Pricing</p>
-            <h1
-              id="pricing-heading"
-              className="mb-3 font-display text-3xl font-semibold tracking-tight text-ink lg:text-4xl"
-            >
-              Email verifier pricing that stays simple
-            </h1>
-            <p className="mx-auto max-w-2xl text-base text-ink-muted lg:text-lg">
-              Pay for the volume you need with our bulk email verifier and email
-              verification API — same credits, never expire. Or join the limited
-              Unlimited plan for continuous verification when checkout is
-              available.
-            </p>
-          </div>
+    <>
+      <JsonLd data={organizationJsonLd()} />
+      <JsonLd data={softwareApplicationJsonLd()} />
+      <JsonLd data={faqPageJsonLd(PRICING_PAGE_FAQS)} />
 
-          <PricingCalculator initialCredits={initialCredits} />
-        </div>
-      </section>
-
-      <FAQSection />
-      <CTA />
-    </main>
+      <main
+        className="min-h-screen flex-1 bg-background text-ink"
+        id="pricing-main-content"
+      >
+        <PricingSection
+          variant="homepage"
+          initialCredits={initialCredits}
+          headingAs="h1"
+          heading="Transparent Pay-As-You-Go email verifier credits"
+          lead="Start with 100 free credits for our email verifier. Buy more only when you need them — same credits for bulk and the email verification API, never expire."
+        />
+        <CompetitorComparisonSection />
+        <FAQSection />
+        <CTA />
+      </main>
+    </>
   );
 }

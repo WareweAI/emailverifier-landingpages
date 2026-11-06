@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef } from "react";
+import Image from "next/image";
 import {
   Check,
   ChevronLeft,
@@ -16,6 +17,8 @@ import {
   SectionHeading,
   SectionLead,
 } from "@/Components/ui/SectionHeading";
+import { StarRating } from "@/Components/ui/StarRating";
+import { PRESS_LOGOS } from "@/Components/home/ProofBar";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { cn } from "@/lib/utils";
 import {
@@ -33,11 +36,18 @@ import {
 type HomepagePricingCardProps = {
   volume: number;
   onVolumeChange: (volume: number) => void;
+  /** Page routes use h1; homepage section stays h2. */
+  headingAs?: "h1" | "h2";
+  heading?: string;
+  lead?: string;
 };
 
 export default function HomepagePricingCard({
   volume,
   onVolumeChange,
+  headingAs = "h2",
+  heading = "Transparent Pay-As-You-Go credits",
+  lead = "Start with 100 free credits. Buy more only when you need them.",
 }: HomepagePricingCardProps) {
   const scope = useRef<HTMLDivElement>(null);
   const pricePanelRef = useRef<HTMLDivElement>(null);
@@ -83,12 +93,10 @@ export default function HomepagePricingCard({
     <div ref={scope} className="relative">
       <div className="mx-auto max-w-6xl text-center">
         <SectionEyebrow align="center">Pricing</SectionEyebrow>
-        <SectionHeading id="pricing-heading" withEyebrow>
-          Transparent Pay-As-You-Go credits
+        <SectionHeading id="pricing-heading" as={headingAs} withEyebrow>
+          {heading}
         </SectionHeading>
-        <SectionLead className="mx-auto max-w-3xl">
-          Start with 100 free credits. Buy more only when you need them.
-        </SectionLead>
+        <SectionLead className="mx-auto max-w-3xl">{lead}</SectionLead>
       </div>
 
       {/* Mirrors app.emailverifier.io/dashboard/billing Buy Credits card */}
@@ -335,6 +343,75 @@ export default function HomepagePricingCard({
           </div>
         </div>
       </article>
+
+      <div className="mt-8 flex flex-col items-center gap-6 border-b border-line pb-6 sm:mt-10 sm:pb-8 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-5">
+          <p
+            id="pricing-as-seen-on"
+            className="shrink-0 rounded-md border border-line bg-surface px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-muted sm:text-xs"
+          >
+            As seen on:
+          </p>
+          <ul
+            className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:gap-x-7"
+            aria-labelledby="pricing-as-seen-on"
+          >
+            {PRESS_LOGOS.map((logo) => (
+              <li key={logo.src} className="shrink-0">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.width}
+                  height={logo.height}
+                  unoptimized={logo.src.endsWith(".svg")}
+                  sizes={`${logo.width}px`}
+                  className={cn(
+                    "h-5 w-auto max-w-[6.5rem] object-contain brightness-0 opacity-40 sm:h-6 sm:max-w-[7.5rem]",
+                    "barClassName" in logo ? logo.barClassName : undefined
+                  )}
+                  loading="lazy"
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-base leading-snug text-ink sm:text-lg lg:justify-end">
+          <StarRating
+            rating={4.8}
+            size={22}
+            activeColor="var(--color-score-mid-high)"
+            className="gap-1"
+          />
+          <span className="font-display text-xl font-bold tracking-tight sm:text-2xl">
+            4.8/5
+          </span>
+          <span>overall satisfaction across</span>
+          <span className="inline-flex items-center gap-2">
+            <Image
+              src="/assets/trustpilot-icon.svg"
+              alt="Trustpilot"
+              width={20}
+              height={20}
+              className="h-5 w-5 object-contain"
+            />
+            <Image
+              src="/assets/capterra.svg"
+              alt="Capterra"
+              width={20}
+              height={20}
+              className="h-5 w-5 object-contain"
+            />
+            <Image
+              src="/assets/reddit.svg"
+              alt="Reddit"
+              width={20}
+              height={20}
+              className="h-5 w-5 object-contain"
+            />
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
