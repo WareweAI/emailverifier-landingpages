@@ -211,7 +211,8 @@ export function DemoShell({
   className,
   children,
 }: {
-  scopeRef: RefObject<HTMLDivElement | null>;
+  /** Omit when the GSAP scope wraps a parent that also owns step chrome. */
+  scopeRef?: RefObject<HTMLDivElement | null>;
   className?: string;
   children: ReactNode;
 }) {

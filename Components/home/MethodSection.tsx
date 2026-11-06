@@ -1,9 +1,10 @@
 import {
+  SectionEyebrow,
   SectionHeading,
   SectionLead,
 } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
-import MethodSolutionsPanel from "@/Components/home/MethodSolutionsPanel";
+import MethodDeliverabilityPanel from "@/Components/home/MethodDeliverabilityPanel";
 
 export default function MethodSection() {
   return (
@@ -12,16 +13,17 @@ export default function MethodSection() {
       className="pb-6 md:pb-8 lg:pb-10"
     >
       <div className="mx-auto max-w-6xl text-center">
+        <SectionEyebrow align="center">Deliverability</SectionEyebrow>
         <SectionHeading id="method-heading">
-          What our email verifier checks on every address
+          Impact on Email Deliverability and Bounce Rate Reduction
         </SectionHeading>
         <SectionLead className="mx-auto max-w-3xl">
-          Six checks on every address — syntax, domain, mailbox, disposable,
-          role, and risk — before a send goes out.
+          EmailVerifier.io helps you keep bounce rate under 2% and lands in the
+          primary inbox.
         </SectionLead>
       </div>
 
-      <MethodSolutionsPanel />
+      <MethodDeliverabilityPanel />
     </SectionShell>
   );
 }

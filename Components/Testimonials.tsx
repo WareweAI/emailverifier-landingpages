@@ -29,7 +29,7 @@ export default function Testimonials() {
         <TestimonialsLedger />
       </div>
 
-      <p className="mx-auto mt-8 flex max-w-4xl flex-wrap items-center justify-center gap-x-2.5 gap-y-2 px-4 text-base leading-snug text-ink sm:mt-10 sm:text-lg">
+      <div className="mx-auto mt-8 flex max-w-4xl flex-wrap items-center justify-center gap-x-2.5 gap-y-2 px-4 text-base leading-snug text-ink sm:mt-10 sm:text-lg">
         <StarRating
           rating={4.8}
           size={22}
@@ -63,7 +63,7 @@ export default function Testimonials() {
             className="h-5 w-5 object-contain"
           />
         </span>
-      </p>
+      </div>
     </SectionShell>
   );
 }

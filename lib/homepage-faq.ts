@@ -5,33 +5,40 @@ export type FaqItem = {
 
 export const HOMEPAGE_FAQS: FaqItem[] = [
   {
+    question: "How do I verify an email address online?",
+    answer:
+      "Enter the address into an email verifier and run the check. A good verifier confirms the syntax, checks that the domain exists and publishes MX records, flags disposable, role-based and catch-all addresses, and then asks the receiving mail server whether the mailbox exists. On EmailVerifier.io you can run the first checks free on this page with no sign-up, and the mailbox-level SMTP check in the full app with 100 free credits.",
+  },
+  {
+    question:
+      "How do I remove catch-all, disposable and invalid emails to lower bounce rate?",
+    answer:
+      "Upload your list to a bulk email verifier, delete every address marked invalid, remove disposable addresses and spam traps, and move catch-all and role-based addresses into a separate, lower-volume segment. Re-check unknown results later, then add real-time validation to your signup forms so new bad addresses never enter the list.",
+  },
+  {
     question: "What is an email verifier?",
     answer:
-      "An email verifier checks whether an address is real, deliverable, and safe to send — without sending mail. EmailVerifier.io runs syntax, domain/MX, mailbox, disposable, catch-all, role-based, and spam-trap checks.",
+      "An email verifier is a tool that checks whether an email address is real, correctly formatted and able to receive mail, without sending a message to it. It returns a status such as safe, invalid, risky or unknown so you can decide whether to send.",
   },
   {
-    question: "Can I verify a bulk email list?",
+    question: "Does email verification send an email to the address?",
     answer:
-      "Yes. Upload a CSV, TXT, or XLSX file and download statuses for every address. Bulk verification uses the same credits as single checks.",
+      "No. Verification checks the address format, the domain's DNS and MX records and, in the full app, the mail server's response to a mailbox query. No message is ever delivered to the recipient.",
   },
   {
-    question: "Do you offer an email verification API?",
+    question:
+      "What is the difference between email verification and email validation?",
     answer:
-      "Yes. The real-time API uses the same credits as bulk verification.",
+      "The terms are often used interchangeably. Validation usually means checking that an address is correctly formed and that its domain can receive mail. Verification goes one step further and confirms that the specific mailbox exists. EmailVerifier.io does both.",
   },
   {
-    question: "How much does email verification cost?",
+    question: "Is EmailVerifier.io free?",
     answer:
-      "Pay-as-you-go credits start at $1.80 per 1,000 (25K for $45). Larger packs cost less per email — 100K is $140. Credits never expire.",
+      "The single-email checker on this page is free to use without an account. New users also get 100 free verification credits after sign-up, with no credit card needed. After that, pay-as-you-go credits start at $1.80 per 1,000 and never expire.",
   },
   {
-    question: "Do credits expire?",
+    question: "Is my data safe?",
     answer:
-      "No. Seasonal one-time credits never expire. Use them today, next month, or next year.",
-  },
-  {
-    question: "Is EmailVerifier.io GDPR compliant?",
-    answer:
-      "We follow GDPR and CCPA practices. Uploaded files are deleted 30 days after processing. See our Privacy Policy for details.",
+      "Yes. EmailVerifier.io is GDPR and CCPA compliant. Verified lists are kept for 30 days so you can download them, then they are deleted automatically.",
   },
 ];

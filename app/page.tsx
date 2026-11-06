@@ -2,7 +2,7 @@ import HeroSection from "@/Components/home/HeroSection";
 import HomeStatsStrip from "@/Components/home/HomeStatsStrip";
 import FeaturePillarsSection from "@/Components/home/FeaturePillarsSection";
 import LogoCloud from "@/Components/LogoCloud";
-//import MethodSection from "@/Components/home/MethodSection";
+import MethodSection from "@/Components/home/MethodSection";
 import Pricing from "@/Components/Pricing";
 import Testimonials from "@/Components/Testimonials";
 import HomeFaqSection from "@/Components/home/HomeFaqSection";
@@ -38,7 +38,7 @@ export default function Home() {
         <Testimonials />
         <Pricing />
         <LogoCloud />
-        {/* <MethodSection /> */}
+        <MethodSection />
         <HomeFaqSection />
         <CTA />
       </main>
