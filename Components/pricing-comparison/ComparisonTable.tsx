@@ -195,12 +195,15 @@ function GroupBlock({
             type="button"
             aria-expanded={expanded}
             onClick={onToggle}
-            className="flex min-h-11 w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-semibold uppercase tracking-wide text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
+            className="flex min-h-11 w-full items-center gap-2 px-4 py-3 text-left text-sm font-semibold uppercase tracking-wide text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
           >
-            {label}
-            <span className="text-ink-muted" aria-hidden>
+            <span
+              className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-line bg-surface text-xs leading-none text-ink-muted"
+              aria-hidden
+            >
               {expanded ? "−" : "+"}
             </span>
+            {label}
           </button>
         </th>
       </tr>
