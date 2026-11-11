@@ -13,7 +13,9 @@ import {
 } from "lucide-react";
 import {
   API_PRODUCT_TABS,
+  type ApiEndpointDoc,
   type ApiLang,
+  type ApiProductTab,
 } from "@/lib/api-docs-content";
 import { cn } from "@/lib/utils";
 
@@ -36,17 +38,17 @@ declare global {
 }
 
 export default function ApiDocsExplorer() {
-  const [productId, setProductId] = useState(API_PRODUCT_TABS[0].id);
-  const [endpointId, setEndpointId] = useState(
+  const [productId, setProductId] = useState<string>(API_PRODUCT_TABS[0].id);
+  const [endpointId, setEndpointId] = useState<string>(
     API_PRODUCT_TABS[0].endpoints[0].id,
   );
   const [lang, setLang] = useState<ApiLang>("curl");
   const [copied, setCopied] = useState(false);
 
-  const product =
+  const product: ApiProductTab =
     API_PRODUCT_TABS.find((tab) => tab.id === productId) ?? API_PRODUCT_TABS[0];
 
-  const endpoint = useMemo(() => {
+  const endpoint: ApiEndpointDoc = useMemo(() => {
     return (
       product.endpoints.find((item) => item.id === endpointId) ??
       product.endpoints[0]
@@ -56,7 +58,7 @@ export default function ApiDocsExplorer() {
   const selectProduct = (id: string) => {
     const next = API_PRODUCT_TABS.find((tab) => tab.id === id);
     if (!next) return;
-    setProductId(id);
+    setProductId(next.id);
     setEndpointId(next.endpoints[0].id);
   };
 
