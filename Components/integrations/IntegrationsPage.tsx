@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CheckCircle2, Code2, FileSpreadsheet, Upload } from "lucide-react";
 import { Button } from "@/Components/ui/Button";
 import { HeroWash } from "@/Components/ui/HeroWash";
+import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import ApiSnippet from "@/Components/ui/ApiSnippet";
 import { Reveal } from "@/Components/landing/Reveal";
@@ -143,7 +144,15 @@ export default function IntegrationsPage() {
         aria-labelledby="integrations-heading"
       >
         <HeroWash />
-        <div className="site-container relative z-10 mx-auto max-w-3xl text-center">
+        <div className="site-container relative z-10">
+          <PageBreadcrumb
+            className="mb-6"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Integrations" },
+            ]}
+          />
+          <div className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-medium text-ink-muted">Integrations</p>
           <h1
             id="integrations-heading"
@@ -191,6 +200,7 @@ export default function IntegrationsPage() {
               </li>
             ))}
           </ul>
+          </div>
         </div>
       </section>
 

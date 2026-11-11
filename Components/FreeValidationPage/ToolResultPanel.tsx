@@ -7,7 +7,7 @@ import { StatusChip, type StatusVariant } from "@/Components/ui/StatusChip";
 import { API_DOCS_PATH, REGISTER_URL } from "@/lib/api-snippet";
 import { cn } from "@/lib/utils";
 
-const SCORE_MARKS = [0, 40, 70, 100] as const;
+const SCORE_MARKS = [0, 25, 50, 75, 100] as const;
 
 function clampScore(score: number): number {
   if (!Number.isFinite(score)) return 0;
@@ -84,22 +84,29 @@ export function ToolResultPanel({
       </div>
 
       <div className="mt-5">
-        <div className="relative h-2">
-          <div className="flex h-2 overflow-hidden rounded-full">
-            <div className="w-2/5 bg-linear-to-r from-danger to-danger-soft" />
-            <div className="w-[30%] bg-warning-soft" />
-            <div className="w-[30%] bg-success" />
-          </div>
-          <span
-            className="absolute top-1/2 h-3.5 w-0.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink"
-            style={{ left: `${value}%` }}
-            aria-hidden
-          />
-        </div>
-        <div className="mt-1 flex justify-between text-xs tabular-nums text-ink-muted">
+        <div className="mb-1.5 flex justify-between text-xs tabular-nums text-ink-muted">
           {SCORE_MARKS.map((mark) => (
             <span key={mark}>{mark}</span>
           ))}
+        </div>
+        <div className="relative h-2.5">
+          <div className="flex h-2.5 overflow-hidden rounded-full">
+            <div className="w-1/4 bg-score-low" />
+            <div className="w-1/4 bg-score-mid-low" />
+            <div className="w-1/4 bg-score-mid-high" />
+            <div className="w-1/4 bg-score-high" />
+          </div>
+          <span
+            className={cn(
+              "absolute top-1/2 h-4 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-surface shadow-[var(--shadow-card)]",
+              value < 25 && "bg-score-low",
+              value >= 25 && value < 50 && "bg-score-mid-low",
+              value >= 50 && value < 75 && "bg-score-mid-high",
+              value >= 75 && "bg-score-high"
+            )}
+            style={{ left: `${value}%` }}
+            aria-hidden
+          />
         </div>
       </div>
 

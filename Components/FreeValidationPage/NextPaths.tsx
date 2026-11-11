@@ -25,7 +25,7 @@ const PATHS = [
 export default function NextPaths() {
   return (
     <SectionShell
-      className="bg-linear-to-t from-primary-soft via-primary-soft via-55% to-surface"
+      className="bg-background"
       ariaLabelledBy="next-paths-heading"
     >
       <div className="mx-auto max-w-2xl text-center">

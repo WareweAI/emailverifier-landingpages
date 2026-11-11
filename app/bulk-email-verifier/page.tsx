@@ -9,9 +9,9 @@ import { BULK_PAGE_FAQS } from "@/lib/bulk-page-faq";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Bulk Email Verifier — Clean CSV Lists from $1.80/1K",
+  title: "Bulk Email Verifier & List Cleaning Service | EmailVerifier.io",
   description:
-    "Bulk email verifier for CSV lists: upload a file and download deliverability statuses. $1.80 per 1,000 — credits never expire. Same credits as the email verification API.",
+    "Bulk email verifier and list cleaning service: drag-and-drop CSV, TXT, or Excel, get valid, invalid, catch-all, role, disposable, and spam-trap statuses. $1.80 per 1,000 — credits never expire.",
   path: "/bulk-email-verifier",
   imageAlt: "Bulk email verifier CSV upload with deliverability status results",
 });

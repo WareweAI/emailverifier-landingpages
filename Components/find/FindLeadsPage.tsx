@@ -3,6 +3,7 @@ import { Building2, Filter, ListPlus, Sparkles } from "lucide-react";
 import { FindLeadsMockup } from "@/Components/home/feature-pillars/PillarMockups";
 import { FinderChecks, FinderCtas } from "@/Components/find/FinderPageParts";
 import { HeroWash } from "@/Components/ui/HeroWash";
+import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { Reveal } from "@/Components/landing/Reveal";
 import { MetricStrip } from "@/Components/landing/MetricStrip";
@@ -115,7 +116,15 @@ export default function FindLeadsPage() {
         aria-labelledby="find-leads-heading"
       >
         <HeroWash />
-        <div className="site-container relative z-10 grid min-w-0 items-center gap-10 lg:grid-cols-2 lg:gap-12">
+        <div className="site-container relative z-10 min-w-0">
+          <PageBreadcrumb
+            className="mb-6"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Find Leads" },
+            ]}
+          />
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
           <div className="mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
             <p className="text-sm font-medium text-ink-muted">Find Leads</p>
             <h1
@@ -148,6 +157,7 @@ export default function FindLeadsPage() {
             </figcaption>
             <FindLeadsMockup />
           </figure>
+          </div>
         </div>
       </section>
 

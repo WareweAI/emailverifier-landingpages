@@ -229,25 +229,34 @@ export default function VerifierDemo({
         return;
       }
 
-      const isDeliverable =
-        data?.is_deliverable === true || data?.is_safe_to_send === true;
+      // Prefer live product fields (api.emailverifier.io) when present.
+      const result = (data?.result ?? "").toString().trim().toLowerCase();
       const apiStatus = (data?.status ?? "").toString().trim().toLowerCase();
-      const displayStatus = isDeliverable
-        ? "Deliverable"
-        : apiStatus === "invalid" || apiStatus === "undeliverable"
-          ? "Undeliverable"
-          : apiStatus
-            ? apiStatus.charAt(0).toUpperCase() + apiStatus.slice(1)
-            : "Undeliverable";
+      const isDeliverable =
+        result === "safe" ||
+        data?.is_deliverable === true ||
+        data?.is_safe_to_send === true;
+      const displayStatus = result
+        ? result
+        : isDeliverable
+          ? "safe"
+          : apiStatus === "invalid" || apiStatus === "undeliverable"
+            ? "invalid"
+            : apiStatus || "unknown";
 
       setStatus(isDeliverable ? "valid" : "invalid");
       setStatusMessage(displayStatus);
       setDetails({
-        score: typeof data?.overall_score === "number" ? data.overall_score : 0,
+        score:
+          typeof data?.overall_score === "number"
+            ? data.overall_score
+            : typeof data?.score === "number"
+              ? data.score
+              : 0,
         status: displayStatus,
-        catch_all: Boolean(data?.is_catch_all),
-        disposable: Boolean(data?.is_disposable),
-        role_based: Boolean(data?.is_role_account),
+        catch_all: Boolean(data?.is_catch_all ?? data?.catch_all),
+        disposable: Boolean(data?.is_disposable ?? data?.disposable),
+        role_based: Boolean(data?.is_role_account ?? data?.role_based),
       });
       incrementUseCount();
       pushEvent("hero_verify_result", {
@@ -352,15 +361,8 @@ export default function VerifierDemo({
 
         {!isHeroDemo && !atLimit && (
           <p id={`${location}-remaining`} className="text-sm text-ink-muted">
-            {useCount === 0 ? (
-              <>
-                {remaining} free check{remaining !== 1 ? "s" : ""}.
-              </>
-            ) : (
-              <>
-                {remaining} free check{remaining !== 1 ? "s" : ""} left.
-              </>
-            )}
+            {remaining} of {MAX_VERIFICATIONS} free check
+            {remaining !== 1 ? "s" : ""} left.
           </p>
         )}
 

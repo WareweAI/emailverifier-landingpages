@@ -2,7 +2,9 @@ import FAQSection from "@/Components/FaqInPricing";
 import CTA from "@/Components/CTA";
 import PricingSection from "@/Components/PricingSection";
 import CompetitorComparisonSection from "@/Components/pricing-comparison/CompetitorComparisonSection";
+import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
 import JsonLd, {
+  breadcrumbJsonLd,
   faqPageJsonLd,
   organizationJsonLd,
   softwareApplicationJsonLd,
@@ -32,12 +34,26 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
     <>
       <JsonLd data={organizationJsonLd()} />
       <JsonLd data={softwareApplicationJsonLd()} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Pricing", path: "/pricing" },
+        ])}
+      />
       <JsonLd data={faqPageJsonLd(PRICING_PAGE_FAQS)} />
 
       <main
         className="min-h-screen flex-1 bg-background text-ink"
         id="pricing-main-content"
       >
+        <div className="site-container pt-8 md:pt-10">
+          <PageBreadcrumb
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Pricing" },
+            ]}
+          />
+        </div>
         <PricingSection
           variant="homepage"
           initialCredits={initialCredits}

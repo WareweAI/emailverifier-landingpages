@@ -1,82 +1,94 @@
+import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle2 } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import { Button } from "@/Components/ui/Button";
-import { AppChromePreview } from "@/Components/ui/AppChromePreview";
-import { ListCleanVisual } from "@/Components/ui/ListCleanVisual";
-import { JobFlowStrip } from "@/Components/ui/JobFlowStrip";
-import { EmptyStatePreview } from "@/Components/ui/EmptyStatePreview";
+import { DesktopMockup } from "@/Components/ui/DesktopMockup";
 import { HeroWash } from "@/Components/ui/HeroWash";
+import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
 import { SectionShell } from "@/Components/ui/SectionShell";
+import { StatusChip } from "@/Components/ui/StatusChip";
+import { TrustStatsRow } from "@/Components/home/HomeStatsStrip";
+import ProofBar from "@/Components/home/ProofBar";
 import { Reveal } from "@/Components/landing/Reveal";
-import { MetricStrip } from "@/Components/landing/MetricStrip";
-import { HowSteps } from "@/Components/landing/HowSteps";
 import { WhyUsTable } from "@/Components/landing/WhyUsTable";
-import { CreditPricingTeaser } from "@/Components/landing/CreditPricingTeaser";
 import { LandingFaq } from "@/Components/landing/LandingFaq";
-import { LandingFinalCta } from "@/Components/landing/LandingFinalCta";
+import CTA from "@/Components/CTA";
+import PricingSection from "@/Components/PricingSection";
+import { BulkUploadDemo } from "@/Components/bulk/BulkUploadDemo";
 import { BULK_PAGE_FAQS } from "@/lib/bulk-page-faq";
 import { REGISTER_URL } from "@/lib/api-snippet";
 import { RATE_PER_THOUSAND } from "@/lib/pricing";
 
-const METRICS = [
+const OUTPUT_STATUSES = [
   {
-    id: "rate",
-    value: `$${RATE_PER_THOUSAND.toFixed(2)}`,
-    label: "Per 1,000 at the 25K pack",
+    status: "valid",
+    variant: "success" as const,
+    means: "Mailbox accepted — safe to keep for outreach or nurture.",
   },
   {
-    id: "pack",
-    value: "25K",
-    label: "Emails for $45 (example)",
+    status: "invalid",
+    variant: "danger" as const,
+    means: "Hard failures: bad syntax, missing MX, or SMTP rejection.",
   },
   {
-    id: "free",
-    value: "100",
-    countTo: 100,
-    label: "Free credits on signup",
+    status: "catch-all",
+    variant: "warning" as const,
+    means: "Domain accepts unknown recipients — treat as risky, not valid.",
   },
   {
-    id: "delete",
-    value: "30 days",
-    label: "File deletion after processing",
+    status: "role-based",
+    variant: "warning" as const,
+    means: "Shared inboxes like info@, admin@, or support@.",
+  },
+  {
+    status: "disposable",
+    variant: "danger" as const,
+    means: "Temporary or throwaway providers — suppress before you send.",
+  },
+  {
+    status: "syntax error",
+    variant: "danger" as const,
+    means: "Malformed addresses that fail basic format checks.",
+  },
+  {
+    status: "spam traps",
+    variant: "danger" as const,
+    means: "Flagged trap patterns that can damage sender reputation.",
   },
 ] as const;
 
-const PAIN_POINTS = [
+const INTEGRATIONS = [
   {
-    title: "Cold lists go stale",
-    body: "Purchased or scraped lists carry bounces, traps, and dead domains. Sending first is expensive.",
+    id: "google-sheets",
+    label: "Google Sheets",
+    src: "/logos/integrations/google-sheets.svg",
+    width: 40,
+    height: 54,
+    showLabel: true,
   },
   {
-    title: "CRMs fill with junk",
-    body: "Imports from events and forms drag in disposable and role inboxes that never reply.",
+    id: "hubspot",
+    label: "HubSpot",
+    src: "/logos/integrations/hubspot-wordmark.png",
+    width: 150,
+    height: 42,
+    showLabel: false,
   },
   {
-    title: "Reputation compounds",
-    body: "Hard bounces and spam traps train providers to distrust your domain — not just that campaign.",
-  },
-] as const;
-
-const STEPS = [
-  {
-    step: "1",
-    title: "Export or import",
-    body: "Pull emails from your CRM or spreadsheet — or import from Drive, OneDrive, Dropbox, or Airtable.",
+    id: "salesforce",
+    label: "Salesforce",
+    src: "/logos/integrations/salesforce-wordmark.png",
+    width: 120,
+    height: 84,
+    showLabel: false,
   },
   {
-    step: "2",
-    title: "Upload the list",
-    body: "Drop CSV, TXT, or XLSX into the bulk email verifier and start the job.",
-  },
-  {
-    step: "3",
-    title: "Review statuses",
-    body: "See valid, risky, and invalid counts plus disposable, catch-all, and role flags.",
-  },
-  {
-    step: "4",
-    title: "Download clean rows",
-    body: "Export what you will send. Same credits power the email verification API if you need live checks next.",
+    id: "pipedrive",
+    label: "Pipedrive",
+    src: "/logos/integrations/pipedrive-wordmark.png",
+    width: 160,
+    height: 36,
+    showLabel: false,
   },
 ] as const;
 
@@ -97,7 +109,7 @@ const WHY_ROWS = [
     others: "partial" as const,
   },
   {
-    feature: "Risk flags (disposable, catch-all, role)",
+    feature: "Risk flags (disposable, catch-all, role, spam traps)",
     ours: "yes" as const,
     others: "partial" as const,
   },
@@ -110,33 +122,43 @@ const WHY_ROWS = [
 
 export default function BulkProductPage() {
   return (
-    <main id="main-page" className="relative flex-1">
+    <main
+      className="flex-1 bg-background text-ink"
+      id="main-page"
+      role="main"
+      aria-labelledby="bulk-hero-heading"
+    >
       <section
-        className="relative pt-12 pb-16 lg:pt-16 lg:pb-20"
+        className="relative pt-10 pb-12 md:pt-14 md:pb-16 lg:pb-20"
         aria-labelledby="bulk-hero-heading"
       >
         <HeroWash />
-        <div className="site-container relative z-10 min-w-0">
-          <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:max-w-xl lg:text-left">
+        <div className="site-container relative z-10">
+          <PageBreadcrumb
+            className="mb-6"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Bulk Email Verifier" },
+            ]}
+          />
+          <div className="mx-auto max-w-4xl text-center">
             <p className="text-sm font-medium text-ink-muted">
               Bulk email verifier
             </p>
             <h1
               id="bulk-hero-heading"
-              className="mt-3 font-display text-4xl font-semibold tracking-tight text-ink lg:text-5xl"
+              className="mt-5 font-display text-3xl font-semibold leading-snug tracking-tight text-ink sm:text-4xl lg:text-5xl"
             >
-              Bulk email verifier for cold lists and CRM exports
+              <span className="text-primary">Bulk Email Verifier</span>
+              {" "}
+              & List Cleaning Service
             </h1>
-            <p className="mt-4 text-lg text-ink-muted">
-              Upload a CSV, get deliverability statuses for every address, and
-              download a send-ready file — without sending mail. This email
-              verifier uses the same ${RATE_PER_THOUSAND.toFixed(2)} per 1,000
-              credits as the API; credits never expire.
+            <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-ink-muted">
+              Drop a CSV, TXT, or Excel list into this email verifier. Get
+              statuses for every row — same ${RATE_PER_THOUSAND.toFixed(2)}/1K
+              credits as the API, never expire.
             </p>
-            <p className="mt-3 rounded-xl bg-primary-soft px-4 py-3 text-sm text-ink lg:inline-block">
-              25,000 emails = <strong>$45</strong> · Example mix shown below
-            </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Button
                 asChild
                 size="lg"
@@ -153,135 +175,162 @@ export default function BulkProductPage() {
                 </Link>
               </Button>
               <Button variant="secondary" asChild size="lg">
-                <Link href="/pricing">See pricing</Link>
+                <Link href="#pricing">See pricing</Link>
               </Button>
             </div>
-            <ul className="mt-5 flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-ink-muted lg:justify-start">
-              {(
-                [
-                  "CSV, TXT, or XLSX",
-                  "Valid / Risky / Invalid",
-                  "No credit card",
-                ] as const
-              ).map((label) => (
-                <li key={label} className="inline-flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden />
-                  {label}
-                </li>
-              ))}
-            </ul>
           </div>
 
-          <div className="mt-10 space-y-6 lg:mt-12">
-            <JobFlowStrip />
-            <AppChromePreview focus="projects" />
+          <div className="mx-auto mt-8 max-w-3xl md:mt-10">
+            <DesktopMockup chromeLabel="Drag and drop CSV / TXT / Excel to clean your list">
+              <BulkUploadDemo />
+            </DesktopMockup>
+            <TrustStatsRow compact className="mt-8 w-full max-w-none" />
           </div>
         </div>
       </section>
 
-      <MetricStrip items={[...METRICS]} eyebrow="Bulk email verifier facts" />
+      <ProofBar />
+
+      <SectionShell
+        className="bg-background"
+        ariaLabelledBy="bulk-outputs-heading"
+      >
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+          <div>
+            <h2
+              id="bulk-outputs-heading"
+              className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+            >
+              Bulk cleaning outputs you can act on
+            </h2>
+            <p className="mt-4 text-ink-muted">
+              Every row from your bulk email verifier maps to a clear status —
+              so you know what to keep, segment, or suppress before the next
+              campaign.
+            </p>
+          </div>
+          <Reveal>
+            <div className="overflow-x-auto rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)]">
+              <table className="w-full min-w-[28rem] border-collapse text-left text-sm">
+                <caption className="sr-only">
+                  Bulk email verifier status meanings
+                </caption>
+                <thead>
+                  <tr className="border-b border-line bg-surface-muted">
+                    <th
+                      scope="col"
+                      className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-ink-muted"
+                    >
+                      Status
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-ink-muted"
+                    >
+                      What it means
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {OUTPUT_STATUSES.map((row) => (
+                    <tr
+                      key={row.status}
+                      className="border-b border-line last:border-b-0"
+                    >
+                      <th
+                        scope="row"
+                        className="whitespace-nowrap px-4 py-3.5 align-top font-medium text-ink"
+                      >
+                        <StatusChip
+                          label={row.status}
+                          variant={row.variant}
+                          className="font-mono"
+                        />
+                      </th>
+                      <td className="px-4 py-3.5 align-top leading-relaxed text-ink-muted">
+                        {row.means}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="relative mt-10 overflow-hidden rounded-2xl bg-primary px-5 py-5 text-primary-foreground shadow-[var(--shadow-card)] sm:px-7 sm:py-6">
+          <ShieldCheck
+            className="pointer-events-none absolute -right-6 -bottom-8 h-40 w-40 text-primary-foreground/15"
+            aria-hidden
+          />
+          <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/15">
+              <ShieldCheck className="h-6 w-6" aria-hidden />
+            </span>
+            <p className="text-sm leading-relaxed sm:text-base">
+              <span className="mr-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+                &lt;2%
+              </span>
+              Clean lists with this bulk email verifier to keep bounce rates
+              under 2% and protect inbox placement — backed by our 99.7%
+              deliverability standard.
+            </p>
+          </div>
+        </div>
+      </SectionShell>
 
       <SectionShell
         className="bg-surface-muted"
-        ariaLabelledBy="bulk-problem-heading"
+        ariaLabelledBy="bulk-integrations-heading"
       >
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-3xl text-center">
           <h2
-            id="bulk-problem-heading"
+            id="bulk-integrations-heading"
             className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
           >
-            Dirty lists punish outreach before you write the email
+            Sync lists from the tools you already use
           </h2>
           <p className="mt-3 text-ink-muted">
-            Cold outreach list cleaning is not optional if you care about inbox
-            placement. A bulk email verifier removes the worst rows before the
-            sequence starts.
+            Connect Google Sheets, HubSpot, or Salesforce when enabled in your
+            account — or export CSV from Pipedrive and other CRMs and drop the
+            file into the bulk email verifier.
           </p>
         </div>
-        <Reveal className="mt-10" staggerSelector="[data-pain]">
-          <ul className="grid gap-4 md:grid-cols-3">
-            {PAIN_POINTS.map((item) => (
-              <li
-                key={item.title}
-                data-pain
-                className="rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card)] transition hover:border-primary/35"
-              >
-                <p className="font-semibold text-ink">{item.title}</p>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                  {item.body}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-      </SectionShell>
-
-      <SectionShell ariaLabelledBy="bulk-before-after-heading">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2
-            id="bulk-before-after-heading"
-            className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
-          >
-            See a dirty list become send-ready
-          </h2>
-          <p className="mt-3 text-ink-muted">
-            Your bulk email verifier maps every row to a status — so you know
-            what to keep, review, or remove before the next campaign.
-          </p>
-        </div>
-        <div className="mx-auto mt-10 max-w-4xl">
-          <ListCleanVisual />
+        <ul
+          className="mx-auto mt-10 flex max-w-4xl list-none flex-wrap items-center justify-center gap-x-10 gap-y-6 p-0 sm:gap-x-14"
+          aria-label="Bulk email verifier integrations"
+        >
+          {INTEGRATIONS.map((logo) => (
+            <li key={logo.id} className="flex items-center gap-2.5">
+              <Image
+                src={logo.src}
+                alt={logo.showLabel ? "" : logo.label}
+                width={logo.width}
+                height={logo.height}
+                unoptimized
+                className="h-9 w-auto object-contain sm:h-10"
+                loading="lazy"
+              />
+              {logo.showLabel ? (
+                <span className="text-base font-semibold tracking-tight text-ink sm:text-lg">
+                  {logo.label}
+                </span>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-8 flex justify-center">
+          <Button variant="secondary" asChild>
+            <Link href="/integrations">See all integrations</Link>
+          </Button>
         </div>
       </SectionShell>
 
-      <HowSteps
-        className="bg-surface-muted"
-        title="How to email verify a full list"
-        intro="Four steps from export to download — the same workflow marketers use in the dashboard."
-        steps={[...STEPS]}
+      <PricingSection
+        variant="homepage"
+        heading="Pay-as-you-go and volume pricing"
+        lead={`Buy credits once for this bulk email verifier — from $${RATE_PER_THOUSAND.toFixed(2)} per 1,000. Larger packs lower the per-email rate. Credits never expire. Unlimited monthly plan listed as upcoming.`}
       />
-
-      <SectionShell ariaLabelledBy="bulk-roi-heading">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <div>
-            <h2
-              id="bulk-roi-heading"
-              className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
-            >
-              Concrete cost for a 25K clean
-            </h2>
-            <p className="mt-4 text-ink-muted">
-              At the entry pack, 25,000 verifications cost $45. That is less than
-              many suites charge for a fraction of the volume — and unused
-              credits stay on your balance indefinitely.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button asChild>
-                <Link
-                  href={REGISTER_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-ev-event="cta_register_click"
-                  data-ev-loc="bulk-roi"
-                >
-                  Get 100 free credits
-                </Link>
-              </Button>
-              <Button variant="ghost" asChild>
-                <Link href="/email-verification-api">
-                  Prefer the email verification API?
-                </Link>
-              </Button>
-            </div>
-          </div>
-          <div>
-            <p className="mb-2 text-sm font-medium text-ink-muted">
-              After signup — upload your first list
-            </p>
-            <EmptyStatePreview />
-          </div>
-        </div>
-      </SectionShell>
 
       <WhyUsTable
         className="bg-surface-muted"
@@ -290,18 +339,13 @@ export default function BulkProductPage() {
         rows={[...WHY_ROWS]}
       />
 
-      <CreditPricingTeaser
-        title="Clean the list. Keep the credits."
-        eventLoc="bulk-pricing-teaser"
+      <LandingFaq
+        className="bg-background"
+        title="Bulk email verifier questions"
+        items={BULK_PAGE_FAQS}
       />
 
-      <LandingFaq title="Bulk email verifier questions" items={BULK_PAGE_FAQS} />
-
-      <LandingFinalCta
-        title="Ready to clean the next cold list?"
-        body="Upload a CSV with 100 free credits. Same email verifier balance as the API — credits never expire."
-        eventLoc="bulk-final-cta"
-      />
+      <CTA />
     </main>
   );
 }

@@ -1,4 +1,9 @@
 import { HeroWash } from "@/Components/ui/HeroWash";
+import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
+import JsonLd, {
+  breadcrumbJsonLd,
+  organizationJsonLd,
+} from "@/Components/seo/JsonLd";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
@@ -11,6 +16,14 @@ export const metadata = buildMetadata({
 
 export default function PrivacyPage() {
   return (
+    <>
+      <JsonLd data={organizationJsonLd()} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Privacy Policy", path: "/privacy-policy" },
+        ])}
+      />
     <main
       className="relative grow bg-surface text-ink"
       id="privacy-main-content"
@@ -20,6 +33,13 @@ export default function PrivacyPage() {
       <header className="relative px-6 pt-16 pb-8">
         <HeroWash />
         <div className="relative z-10 mx-auto max-w-4xl">
+          <PageBreadcrumb
+            className="mb-6"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Privacy Policy" },
+            ]}
+          />
           <h1
             id="privacy-heading"
             className="mb-4 font-display text-4xl font-bold tracking-tight text-ink"
@@ -114,5 +134,6 @@ export default function PrivacyPage() {
         </section>
       </div>
     </main>
+    </>
   );
 }

@@ -6,6 +6,7 @@ import { Pagination } from "@/Components/blog/Pagination";
 import { PostCard } from "@/Components/blog/PostCard";
 import { PostGrid } from "@/Components/blog/PostGrid";
 import { SearchForm } from "@/Components/blog/SearchForm";
+import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
 import JsonLd, {
   breadcrumbJsonLd,
   organizationJsonLd,
@@ -47,6 +48,13 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
       />
 
       <div className="site-container py-12 lg:py-16">
+        <PageBreadcrumb
+          className="mb-6"
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Blog" },
+          ]}
+        />
         <header className="max-w-3xl">
           <p className="text-sm font-medium text-primary">Blog</p>
           <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">

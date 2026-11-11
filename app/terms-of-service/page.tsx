@@ -1,4 +1,9 @@
 import { HeroWash } from "@/Components/ui/HeroWash";
+import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
+import JsonLd, {
+  breadcrumbJsonLd,
+  organizationJsonLd,
+} from "@/Components/seo/JsonLd";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
@@ -11,6 +16,14 @@ export const metadata = buildMetadata({
 
 export default function TermsPage() {
   return (
+    <>
+      <JsonLd data={organizationJsonLd()} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Terms of Service", path: "/terms-of-service" },
+        ])}
+      />
     <main
       id="terms-main-content"
       role="main"
@@ -20,6 +33,13 @@ export default function TermsPage() {
       <header className="relative px-6 pt-16 pb-8">
         <HeroWash />
         <div className="relative z-10 mx-auto max-w-4xl">
+          <PageBreadcrumb
+            className="mb-6"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Terms of Service" },
+            ]}
+          />
           <h1
             id="terms-heading"
             className="mb-4 font-display text-4xl font-bold tracking-tight text-ink"
@@ -127,5 +147,6 @@ export default function TermsPage() {
         </section>
       </div>
     </main>
+    </>
   );
 }

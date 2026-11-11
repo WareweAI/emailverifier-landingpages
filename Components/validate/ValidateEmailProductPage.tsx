@@ -1,85 +1,70 @@
-import { CheckCircle2 } from "lucide-react";
+import {
+  AtSign,
+  Gauge,
+  MailCheck,
+  Server,
+  ShieldCheck,
+  UserCog,
+  type LucideIcon,
+} from "lucide-react";
 import VerifierDemo from "@/Components/VerifierDemo";
 import ProofBar from "@/Components/home/ProofBar";
-import DashboardVerifyDemo from "@/Components/FreeValidationPage/DashboardVerifyDemo";
-import MethodSection from "@/Components/home/MethodSection";
+import { TrustStatsRow } from "@/Components/home/HomeStatsStrip";
 import NextPaths from "@/Components/FreeValidationPage/NextPaths";
 import { DesktopMockup } from "@/Components/ui/DesktopMockup";
 import { HeroWash } from "@/Components/ui/HeroWash";
+import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { StatusChip } from "@/Components/ui/StatusChip";
 import { Reveal } from "@/Components/landing/Reveal";
-import { MetricStrip } from "@/Components/landing/MetricStrip";
-import { HowSteps } from "@/Components/landing/HowSteps";
 import { WhyUsTable } from "@/Components/landing/WhyUsTable";
-import { CreditPricingTeaser } from "@/Components/landing/CreditPricingTeaser";
+import CTA from "@/Components/CTA";
 import { LandingFaq } from "@/Components/landing/LandingFaq";
-import { LandingFinalCta } from "@/Components/landing/LandingFinalCta";
 import { VALIDATE_EMAIL_FAQS } from "@/lib/validate-email-faq";
-import { RATE_PER_THOUSAND } from "@/lib/pricing";
 
-const METRICS = [
+const ACCURACY_CHECKS = [
   {
-    id: "free-page",
-    value: "3",
-    countTo: 3,
-    label: "Free checks on this page",
+    step: "01",
+    title: "Advanced Syntax Validation",
+    body: "Instantly detects malformed and invalid email addresses.",
+    icon: AtSign,
   },
   {
-    id: "signup",
-    value: "100",
-    countTo: 100,
-    label: "Free credits on signup",
+    step: "02",
+    title: "Domain & MX Record Checks",
+    body: "Confirms the domain exists and is configured to receive email.",
+    icon: Server,
   },
   {
-    id: "rate",
-    value: `$${RATE_PER_THOUSAND.toFixed(2)}`,
-    label: "Per 1,000 after free credits",
+    step: "03",
+    title: "Real-Time SMTP Verification",
+    body: "Verifies mailbox availability without sending an email.",
+    icon: MailCheck,
   },
   {
-    id: "delete",
-    value: "30 days",
-    label: "File deletion after processing",
-  },
-] as const;
-
-const PROBLEMS = [
-  {
-    title: "One bad send burns trust",
-    body: "A single hard bounce or spam-trap hit can train providers to doubt your domain.",
+    step: "04",
+    title: "Disposable Email Detection",
+    body: "Filters out temporary and throwaway inboxes.",
+    icon: ShieldCheck,
   },
   {
-    title: "Forms leak junk",
-    body: "Typos, disposables, and role inboxes slip into CRMs and look like real demand.",
+    step: "05",
+    title: "Role-Based Email Detection",
+    body: "Identifies risky addresses like info@, admin@, and support@.",
+    icon: UserCog,
   },
   {
-    title: "Guessing is not verification",
-    body: "Pattern-based guesses and purchased lists need an email verifier before outreach.",
+    step: "06",
+    title: "Smart Risk Scoring",
+    body: "Classifies emails as Deliverable, Risky, Undeliverable, or Unknown so you can send with confidence.",
+    icon: Gauge,
   },
-] as const;
-
-const STEPS = [
-  {
-    step: "1",
-    title: "Enter an address",
-    body: "Paste any email into the live tool above — up to 3 free checks on this page.",
-  },
-  {
-    step: "2",
-    title: "We run the checks",
-    body: "Syntax, domain/MX, mailbox, disposable, role, and risk signals — without sending mail.",
-  },
-  {
-    step: "3",
-    title: "Read the status",
-    body: "See deliverable, risky, or undeliverable plus flags you can act on.",
-  },
-  {
-    step: "4",
-    title: "Scale when ready",
-    body: "Sign up for 100 credits, then bulk-clean CSVs or call the email verification API.",
-  },
-] as const;
+] as const satisfies ReadonlyArray<{
+  step: string;
+  title: string;
+  body: string;
+  icon: LucideIcon;
+}>;
 
 const WHY_ROWS = [
   {
@@ -109,6 +94,40 @@ const WHY_ROWS = [
   },
 ] as const;
 
+const STATUS_GUIDE = [
+  {
+    status: "safe",
+    variant: "success" as const,
+    means: "Syntax passed, MX was found, and SMTP accepted the recipient.",
+    handling: "Eligible to mail, still subject to your own sending rules.",
+  },
+  {
+    status: "invalid",
+    variant: "danger" as const,
+    means: "Syntax failed, MX was missing, or SMTP rejected the mailbox.",
+    handling: "Suppress. These are the usual hard bounces.",
+  },
+  {
+    status: "catch-all",
+    variant: "warning" as const,
+    means:
+      "The domain accepted a probe that should not have been a real mailbox.",
+    handling: "Do not treat as valid. Decide with a separate policy.",
+  },
+  {
+    status: "do_not_mail",
+    variant: "danger" as const,
+    means: "The domain is on the disposable list loaded by the server.",
+    handling: "Suppress. Disposable addresses are a poor list to keep.",
+  },
+  {
+    status: "unknown",
+    variant: "neutral" as const,
+    means: "The check could not decide, including some filtered MX hosts.",
+    handling: "Retry or leave out. Fallback may recheck when it is configured.",
+  },
+] as const;
+
 export default function ValidateEmailProductPage() {
   return (
     <main
@@ -123,21 +142,29 @@ export default function ValidateEmailProductPage() {
       >
         <HeroWash />
         <div className="site-container relative z-10">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-medium text-ink-muted">
-              Free Email Verification Tool
+          <PageBreadcrumb
+            className="mb-6"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Free Email Verifier" },
+            ]}
+          />
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="whitespace-nowrap text-sm font-medium text-ink-muted">
+              Verify email address online
             </p>
+            {/* 1-off clamp: keep H1 on one line from mobile through desktop */}
             <h1
               id="validate-email-heading"
-              className="mt-5 font-display text-3xl font-semibold leading-snug tracking-tight text-ink sm:text-4xl lg:text-5xl"
+              className="mt-5 whitespace-nowrap font-display text-[clamp(1.125rem,4.8vw,3rem)] font-semibold leading-snug tracking-tight text-ink"
             >
-              Free email verifier — check deliverability before you send
+              <span className="text-primary">Free Email Verifier</span>
+              {" "}
+              & Validation Tool
             </h1>
-            <p className="mt-4 text-lg leading-relaxed text-ink-muted">
-              Email verify deliverability, risk, and mailbox status — syntax,
-              domain, and flags — without sending mail. Try 3 free checks on
-              this page, then get 100 more on signup. Same credits power the
-              bulk email verifier and email verification API.
+            <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-ink-muted">
+              Checks whether a single email address is correctly formatted and
+              able to receive mail, at no cost.
             </p>
           </div>
 
@@ -145,150 +172,162 @@ export default function ValidateEmailProductPage() {
             <DesktopMockup chromeLabel="Enter an email address to check its deliverability">
               <VerifierDemo variant="tool-page" location="validate-email" />
             </DesktopMockup>
+            <TrustStatsRow compact className="mt-8 w-full max-w-none" />
           </div>
-          <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-ink-muted">
-            {(
-              ["GDPR-ready", "30-day deletion", "No credit card"] as const
-            ).map((label) => (
-              <li key={label} className="inline-flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden />
-                {label}
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
       <ProofBar />
-      <MetricStrip items={[...METRICS]} eyebrow="Free email verifier facts" />
 
       <SectionShell
-        className="bg-surface-muted"
-        ariaLabelledBy="validate-problem-heading"
+        className="bg-background"
+        ariaLabelledBy="validate-accuracy-heading"
       >
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-3xl text-center">
           <h2
-            id="validate-problem-heading"
+            id="validate-accuracy-heading"
             className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
           >
-            Bad addresses are a blacklist problem waiting to happen
+            What Makes{" "}
+            <span className="text-primary">emailverifier.io</span> the Most
+            Accurate Email Verifier
           </h2>
           <p className="mt-3 text-ink-muted">
-            Blacklist avoidance starts with not sending to invalid, disposable,
-            and high-risk inboxes. An email verifier catches those rows before
-            the campaign — not after the bounce report.
+            Unlike basic email checkers, EmailVerifier.io doesn&apos;t rely on
+            cached data or assumptions. Every email is verified live.
           </p>
         </div>
-        <Reveal className="mt-10" staggerSelector="[data-problem]">
-          <ul className="grid gap-4 md:grid-cols-3">
-            {PROBLEMS.map((item) => (
-              <li
-                key={item.title}
-                data-problem
-                className="rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card)] transition hover:border-primary/35"
-              >
-                <p className="font-semibold text-ink">{item.title}</p>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                  {item.body}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
+
+        <div className="mx-auto mt-10 max-w-6xl">
+          <Reveal staggerSelector="[data-accuracy-check]">
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {ACCURACY_CHECKS.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <li
+                    key={item.step}
+                    data-accuracy-check
+                    className="relative overflow-hidden rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card)] transition hover:border-primary/35"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="font-display text-3xl font-bold tracking-tight text-primary">
+                        {item.step}
+                      </p>
+                      <Icon
+                        className="h-10 w-10 shrink-0 text-primary/20"
+                        aria-hidden
+                      />
+                    </div>
+                    <h3 className="mt-4 text-base font-semibold text-ink">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                      {item.body}
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
+          </Reveal>
+        </div>
+
+        <div className="relative mt-8 overflow-hidden rounded-2xl bg-primary px-5 py-5 text-primary-foreground shadow-[var(--shadow-card)] sm:px-7 sm:py-6">
+          <ShieldCheck
+            className="pointer-events-none absolute -right-6 -bottom-8 h-40 w-40 text-primary-foreground/15"
+            aria-hidden
+          />
+          <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/15">
+              <ShieldCheck className="h-6 w-6" aria-hidden />
+            </span>
+            <p className="text-sm leading-relaxed sm:text-base">
+              <span className="mr-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+                99.7%
+              </span>
+              Lower bounce rates, higher inbox placement, and a protected
+              sender reputation — backed by our deliverability guarantee.
+            </p>
+          </div>
+        </div>
       </SectionShell>
 
-      {/* Product-led "see it in action" — keep existing dashboard demo */}
-      <DashboardVerifyDemo />
-
-      <SectionShell ariaLabelledBy="validate-result-heading">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+      <SectionShell
+        className="bg-background"
+        ariaLabelledBy="validate-result-heading"
+      >
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
             <h2
               id="validate-result-heading"
               className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
             >
-              Statuses you can act on
+              Verification status results you can act on
             </h2>
             <p className="mt-4 text-ink-muted">
-              Every check returns clear outcomes — not a vague score alone. Use
-              deliverable rows for sends, review risky ones, and drop
-              undeliverable or disposable addresses before they hurt reputation.
+              Read the verification status results before you send
             </p>
           </div>
           <Reveal>
-            <ul className="space-y-3 rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card)]">
-              {(
-                [
-                  {
-                    email: "alex@acme.com",
-                    chip: { label: "Deliverable", variant: "success" as const },
-                  },
-                  {
-                    email: "info@shop.co",
-                    chip: { label: "Risky · Role", variant: "warning" as const },
-                  },
-                  {
-                    email: "temp@mail-drop.io",
-                    chip: { label: "Disposable", variant: "danger" as const },
-                  },
-                  {
-                    email: "bounce@old-domain.example",
-                    chip: {
-                      label: "Undeliverable",
-                      variant: "danger" as const,
-                    },
-                  },
-                ] as const
-              ).map((row) => (
-                <li
-                  key={row.email}
-                  className="flex items-center justify-between gap-3 rounded-xl border border-line bg-background px-3 py-3"
-                >
-                  <span className="truncate font-mono text-sm text-ink">
-                    {row.email}
-                  </span>
-                  <StatusChip
-                    label={row.chip.label}
-                    variant={row.chip.variant}
-                  />
-                </li>
-              ))}
-            </ul>
-            <p className="mt-2 text-xs text-ink-muted">
-              Example statuses — try a real address in the live tool above.
-            </p>
+            <div className="overflow-x-auto rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)]">
+              <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
+                <caption className="sr-only">
+                  Email verifier status meanings and practical handling
+                </caption>
+                <thead>
+                  <tr className="border-b border-line bg-surface-muted">
+                    <th
+                      scope="col"
+                      className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-ink-muted"
+                    >
+                      Status
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-ink-muted"
+                    >
+                      What it means here
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-ink-muted"
+                    >
+                      Practical handling
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {STATUS_GUIDE.map((row) => (
+                    <tr
+                      key={row.status}
+                      className="border-b border-line last:border-b-0"
+                    >
+                      <th
+                        scope="row"
+                        className="whitespace-nowrap px-4 py-3.5 align-top font-medium text-ink"
+                      >
+                        <StatusChip
+                          label={row.status}
+                          variant={row.variant}
+                          className="font-mono"
+                        />
+                      </th>
+                      <td className="px-4 py-3.5 align-top leading-relaxed text-ink-muted">
+                        {row.means}
+                      </td>
+                      <td className="px-4 py-3.5 align-top leading-relaxed text-ink-muted">
+                        {row.handling}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </Reveal>
         </div>
       </SectionShell>
 
-      <MethodSection />
-
-      <HowSteps
-        className="bg-surface-muted"
-        title="How to email verify in seconds"
-        intro="From a single paste to a full-list clean — same product, same credits."
-        steps={[...STEPS]}
-      />
-
-      <SectionShell ariaLabelledBy="validate-roi-heading">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2
-            id="validate-roi-heading"
-            className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
-          >
-            Free to try. Cheap to scale.
-          </h2>
-          <p className="mt-3 text-ink-muted">
-            Three checks on this page. One hundred free credits after signup.
-            Then ${RATE_PER_THOUSAND.toFixed(2)} per 1,000 for bulk or API —
-            credits that never expire. No suite seat required to email verify a
-            list.
-          </p>
-        </div>
-      </SectionShell>
-
       <WhyUsTable
-        className="bg-surface-muted"
+        className="bg-background"
         title="Why this free email verifier"
         intro="Built for marketers and builders who want clear statuses and honest credits."
         rows={[...WHY_ROWS]}
@@ -296,21 +335,13 @@ export default function ValidateEmailProductPage() {
 
       <NextPaths />
 
-      <CreditPricingTeaser
-        title="Done with single checks? Clean the full list."
-        body={`100 free credits on signup — then $${RATE_PER_THOUSAND.toFixed(2)}/1K for bulk CSV or the email verification API. Credits never expire.`}
-        eventLoc="validate-pricing"
+      <LandingFaq
+        className="bg-background"
+        title="Email verifier FAQs"
+        items={VALIDATE_EMAIL_FAQS}
       />
 
-      <LandingFaq title="Email verifier FAQs" items={VALIDATE_EMAIL_FAQS} />
-
-      <LandingFinalCta
-        title="Verify the next address — then the whole list"
-        body="Keep using the free email verifier above, or sign up for 100 credits and upload a CSV."
-        secondaryHref="/bulk-email-verifier"
-        secondaryLabel="See bulk email verifier"
-        eventLoc="validate-final"
-      />
+      <CTA />
     </main>
   );
 }

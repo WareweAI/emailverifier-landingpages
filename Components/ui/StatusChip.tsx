@@ -63,15 +63,17 @@ export function statusToVariant(
   if (
     normalized.includes("invalid") ||
     normalized.includes("undeliverable") ||
-    normalized.includes("disposable")
+    normalized.includes("disposable") ||
+    normalized.includes("do_not_mail") ||
+    normalized.includes("do-not-mail")
   ) {
     return "danger";
   }
   if (
     isDeliverable ||
-    normalized.includes("valid") ||
+    normalized === "valid" ||
     normalized.includes("deliverable") ||
-    normalized.includes("safe")
+    normalized === "safe"
   ) {
     return "success";
   }

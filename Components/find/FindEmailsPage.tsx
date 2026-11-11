@@ -4,6 +4,7 @@ import { CheckCircle2, FileSpreadsheet, Linkedin, Search } from "lucide-react";
 import { FindEmailsMockup } from "@/Components/home/feature-pillars/PillarMockups";
 import { FinderChecks, FinderCtas } from "@/Components/find/FinderPageParts";
 import { HeroWash } from "@/Components/ui/HeroWash";
+import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { Button } from "@/Components/ui/Button";
 import { Reveal } from "@/Components/landing/Reveal";
@@ -114,7 +115,15 @@ export default function FindEmailsPage() {
         aria-labelledby="find-emails-heading"
       >
         <HeroWash />
-        <div className="site-container relative z-10 grid min-w-0 items-center gap-10 lg:grid-cols-2 lg:gap-12">
+        <div className="site-container relative z-10 min-w-0">
+          <PageBreadcrumb
+            className="mb-6"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Find Emails" },
+            ]}
+          />
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
           <div className="mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
             <p className="text-sm font-medium text-ink-muted">Find Emails</p>
             <h1
@@ -146,6 +155,7 @@ export default function FindEmailsPage() {
             </figcaption>
             <FindEmailsMockup />
           </figure>
+          </div>
         </div>
       </section>
 

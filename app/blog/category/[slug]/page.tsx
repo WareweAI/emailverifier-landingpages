@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BlogCta } from "@/Components/blog/BlogCta";
 import { CategoryNav } from "@/Components/blog/CategoryNav";
 import { Pagination } from "@/Components/blog/Pagination";
 import { PostGrid } from "@/Components/blog/PostGrid";
 import { SearchForm } from "@/Components/blog/SearchForm";
+import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
 import JsonLd, {
   breadcrumbJsonLd,
   organizationJsonLd,
@@ -82,14 +82,16 @@ export default async function BlogCategoryPage({
       />
 
       <div className="site-container py-12 lg:py-16">
+        <PageBreadcrumb
+          className="mb-6"
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Blog", href: "/blog" },
+            { label: category.name },
+          ]}
+        />
         <header className="max-w-3xl">
-          <p className="text-sm font-medium text-primary">
-            <Link href="/blog" className="hover:underline">
-              Blog
-            </Link>{" "}
-            / Category
-          </p>
-          <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+          <h1 className="font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
             {category.name}
           </h1>
           <p className="mt-4 text-lg text-ink-muted">

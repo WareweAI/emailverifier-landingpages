@@ -3,6 +3,7 @@ import Image from "next/image";
 import HappyUsers from "@/Components/HappyUsers";
 import { Button } from "@/Components/ui/Button";
 import LogoMark from "@/Components/ui/LogoMark";
+import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
 import { StarRating } from "@/Components/ui/StarRating";
 import type { BlogPost } from "@/lib/wordpress/types";
 import type { TocItem } from "@/lib/wordpress/types";
@@ -48,6 +49,22 @@ export function ArticleLayout({
 
         <article className="min-w-0" data-blog-article-main>
           <header>
+            <PageBreadcrumb
+              className="mb-4"
+              items={[
+                { label: "Home", href: "/" },
+                { label: "Blog", href: "/blog" },
+                ...(category
+                  ? [
+                      {
+                        label: category.name,
+                        href: `/blog/category/${category.slug}`,
+                      },
+                    ]
+                  : []),
+                { label: post.title },
+              ]}
+            />
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-muted">
               {category ? (
                 <Link
