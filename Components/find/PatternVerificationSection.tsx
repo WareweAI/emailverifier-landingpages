@@ -83,14 +83,14 @@ export default function PatternVerificationSection() {
         </SectionLead>
       </div>
 
-      <article className="mt-12 grid items-center gap-8 rounded-3xl border-[5px] border-surface bg-success-soft p-6 shadow-[var(--shadow-card)] sm:p-8 lg:mt-16 lg:grid-cols-2 lg:gap-10 lg:p-10">
+      <article className="mt-12 grid items-center gap-8 rounded-3xl border-[5px] border-surface bg-lavender-soft p-6 shadow-[var(--shadow-card)] sm:p-8 lg:mt-16 lg:grid-cols-2 lg:gap-10 lg:p-10">
         <div className="min-w-0">
           <span
-            className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-success/15 sm:h-14 sm:w-14"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/15 sm:h-14 sm:w-14"
             aria-hidden
           >
             <ScanSearch
-              className="h-7 w-7 text-success sm:h-8 sm:w-8"
+              className="h-7 w-7 text-primary sm:h-8 sm:w-8"
               strokeWidth={1.75}
             />
           </span>
