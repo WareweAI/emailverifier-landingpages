@@ -24,6 +24,7 @@ export default function BulkEmailVerifierPage() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },
+          { name: "Products" },
           { name: "Bulk Email Verifier", path: "/bulk-email-verifier" },
         ])}
       />

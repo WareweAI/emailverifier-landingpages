@@ -22,6 +22,7 @@ export default function ValidateEmailPage() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },
+          { name: "Products" },
           { name: "Free Email Verifier", path: "/validate-email" },
         ])}
       />

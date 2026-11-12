@@ -30,12 +30,12 @@ export default function HeroToolTabs() {
           Verify Email
         </span>
         <Link
-          href="/find-emails"
+          href="/email-finder"
           className={TOOL_LINK_CLASS}
           data-ev-event="hero_tool_link"
-          data-ev-loc="hero-find-emails"
+          data-ev-loc="hero-email-finder"
           onClick={() =>
-            pushEvent("hero_tool_link", { tool: "find-emails", loc: "hero" })
+            pushEvent("hero_tool_link", { tool: "email-finder", loc: "hero" })
           }
         >
           Find Emails

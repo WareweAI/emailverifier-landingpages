@@ -149,6 +149,7 @@ export default function IntegrationsPage() {
             className="mb-6"
             items={[
               { label: "Home", href: "/" },
+              { label: "Products" },
               { label: "Integrations" },
             ]}
           />

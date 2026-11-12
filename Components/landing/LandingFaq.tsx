@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +14,7 @@ export type LandingFaqItem = {
 type LandingFaqProps = {
   id?: string;
   headingId?: string;
+  eyebrow?: string;
   title: string;
   items: readonly LandingFaqItem[];
   className?: string;
@@ -21,6 +23,7 @@ type LandingFaqProps = {
 export function LandingFaq({
   id = "faqs",
   headingId = "landing-faq-heading",
+  eyebrow,
   title,
   items,
   className,
@@ -33,14 +36,20 @@ export function LandingFaq({
       className={cn("bg-surface-muted", className)}
       ariaLabelledBy={headingId}
     >
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-3xl text-center">
+        {eyebrow ? (
+          <SectionEyebrow align="center">{eyebrow}</SectionEyebrow>
+        ) : null}
         <h2
           id={headingId}
-          className="text-center font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+          className={cn(
+            "font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl",
+            eyebrow && "mt-3"
+          )}
         >
           {title}
         </h2>
-        <div className="mt-10 space-y-3">
+        <div className="mt-10 space-y-3 text-left">
           {items.map((faq, i) => {
             const isOpen = openIndex === i;
             const panelId = `${id}-panel-${i}`;

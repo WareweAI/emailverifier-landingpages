@@ -1,0 +1,21 @@
+.phase {
+  animation: phase-in 280ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phase {
+    animation: none;
+  }
+}
+
+@keyframes phase-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

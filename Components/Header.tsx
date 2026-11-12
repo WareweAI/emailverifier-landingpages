@@ -92,7 +92,7 @@ const PRODUCT_GROUPS: ProductGroup[] = [
     items: [
       {
         title: "Email Finder",
-        href: "/find-emails",
+        href: "/email-finder",
         desc: "Find verified emails by name, company, or LinkedIn profile.",
         icon: Search,
       },

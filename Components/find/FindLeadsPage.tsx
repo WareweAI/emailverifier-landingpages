@@ -124,6 +124,7 @@ export default function FindLeadsPage() {
             className="mb-6"
             items={[
               { label: "Home", href: "/" },
+              { label: "Products" },
               { label: "Lead Finder" },
             ]}
           />
@@ -344,7 +345,7 @@ export default function FindLeadsPage() {
         Prefer cleaning addresses you already have? Use the{" "}
         <Link href="/bulk-email-verifier">bulk email verifier</Link>. Already
         have a name?{" "}
-        <Link href="/find-emails">Find Emails</Link>.
+        <Link href="/email-finder">Find Emails</Link>.
       </p>
     </main>
   );

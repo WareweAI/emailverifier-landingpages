@@ -124,6 +124,7 @@ export default function DataEnrichmentProductPage() {
             className="mb-6"
             items={[
               { label: "Home", href: "/" },
+              { label: "Products" },
               { label: "Data Enrichment" },
             ]}
           />

@@ -13,6 +13,15 @@ function wordpressImageHost(): string | undefined {
 const wpHost = wordpressImageHost();
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/find-emails",
+        destination: "/email-finder",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       ...(wpHost

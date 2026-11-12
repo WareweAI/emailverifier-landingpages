@@ -1,6 +1,5 @@
 import { Home } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 
 export type BreadcrumbItem = {
   label: string;
@@ -28,23 +27,20 @@ export function PageBreadcrumb({ items, className }: PageBreadcrumbProps) {
               {index > 0 ? (
                 <span
                   aria-hidden
-                  className="size-1 shrink-0 rounded-full bg-primary"
+                  className="size-1 shrink-0 rounded-full bg-ink-muted"
                 />
               ) : null}
               {isCurrent || !item.href ? (
                 <span
                   aria-current={isCurrent ? "page" : undefined}
-                  className={cn(
-                    "inline-flex min-h-11 items-center text-sm",
-                    isCurrent ? "font-medium text-ink" : "text-ink-muted",
-                  )}
+                  className="inline-flex min-h-11 items-center text-sm text-ink-muted"
                 >
                   {item.label}
                 </span>
               ) : (
                 <Link
                   href={item.href}
-                  className="inline-flex min-h-11 items-center gap-1.5 rounded-md text-sm text-ink-muted transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 motion-reduce:transition-none"
+                  className="inline-flex min-h-11 items-center gap-1.5 rounded-md text-sm text-ink-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 motion-reduce:transition-none"
                 >
                   {index === 0 ? (
                     <Home className="size-3.5 shrink-0" aria-hidden />

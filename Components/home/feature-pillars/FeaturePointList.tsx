@@ -1,12 +1,12 @@
 "use client";
 
 import { Minus, Plus } from "lucide-react";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 export type FeaturePoint = {
   title: string;
-  body: string;
+  body: ReactNode;
 };
 
 export function FeaturePointList({

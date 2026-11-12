@@ -62,7 +62,7 @@ export function faqPageJsonLd(faqs: { question: string; answer: string }[]) {
 }
 
 export function breadcrumbJsonLd(
-  items: { name: string; path: string }[],
+  items: { name: string; path?: string }[],
 ) {
   return {
     "@context": "https://schema.org",
@@ -71,7 +71,11 @@ export function breadcrumbJsonLd(
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: `https://emailverifier.io${item.path === "/" ? "" : item.path}`,
+      ...(item.path
+        ? {
+            item: `https://emailverifier.io${item.path === "/" ? "" : item.path}`,
+          }
+        : {}),
     })),
   };
 }

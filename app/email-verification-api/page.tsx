@@ -24,6 +24,7 @@ export default function EmailVerificationApiPage() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },
+          { name: "Products" },
           { name: "Email Verification API", path: "/email-verification-api" },
         ])}
       />

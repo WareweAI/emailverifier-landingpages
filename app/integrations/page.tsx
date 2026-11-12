@@ -22,6 +22,7 @@ export default function Page() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },
+          { name: "Products" },
           { name: "Integrations", path: "/integrations" },
         ])}
       />

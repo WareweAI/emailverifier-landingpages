@@ -7,7 +7,7 @@ const productLinks = [
   { href: "/validate-email", label: "Email Validator" },
   { href: "/bulk-email-verifier", label: "Bulk Email Verifier" },
   { href: "/email-verification-api", label: "Email Validation API" },
-  { href: "/find-emails", label: "Email Finder" },
+  { href: "/email-finder", label: "Email Finder" },
   { href: "/find-leads", label: "Lead Finder" },
   { href: "/data-enrichment", label: "Data Enrichment" },
 ];

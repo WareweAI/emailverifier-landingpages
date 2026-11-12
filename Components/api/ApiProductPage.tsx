@@ -22,6 +22,7 @@ export default function ApiProductPage() {
             className="mb-6"
             items={[
               { label: "Home", href: "/" },
+              { label: "Products" },
               { label: "Email Verification API" },
             ]}
           />
