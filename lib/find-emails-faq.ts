@@ -14,7 +14,7 @@ export const FIND_EMAILS_FAQS: FaqItem[] = [
   {
     question: "Can I find emails from a spreadsheet?",
     answer:
-      "Yes. Upload a CSV of names and domains under Bulk Find / data enrichment, then download the completed task. Enrichment fields stay optional.",
+      "Yes. Use the Data Enrichment page (CSV bulk find) to upload names and domains, then download the completed task. Enrichment fields stay optional.",
   },
   {
     question: "Can I find an email from LinkedIn?",

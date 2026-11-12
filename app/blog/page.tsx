@@ -57,7 +57,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
         />
         <header className="max-w-3xl">
           <p className="text-sm font-medium text-primary">Blog</p>
-          <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+          <h1 className="mt-2 font-display text-3xl font-semibold capitalize tracking-tight text-ink md:text-4xl">
             Email verifier guides for cleaner lists
           </h1>
           <p className="mt-4 text-lg text-ink-muted">

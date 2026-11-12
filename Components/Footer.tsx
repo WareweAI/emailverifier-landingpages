@@ -9,7 +9,7 @@ const productLinks = [
   { href: "/email-verification-api", label: "Email Validation API" },
   { href: "/find-emails", label: "Email Finder" },
   { href: "/find-leads", label: "Lead Finder" },
-  { href: "/find-emails#bulk-find", label: "Data Enrichment" },
+  { href: "/data-enrichment", label: "Data Enrichment" },
 ];
 
 const solutionLinks = [

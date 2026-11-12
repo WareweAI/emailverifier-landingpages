@@ -156,7 +156,7 @@ export default function IntegrationsPage() {
           <p className="text-sm font-medium text-ink-muted">Integrations</p>
           <h1
             id="integrations-heading"
-            className="mt-3 font-display text-4xl font-semibold tracking-tight text-ink lg:text-5xl"
+            className="mt-3 text-balance font-display text-4xl font-semibold capitalize tracking-tight text-ink lg:text-5xl"
           >
             Import lists into the email verifier you already use
           </h1>

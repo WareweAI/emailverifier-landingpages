@@ -8,7 +8,7 @@ export default function NotFound() {
       <HeroWash />
       <div className="relative z-10 max-w-md text-center">
         <p className="text-sm font-medium text-primary">404</p>
-        <h1 className="mt-2 font-display text-3xl font-semibold text-ink">
+        <h1 className="mt-2 font-display text-3xl font-semibold capitalize text-ink">
           Page not found
         </h1>
         <p className="mt-3 text-ink-muted">

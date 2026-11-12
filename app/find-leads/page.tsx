@@ -23,7 +23,7 @@ export default function Page() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },
-          { name: "Find Leads", path: "/find-leads" },
+          { name: "Lead Finder", path: "/find-leads" },
         ])}
       />
       <JsonLd data={faqPageJsonLd([...FIND_LEADS_FAQS])} />

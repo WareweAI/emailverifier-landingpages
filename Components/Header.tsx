@@ -104,7 +104,7 @@ const PRODUCT_GROUPS: ProductGroup[] = [
       },
       {
         title: "Data Enrichment",
-        href: "/find-emails#bulk-find",
+        href: "/data-enrichment",
         desc: "Enrich lists in bulk with verified emails, roles, and company data.",
         icon: Database,
       },

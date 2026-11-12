@@ -31,7 +31,7 @@ export default function ApiProductPage() {
             </p>
             <h1
               id="api-hero-heading"
-              className="mt-3 font-display capitalize text-4xl font-semibold tracking-tight text-ink lg:text-5xl"
+              className="mt-3 text-balance font-display capitalize text-4xl font-semibold tracking-tight text-ink lg:text-5xl"
             >
               <span className="text-primary">
                 Real-time email verifier

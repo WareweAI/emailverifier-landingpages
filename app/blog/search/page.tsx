@@ -64,7 +64,7 @@ export default async function BlogSearchPage({ searchParams }: PageProps) {
           ]}
         />
         <header className="max-w-3xl">
-          <h1 className="font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+          <h1 className="font-display text-3xl font-semibold capitalize tracking-tight text-ink md:text-4xl">
             {q ? `Results for “${q}”` : "Search the blog"}
           </h1>
           <p className="mt-4 text-lg text-ink-muted">

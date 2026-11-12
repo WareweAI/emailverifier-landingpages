@@ -361,8 +361,8 @@ export default function VerifierDemo({
 
         {!isHeroDemo && !atLimit && (
           <p id={`${location}-remaining`} className="text-sm text-ink-muted">
-            {remaining} of {MAX_VERIFICATIONS} free check
-            {remaining !== 1 ? "s" : ""} left.
+            {remaining} of {MAX_VERIFICATIONS} free{" "}
+            {remaining === 1 ? "check" : "checks"} left.
           </p>
         )}
 

@@ -94,7 +94,7 @@ export default async function BlogAuthorPage({
               </Link>{" "}
               / Author
             </p>
-            <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+            <h1 className="mt-2 font-display text-3xl font-semibold capitalize tracking-tight text-ink md:text-4xl">
               {author.name}
             </h1>
             {author.description ? (

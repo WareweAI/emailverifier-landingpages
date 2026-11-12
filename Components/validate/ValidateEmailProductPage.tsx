@@ -156,7 +156,7 @@ export default function ValidateEmailProductPage() {
             {/* 1-off clamp: keep H1 on one line from mobile through desktop */}
             <h1
               id="validate-email-heading"
-              className="mt-5 whitespace-nowrap font-display text-[clamp(1.125rem,4.8vw,3rem)] font-semibold leading-snug tracking-tight text-ink"
+              className="mt-5 whitespace-nowrap font-display text-[clamp(1.125rem,4.8vw,3rem)] font-semibold capitalize leading-snug tracking-tight text-ink"
             >
               <span className="text-primary">Free Email Verifier</span>
               {" "}

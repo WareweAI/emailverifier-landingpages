@@ -79,7 +79,7 @@ export function ArticleLayout({
               </time>
             </div>
 
-            <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink md:text-4xl">
+            <h1 className="mt-4 font-display text-3xl font-semibold capitalize tracking-tight text-ink md:text-4xl">
               {post.title}
             </h1>
 

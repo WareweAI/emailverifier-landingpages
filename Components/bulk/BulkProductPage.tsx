@@ -147,7 +147,7 @@ export default function BulkProductPage() {
             </p>
             <h1
               id="bulk-hero-heading"
-              className="mt-5 font-display text-3xl font-semibold leading-snug tracking-tight text-ink sm:text-4xl lg:text-5xl"
+              className="mt-5 text-balance font-display text-3xl font-semibold capitalize leading-snug tracking-tight text-ink sm:text-4xl lg:text-5xl"
             >
               <span className="text-primary">Bulk Email Verifier</span>
               {" "}

@@ -1,87 +1,80 @@
 import Link from "next/link";
-import { Building2, Filter, ListPlus, Sparkles } from "lucide-react";
+import {
+  Building2,
+  Filter,
+  ListPlus,
+  ShieldCheck,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
 import { FindLeadsMockup } from "@/Components/home/feature-pillars/PillarMockups";
-import { FinderChecks, FinderCtas } from "@/Components/find/FinderPageParts";
+import ProofBar from "@/Components/home/ProofBar";
+import { TrustStatsRow } from "@/Components/home/HomeStatsStrip";
+import CTA from "@/Components/CTA";
+import PricingSection from "@/Components/PricingSection";
+import { Reveal } from "@/Components/landing/Reveal";
+import { WhyUsTable } from "@/Components/landing/WhyUsTable";
+import { LandingFaq } from "@/Components/landing/LandingFaq";
+import { Button } from "@/Components/ui/Button";
+import { DesktopMockup } from "@/Components/ui/DesktopMockup";
 import { HeroWash } from "@/Components/ui/HeroWash";
 import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
 import { SectionShell } from "@/Components/ui/SectionShell";
-import { Reveal } from "@/Components/landing/Reveal";
-import { MetricStrip } from "@/Components/landing/MetricStrip";
-import { HowSteps } from "@/Components/landing/HowSteps";
-import { WhyUsTable } from "@/Components/landing/WhyUsTable";
-import { CreditPricingTeaser } from "@/Components/landing/CreditPricingTeaser";
-import { LandingFaq } from "@/Components/landing/LandingFaq";
-import { LandingFinalCta } from "@/Components/landing/LandingFinalCta";
+import { StatusChip } from "@/Components/ui/StatusChip";
 import { FIND_LEADS_FAQS } from "@/lib/find-leads-faq";
+import { REGISTER_URL } from "@/lib/api-snippet";
 import { RATE_PER_THOUSAND } from "@/lib/pricing";
-
-const METRICS = [
-  {
-    id: "modes",
-    value: "2 live",
-    label: "Person + company search",
-  },
-  {
-    id: "local",
-    value: "Soon",
-    label: "Local search (not live yet)",
-  },
-  {
-    id: "rate",
-    value: `$${RATE_PER_THOUSAND.toFixed(2)}`,
-    label: "Per 1,000 on shared credits",
-  },
-  {
-    id: "free",
-    value: "100",
-    countTo: 100,
-    label: "Free credits on signup",
-  },
-] as const;
 
 const CAPABILITIES = [
   {
+    step: "01",
     title: "Plain-language brief",
     body: "Describe role, company type, and size. Get people or companies back — no filter maze to start.",
     icon: Sparkles,
   },
   {
+    step: "02",
     title: "Person or company",
     body: "Switch between people and company search. Local search stays marked Soon until it ships.",
     icon: Building2,
   },
   {
+    step: "03",
     title: "Saveable lead lists",
     body: "Filter results, save the list, and keep only the contacts you want to email.",
     icon: ListPlus,
   },
   {
+    step: "04",
     title: "Verify before outreach",
     body: "When a row includes an email, email verify it on the same credits. No email found = not charged.",
     icon: Filter,
   },
-] as const;
+] as const satisfies ReadonlyArray<{
+  step: string;
+  title: string;
+  body: string;
+  icon: LucideIcon;
+}>;
 
-const STEPS = [
+const RESULT_GUIDE = [
   {
-    step: "1",
-    title: "Write the brief",
-    body: "Describe who you want in plain language — role, company type, and size.",
+    status: "email attached",
+    variant: "success" as const,
+    means: "The lead includes a work address ready for the email verifier.",
+    handling: "Verify, then keep for outreach if statuses pass.",
   },
   {
-    step: "2",
-    title: "Choose people or companies",
-    body: "Person and company search are available. Local search is marked Soon and is not live yet.",
+    status: "no email found",
+    variant: "neutral" as const,
+    means: "The person or company matched, but no address came back.",
+    handling: "Not charged for that row. Save the lead or drop it.",
   },
   {
-    step: "3",
-    title: "Filter and save",
-    body: "Narrow the results, save the lead list, and drop rows you will not contact.",
-  },
-  {
-    step: "4",
-    title: "Email verify what you keep",
-    body: "Check attached addresses on the same credit balance before the sequence goes out.",
+    status: "soon: local",
+    variant: "warning" as const,
+    means: "Local search is listed in the product UI but is not live yet.",
+    handling: "Use person or company search until local ships.",
   },
 ] as const;
 
@@ -106,182 +99,252 @@ const WHY_ROWS = [
     ours: "yes" as const,
     others: "no" as const,
   },
+  {
+    feature: "Transparent $1.80/1K entry rate",
+    ours: "yes" as const,
+    others: "no" as const,
+  },
 ] as const;
 
 export default function FindLeadsPage() {
   return (
-    <main id="main-page" className="relative flex-1">
+    <main
+      className="flex-1 bg-background text-ink"
+      id="main-page"
+      role="main"
+      aria-labelledby="find-leads-heading"
+    >
       <section
-        className="relative pt-12 pb-16 lg:pt-16 lg:pb-20"
+        className="relative pt-10 pb-12 md:pt-14 md:pb-16 lg:pb-20"
         aria-labelledby="find-leads-heading"
       >
         <HeroWash />
-        <div className="site-container relative z-10 min-w-0">
+        <div className="site-container relative z-10">
           <PageBreadcrumb
             className="mb-6"
             items={[
               { label: "Home", href: "/" },
-              { label: "Find Leads" },
+              { label: "Lead Finder" },
             ]}
           />
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
-          <div className="mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
-            <p className="text-sm font-medium text-ink-muted">Find Leads</p>
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-sm font-medium text-ink-muted">Lead Finder</p>
             <h1
               id="find-leads-heading"
-              className="mt-3 font-display text-4xl font-semibold tracking-tight text-ink lg:text-5xl"
+              className="mt-5 text-balance font-display text-3xl font-semibold capitalize leading-snug tracking-tight text-ink sm:text-4xl lg:text-5xl"
             >
-              Find B2B leads the email verifier can keep
+              <span className="text-primary">Find B2B leads</span>
+              {" "}
+              the email verifier can keep
             </h1>
-            <p className="mt-4 text-lg leading-relaxed text-ink-muted">
-              Write a plain-language brief — who you want, and at what kind of
-              company — and get people or companies back. Person and company
-              search are live; local search is Soon. When a row includes an
-              email, email verify it on the same credits as the bulk email
-              verifier (${RATE_PER_THOUSAND.toFixed(2)}/1K). No email found means
-              that row is not charged.
+            <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-ink-muted">
+              Write a brief and get people or companies back.
             </p>
-            <FinderCtas loc="find-leads-hero" />
-            <FinderChecks
-              items={[
-                "Person or company",
-                "Plain-language brief",
-                "Saveable lead lists",
-                "Not charged when no email is found",
-              ]}
-            />
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <Button
+                asChild
+                size="lg"
+                className="transition-transform hover:scale-[1.02] active:scale-[0.99] motion-reduce:transform-none"
+              >
+                <Link
+                  href={REGISTER_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-ev-event="cta_register_click"
+                  data-ev-loc="find-leads-hero"
+                >
+                  Get 100 free credits
+                </Link>
+              </Button>
+              <Button variant="secondary" asChild size="lg">
+                <Link href="#pricing">See pricing</Link>
+              </Button>
+            </div>
           </div>
-          <figure className="min-w-0">
-            <figcaption className="mb-3 text-sm text-ink-muted">
-              Example lead list. Names and counts are illustrative.
-            </figcaption>
-            <FindLeadsMockup />
-          </figure>
+
+          <div className="mx-auto mt-8 max-w-3xl md:mt-10">
+            <DesktopMockup chromeLabel="Describe who you want — people or companies">
+              <FindLeadsMockup className="h-[26rem] rounded-xl border-0 shadow-none" />
+            </DesktopMockup>
+            <TrustStatsRow compact className="mt-8 w-full max-w-none" />
           </div>
         </div>
       </section>
 
-      <MetricStrip items={[...METRICS]} eyebrow="Find Leads facts" />
+      <ProofBar />
 
       <SectionShell
-        className="bg-surface-muted"
-        ariaLabelledBy="find-leads-problem-heading"
+        className="bg-background"
+        ariaLabelledBy="find-leads-caps-heading"
       >
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <div>
-            <h2
-              id="find-leads-problem-heading"
-              className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
-            >
-              Prospecting without verification is half a workflow
-            </h2>
-            <p className="mt-4 text-ink-muted">
-              Buying a raw lead dump and hoping is how domains get burned. Find
-              Leads sits next to the email verifier so discovery and list quality
-              share one credit pool — and one honest rule: no email found, no
-              charge.
-            </p>
-          </div>
-          <Reveal>
-            <div className="rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card)]">
-              <p className="text-xs font-medium uppercase tracking-[0.16em] text-ink-muted">
-                Example brief
-              </p>
-              <p className="mt-3 text-base leading-relaxed text-ink">
-                VPs of Engineering at companies with 50–200 employees
-              </p>
-              <ul className="mt-4 divide-y divide-line text-sm">
-                <li className="flex items-center justify-between gap-3 py-3">
-                  <span className="min-w-0">
-                    <span className="block font-medium text-ink">Jordan Hale</span>
-                    <span className="block truncate text-xs text-ink-muted">
-                      VP of Engineering · Northpeak
-                    </span>
-                  </span>
-                  <span className="shrink-0 text-xs font-medium text-ink">
-                    Email attached
-                  </span>
-                </li>
-                <li className="flex items-center justify-between gap-3 py-3">
-                  <span className="font-medium text-ink-muted">No email found</span>
-                  <span className="shrink-0 text-xs font-medium text-ink-muted">
-                    Not charged
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </Reveal>
-        </div>
-      </SectionShell>
-
-      <SectionShell ariaLabelledBy="find-leads-caps-heading">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-3xl text-center">
           <h2
             id="find-leads-caps-heading"
             className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
           >
-            Built for prospecting next to verification
+            Built for prospecting next to the{" "}
+            <span className="text-primary">email verifier</span>
           </h2>
           <p className="mt-3 text-ink-muted">
             Capabilities that match the dashboard — including what is still Soon.
           </p>
         </div>
-        <Reveal className="mt-10" staggerSelector="[data-cap]">
-          <ul className="grid gap-4 sm:grid-cols-2">
-            {CAPABILITIES.map((cap) => {
-              const Icon = cap.icon;
-              return (
-                <li
-                  key={cap.title}
-                  data-cap
-                  className="flex gap-4 rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card)] transition hover:border-primary/35"
-                >
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-primary-soft text-primary">
-                    <Icon className="h-5 w-5" strokeWidth={1.6} aria-hidden />
-                  </span>
-                  <div>
-                    <p className="font-semibold text-ink">{cap.title}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-ink-muted">
+
+        <div className="mx-auto mt-10 max-w-6xl">
+          <Reveal staggerSelector="[data-cap]">
+            <ul className="grid gap-4 sm:grid-cols-2">
+              {CAPABILITIES.map((cap) => {
+                const Icon = cap.icon;
+                return (
+                  <li
+                    key={cap.step}
+                    data-cap
+                    className="relative overflow-hidden rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card)] transition hover:border-primary/35"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="font-display text-3xl font-bold tracking-tight text-primary">
+                        {cap.step}
+                      </p>
+                      <Icon
+                        className="h-10 w-10 shrink-0 text-primary/20"
+                        aria-hidden
+                      />
+                    </div>
+                    <h3 className="mt-4 text-base font-semibold text-ink">
+                      {cap.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">
                       {cap.body}
                     </p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </Reveal>
+                  </li>
+                );
+              })}
+            </ul>
+          </Reveal>
+        </div>
+
+        <div className="relative mt-8 overflow-hidden rounded-2xl bg-primary px-5 py-5 text-primary-foreground shadow-[var(--shadow-card)] sm:px-7 sm:py-6">
+          <ShieldCheck
+            className="pointer-events-none absolute -right-6 -bottom-8 h-40 w-40 text-primary-foreground/15"
+            aria-hidden
+          />
+          <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/15">
+              <ShieldCheck className="h-6 w-6" aria-hidden />
+            </span>
+            <p className="text-sm leading-relaxed sm:text-base">
+              <span className="mr-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+                0
+              </span>
+              Credits when no email is found — discovery and list quality share
+              one honest balance with the email verifier.
+            </p>
+          </div>
+        </div>
       </SectionShell>
 
-      <HowSteps
-        className="bg-surface-muted"
-        title="How Search Leads works"
-        steps={[...STEPS]}
+      <SectionShell
+        className="bg-background"
+        ariaLabelledBy="find-leads-result-heading"
+      >
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+          <div>
+            <h2
+              id="find-leads-result-heading"
+              className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+            >
+              Lead results you can act on
+            </h2>
+            <p className="mt-4 text-ink-muted">
+              Prospecting without verification is half a workflow. Read each row
+              before the sequence goes out.
+            </p>
+          </div>
+          <Reveal>
+            <div className="overflow-x-auto rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)]">
+              <table className="w-full min-w-[28rem] border-collapse text-left text-sm">
+                <caption className="sr-only">
+                  Lead finder result meanings and practical handling
+                </caption>
+                <thead>
+                  <tr className="border-b border-line bg-surface-muted">
+                    <th
+                      scope="col"
+                      className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-ink-muted"
+                    >
+                      Result
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-ink-muted"
+                    >
+                      What it means
+                    </th>
+                    <th
+                      scope="col"
+                      className="px-4 py-3 text-xs font-semibold uppercase tracking-wide text-ink-muted"
+                    >
+                      Handling
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {RESULT_GUIDE.map((row) => (
+                    <tr
+                      key={row.status}
+                      className="border-b border-line last:border-b-0"
+                    >
+                      <th
+                        scope="row"
+                        className="whitespace-nowrap px-4 py-3.5 align-top font-medium text-ink"
+                      >
+                        <StatusChip
+                          label={row.status}
+                          variant={row.variant}
+                          className="font-mono"
+                        />
+                      </th>
+                      <td className="px-4 py-3.5 align-top leading-relaxed text-ink-muted">
+                        {row.means}
+                      </td>
+                      <td className="px-4 py-3.5 align-top leading-relaxed text-ink-muted">
+                        {row.handling}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
+        </div>
+      </SectionShell>
+
+      <PricingSection
+        variant="homepage"
+        heading="Pay-as-you-go and volume pricing"
+        lead={`Find Leads uses the same credits as the email verifier — from $${RATE_PER_THOUSAND.toFixed(2)} per 1,000. Credits never expire.`}
       />
 
       <WhyUsTable
+        className="bg-surface-muted"
         title="Why Find Leads here"
         intro="Prospect, save lists, and email verify without juggling another suite seat."
         rows={[...WHY_ROWS]}
       />
 
-      <CreditPricingTeaser
-        title="Prospect on the same credits you clean with"
-        eventLoc="find-leads-pricing"
+      <LandingFaq
+        className="bg-background"
+        title="Lead Finder questions"
+        items={FIND_LEADS_FAQS}
       />
 
-      <LandingFaq title="Find Leads questions" items={FIND_LEADS_FAQS} />
-
-      <LandingFinalCta
-        title="Build the list. Verify before you send."
-        body="Start with 100 free credits. Person and company search are live — local search stays Soon until it ships."
-        secondaryHref="/find-emails"
-        secondaryLabel="Already have a name?"
-        eventLoc="find-leads-final"
-      />
+      <CTA />
 
       <p className="sr-only">
         Prefer cleaning addresses you already have? Use the{" "}
-        <Link href="/bulk-email-verifier">bulk email verifier</Link>.
+        <Link href="/bulk-email-verifier">bulk email verifier</Link>. Already
+        have a name?{" "}
+        <Link href="/find-emails">Find Emails</Link>.
       </p>
     </main>
   );

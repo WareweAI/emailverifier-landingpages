@@ -42,7 +42,7 @@ export default function PrivacyPage() {
           />
           <h1
             id="privacy-heading"
-            className="mb-4 font-display text-4xl font-bold tracking-tight text-ink"
+            className="mb-4 font-display text-4xl font-bold capitalize tracking-tight text-ink"
           >
             Email Verifier Privacy Policy
           </h1>

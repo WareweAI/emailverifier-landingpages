@@ -61,6 +61,7 @@ export function SectionHeading({
       id={id}
       className={cn(
         sectionHeadingClassName,
+        Tag === "h1" && "capitalize",
         withEyebrow && "mt-3",
         tone === "onDark" ? "text-primary-foreground" : "text-ink",
         className
