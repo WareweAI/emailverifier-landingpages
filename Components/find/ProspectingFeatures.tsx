@@ -1,5 +1,10 @@
-"use client";
-
+import type { ComponentType, ReactNode } from "react";
+import Link from "next/link";
+import { ArrowRight, AtSign, Building2, Linkedin, Search, type LucideIcon } from "lucide-react";
+import {
+  FeaturePointList,
+  type FeaturePoint,
+} from "@/Components/home/feature-pillars/FeaturePointList";
 import { Button } from "@/Components/ui/Button";
 import {
   SectionEyebrow,
@@ -10,35 +15,72 @@ import { SectionShell } from "@/Components/ui/SectionShell";
 import { StatusChip } from "@/Components/ui/StatusChip";
 import { REGISTER_URL } from "@/lib/api-snippet";
 import { cn } from "@/lib/utils";
-import { ArrowRight, AtSign, Linkedin, Minus, Plus, Search } from "lucide-react";
-import Link from "next/link";
-import { useState, type ReactNode } from "react";
 
-const FEATURES = [
+type FinderFeatureCard = {
+  id: string;
+  icon: LucideIcon;
+  iconClass: string;
+  iconWrapClass: string;
+  title: string;
+  points: readonly FeaturePoint[];
+  cta: string;
+  cardClass: string;
+  Mockup: ComponentType<{ className?: string }>;
+};
+
+const FEATURE_CARDS: FinderFeatureCard[] = [
   {
     id: "person",
+    icon: Search,
+    iconClass: "text-success",
+    iconWrapClass: "bg-success/15",
     title: "Lookup by Person & Company",
-    body: "Targeting a specific buyer, founder, or hiring manager? Use our real-time lookup tool to find email by person name and company name or website URL in seconds.",
+    points: [
+      {
+        title: "Lookup by Person & Company",
+        body: "Targeting a specific buyer, founder, or hiring manager? Use our real-time lookup tool to find email by person name and company name or website URL in seconds.",
+      },
+    ],
     cta: "Find email by person name",
+    cardClass: "bg-success-soft",
+    Mockup: PersonPreview,
   },
   {
     id: "domain",
+    icon: Building2,
+    iconClass: "text-primary",
+    iconWrapClass: "bg-primary/15",
     title: "Company Domain Search",
-    body: "Mapping an entire target account for ABM or outbound sales? Enter any corporate URL to find emails by company domain, uncover department contacts, and export verified decision-makers at scale.",
+    points: [
+      {
+        title: "Company Domain Search",
+        body: "Mapping an entire target account for ABM or outbound sales? Enter any corporate URL to find emails by company domain, uncover department contacts, and export verified decision-makers at scale.",
+      },
+    ],
     cta: "Find emails by company domain",
+    cardClass: "bg-lavender-soft",
+    Mockup: DomainPreview,
   },
   {
     id: "linkedin",
-    title: "Find Verified Business Emails from LinkedIn Profiles in Seconds",
-    body: "Found your ideal prospect on LinkedIn but can't find their email address? Simply paste their LinkedIn profile URL into our LinkedIn Email Finder to find verified business email addresses in seconds. Connect with decision-makers, recruiters, and potential clients without guessing email formats.",
+    icon: Linkedin,
+    iconClass: "text-primary-deep",
+    iconWrapClass: "bg-primary-deep/10",
+    title: "LinkedIn Email Finder",
+    points: [
+      {
+        title:
+          "Find Verified Business Emails from LinkedIn Profiles in Seconds",
+        body: "Found your ideal prospect on LinkedIn but can't find their email address? Simply paste their LinkedIn profile URL into our LinkedIn Email Finder to find verified business email addresses in seconds. Connect with decision-makers, recruiters, and potential clients without guessing email formats.",
+      },
+    ],
     cta: "Find Email by LinkedIn Profile",
+    cardClass: "bg-teal-soft",
+    Mockup: LinkedInPreview,
   },
-] as const;
+];
 
 export default function ProspectingFeatures() {
-  const [openIndex, setOpenIndex] = useState(0);
-  const active = openIndex >= 0 ? FEATURES[openIndex] : FEATURES[0];
-
   return (
     <SectionShell
       className="bg-background pb-8 md:pb-10 lg:pb-12"
@@ -55,116 +97,82 @@ export default function ProspectingFeatures() {
         </SectionLead>
       </div>
 
-      <article className="mt-12 grid items-center gap-8 rounded-3xl border-[5px] border-surface bg-success-soft p-6 shadow-[var(--shadow-card)] sm:p-8 lg:mt-16 lg:grid-cols-2 lg:gap-10 lg:p-10">
-        <div className="min-w-0">
-          <span
-            className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-success/15 sm:h-14 sm:w-14"
-            aria-hidden
-          >
-            <Search
-              className="h-7 w-7 text-success sm:h-8 sm:w-8"
-              strokeWidth={1.75}
-            />
-          </span>
-          <h3 className="mt-5 font-display text-2xl font-semibold tracking-tight text-ink">
-            Email Finder
-          </h3>
+      <ol className="mt-12 list-none space-y-0 p-0 lg:mt-16">
+        {FEATURE_CARDS.map((card, index) => {
+          const imageFirst = index % 2 === 1;
 
-          <ul className="mt-6 border-t border-ink/10">
-            {FEATURES.map((feature, index) => {
-              const isOpen = openIndex === index;
-              const panelId = `prospecting-${feature.id}`;
-              const buttonId = `${panelId}-button`;
-
-              return (
-                <li key={feature.id} className="border-b border-ink/10">
-                  <button
-                    id={buttonId}
-                    type="button"
-                    className="flex min-h-11 w-full items-center justify-between gap-4 py-3.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
-                    aria-expanded={isOpen}
-                    aria-controls={panelId}
-                    onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  >
-                    <span className="text-base font-semibold text-ink">
-                      {feature.title}
-                    </span>
-                    {isOpen ? (
-                      <Minus className="h-4 w-4 shrink-0 text-ink" aria-hidden />
-                    ) : (
-                      <Plus className="h-4 w-4 shrink-0 text-ink-muted" aria-hidden />
-                    )}
-                  </button>
-                  <div
-                    id={panelId}
-                    role="region"
-                    aria-labelledby={buttonId}
-                    className={cn(
-                      "grid transition-[grid-template-rows] duration-200 motion-reduce:transition-none",
-                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                    )}
-                  >
-                    <div className="overflow-hidden">
-                      <p className="pb-4 text-sm leading-relaxed text-ink-muted">
-                        {feature.body}
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-
-          {openIndex >= 0 ? (
-            <Button
-              size="lg"
-              asChild
-              className="group mt-6 rounded-lg border border-ink bg-ink text-primary-foreground hover:bg-ink/90 active:bg-ink"
+          return (
+            <li
+              key={card.id}
+              className={cn(
+                "relative",
+                index > 0 && "-mt-4 sm:-mt-5 lg:-mt-6"
+              )}
+              style={{ zIndex: index + 1 }}
             >
-              <Link
-                href={REGISTER_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-ev-event="cta_register_click"
-                data-ev-loc={`prospecting-${active.id}`}
+              <article
+                className={cn(
+                  /* 1-off: 5px white edge so stacked pastel cards separate cleanly */
+                  "grid items-center gap-8 rounded-3xl border-[5px] border-surface p-6 shadow-[var(--shadow-card)] sm:p-8 lg:grid-cols-2 lg:gap-10 lg:p-10",
+                  card.cardClass
+                )}
               >
-                {active.cta}
-                <ArrowRight
-                  className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                <div className={cn("min-w-0", imageFirst && "lg:order-2")}>
+                  <span
+                    className={cn(
+                      "inline-flex h-12 w-12 items-center justify-center rounded-2xl sm:h-14 sm:w-14",
+                      card.iconWrapClass
+                    )}
+                    aria-hidden
+                  >
+                    <card.icon
+                      className={cn("h-7 w-7 sm:h-8 sm:w-8", card.iconClass)}
+                      strokeWidth={1.75}
+                    />
+                  </span>
+                  <h3 className="mt-5 font-display text-2xl font-semibold tracking-tight text-ink">
+                    {card.title}
+                  </h3>
+                  <FeaturePointList
+                    points={card.points}
+                    idPrefix={`finder-feature-${card.id}`}
+                  />
+                  <Button
+                    size="lg"
+                    asChild
+                    className="group mt-6 rounded-lg border border-ink bg-ink text-primary-foreground hover:bg-ink/90 active:bg-ink"
+                  >
+                    <Link
+                      href={REGISTER_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-ev-event="cta_register_click"
+                      data-ev-loc={`prospecting-${card.id}`}
+                    >
+                      {card.cta}
+                      <ArrowRight
+                        className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                        aria-hidden
+                      />
+                    </Link>
+                  </Button>
+                </div>
+
+                <div
+                  className={cn(
+                    "min-w-0",
+                    imageFirst ? "lg:order-1 lg:pr-2" : "lg:pl-2"
+                  )}
                   aria-hidden
-                />
-              </Link>
-            </Button>
-          ) : null}
-        </div>
-
-        <div className="min-w-0 lg:pl-2" aria-hidden>
-          <FinderPreview kind={active.id} />
-        </div>
-      </article>
+                >
+                  <card.Mockup />
+                </div>
+              </article>
+            </li>
+          );
+        })}
+      </ol>
     </SectionShell>
-  );
-}
-
-function FinderPreview({ kind }: { kind: (typeof FEATURES)[number]["id"] }) {
-  const title =
-    kind === "person"
-      ? "Find Email"
-      : kind === "domain"
-        ? "Company domain"
-        : "LinkedIn profile";
-
-  return (
-    <div className="overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)]">
-      <div className="border-b border-line px-4 py-3">
-        <p className="text-sm font-semibold text-ink">{title}</p>
-      </div>
-      <div className="p-4 sm:p-5">
-        {kind === "person" ? <PersonPreview /> : null}
-        {kind === "domain" ? <DomainPreview /> : null}
-        {kind === "linkedin" ? <LinkedInPreview /> : null}
-      </div>
-    </div>
   );
 }
 
@@ -183,46 +191,76 @@ function ExampleResult({
   );
 }
 
-function PersonPreview() {
+function PersonPreview({ className }: { className?: string }) {
   return (
-    <>
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-        <Field icon={<Search className="h-4 w-4" />} value="Alex Morgan" />
-        <Field icon={<AtSign className="h-4 w-4" />} value="acme.com" />
+    <div
+      className={cn(
+        "overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)]",
+        className
+      )}
+    >
+      <div className="border-b border-line px-4 py-3">
+        <p className="text-sm font-semibold text-ink">Find Email</p>
       </div>
-      <ResultList
-        rows={[
-          ["alex.morgan@acme.com", "Best"],
-          ["amorgan@acme.com", "Likely"],
-        ]}
-      />
-    </>
+      <div className="p-4 sm:p-5">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <Field icon={<Search className="h-4 w-4" />} value="Alex Morgan" />
+          <Field icon={<AtSign className="h-4 w-4" />} value="acme.com" />
+        </div>
+        <ResultList
+          rows={[
+            ["alex.morgan@acme.com", "Best"],
+            ["amorgan@acme.com", "Likely"],
+          ]}
+        />
+      </div>
+    </div>
   );
 }
 
-function DomainPreview() {
+function DomainPreview({ className }: { className?: string }) {
   return (
-    <>
-      <Field icon={<AtSign className="h-4 w-4" />} value="acme.com" />
-      <ResultList
-        rows={[
-          ["alex.morgan@acme.com", "Sales"],
-          ["priya.shah@acme.com", "Marketing"],
-        ]}
-      />
-    </>
+    <div
+      className={cn(
+        "overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)]",
+        className
+      )}
+    >
+      <div className="border-b border-line px-4 py-3">
+        <p className="text-sm font-semibold text-ink">Company domain</p>
+      </div>
+      <div className="p-4 sm:p-5">
+        <Field icon={<AtSign className="h-4 w-4" />} value="acme.com" />
+        <ResultList
+          rows={[
+            ["alex.morgan@acme.com", "Sales"],
+            ["priya.shah@acme.com", "Marketing"],
+          ]}
+        />
+      </div>
+    </div>
   );
 }
 
-function LinkedInPreview() {
+function LinkedInPreview({ className }: { className?: string }) {
   return (
-    <>
-      <Field
-        icon={<Linkedin className="h-4 w-4" />}
-        value="linkedin.com/in/alex-morgan"
-      />
-      <ResultList rows={[["alex.morgan@acme.com", "Best"]]} />
-    </>
+    <div
+      className={cn(
+        "overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)]",
+        className
+      )}
+    >
+      <div className="border-b border-line px-4 py-3">
+        <p className="text-sm font-semibold text-ink">LinkedIn profile</p>
+      </div>
+      <div className="p-4 sm:p-5">
+        <Field
+          icon={<Linkedin className="h-4 w-4" />}
+          value="linkedin.com/in/alex-morgan"
+        />
+        <ResultList rows={[["alex.morgan@acme.com", "Best"]]} />
+      </div>
+    </div>
   );
 }
 

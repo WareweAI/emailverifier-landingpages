@@ -73,7 +73,7 @@ export default function PatternVerificationSection() {
           Verification-First Discovery
         </SectionEyebrow>
         <SectionHeading id="find-emails-result-heading" withEyebrow>
-          Corporate Pattern Matching Backed by Live SMTP Verification
+          Corporate Pattern Matching Backed by the Email Verifier
         </SectionHeading>
         <SectionLead className="mx-auto max-w-3xl">
           Standalone email finders guess corporate naming patterns and leave

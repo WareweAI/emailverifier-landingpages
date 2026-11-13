@@ -51,7 +51,14 @@ function linkedinHandle(url: string): string {
   return slug || "profile";
 }
 
-export default function FinderHeroPanel() {
+type FinderHeroPanelProps = {
+  variant?: "hero" | "tool-page";
+};
+
+export default function FinderHeroPanel({
+  variant = "hero",
+}: FinderHeroPanelProps) {
+  const isToolPage = variant === "tool-page";
   const nameId = useId();
   const companyId = useId();
   const linkedinId = useId();
@@ -126,6 +133,202 @@ export default function FinderHeroPanel() {
     runDemo("person");
   };
 
+  const form = (
+    <form onSubmit={handleSubmit} className="space-y-3">
+      <div className="flex flex-col gap-2 sm:flex-row">
+        <div className="relative min-w-0 flex-1">
+          <label htmlFor={nameId} className="sr-only">
+            Full name
+          </label>
+          <User
+            className="pointer-events-none absolute top-1/2 left-3.5 h-5 w-5 -translate-y-1/2 text-ink-muted"
+            aria-hidden
+          />
+          <Input
+            id={nameId}
+            type="text"
+            autoComplete="name"
+            placeholder="Full name"
+            disabled={loading}
+            value={fullName}
+            onChange={(event) => {
+              setFullName(event.target.value);
+              resetPhase();
+            }}
+            className="pl-11"
+          />
+        </div>
+        <div className="relative min-w-0 flex-1">
+          <label htmlFor={companyId} className="sr-only">
+            Company domain or name
+          </label>
+          <AtSign
+            className="pointer-events-none absolute top-1/2 left-3.5 h-5 w-5 -translate-y-1/2 text-ink-muted"
+            aria-hidden
+          />
+          <Input
+            id={companyId}
+            type="text"
+            autoComplete="organization"
+            placeholder="Company domain"
+            disabled={loading}
+            value={company}
+            onChange={(event) => {
+              setCompany(event.target.value);
+              resetPhase();
+            }}
+            className="pl-11"
+          />
+        </div>
+        <Button
+          type="submit"
+          size="lg"
+          variant={isToolPage ? "primary" : "outline"}
+          disabled={loading}
+          className={cn(
+            "min-h-12 w-full shrink-0 sm:w-auto",
+            !isToolPage &&
+              "border-primary bg-transparent text-primary hover:border-primary hover:bg-primary-soft active:bg-primary-soft"
+          )}
+        >
+          {loading ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+              Finding…
+            </>
+          ) : (
+            <>
+              {!isToolPage && <Search className="h-4 w-4" aria-hidden />}
+              Find Emails Free
+            </>
+          )}
+        </Button>
+      </div>
+
+      {phase === "progress" && <HeroDemoProgress kind="find" />}
+
+      {showPreview && (
+        <div className="relative overflow-hidden rounded-2xl">
+          <div
+            className={cn(
+              showGate &&
+                "pointer-events-none select-none opacity-70 blur-[5px]"
+            )}
+            aria-hidden={showGate || undefined}
+          >
+            <div
+              className="overflow-hidden rounded-2xl border border-success/20 bg-success-soft shadow-[var(--shadow-card)]"
+              role="status"
+              aria-live="polite"
+            >
+              <div className="p-4">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="min-w-0">
+                    <p className="font-semibold text-ink">
+                      Matching work emails found
+                    </p>
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      <StatusChip
+                        label="Likely"
+                        variant="success"
+                        className="bg-surface text-success ring-1 ring-success/25"
+                      />
+                      <StatusChip
+                        label="Example"
+                        variant="neutral"
+                        showIcon={false}
+                        className="bg-surface uppercase tracking-wide ring-1 ring-line"
+                      />
+                    </div>
+                  </div>
+                  <div className="shrink-0 text-right">
+                    <p className="font-display text-3xl font-semibold tabular-nums leading-none text-ink">
+                      {candidates.length}
+                    </p>
+                    <p className="mt-1 text-sm text-ink-muted">Matches</p>
+                  </div>
+                </div>
+
+                <ul className="mt-4 space-y-2">
+                  {candidates.map((candidate, index) => (
+                    <li
+                      key={candidate}
+                      className="flex items-center justify-between gap-3 rounded-xl border border-line bg-surface/80 px-3 py-2.5"
+                    >
+                      <span className="truncate text-sm font-medium text-ink">
+                        {candidate}
+                      </span>
+                      <span className="shrink-0 text-xs font-semibold text-success">
+                        {index === 0 ? "Best" : "Likely"}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-4 space-y-3">
+                  <div
+                    className="flex items-center gap-3"
+                    role="separator"
+                    aria-label="or instead"
+                  >
+                    <span className="h-px flex-1 bg-line" aria-hidden />
+                    <span className="shrink-0 text-sm text-ink-muted">
+                      or Instead
+                    </span>
+                    <span className="h-px flex-1 bg-line" aria-hidden />
+                  </div>
+                  <div className="relative">
+                    <label htmlFor={linkedinId} className="sr-only">
+                      LinkedIn profile URL
+                    </label>
+                    <Linkedin
+                      className="pointer-events-none absolute top-1/2 left-3.5 h-5 w-5 -translate-y-1/2 text-ink-muted"
+                      aria-hidden
+                    />
+                    <Input
+                      id={linkedinId}
+                      type="url"
+                      inputMode="url"
+                      placeholder="LinkedIn profile URL"
+                      disabled={loading}
+                      value={linkedinUrl}
+                      onChange={(event) => {
+                        setLinkedinUrl(event.target.value);
+                        resetPhase();
+                      }}
+                      className="pl-11"
+                    />
+                  </div>
+                  <p className="text-center text-xs leading-relaxed text-ink-muted">
+                    Get{" "}
+                    <span className="font-semibold text-primary">
+                      100 free credits
+                    </span>
+                    . No setup, no credit card, no stress.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {showGate && (
+            <div className="absolute inset-0 flex items-center justify-center bg-surface/40 p-3 backdrop-blur-[1px] sm:p-4">
+              <HeroDemoSignupGate
+                title="Sign up to check results"
+                description="Create a free account to unlock matching work emails — 100 free credits, no card."
+                location="email-finder-gate"
+                className="w-full max-w-md"
+              />
+            </div>
+          )}
+        </div>
+      )}
+    </form>
+  );
+
+  if (isToolPage) {
+    return <div className="w-full">{form}</div>;
+  }
+
   return (
     <div className="flex w-full flex-col items-center">
       <div
@@ -172,191 +375,7 @@ export default function FinderHeroPanel() {
         <p className="border-b border-line bg-surface-muted px-4 py-2.5 text-center text-sm leading-snug text-ink-muted">
           Free Email Finder Tool
         </p>
-        <form onSubmit={handleSubmit} className="space-y-3 p-4 sm:p-5 md:p-6">
-          <div className="flex flex-col gap-2 sm:flex-row">
-            <div className="relative min-w-0 flex-1">
-              <label htmlFor={nameId} className="sr-only">
-                Full name
-              </label>
-              <User
-                className="pointer-events-none absolute top-1/2 left-3.5 h-5 w-5 -translate-y-1/2 text-ink-muted"
-                aria-hidden
-              />
-              <Input
-                id={nameId}
-                type="text"
-                autoComplete="name"
-                placeholder="Full name"
-                disabled={loading}
-                value={fullName}
-                onChange={(event) => {
-                  setFullName(event.target.value);
-                  resetPhase();
-                }}
-                className="pl-11"
-              />
-            </div>
-            <div className="relative min-w-0 flex-1">
-              <label htmlFor={companyId} className="sr-only">
-                Company domain or name
-              </label>
-              <AtSign
-                className="pointer-events-none absolute top-1/2 left-3.5 h-5 w-5 -translate-y-1/2 text-ink-muted"
-                aria-hidden
-              />
-              <Input
-                id={companyId}
-                type="text"
-                autoComplete="organization"
-                placeholder="Company domain"
-                disabled={loading}
-                value={company}
-                onChange={(event) => {
-                  setCompany(event.target.value);
-                  resetPhase();
-                }}
-                className="pl-11"
-              />
-            </div>
-            <Button
-              type="submit"
-              size="lg"
-              variant="outline"
-              disabled={loading}
-              className="min-h-12 w-full shrink-0 border-primary bg-transparent text-primary hover:border-primary hover:bg-primary-soft active:bg-primary-soft sm:w-auto"
-            >
-              {loading ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-                  Finding…
-                </>
-              ) : (
-                <>
-                  <Search className="h-4 w-4" aria-hidden />
-                  Find Emails Free
-                </>
-              )}
-            </Button>
-          </div>
-
-          {phase === "progress" && <HeroDemoProgress kind="find" />}
-
-          {showPreview && (
-            <div className="relative overflow-hidden rounded-2xl">
-              <div
-                className={cn(
-                  showGate &&
-                    "pointer-events-none select-none opacity-70 blur-[5px]"
-                )}
-                aria-hidden={showGate || undefined}
-              >
-                <div
-                  className="overflow-hidden rounded-2xl border border-success/20 bg-success-soft shadow-[var(--shadow-card)]"
-                  role="status"
-                  aria-live="polite"
-                >
-                  <div className="p-4">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="min-w-0">
-                        <p className="font-semibold text-ink">
-                          Matching work emails found
-                        </p>
-                        <div className="mt-2 flex flex-wrap gap-1.5">
-                          <StatusChip
-                            label="Likely"
-                            variant="success"
-                            className="bg-surface text-success ring-1 ring-success/25"
-                          />
-                          <StatusChip
-                            label="Example"
-                            variant="neutral"
-                            showIcon={false}
-                            className="bg-surface uppercase tracking-wide ring-1 ring-line"
-                          />
-                        </div>
-                      </div>
-                      <div className="shrink-0 text-right">
-                        <p className="font-display text-3xl font-semibold tabular-nums leading-none text-ink">
-                          {candidates.length}
-                        </p>
-                        <p className="mt-1 text-sm text-ink-muted">Matches</p>
-                      </div>
-                    </div>
-
-                    <ul className="mt-4 space-y-2">
-                      {candidates.map((candidate, index) => (
-                        <li
-                          key={candidate}
-                          className="flex items-center justify-between gap-3 rounded-xl border border-line bg-surface/80 px-3 py-2.5"
-                        >
-                          <span className="truncate text-sm font-medium text-ink">
-                            {candidate}
-                          </span>
-                          <span className="shrink-0 text-xs font-semibold text-success">
-                            {index === 0 ? "Best" : "Likely"}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="mt-4 space-y-3">
-                      <div
-                        className="flex items-center gap-3"
-                        role="separator"
-                        aria-label="or instead"
-                      >
-                        <span className="h-px flex-1 bg-line" aria-hidden />
-                        <span className="shrink-0 text-sm text-ink-muted">
-                          or Instead
-                        </span>
-                        <span className="h-px flex-1 bg-line" aria-hidden />
-                      </div>
-                      <div className="relative">
-                        <label htmlFor={linkedinId} className="sr-only">
-                          LinkedIn profile URL
-                        </label>
-                        <Linkedin
-                          className="pointer-events-none absolute top-1/2 left-3.5 h-5 w-5 -translate-y-1/2 text-ink-muted"
-                          aria-hidden
-                        />
-                        <Input
-                          id={linkedinId}
-                          type="url"
-                          inputMode="url"
-                          placeholder="LinkedIn profile URL"
-                          disabled={loading}
-                          value={linkedinUrl}
-                          onChange={(event) => {
-                            setLinkedinUrl(event.target.value);
-                            resetPhase();
-                          }}
-                          className="pl-11"
-                        />
-                      </div>
-                      <p className="text-center text-xs leading-relaxed text-ink-muted">
-                        Get{" "}
-                        <span className="font-semibold text-primary">
-                          100 free credits
-                        </span>
-                        . No setup, no credit card, no stress.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {showGate && (
-                <div className="absolute inset-0 flex items-center justify-center bg-surface/40 p-3 backdrop-blur-[1px] sm:p-4">
-                  <HeroDemoSignupGate
-                    title="Sign up to check results"
-                    description="Create a free account to unlock matching work emails — 100 free credits, no card."
-                    location="email-finder-gate"
-                    className="w-full max-w-md"
-                  />
-                </div>
-              )}
-            </div>
-          )}
-        </form>
+        <div className="p-4 sm:p-5 md:p-6">{form}</div>
       </div>
     </div>
   );
