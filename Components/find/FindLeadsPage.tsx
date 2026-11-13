@@ -124,7 +124,7 @@ export default function FindLeadsPage() {
             className="mb-6"
             items={[
               { label: "Home", href: "/" },
-              { label: "Products" },
+              { label: "Products", href: "/products" },
               { label: "Lead Finder" },
             ]}
           />

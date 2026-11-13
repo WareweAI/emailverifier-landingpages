@@ -28,7 +28,7 @@ export default function FindEmailsPage() {
             className="mb-6"
             items={[
               { label: "Home", href: "/" },
-              { label: "Products" },
+              { label: "Products", href: "/products" },
               { label: "Email Finder" },
             ]}
           />

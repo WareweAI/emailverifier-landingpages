@@ -168,13 +168,21 @@ function TestimonialCard({
   );
 }
 
-export default function TestimonialsLedger() {
+export default function TestimonialsLedger({
+  limit,
+}: {
+  /** When set, show only the first N reviews (e.g. products hub). */
+  limit?: number;
+}) {
+  const reviews =
+    typeof limit === "number" ? REVIEWS.slice(0, Math.max(0, limit)) : REVIEWS;
+
   return (
     <ul
       aria-label="Reddit customer reviews"
       className="mx-auto flex list-none flex-wrap justify-center gap-4 p-0"
     >
-      {REVIEWS.map((review) => (
+      {reviews.map((review) => (
         <li
           key={review.commentUrl}
           className="w-full min-w-0 sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.7rem)]"

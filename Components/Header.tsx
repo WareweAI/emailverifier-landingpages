@@ -22,10 +22,21 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "./ui/Button";
 import LogoMark from "./ui/LogoMark";
 import { StatusChip } from "./ui/StatusChip";
 import { cn } from "@/lib/utils";
+
+const PRODUCT_ROUTE_PREFIXES = [
+  "/products",
+  "/validate-email",
+  "/bulk-email-verifier",
+  "/email-verification-api",
+  "/email-finder",
+  "/find-leads",
+  "/data-enrichment",
+] as const;
 
 const REGISTER_URL = "https://app.emailverifier.io/register";
 
@@ -413,6 +424,10 @@ function MegaMenuPanel({
 }
 
 export default function Header() {
+  const pathname = usePathname();
+  const isProductsRoute = PRODUCT_ROUTE_PREFIXES.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
+  );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductOpen, setIsProductOpen] = useState(false);
   const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
@@ -506,20 +521,19 @@ export default function Header() {
               className="hidden items-center gap-6 md:flex lg:gap-8"
               aria-label="Primary"
             >
-              <button
-                type="button"
+              <Link
+                href="/products"
                 className={cn(
                   "flex min-h-11 items-center gap-1 rounded-lg px-2.5 text-sm font-medium text-ink transition hover:bg-primary-soft hover:text-primary focus-visible:bg-primary-soft focus-visible:text-primary",
-                  isProductOpen && "bg-primary-soft text-primary"
+                  (isProductOpen || isProductsRoute) &&
+                    "bg-primary-soft text-primary"
                 )}
                 aria-haspopup="true"
                 aria-expanded={isProductOpen}
                 aria-controls="product-menu"
+                aria-current={pathname === "/products" ? "page" : undefined}
                 onMouseEnter={openProduct}
                 onFocus={openProduct}
-                onClick={() => {
-                  if (!isProductOpen) openProduct();
-                }}
                 onKeyDown={(e) => {
                   if (e.key === "Escape") setIsProductOpen(false);
                 }}
@@ -532,7 +546,7 @@ export default function Header() {
                   )}
                   aria-hidden
                 />
-              </button>
+              </Link>
 
               <button
                 type="button"
@@ -695,6 +709,19 @@ export default function Header() {
             aria-label="Mobile"
           >
             <ul className="flex flex-col gap-5">
+              <li>
+                <Link
+                  href="/products"
+                  className={cn(
+                    "block py-2 text-sm font-medium hover:text-primary",
+                    pathname === "/products" ? "text-primary" : "text-ink"
+                  )}
+                  aria-current={pathname === "/products" ? "page" : undefined}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  All products
+                </Link>
+              </li>
               {PRODUCT_GROUPS.map((group) => (
                 <li key={group.id}>
                   <p className="text-sm font-medium text-ink-muted">

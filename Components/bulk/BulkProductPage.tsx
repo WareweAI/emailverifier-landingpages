@@ -138,7 +138,7 @@ export default function BulkProductPage() {
             className="mb-6"
             items={[
               { label: "Home", href: "/" },
-              { label: "Products" },
+              { label: "Products", href: "/products" },
               { label: "Bulk Email Verifier" },
             ]}
           />

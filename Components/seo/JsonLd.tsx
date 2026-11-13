@@ -80,6 +80,28 @@ export function breadcrumbJsonLd(
   };
 }
 
+export function itemListJsonLd(
+  items: ReadonlyArray<{ name: string; path: string; description: string }>,
+  opts?: { name?: string; description?: string },
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: opts?.name ?? "EmailVerifier.io Products",
+    description:
+      opts?.description ??
+      "Email verifier, bulk verification, API, email finder, lead finder, and data enrichment.",
+    numberOfItems: items.length,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      url: `https://emailverifier.io${item.path}`,
+      description: item.description,
+    })),
+  };
+}
+
 export function articleJsonLd(post: {
   title: string;
   excerpt: string;
