@@ -11,7 +11,11 @@ type LandingFinalCtaProps = {
   primaryLabel?: string;
   secondaryHref?: string;
   secondaryLabel?: string;
+  /** Trust line under the CTAs. */
+  footnote?: string;
   eventLoc?: string;
+  /** Hide secondary button when a nearby section already covers that path. */
+  hideSecondary?: boolean;
 };
 
 export function LandingFinalCta({
@@ -21,7 +25,9 @@ export function LandingFinalCta({
   primaryLabel = "Get 100 free credits",
   secondaryHref = "/pricing",
   secondaryLabel = "See pricing",
+  footnote = "No credit card · Credits never expire · GDPR & CCPA compliant",
   eventLoc = "final-cta",
+  hideSecondary = false,
 }: LandingFinalCtaProps) {
   return (
     <SectionShell
@@ -67,18 +73,18 @@ export function LandingFinalCta({
                 />
               </Link>
             </Button>
-            <Button
-              size="lg"
-              variant="onDeep"
-              asChild
-              className="h-14 min-h-14 px-8 text-base"
-            >
-              <Link href={secondaryHref}>{secondaryLabel}</Link>
-            </Button>
+            {hideSecondary ? null : (
+              <Button
+                size="lg"
+                variant="onDeep"
+                asChild
+                className="h-14 min-h-14 px-8 text-base"
+              >
+                <Link href={secondaryHref}>{secondaryLabel}</Link>
+              </Button>
+            )}
           </div>
-          <p className="mt-4 text-sm text-primary-foreground/70">
-            No credit card · Credits never expire · GDPR-ready
-          </p>
+          <p className="mt-4 text-sm text-primary-foreground/70">{footnote}</p>
         </div>
       </div>
     </SectionShell>

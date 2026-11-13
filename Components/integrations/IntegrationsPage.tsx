@@ -1,146 +1,62 @@
-import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle2, Code2, FileSpreadsheet, Upload } from "lucide-react";
+import { Code2, CloudUpload, ShieldCheck, Upload } from "lucide-react";
 import { Button } from "@/Components/ui/Button";
+import { DesktopMockup } from "@/Components/ui/DesktopMockup";
 import { HeroWash } from "@/Components/ui/HeroWash";
 import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
-import ApiSnippet from "@/Components/ui/ApiSnippet";
+import { TrustStatsRow } from "@/Components/home/HomeStatsStrip";
+import ProofBar from "@/Components/home/ProofBar";
 import { Reveal } from "@/Components/landing/Reveal";
-import { MetricStrip } from "@/Components/landing/MetricStrip";
-import { HowSteps } from "@/Components/landing/HowSteps";
-import { CreditPricingTeaser } from "@/Components/landing/CreditPricingTeaser";
 import { LandingFaq } from "@/Components/landing/LandingFaq";
 import { LandingFinalCta } from "@/Components/landing/LandingFinalCta";
+import { IntegrationsCatalog } from "@/Components/integrations/IntegrationsCatalog";
+import { IntegrationsHowItWorks } from "@/Components/integrations/IntegrationsHowItWorks";
+import { IntegrationsImportDemo } from "@/Components/integrations/IntegrationsImportDemo";
 import { INTEGRATIONS_FAQS } from "@/lib/integrations-faq";
+import { formatNameList, importSourceNames } from "@/lib/integrations";
 import { REGISTER_URL } from "@/lib/api-snippet";
-import { RATE_PER_THOUSAND } from "@/lib/pricing";
 
-const IMPORT_SOURCES = [
-  {
-    id: "gdrive",
-    label: "Google Drive",
-    src: "/logos/integrations/google-drive.svg",
-    body: "Pull spreadsheets from Drive into the bulk email verifier.",
-  },
-  {
-    id: "onedrive",
-    label: "OneDrive",
-    src: "/logos/integrations/onedrive.svg",
-    body: "Import lists stored in OneDrive without a local download first.",
-  },
-  {
-    id: "dropbox",
-    label: "Dropbox",
-    src: "/logos/integrations/dropbox.svg",
-    body: "Connect Dropbox folders when your team already shares CSVs there.",
-  },
-  {
-    id: "airtable",
-    label: "Airtable",
-    src: "/logos/integrations/airtable.svg",
-    body: "Bring Airtable bases into a verification job when the table holds emails.",
-  },
-] as const;
+const availableNames = formatNameList(importSourceNames({ status: "available" }));
 
-const CRM_SOURCES = [
+const CONNECT_PATHS = [
   {
-    id: "hubspot",
-    label: "HubSpot",
-    src: "/logos/integrations/hubspot.svg",
-    body: "Available as a connected import path in the product UI when enabled for your account.",
-  },
-  {
-    id: "salesforce",
-    label: "Salesforce",
-    src: "/logos/integrations/salesforce.svg",
-    body: "Available as a connected import path in the product UI when enabled for your account.",
-  },
-] as const;
-
-const METRICS = [
-  {
-    id: "imports",
-    value: "4+",
-    label: "Cloud import sources",
-  },
-  {
-    id: "files",
-    value: "CSV · TXT · XLSX",
-    label: "Direct upload formats",
-  },
-  {
-    id: "api",
-    value: "HTTPS",
-    label: "Real-time email verification API",
-  },
-  {
-    id: "rate",
-    value: `$${RATE_PER_THOUSAND.toFixed(2)}`,
-    label: "Per 1,000 shared credits",
-  },
-] as const;
-
-const STEPS = [
-  {
-    step: "1",
-    title: "Connect or upload",
-    body: "Link Drive, OneDrive, Dropbox, or Airtable — or drop a CSV, TXT, or XLSX.",
-  },
-  {
-    step: "2",
-    title: "Run the email verifier",
-    body: "Bulk-clean the list or call the email verification API for live form checks.",
-  },
-  {
-    step: "3",
-    title: "Export statuses",
-    body: "Download deliverable, risky, and invalid rows with the same flags as the dashboard.",
-  },
-  {
-    step: "4",
-    title: "Send with confidence",
-    body: "Keep clean contacts in your CRM or sequence tool — credits never expire for the next import.",
-  },
-] as const;
-
-const PATHS: {
-  title: string;
-  body: string;
-  href: string;
-  cta: string;
-  icon: typeof Upload;
-  external?: boolean;
-}[] = [
-  {
+    step: "01",
     title: "File upload",
-    body: "Fastest path: export from any tool, upload CSV/TXT/XLSX, download statuses.",
+    body: "Export from any tool, then upload CSV, TXT, or XLSX to the bulk email verifier.",
     href: "/bulk-email-verifier",
-    cta: "Bulk email verifier",
+    cta: "Open bulk email verifier",
     icon: Upload,
   },
   {
+    step: "02",
     title: "Cloud import",
-    body: "Pull lists from Drive, OneDrive, Dropbox, or Airtable inside the dashboard.",
-    href: REGISTER_URL,
-    cta: "Open dashboard",
-    icon: FileSpreadsheet,
-    external: true,
+    body: `Connect ${availableNames || "supported cloud sources"} when Available — Soon connectors use file export until they ship.`,
+    href: "#cloud-imports",
+    cta: "Browse import sources",
+    icon: CloudUpload,
   },
   {
+    step: "03",
     title: "Real-time API",
     body: "Email verify at signup with the same credits — curl or Node, no forced SDK.",
     href: "/email-verification-api",
-    cta: "Email verification API",
+    cta: "View API docs",
     icon: Code2,
   },
-];
+] as const;
 
 export default function IntegrationsPage() {
   return (
-    <main id="main-page" className="relative flex-1">
+    <main
+      className="flex-1 bg-background text-ink"
+      id="main-page"
+      role="main"
+      aria-labelledby="integrations-heading"
+    >
       <section
-        className="relative pt-12 pb-16 lg:pt-16 lg:pb-20"
+        className="relative pt-10 pb-12 md:pt-14 md:pb-16 lg:pb-20"
         aria-labelledby="integrations-heading"
       >
         <HeroWash />
@@ -149,226 +65,176 @@ export default function IntegrationsPage() {
             className="mb-6"
             items={[
               { label: "Home", href: "/" },
-              { label: "Products", href: "/products" },
+              { label: "Resources" },
               { label: "Integrations" },
             ]}
           />
-          <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm font-medium text-ink-muted">Integrations</p>
-          <h1
-            id="integrations-heading"
-            className="mt-3 text-balance font-display text-4xl font-semibold capitalize tracking-tight text-ink lg:text-5xl"
-          >
-            Import lists into the email verifier you already use
-          </h1>
-          <p className="mt-4 text-lg leading-relaxed text-ink-muted">
-            Connect Google Drive, OneDrive, Dropbox, or Airtable — or upload a
-            CSV — then email verify every row with the same credits as the bulk
-            email verifier and email verification API. From $
-            {RATE_PER_THOUSAND.toFixed(2)} per 1,000. Credits never expire.
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Button
-              asChild
-              size="lg"
-              className="transition-transform hover:scale-[1.02] motion-reduce:transform-none"
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-sm font-medium text-ink-muted">Integrations</p>
+            <h1
+              id="integrations-heading"
+              className="mt-5 text-balance font-display text-3xl font-semibold capitalize leading-snug tracking-tight text-ink sm:text-4xl lg:text-5xl"
             >
-              <Link
-                href={REGISTER_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-ev-event="cta_register_click"
-                data-ev-loc="integrations-hero"
+              Import lists into the{" "}
+              <span className="text-primary">email verifier</span> you already
+              use
+            </h1>
+            <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-ink-muted">
+              Connect Google Drive, OneDrive, Dropbox, Airtable and your CRM, or
+              upload a CSV, TXT or XLSX.
+            </p>
+            <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
+              <Button
+                asChild
+                size="lg"
+                className="w-full transition-transform hover:scale-[1.02] active:scale-[0.99] motion-reduce:transform-none sm:w-auto"
               >
-                Get 100 free credits
-              </Link>
-            </Button>
-            <Button variant="secondary" asChild size="lg">
-              <Link href="/bulk-email-verifier">See bulk email verifier</Link>
-            </Button>
+                <Link
+                  href={REGISTER_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-ev-event="cta_register_click"
+                  data-ev-loc="integrations-hero"
+                >
+                  Get 100 free credits
+                </Link>
+              </Button>
+              <Button
+                variant="secondary"
+                asChild
+                size="lg"
+                className="w-full sm:w-auto"
+              >
+                <Link href="/bulk-email-verifier">See bulk email verifier</Link>
+              </Button>
+            </div>
           </div>
-          <ul className="mt-5 flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-ink-muted">
-            {(
-              [
-                "Cloud imports",
-                "CSV / TXT / XLSX",
-                "Same credits as API",
-              ] as const
-            ).map((label) => (
-              <li key={label} className="inline-flex items-center gap-1.5">
-                <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden />
-                {label}
-              </li>
-            ))}
-          </ul>
+
+          <div className="mx-auto mt-8 max-w-3xl md:mt-10">
+            <DesktopMockup chromeLabel="Connect a source → verify → export statuses">
+              <IntegrationsImportDemo />
+            </DesktopMockup>
+            <TrustStatsRow compact className="mt-8 w-full max-w-none" />
           </div>
         </div>
       </section>
 
-      <MetricStrip items={[...METRICS]} eyebrow="Integration facts" />
+      <ProofBar />
 
       <SectionShell
-        className="bg-surface-muted"
+        id="cloud-imports"
+        className="bg-background"
         ariaLabelledBy="import-sources-heading"
       >
         <div className="mx-auto max-w-2xl text-center">
+          <SectionEyebrow align="center">Cloud imports</SectionEyebrow>
           <h2
             id="import-sources-heading"
-            className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+            className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
           >
-            Cloud imports for the bulk email verifier
+            Import from where your contacts live
           </h2>
           <p className="mt-3 text-ink-muted">
-            Product import marks that ship with list cleaning — bring the file to
-            the email verifier without juggling downloads.
+            Filter by category. Badges match the homepage: Available, Soon, or
+            enabled on request — so status never disagrees across the site.
           </p>
         </div>
-        <Reveal className="mt-10" staggerSelector="[data-source]">
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {IMPORT_SOURCES.map((source) => (
-              <li
-                key={source.id}
-                data-source
-                className="flex flex-col items-start rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card)] transition hover:-translate-y-0.5 hover:border-primary/35 motion-reduce:transform-none"
-              >
-                <Image
-                  src={source.src}
-                  alt={`${source.label} logo for email verifier import`}
-                  width={36}
-                  height={36}
-                  className="h-9 w-9 object-contain"
-                  unoptimized
-                />
-                <p className="mt-4 font-semibold text-ink">{source.label}</p>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                  {source.body}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-      </SectionShell>
-
-      <SectionShell ariaLabelledBy="crm-sources-heading">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2
-            id="crm-sources-heading"
-            className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
-          >
-            CRM import paths
-          </h2>
-          <p className="mt-3 text-ink-muted">
-            HubSpot and Salesforce appear in the product UI for connected
-            workflows. Prefer a file? Export CSV and use the bulk email verifier.
-          </p>
+        <div className="mt-10">
+          <IntegrationsCatalog />
         </div>
-        <Reveal className="mx-auto mt-10 grid max-w-3xl gap-4 sm:grid-cols-2">
-          {CRM_SOURCES.map((source) => (
-            <div
-              key={source.id}
-              className="rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card)]"
-            >
-              <Image
-                src={source.src}
-                alt={`${source.label} integration mark`}
-                width={36}
-                height={36}
-                className="h-9 w-9 object-contain"
-                unoptimized
-              />
-              <p className="mt-4 font-semibold text-ink">{source.label}</p>
-              <p className="mt-2 text-sm text-ink-muted">{source.body}</p>
-            </div>
-          ))}
-        </Reveal>
       </SectionShell>
 
       <SectionShell
-        className="bg-surface-muted"
+        className="bg-background"
         ariaLabelledBy="integration-paths-heading"
       >
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-3xl text-center">
           <h2
             id="integration-paths-heading"
             className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
           >
-            Three ways to email verify from your stack
-          </h2>
-        </div>
-        <Reveal className="mt-10" staggerSelector="[data-path]">
-          <ul className="grid gap-4 lg:grid-cols-3">
-            {PATHS.map((path) => {
-              const Icon = path.icon;
-              return (
-                <li
-                  key={path.title}
-                  data-path
-                  className="flex flex-col rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card)]"
-                >
-                  <span className="grid h-11 w-11 place-items-center rounded-lg bg-primary-soft text-primary">
-                    <Icon className="h-5 w-5" strokeWidth={1.6} aria-hidden />
-                  </span>
-                  <p className="mt-4 font-semibold text-ink">{path.title}</p>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-muted">
-                    {path.body}
-                  </p>
-                  <Link
-                    href={path.href}
-                    className="mt-4 text-sm font-semibold text-primary hover:underline"
-                    {...(path.external
-                      ? {
-                          target: "_blank",
-                          rel: "noopener noreferrer",
-                        }
-                      : {})}
-                  >
-                    {path.cta}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </Reveal>
-      </SectionShell>
-
-      <HowSteps
-        title="How integrations feed the email verifier"
-        steps={[...STEPS]}
-      />
-
-      <SectionShell
-        className="bg-surface-muted"
-        ariaLabelledBy="integrations-api-heading"
-      >
-        <div className="mx-auto max-w-2xl text-center">
-          <h2
-            id="integrations-api-heading"
-            className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
-          >
-            Prefer code? Use the email verification API
+            Three ways to{" "}
+            <span className="text-primary">email verify</span> from your stack
           </h2>
           <p className="mt-3 text-ink-muted">
-            Same credits as imports and bulk. Block disposable and invalid
-            addresses at signup.
+            Upload a file, connect a cloud or CRM source, or call the email
+            verification API — same credits either way.
           </p>
         </div>
-        <div className="mx-auto mt-8 max-w-3xl">
-          <ApiSnippet />
+
+        <div className="mx-auto mt-10 max-w-6xl">
+          <Reveal staggerSelector="[data-path]">
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {CONNECT_PATHS.map((path) => {
+                const Icon = path.icon;
+                return (
+                  <li
+                    key={path.step}
+                    data-path
+                    className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card)] transition hover:border-primary/35"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="font-display text-3xl font-bold tracking-tight text-primary">
+                        {path.step}
+                      </p>
+                      <Icon
+                        className="h-10 w-10 shrink-0 text-primary/20"
+                        aria-hidden
+                      />
+                    </div>
+                    <h3 className="mt-4 text-base font-semibold text-ink">
+                      {path.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-muted">
+                      {path.body}
+                    </p>
+                    <Link
+                      href={path.href}
+                      className="mt-4 text-sm font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                    >
+                      {path.cta}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </Reveal>
+        </div>
+
+        <div className="relative mt-8 overflow-hidden rounded-2xl bg-primary px-5 py-5 text-primary-foreground shadow-[var(--shadow-card)] sm:px-7 sm:py-6">
+          <ShieldCheck
+            className="pointer-events-none absolute -right-6 -bottom-8 h-40 w-40 text-primary-foreground/15"
+            aria-hidden
+          />
+          <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/15">
+              <ShieldCheck className="h-6 w-6" aria-hidden />
+            </span>
+            <p className="text-sm leading-relaxed sm:text-base">
+              <span className="mr-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+                99.7%
+              </span>
+              Lower bounce rates, higher inbox placement, and a protected
+              sender reputation — backed by our deliverability guarantee.
+            </p>
+          </div>
         </div>
       </SectionShell>
 
-      <CreditPricingTeaser
-        title="Connect once. Verify on the same credits."
-        eventLoc="integrations-pricing"
-      />
+      <IntegrationsHowItWorks />
 
-      <LandingFaq title="Integrations questions" items={INTEGRATIONS_FAQS} />
+      <LandingFaq
+        eyebrow="Integrations FAQ"
+        title="Integrations questions"
+        items={INTEGRATIONS_FAQS}
+      />
 
       <LandingFinalCta
         title="Bring the list. Leave the bounces."
-        body="Import from Drive or upload a CSV. 100 free credits — no card — same email verifier balance as the API."
-        secondaryHref="/email-verification-api"
-        secondaryLabel="View API docs"
+        body="Import from Drive when Available, or upload a CSV. Try it free: 100 verifications on us."
+        primaryLabel="Try it free: 100 verifications on us"
+        hideSecondary
+        footnote="No credit card · Credits never expire · GDPR & CCPA compliant"
         eventLoc="integrations-final"
       />
     </main>

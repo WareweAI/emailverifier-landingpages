@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 import Link from "next/link";
 import { Check, Copy } from "lucide-react";
 import { Button } from "./Button";
@@ -41,6 +41,7 @@ export default function ApiSnippet({
 }: ApiSnippetProps) {
   const [tab, setTab] = useState<ApiSnippetTab>("curl");
   const [copied, setCopied] = useState(false);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const responseJson = JSON.stringify(API_EXAMPLE_RESPONSE, null, 2);
 
@@ -64,6 +65,33 @@ export default function ApiSnippet({
     { id: "node", label: "Node" },
   ];
 
+  const onTabKeyDown = (
+    event: KeyboardEvent<HTMLButtonElement>,
+    index: number
+  ) => {
+    const last = tabs.length - 1;
+    let next = index;
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      event.preventDefault();
+      next = index === last ? 0 : index + 1;
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      event.preventDefault();
+      next = index === 0 ? last : index - 1;
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      next = 0;
+    } else if (event.key === "End") {
+      event.preventDefault();
+      next = last;
+    } else {
+      return;
+    }
+    const nextTab = tabs[next];
+    if (!nextTab) return;
+    setTab(nextTab.id);
+    tabRefs.current[next]?.focus();
+  };
+
   return (
     <div className={cn(fillHeight && "flex h-full min-h-0 flex-col", className)}>
       <div
@@ -72,28 +100,49 @@ export default function ApiSnippet({
           fillHeight && "flex min-h-0 flex-1 flex-col"
         )}
       >
-        <div className="flex shrink-0 gap-1 border-b border-white/10 px-3 pt-2 text-xs font-medium">
-          {tabs.map(({ id, label }) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => setTab(id)}
-              className={cn(
-                "cursor-pointer rounded-t-md px-3 py-1.5 transition-colors duration-200",
-                tab === id ? "bg-white/10" : "text-white/70 hover:text-white"
-              )}
-            >
-              {label}
-            </button>
-          ))}
+        <div
+          role="tablist"
+          aria-label="API code language"
+          className="flex shrink-0 gap-1 border-b border-white/10 px-3 pt-2 text-xs font-medium"
+        >
+          {tabs.map(({ id, label }, index) => {
+            const selected = tab === id;
+            return (
+              <button
+                key={id}
+                ref={(el) => {
+                  tabRefs.current[index] = el;
+                }}
+                type="button"
+                role="tab"
+                id={`api-snippet-tab-${id}`}
+                aria-selected={selected}
+                aria-controls={`api-snippet-panel-${id}`}
+                tabIndex={selected ? 0 : -1}
+                onClick={() => setTab(id)}
+                onKeyDown={(event) => onTabKeyDown(event, index)}
+                className={cn(
+                  "cursor-pointer rounded-t-md px-3 py-1.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+                  selected ? "bg-white/10" : "text-white/70 hover:text-white"
+                )}
+              >
+                {label}
+              </button>
+            );
+          })}
         </div>
-        <div className="relative shrink-0">
+        <div
+          className="relative shrink-0"
+          role="tabpanel"
+          id={`api-snippet-panel-${tab}`}
+          aria-labelledby={`api-snippet-tab-${tab}`}
+        >
           <button
             type="button"
             onClick={handleCopy}
             data-ev-event="api_docs_click"
-            className="absolute right-3 top-3 inline-flex h-9 cursor-pointer items-center gap-1.5 rounded-lg bg-white/10 px-3 text-xs font-semibold transition-colors duration-200 hover:bg-white/20"
-            aria-label="Copy code snippet"
+            className="absolute right-3 top-3 inline-flex h-9 cursor-pointer items-center gap-1.5 rounded-lg bg-white/10 px-3 text-xs font-semibold transition-colors duration-200 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            aria-label={copied ? "Copied" : "Copy code snippet"}
           >
             {copied ? (
               <>

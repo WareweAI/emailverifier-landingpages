@@ -1,15 +1,34 @@
 import type { FaqItem } from "@/lib/homepage-faq";
+import {
+  formatNameList,
+  importSourceNames,
+  integrationsByStatus,
+} from "@/lib/integrations";
+
+const availableImports = importSourceNames({ status: "available" });
+const soonImports = importSourceNames({ status: "soon" });
+const onRequest = integrationsByStatus("on-request").map((item) => item.name);
 
 export const INTEGRATIONS_FAQS: FaqItem[] = [
   {
     question: "Which import sources does the email verifier support?",
-    answer:
-      "In the dashboard you can import lists from Google Drive, OneDrive, Dropbox, and Airtable, or upload CSV, TXT, and XLSX files directly.",
+    answer: [
+      availableImports.length
+        ? `Available today: ${formatNameList(availableImports)}, plus direct CSV, TXT, and XLSX upload.`
+        : "Upload CSV, TXT, and XLSX files directly in the dashboard.",
+      soonImports.length
+        ? `${formatNameList(soonImports)} are marked Soon — use file export until those connectors ship.`
+        : null,
+      "Statuses on this page match the homepage import marks so they stay in sync.",
+    ]
+      .filter(Boolean)
+      .join(" "),
   },
   {
     question: "Do HubSpot and Salesforce imports work?",
-    answer:
-      "HubSpot and Salesforce appear as import options in the product UI for connected workflows. Use them when available in your account, or export a CSV and upload it to the bulk email verifier.",
+    answer: `${formatNameList(onRequest)} ${
+      onRequest.length === 1 ? "is" : "are"
+    } available as a connected import path when enabled for your account. Prefer a file? Export CSV and use the bulk email verifier.`,
   },
   {
     question: "Is there a separate integration fee?",

@@ -8,11 +8,13 @@ import { INTEGRATIONS_FAQS } from "@/lib/integrations-faq";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Integrations — Import Lists into the Email Verifier",
+  title:
+    "Integrations | EmailVerifier.io: Import Lists from Drive, OneDrive, HubSpot & More",
   description:
-    "Connect Google Drive, OneDrive, Dropbox, or Airtable — or upload CSV — and email verify with the same credits as bulk and the email verification API.",
+    "Import lists from Google Drive, OneDrive, Dropbox, Airtable, HubSpot and Salesforce, or use the API. Verify on the same credits from $1.80 per 1,000.",
   path: "/integrations",
-  imageAlt: "Email verifier integrations for Drive, Dropbox, Airtable, and CSV",
+  imageAlt:
+    "Email verifier integrations for Drive, OneDrive, HubSpot, and CSV upload",
 });
 
 export default function Page() {
@@ -22,7 +24,7 @@ export default function Page() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },
-          { name: "Products" },
+          { name: "Resources" },
           { name: "Integrations", path: "/integrations" },
         ])}
       />

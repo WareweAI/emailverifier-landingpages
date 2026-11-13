@@ -21,7 +21,7 @@ const solutionLinks = [
 
 const resourceLinks = [
   { href: "/blog", label: "Guides" },
-  { href: "/#features", label: "Integrations" },
+  { href: "/integrations", label: "Integrations" },
   { href: "/blog", label: "Blog" },
   { href: "/pricing", label: "Pricing" },
 ];
