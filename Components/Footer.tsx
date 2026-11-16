@@ -20,7 +20,7 @@ const solutionLinks = [
 ];
 
 const resourceLinks = [
-  { href: "/blog", label: "Guides" },
+  { href: "/guides", label: "Guides" },
   { href: "/integrations", label: "Integrations" },
   { href: "/blog", label: "Blog" },
   { href: "/pricing", label: "Pricing" },

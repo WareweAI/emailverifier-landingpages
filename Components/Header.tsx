@@ -38,6 +38,13 @@ const PRODUCT_ROUTE_PREFIXES = [
   "/data-enrichment",
 ] as const;
 
+const RESOURCE_ROUTE_PREFIXES = [
+  "/resources",
+  "/guides",
+  "/blog",
+  "/integrations",
+] as const;
+
 const REGISTER_URL = "https://app.emailverifier.io/register";
 
 const IMPORT_SOURCES = [
@@ -153,7 +160,7 @@ const SOLUTION_LINKS: ProductLink[] = [
 const RESOURCE_LINKS: ProductLink[] = [
   {
     title: "Guides",
-    href: "/blog",
+    href: "/guides",
     desc: "How-to articles on list cleaning, verification, and deliverability.",
     icon: BookOpen,
   },
@@ -428,6 +435,9 @@ export default function Header() {
   const isProductsRoute = PRODUCT_ROUTE_PREFIXES.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`)
   );
+  const isResourcesRoute = RESOURCE_ROUTE_PREFIXES.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
+  );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProductOpen, setIsProductOpen] = useState(false);
   const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
@@ -584,20 +594,19 @@ export default function Header() {
                 Pricing
               </Link>
 
-              <button
-                type="button"
+              <Link
+                href="/resources"
                 className={cn(
                   "flex min-h-11 items-center gap-1 rounded-lg px-2.5 text-sm font-medium text-ink transition hover:bg-primary-soft hover:text-primary focus-visible:bg-primary-soft focus-visible:text-primary",
-                  isResourcesOpen && "bg-primary-soft text-primary"
+                  (isResourcesOpen || isResourcesRoute) &&
+                    "bg-primary-soft text-primary"
                 )}
                 aria-haspopup="true"
                 aria-expanded={isResourcesOpen}
                 aria-controls="resources-menu"
+                aria-current={pathname === "/resources" ? "page" : undefined}
                 onMouseEnter={openResources}
                 onFocus={openResources}
-                onClick={() => {
-                  if (!isResourcesOpen) openResources();
-                }}
                 onKeyDown={(e) => {
                   if (e.key === "Escape") setIsResourcesOpen(false);
                 }}
@@ -610,7 +619,7 @@ export default function Header() {
                   )}
                   aria-hidden
                 />
-              </button>
+              </Link>
             </nav>
 
             <div className="hidden items-center gap-3 justify-self-end md:flex">
@@ -808,7 +817,20 @@ export default function Header() {
                 </Link>
               </li>
               <li>
-                <p className="text-sm font-medium text-ink-muted">Resources</p>
+                <Link
+                  href="/resources"
+                  className={cn(
+                    "block py-2 text-sm font-medium hover:text-primary",
+                    pathname === "/resources" ? "text-primary" : "text-ink"
+                  )}
+                  aria-current={pathname === "/resources" ? "page" : undefined}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  All resources
+                </Link>
+                <p className="mt-2 text-sm font-medium text-ink-muted">
+                  Resources
+                </p>
                 <ul className="mt-2 grid gap-1">
                   {RESOURCE_LINKS.map((item) => {
                     const Icon = item.icon;

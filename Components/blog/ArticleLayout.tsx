@@ -1,17 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import HappyUsers from "@/Components/HappyUsers";
-import { Button } from "@/Components/ui/Button";
-import LogoMark from "@/Components/ui/LogoMark";
 import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
-import { StarRating } from "@/Components/ui/StarRating";
 import type { BlogPost } from "@/lib/wordpress/types";
 import type { TocItem } from "@/lib/wordpress/types";
 import { ArticleToc } from "./ArticleToc";
 import { BlogCta } from "./BlogCta";
 import { PostCard } from "./PostCard";
 import { Prose } from "./Prose";
-import { StickyRail } from "./StickyRail";
+import { TryEmailVerifierSticky } from "./TryEmailVerifierSticky";
 
 function formatDate(iso: string): string {
   return new Intl.DateTimeFormat("en-US", {
@@ -133,43 +129,7 @@ export function ArticleLayout({
           ) : null}
         </article>
 
-        <StickyRail className="hidden min-w-0 self-start xl:block">
-            <LogoMark />
-            <p className="mt-4 text-base font-bold text-ink">
-              Try EmailVerifier
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-              Bulk email verifier + API. 100 free credits, no card.
-            </p>
-            <Button asChild size="md" className="mt-5 w-full">
-              <Link href="/validate-email">Verify emails free</Link>
-            </Button>
-            <div
-              className="mt-5 space-y-3 border-t border-line pt-5"
-              aria-label="Capterra 4.8 rating from 1000+ happy users"
-            >
-              <div className="flex items-center gap-1.5">
-                <Image
-                  src="/assets/capterra.svg"
-                  alt="Capterra logo"
-                  width={20}
-                  height={20}
-                  className="h-5 w-5 object-contain"
-                />
-                <div className="flex flex-col leading-none text-left">
-                  <span className="text-xs font-semibold text-ink">
-                    Capterra
-                  </span>
-                  <div className="mt-0.5 flex items-center gap-0.5 text-[10px] text-ink-muted">
-                    <span className="font-medium">4.8</span>
-                    <StarRating rating={4.8} size={11} activeColor="#fdc700" />
-                    <span>Rating</span>
-                  </div>
-                </div>
-              </div>
-              <HappyUsers className="justify-start" compact />
-            </div>
-        </StickyRail>
+        <TryEmailVerifierSticky />
       </div>
 
       {related.length > 0 ? (
