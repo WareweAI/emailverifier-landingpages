@@ -65,7 +65,7 @@ export default function IntegrationsPage() {
             className="mb-6"
             items={[
               { label: "Home", href: "/" },
-              { label: "Resources" },
+              { label: "Resources", href: "/resources" },
               { label: "Integrations" },
             ]}
           />

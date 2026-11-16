@@ -71,7 +71,7 @@ export default async function GuidesPage({ searchParams }: PageProps) {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },
-          { name: "Resources" },
+          { name: "Resources", path: "/resources" },
           { name: "Guides", path: "/guides" },
         ])}
       />
@@ -81,7 +81,7 @@ export default async function GuidesPage({ searchParams }: PageProps) {
           className="mb-6"
           items={[
             { label: "Home", href: "/" },
-            { label: "Resources" },
+            { label: "Resources", href: "/resources" },
             { label: "Guides" },
           ]}
         />
