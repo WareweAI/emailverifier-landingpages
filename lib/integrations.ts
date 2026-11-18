@@ -4,7 +4,7 @@
  * Status baseline (owner must confirm against the live dashboard):
  * - Homepage VerifyEmailsDemo: Google Drive live; OneDrive, Dropbox, Airtable = Soon
  * - HubSpot / Salesforce: existing product copy = connected path when enabled for account
- * - Google Sheets: shown on bulk page logo strip — treat as available via Drive / file export until confirmed
+ * - Google Sheets: shown on bulk page logo strip - treat as available via Drive / file export until confirmed
  * - Pipedrive: logo-only on bulk page; omitted here until a live import path is confirmed
  */
 
@@ -149,7 +149,7 @@ export const INTEGRATIONS: readonly Integration[] = [
     category: "api",
     status: "available",
     description:
-      "HTTPS email verify at signup or in your app — curl or Node, same credits as bulk.",
+      "HTTPS email verify at signup or in your app - curl or Node, same credits as bulk.",
     howItWorks: [
       "Register and create an API key in the dashboard",
       "POST to the verify endpoint with X-API-Key",
@@ -193,7 +193,7 @@ export function countByStatus(status: IntegrationStatus): number {
   return INTEGRATIONS.filter((item) => item.status === status).length;
 }
 
-/** Names for FAQ / copy — excludes the API product card when listing import sources. */
+/** Names for FAQ / copy - excludes the API product card when listing import sources. */
 export function importSourceNames(options?: {
   status?: IntegrationStatus;
   includeApi?: boolean;

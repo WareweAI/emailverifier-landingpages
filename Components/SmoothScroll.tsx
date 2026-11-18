@@ -6,7 +6,7 @@ import { gsap, useGSAP, ScrollTrigger, ScrollSmoother } from "@/lib/gsap";
 
 /**
  * ScrollSmoother runs when motion is allowed. Touch stays native via
- * `smoothTouch: false` — finger-drag is not lagged. With reduced motion
+ * `smoothTouch: false` - finger-drag is not lagged. With reduced motion
  * (e.g. Windows Animation effects off), native scroll is preserved.
  */
 const ENABLE_QUERY = "(prefers-reduced-motion: no-preference)";

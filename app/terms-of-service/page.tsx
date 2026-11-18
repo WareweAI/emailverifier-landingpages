@@ -7,7 +7,7 @@ import JsonLd, {
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Terms & Conditions — Email Verifier",
+  title: "Terms & Conditions - Email Verifier",
   description:
     "Terms and conditions for using our email verifier website and services, including accounts, acceptable use, and liability.",
   path: "/terms-of-service",

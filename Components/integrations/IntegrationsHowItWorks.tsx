@@ -20,7 +20,7 @@ const HOW_POINTS: readonly FeaturePoint[] = [
   },
   {
     title: "2. Run multi-layer verification",
-    body: "Syntax, MX, disposable, catch-all, role, and spam-trap checks — without sending mail.",
+    body: "Syntax, MX, disposable, catch-all, role, and spam-trap checks - without sending mail.",
   },
   {
     title: "3. Export statuses",
@@ -45,7 +45,7 @@ export function IntegrationsHowItWorks() {
         </SectionHeading>
         <SectionLead className="mx-auto max-w-3xl">
           Import from Drive or upload a file, run the email verifier, then
-          download statuses — same credits as the API.
+          download statuses - same credits as the API.
         </SectionLead>
       </div>
 

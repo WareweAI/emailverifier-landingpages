@@ -15,7 +15,7 @@ export default function MethodSection() {
       <div className="mx-auto max-w-6xl text-center">
         <SectionEyebrow align="center">Deliverability</SectionEyebrow>
         <SectionHeading id="method-heading">
-          Impact on Email Deliverability and Bounce Rate Reduction
+          Keep bounce rates low with EmailVerifier.io
         </SectionHeading>
         <SectionLead className="mx-auto max-w-3xl">
           EmailVerifier.io helps you keep bounce rate under 2% and lands in the

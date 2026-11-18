@@ -7,7 +7,7 @@ import {
   SectionLead,
 } from "@/Components/ui/SectionHeading";
 
-/** Product integration marks — matches this section’s claimed platforms. */
+/** Product integration marks - matches this section’s claimed platforms. */
 const LOGOS = [
   {
     src: "/logos/integrations/google-sheets.svg",

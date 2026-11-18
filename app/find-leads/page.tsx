@@ -8,7 +8,7 @@ import { FIND_LEADS_FAQS } from "@/lib/find-leads-faq";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Find Leads — Search People and Companies with an Email Verifier",
+  title: "Find Leads - Search People and Companies with an Email Verifier",
   description:
     "Turn a plain-language brief into people or companies, then email verify the addresses you keep. Person and company search on the same email verifier credits.",
   path: "/find-leads",

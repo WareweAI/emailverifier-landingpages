@@ -23,8 +23,8 @@ export async function generateMetadata({
   const q = sp.q?.trim() ?? "";
   return buildMetadata({
     title: q
-      ? `Search: ${q} — Email Verifier Blog`
-      : "Search — Email Verifier Blog",
+      ? `Search: ${q} - Email Verifier Blog`
+      : "Search - Email Verifier Blog",
     description: q
       ? `Search results for “${q}” on the EmailVerifier.io email verifier blog.`
       : "Search EmailVerifier.io guides on list cleaning, bulk email verifier tips, and the email verification API.",

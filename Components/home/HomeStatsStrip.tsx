@@ -8,13 +8,13 @@ const STATS = [
   {
     id: "emails-verified",
     value: "1B+",
-    label: "Email verified",
+    label: "Emails verified",
     icon: MailCheck,
   },
   {
     id: "deliverability",
     value: "99.7%",
-    label: "Deliverability Guarantee",
+    label: "Deliverability guarantee",
     icon: ShieldCheck,
   },
   {

@@ -42,7 +42,7 @@ export default function ApiSection({
           </ColumnHeading>
           <p className="mt-3 text-ink-muted">
             Block fake addresses at the form. The API uses the same credits as
-            bulk — one balance for lists and live checks.
+            bulk - one balance for lists and live checks.
           </p>
           <div className="mt-6 flex flex-1 flex-col">
             <ApiSnippet />
@@ -61,7 +61,7 @@ export default function ApiSection({
           </ColumnHeading>
           <p className="mt-3 text-ink-muted">
             Upload a CSV and download statuses for every address. Same $1.80
-            per 1,000 as the API — credits never expire.
+            per 1,000 as the API - credits never expire.
           </p>
           <div className="mt-6">
             <JobFlowStrip />

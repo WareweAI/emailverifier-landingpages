@@ -19,7 +19,7 @@ export const FIND_EMAILS_FAQS: FaqItem[] = [
   {
     question: "Is there such a thing as a free unlimited email finder?",
     answer:
-      'Be cautious of browser plugins advertising a "free unlimited email finder." Those tools typically recycle scraped, unverified public lists filled with dead inboxes and honeypot spam traps that quickly get your sending domain blacklisted. EmailVerifier.io gives you free starter credits to test live SMTP-verified lookups and never charges credits when a verified email cannot be found—protecting both your budget and your sender reputation.',
+      'Be cautious of browser plugins advertising a "free unlimited email finder." Those tools typically recycle scraped, unverified public lists filled with dead inboxes and honeypot spam traps that quickly get your sending domain blacklisted. EmailVerifier.io gives you free starter credits to test live SMTP-verified lookups and never charges credits when a verified email cannot be found - protecting both your budget and your sender reputation.',
   },
   {
     question:
@@ -30,6 +30,6 @@ export const FIND_EMAILS_FAQS: FaqItem[] = [
   {
     question: "Do I need to verify emails separately after finding them here?",
     answer:
-      "No. Unlike standalone tools such as Hunter.io, GetProspect, or Anymail Finder where outbound teams often export lists into a second verification tool, every email discovered on EmailVerifier.io is automatically pre-checked across syntax, MX records, disposable databases, and live SMTP—backed by our 99.7% deliverability guarantee and instant credit-refund promise.",
+      "No. Unlike standalone tools such as Hunter.io, GetProspect, or Anymail Finder where outbound teams often export lists into a second verification tool, every email discovered on EmailVerifier.io is automatically pre-checked across syntax, MX records, disposable databases, and live SMTP - backed by our 99.7% deliverability guarantee and instant credit-refund promise.",
   },
 ];

@@ -12,8 +12,9 @@ type HeroDemoSignupGateProps = {
 };
 
 export function HeroDemoSignupGate({
-  title = "Sign up to check results",
-  description = "Create a free account to unlock this result — 100 free credits, no card.",
+  title = "Create an account to see your result",
+  description =
+    "Your account comes with 100 free credits. No credit card required.",
   location,
   className,
 }: HeroDemoSignupGateProps) {

@@ -38,7 +38,7 @@ export default function HeroToolTabs() {
             pushEvent("hero_tool_link", { tool: "email-finder", loc: "hero" })
           }
         >
-          Find Emails
+          Find Email
         </Link>
         <Link
           href="/find-leads"
@@ -55,7 +55,7 @@ export default function HeroToolTabs() {
 
       <div className="mt-4 w-full overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)] ring-1 ring-line/60 sm:mt-5">
         <p className="border-b border-line bg-surface-muted px-4 py-2.5 text-center text-sm leading-snug text-ink-muted">
-          Verify Single Email Address or List instantly with EmailVerifier.io
+          Verify an email address or an entire list with EmailVerifier.io
         </p>
         <div className="p-4 sm:p-5 md:p-6">
           <VerifierDemo variant="hero" location="hero" />

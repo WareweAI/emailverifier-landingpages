@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 import { ArrowUp, Copy, Sparkles } from "lucide-react";
 
 /**
- * Find Leads — looping product demo.
+ * Find Leads - looping product demo.
  *
  * Flow: pick a suggested brief → type it → searching skeletons → leads stagger in → reset.
  * Edit COPY, LEADS, and T (seconds). Person search is the live workflow; Local stays Soon.
@@ -28,7 +28,7 @@ import { ArrowUp, Copy, Sparkles } from "lucide-react";
 
 const COPY = {
   idle: "Describe who you want",
-  placeholder: "Describe who you're looking for — e.g. Heads of Sales at SaaS companies in London",
+  placeholder: "Describe who you're looking for - e.g. Heads of Sales at SaaS companies in London",
   query: "VPs of Engineering at companies with 50-200 employees",
   searching: "Searching leads…",
   found: "Found 3 leads",
@@ -40,7 +40,7 @@ const SUGGESTIONS = [
   "CTOs at fintech companies",
 ] as const;
 
-/** Illustrative people — same preview set the page already used. */
+/** Illustrative people - same preview set the page already used. */
 const LEADS = [
   {
     name: "Jordan Hale",

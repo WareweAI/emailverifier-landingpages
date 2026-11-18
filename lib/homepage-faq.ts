@@ -5,9 +5,9 @@ export type FaqItem = {
 
 export const HOMEPAGE_FAQS: FaqItem[] = [
   {
-    question: "How do I verify an email address online?",
+    question: "How do I verify an email address with EmailVerifier.io?",
     answer:
-      "Enter the address into an email verifier and run the check. A good verifier confirms the syntax, checks that the domain exists and publishes MX records, flags disposable, role-based and catch-all addresses, and then asks the receiving mail server whether the mailbox exists. On EmailVerifier.io you can run the first checks free on this page with no sign-up, and the mailbox-level SMTP check in the full app with 100 free credits.",
+      "Enter the address in the Verify Email tab above and select Check email address. Create a free account to see your result. You'll get 100 free credits at sign-up, with no credit card required.",
   },
   {
     question:
@@ -34,7 +34,7 @@ export const HOMEPAGE_FAQS: FaqItem[] = [
   {
     question: "Is EmailVerifier.io free?",
     answer:
-      "The single-email checker on this page is free to use without an account. New users also get 100 free verification credits after sign-up, with no credit card needed. After that, pay-as-you-go credits start at $1.80 per 1,000 and never expire.",
+      "The single-email checker on this page is free to use without an account. New users also get 100 free verification credits after sign-up, with no credit card needed. After that, Pay-As-You-Go credits cost $0.002 per email and never expire.",
   },
   {
     question: "Is my data safe?",

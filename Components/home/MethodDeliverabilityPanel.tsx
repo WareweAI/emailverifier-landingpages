@@ -10,11 +10,11 @@ import { Button } from "@/Components/ui/Button";
 const DELIVERABILITY_POINTS: readonly FeaturePoint[] = [
   {
     title: "Why Bounces Hurt",
-    body: "A hard bounce happens when an address or domain doesn't exist, while a soft bounce is a temporary failure like a full mailbox. Mailbox providers closely monitor both — lists that bounce above 2% or hit spam traps signal poor data hygiene, pushing future campaigns into spam even for valid leads.",
+    body: "A hard bounce happens when an address or domain doesn't exist, while a soft bounce is a temporary failure like a full mailbox. Mailbox providers closely monitor both - lists that bounce above 2% or hit spam traps signal poor data hygiene, pushing future campaigns into spam even for valid leads.",
   },
   {
     title: "How EmailVerifier.io Protects You",
-    body: "EmailVerifier.io protects your sender reputation at the source. Invalid addresses are stripped before they hard bounce, spam traps and disposable emails are flagged automatically, and catch-all addresses are scored so you know exactly what is safe to send — backed by our 99.7% deliverability standard and 100% accuracy credit-refund guarantee.",
+    body: "EmailVerifier.io protects your sender reputation at the source. Invalid addresses are stripped before they hard bounce, spam traps and disposable emails are flagged automatically, and catch-all addresses are scored so you know exactly what is safe to send - backed by our 99.7% deliverability standard and 100% accuracy credit-refund guarantee.",
   },
   {
     title: "Real-Time Prevention",

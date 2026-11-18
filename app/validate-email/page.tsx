@@ -10,7 +10,7 @@ import { VALIDATE_EMAIL_FAQS } from "@/lib/validate-email-faq";
 export const metadata = buildMetadata({
   title: "Free Email Validator and Checker | EmailVerifier.io",
   description:
-    "Free email verifier: check if an address is deliverable, risky, or invalid. Syntax, domain, mailbox, and risk flags — without sending mail. 3 free checks, 100 more on signup.",
+    "Free email verifier: check if an address is deliverable, risky, or invalid. Syntax, domain, mailbox, and risk flags - without sending mail. 3 free checks, 100 more on signup.",
   path: "/validate-email",
   imageAlt: "Free email verifier checking deliverability without sending mail",
 });

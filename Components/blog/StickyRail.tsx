@@ -8,7 +8,7 @@ type StickyRailProps = {
   className?: string;
 };
 
-/** Right-rail product CTA — pinned while the article scrolls. */
+/** Right-rail product CTA - pinned while the article scrolls. */
 export function StickyRail({ children, className }: StickyRailProps) {
   return (
     <PinnedSticky

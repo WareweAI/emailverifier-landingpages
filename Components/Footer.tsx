@@ -104,7 +104,7 @@ function FooterWordmark() {
       </div>
       <p
         className="relative whitespace-nowrap text-center font-display font-semibold leading-none tracking-[-0.05em] text-transparent"
-        /* 1-off: outlined watermark — stroke weight tracks the reference wordmark */
+        /* 1-off: outlined watermark - stroke weight tracks the reference wordmark */
         style={{
           fontSize: "clamp(2.25rem, 15.6vw, 18rem)",
           WebkitTextStroke:
@@ -123,19 +123,19 @@ export default function Footer() {
       <div className="site-container pt-16 lg:pt-20">
         <div className="mx-auto grid w-fit max-w-full grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 lg:grid-cols-5 lg:gap-x-6">
           <FooterColumn title="Products">
-            <FooterNavList label="Footer — Products" links={productLinks} />
+            <FooterNavList label="Footer - Products" links={productLinks} />
           </FooterColumn>
 
           <FooterColumn title="Solutions">
-            <FooterNavList label="Footer — Solutions" links={solutionLinks} />
+            <FooterNavList label="Footer - Solutions" links={solutionLinks} />
           </FooterColumn>
 
           <FooterColumn title="Resources">
-            <FooterNavList label="Footer — Resources" links={resourceLinks} />
+            <FooterNavList label="Footer - Resources" links={resourceLinks} />
           </FooterColumn>
 
           <FooterColumn title="Legal">
-            <FooterNavList label="Footer — Legal" links={legalLinks} />
+            <FooterNavList label="Footer - Legal" links={legalLinks} />
           </FooterColumn>
 
           <FooterColumn title="Contact">

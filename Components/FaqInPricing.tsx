@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { SectionHeading } from "@/Components/ui/SectionHeading";
+import {
+  SectionEyebrow,
+  SectionHeading,
+} from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { PRICING_PAGE_FAQS } from "@/lib/pricing-page-faq";
 import { cn } from "@/lib/utils";
@@ -17,7 +20,8 @@ export default function FAQSection() {
       ariaLabelledBy="faq-heading"
     >
       <div className="mx-auto max-w-6xl text-center">
-        <SectionHeading id="faq-heading">
+        <SectionEyebrow align="center">FAQ</SectionEyebrow>
+        <SectionHeading id="faq-heading" withEyebrow>
           Frequently asked questions
         </SectionHeading>
       </div>

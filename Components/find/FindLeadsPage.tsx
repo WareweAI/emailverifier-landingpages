@@ -29,7 +29,7 @@ const CAPABILITIES = [
   {
     step: "01",
     title: "Plain-language brief",
-    body: "Describe role, company type, and size. Get people or companies back — no filter maze to start.",
+    body: "Describe role, company type, and size. Get people or companies back - no filter maze to start.",
     icon: Sparkles,
   },
   {
@@ -164,7 +164,7 @@ export default function FindLeadsPage() {
           </div>
 
           <div className="mx-auto mt-8 max-w-3xl md:mt-10">
-            <DesktopMockup chromeLabel="Describe who you want — people or companies">
+            <DesktopMockup chromeLabel="Describe who you want - people or companies">
               <FindLeadsMockup className="h-[26rem] rounded-xl border-0 shadow-none" />
             </DesktopMockup>
             <TrustStatsRow compact className="mt-8 w-full max-w-none" />
@@ -187,7 +187,7 @@ export default function FindLeadsPage() {
             <span className="text-primary">email verifier</span>
           </h2>
           <p className="mt-3 text-ink-muted">
-            Capabilities that match the dashboard — including what is still Soon.
+            Capabilities that match the dashboard - including what is still Soon.
           </p>
         </div>
 
@@ -237,7 +237,7 @@ export default function FindLeadsPage() {
               <span className="mr-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">
                 0
               </span>
-              Credits when no email is found — discovery and list quality share
+              Credits when no email is found - discovery and list quality share
               one honest balance with the email verifier.
             </p>
           </div>
@@ -323,7 +323,7 @@ export default function FindLeadsPage() {
       <PricingSection
         variant="homepage"
         heading="Pay-as-you-go and volume pricing"
-        lead={`Find Leads uses the same credits as the email verifier — from $${RATE_PER_THOUSAND.toFixed(2)} per 1,000. Credits never expire.`}
+        lead={`Find Leads uses the same credits as the email verifier - from $${RATE_PER_THOUSAND.toFixed(2)} per 1,000. Credits never expire.`}
       />
 
       <WhyUsTable

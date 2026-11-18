@@ -138,7 +138,7 @@ export function ToolResultPanel({
           rel="noopener noreferrer"
           data-ev-event="cta_register_click"
         >
-          Clean a full list — 100 free
+          Clean a full list - 100 free
         </Link>
         {" · "}
         <Link href="/pricing" className="font-medium text-primary hover:underline">

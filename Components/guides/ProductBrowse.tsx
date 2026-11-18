@@ -38,7 +38,7 @@ export function ProductBrowse({ activeProduct }: ProductBrowseProps) {
         Browse email verifier guides by product
       </h2>
       <p className="mt-2 max-w-2xl text-ink-muted">
-        Task-based how-tos organized around the tool you are using — from a
+        Task-based how-tos organized around the tool you are using - from a
         bulk email verifier to the email verification API.
       </p>
 

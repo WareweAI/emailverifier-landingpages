@@ -15,7 +15,7 @@ type CreditPricingTeaserProps = {
 export function CreditPricingTeaser({
   headingId = "pricing-teaser-heading",
   title = "Pay once. Credits never expire.",
-  body = `Same credit balance for single checks, bulk lists, Find Emails, Find Leads, and the email verification API — from $${RATE_PER_THOUSAND.toFixed(2)} per 1,000. Start with 100 free credits. No card.`,
+  body = `Same credit balance for single checks, bulk lists, Find Emails, Find Leads, and the email verification API - from $${RATE_PER_THOUSAND.toFixed(2)} per 1,000. Start with 100 free credits. No card.`,
   primaryLabel = "Get 100 free credits",
   eventLoc = "pricing-teaser",
 }: CreditPricingTeaserProps) {

@@ -175,7 +175,7 @@ export const footnotes: Record<string, string> = {
   fn_hunter: "Hunter is a find + outreach suite priced by plan, not by verification credit pack.",
   fn_zb_100k: "ZeroBounce 100K PAYG figure from third-party snapshot (Aug 2026); confirm on vendor pricing.",
   fn_emailable_sub: "Emailable volume figures labeled as subscription-rate / third-party derived.",
-  fn_mv_entry: "MillionVerifier entry price shown as from ~$37–39 across vendor and third-party sources.",
+  fn_mv_entry: "MillionVerifier entry price shown as from ~$37-39 across vendor and third-party sources.",
 };
 
 export const VOLUME_OPTIONS: readonly VolumeOption[] = [
@@ -210,7 +210,7 @@ export const ROW_GROUPS: {
   { id: "trust", label: "Trust and data" },
 ];
 
-/** Our pack price for a comparison volume — always from lib/pricing CREDIT_PACKS. */
+/** Our pack price for a comparison volume - always from lib/pricing CREDIT_PACKS. */
 export function ourPriceForVolume(credits: number): {
   totalUsd: number;
   perThousand: number;
@@ -653,7 +653,7 @@ export const comparisonRows: ComparisonRow[] = [
         note: "5K credits minimum",
         sourceIds: ["emailable_pricing"],
       },
-      millionverifier: text("From ~$37–39", ["mv_prices", "mv_bouncezero"], {
+      millionverifier: text("From ~$37-39", ["mv_prices", "mv_bouncezero"], {
         confirmed: false,
         confidence: "low",
         footnoteIds: ["fn_mv_entry"],
@@ -823,7 +823,7 @@ export const comparisonRows: ComparisonRow[] = [
     group: "verification",
     label: "Catch-all handling",
     cells: {
-      emailverifier: text("Score 0–100 + catch-all status", ["ours_home"]),
+      emailverifier: text("Score 0-100 + catch-all status", ["ours_home"]),
       zerobounce: text("Detected (AI scoring optional)", ["zb_pricing"], {
         confidence: "medium",
       }),
@@ -893,7 +893,7 @@ export const comparisonRows: ComparisonRow[] = [
     group: "verification",
     label: "Deliverability score",
     cells: {
-      emailverifier: text("0–100 confidence score", ["ours_home"]),
+      emailverifier: text("0-100 confidence score", ["ours_home"]),
       zerobounce: partial("AI scoring (extra credit)", ["zb_pricing"]),
       neverbounce: text("Accept-all label only (third-party)", ["nb_mailfloss"], {
         confirmed: false,
@@ -1117,7 +1117,7 @@ export const comparisonRows: ComparisonRow[] = [
     label: "Accuracy claim / guarantee (claimed)",
     cells: {
       emailverifier: text(
-        "99.7% Accuracy Guarantee — instant 100% credit refund if another verifier beats our accuracy (our terms apply)",
+        "99.7% Accuracy Guarantee - instant 100% credit refund if another verifier beats our accuracy (our terms apply)",
         ["ours_home", "ours_terms"],
         { footnoteIds: ["fn_accuracy"] }
       ),

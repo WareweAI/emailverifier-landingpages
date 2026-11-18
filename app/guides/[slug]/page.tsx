@@ -135,7 +135,7 @@ export default async function GuideDetailPage({ params }: PageProps) {
                   Ready to email verify?
                 </h2>
                 <p className="mt-2 text-ink-muted">
-                  Get 100 free credits — no credit card. Or open{" "}
+                  Get 100 free credits - no credit card. Or open{" "}
                   {product.name.toLowerCase()} and try the workflow from this
                   guide.
                 </p>

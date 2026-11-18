@@ -11,10 +11,10 @@ export const metadata = buildMetadata({
   title:
     "Resources | EmailVerifier.io: Guides, Integrations & Blog for Email Verification",
   description:
-    "Explore EmailVerifier.io resources: email verifier guides, integrations for Drive and CRM, and the blog. Start with 100 free credits — no card.",
+    "Explore EmailVerifier.io resources: email verifier guides, integrations for Drive and CRM, and the blog. Start with 100 free credits - no card.",
   path: "/resources",
   imageAlt:
-    "EmailVerifier.io resources hub — guides, integrations, and blog for email verification",
+    "EmailVerifier.io resources hub - guides, integrations, and blog for email verification",
 });
 
 export default function Page() {

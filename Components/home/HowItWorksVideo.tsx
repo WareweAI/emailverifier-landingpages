@@ -3,7 +3,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Play, X } from "lucide-react";
 
-/** Hero “How it works” lightbox — EmailVerifier.io channel */
+/** Hero “How it works” lightbox - EmailVerifier.io channel */
 export const HERO_HOW_IT_WORKS_YOUTUBE_ID = "T5MNsvlYG0U";
 
 export default function HowItWorksVideo() {

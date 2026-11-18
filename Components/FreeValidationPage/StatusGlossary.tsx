@@ -10,7 +10,7 @@ const STATUSES = [
   {
     label: "Risky",
     variant: "warning" as const,
-    desc: "Catch-all, uncertain, or higher-risk mailbox — review before sending.",
+    desc: "Catch-all, uncertain, or higher-risk mailbox - review before sending.",
   },
   {
     label: "Undeliverable",
@@ -20,7 +20,7 @@ const STATUSES = [
   {
     label: "Disposable",
     variant: "danger" as const,
-    desc: "Temporary or throwaway inbox — often used to bypass signups.",
+    desc: "Temporary or throwaway inbox - often used to bypass signups.",
   },
   {
     label: "Role-based",
@@ -30,7 +30,7 @@ const STATUSES = [
   {
     label: "Catch-all",
     variant: "warning" as const,
-    desc: "The domain accepts any mailbox — deliverability is uncertain.",
+    desc: "The domain accepts any mailbox - deliverability is uncertain.",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function StatusGlossary() {
           Understanding the result
         </h2>
         <p className="mt-3 text-ink-muted">
-          Statuses and flags from a single check — the same language used in
+          Statuses and flags from a single check - the same language used in
           bulk and API results.
         </p>
       </div>

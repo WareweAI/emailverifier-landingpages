@@ -18,7 +18,7 @@ export default function ToolCta() {
           You&apos;ve checked one address. Email verify a full list next.
         </h2>
         <p className="mt-3 text-ink-muted">
-          Get 100 free credits on signup — no credit card.
+          Get 100 free credits on signup - no credit card.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button size="lg" asChild className="min-h-12">

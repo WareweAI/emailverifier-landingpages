@@ -8,8 +8,7 @@ const HERO_SOURCES = INTEGRATIONS.filter(
 ).slice(0, 4);
 
 /**
- * Compact connected-sources mock for the integrations hero —
- * source logos → list name → result chip (matches landing result-card style).
+ * Compact connected-sources mock for the integrations hero - * source logos → list name → result chip (matches landing result-card style).
  */
 export function IntegrationsImportDemo() {
   return (
@@ -44,7 +43,7 @@ export function IntegrationsImportDemo() {
         <p className="text-xs font-medium text-ink-muted">Connected list</p>
         <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
           <p className="min-w-0 truncate font-semibold text-ink">
-            Q1 outreach — Drive
+            Q1 outreach - Drive
           </p>
           <StatusChip
             label="43% safe"

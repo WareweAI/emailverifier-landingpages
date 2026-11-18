@@ -18,7 +18,7 @@ const STEPS = [
   {
     key: "progress",
     title: "Verify",
-    caption: "Job running — example",
+    caption: "Job running - example",
     icon: Loader2,
     body: (
       <div className="rounded-xl border border-line bg-surface-muted px-3 py-4">

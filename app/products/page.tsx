@@ -3,26 +3,24 @@ import JsonLd, {
   breadcrumbJsonLd,
   itemListJsonLd,
   organizationJsonLd,
-  softwareApplicationJsonLd,
 } from "@/Components/seo/JsonLd";
 import { buildMetadata } from "@/lib/metadata";
 import { PRODUCTS_ITEM_LIST } from "@/lib/products-item-list";
 
 export const metadata = buildMetadata({
   title:
-    "Products | EmailVerifier.io: Email Verification & Lead Generation Tools",
+    "Products | EmailVerifier.io: Email Verifier, Bulk Cleaning & Lead Tools",
   description:
-    "Explore EmailVerifier.io products: email validator, bulk verifier, validation API, email finder, lead finder and data enrichment. 100 free credits.",
+    "Browse EmailVerifier.io products: email verifier, bulk email verifier, email verification API, email finder, lead finder, and data enrichment. 100 free credits.",
   path: "/products",
   imageAlt:
-    "EmailVerifier.io products hub — email verifier, bulk cleaning, API, and lead tools",
+    "EmailVerifier.io products category - email verifier and lead generation tools",
 });
 
 export default function Page() {
   return (
     <>
       <JsonLd data={organizationJsonLd()} />
-      <JsonLd data={softwareApplicationJsonLd()} />
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },

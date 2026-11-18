@@ -29,7 +29,7 @@ const STEPS = [
   {
     step: "01",
     title: "Upload names and domains",
-    body: "Drop a CSV of people you already know — name, company domain, optional role fields.",
+    body: "Drop a CSV of people you already know - name, company domain, optional role fields.",
     icon: Upload,
   },
   {
@@ -164,7 +164,7 @@ export default function DataEnrichmentProductPage() {
           </div>
 
           <div className="mx-auto mt-8 max-w-3xl md:mt-10">
-            <DesktopMockup chromeLabel="Bulk find — enrich a CSV of names and domains">
+            <DesktopMockup chromeLabel="Bulk find - enrich a CSV of names and domains">
               <BulkFindDemo />
             </DesktopMockup>
             <TrustStatsRow compact className="mt-8 w-full max-w-none" />
@@ -187,7 +187,7 @@ export default function DataEnrichmentProductPage() {
             <span className="text-primary">data enrichment</span> works
           </h2>
           <p className="mt-3 text-ink-muted">
-            Attach verified emails to rows you already have — then email verify
+            Attach verified emails to rows you already have - then email verify
             before you export.
           </p>
         </div>
@@ -238,7 +238,7 @@ export default function DataEnrichmentProductPage() {
               <span className="mr-2 font-display text-3xl font-bold tracking-tight sm:text-4xl">
                 0
               </span>
-              Credits for empty matches — enrichment and the email verifier share
+              Credits for empty matches - enrichment and the email verifier share
               one balance so empty rows never inflate the bill.
             </p>
           </div>
@@ -324,7 +324,7 @@ export default function DataEnrichmentProductPage() {
       <PricingSection
         variant="homepage"
         heading="Pay-as-you-go and volume pricing"
-        lead={`Data enrichment uses the same credits as the email verifier — from $${RATE_PER_THOUSAND.toFixed(2)} per 1,000. Credits never expire.`}
+        lead={`Data enrichment uses the same credits as the email verifier - from $${RATE_PER_THOUSAND.toFixed(2)} per 1,000. Credits never expire.`}
       />
 
       <WhyUsTable

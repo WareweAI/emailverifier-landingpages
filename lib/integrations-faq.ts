@@ -17,7 +17,7 @@ export const INTEGRATIONS_FAQS: FaqItem[] = [
         ? `Available today: ${formatNameList(availableImports)}, plus direct CSV, TXT, and XLSX upload.`
         : "Upload CSV, TXT, and XLSX files directly in the dashboard.",
       soonImports.length
-        ? `${formatNameList(soonImports)} are marked Soon — use file export until those connectors ship.`
+        ? `${formatNameList(soonImports)} are marked Soon - use file export until those connectors ship.`
         : null,
       "Statuses on this page match the homepage import marks so they stay in sync.",
     ]
@@ -38,7 +38,7 @@ export const INTEGRATIONS_FAQS: FaqItem[] = [
   {
     question: "Can I verify at signup without a CRM import?",
     answer:
-      "Yes. Use the email verification API to email verify addresses in real time at form submit — same credit balance as bulk.",
+      "Yes. Use the email verification API to email verify addresses in real time at form submit - same credit balance as bulk.",
   },
   {
     question: "What about Zapier, webhooks, or MCP?",

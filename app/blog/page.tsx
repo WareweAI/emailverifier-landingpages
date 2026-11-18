@@ -15,11 +15,11 @@ import { buildMetadata } from "@/lib/metadata";
 import { getCategories, getPosts } from "@/lib/wordpress";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Email Verifier Blog — List Cleaning & API Guides",
+  title: "Email Verifier Blog - List Cleaning & API Guides",
   description:
     "Practical guides from EmailVerifier.io: how to use an email verifier, run a bulk email verifier, and integrate the email verification API.",
   path: "/blog",
-  imageAlt: "Email verifier blog — list cleaning and API guides",
+  imageAlt: "Email verifier blog - list cleaning and API guides",
 });
 
 type PageProps = {
@@ -62,8 +62,7 @@ export default async function BlogIndexPage({ searchParams }: PageProps) {
           </h1>
           <p className="mt-4 text-lg text-ink-muted">
             Learn how to email verify single addresses, run a bulk email
-            verifier on CSV lists, and ship with the email verification API —
-            without inventing accuracy claims. Same credits for bulk and API;
+            verifier on CSV lists, and ship with the email verification API - without inventing accuracy claims. Same credits for bulk and API;
             100 free on signup.
           </p>
         </header>

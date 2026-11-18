@@ -496,7 +496,7 @@ export default function Header() {
 
   return (
     <header className="relative z-50 pt-4">
-      {/* 1-off: floating nav shell — ~20px radius, detached from viewport edges */}
+      {/* 1-off: floating nav shell - ~20px radius, detached from viewport edges */}
       <div
         className="site-container relative"
         onMouseLeave={() => {
@@ -505,7 +505,7 @@ export default function Header() {
           closeResources();
         }}
       >
-        {/* Positioning context matches the bar's outer width — not the padded site column */}
+        {/* Positioning context matches the bar's outer width - not the padded site column */}
         <div className="relative">
         <div
           className={cn(
@@ -519,7 +519,7 @@ export default function Header() {
             <Link
               className="flex items-center gap-2 justify-self-start"
               href="/"
-              aria-label="EmailVerifier.io — Home"
+              aria-label="EmailVerifier.io - Home"
             >
               <LogoMark />
               <span className="font-display whitespace-nowrap text-lg font-semibold text-ink">

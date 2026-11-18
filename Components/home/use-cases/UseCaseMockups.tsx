@@ -34,7 +34,7 @@ export function UseCaseMockFrame({
       )}
       aria-hidden
     >
-      {/* Full-bleed pattern + soft wash — covers every edge */}
+      {/* Full-bleed pattern + soft wash - covers every edge */}
       <div className="pointer-events-none absolute inset-0 bg-surface-muted">
         <div className="absolute inset-0 bg-primary-soft/80" />
         <div className="absolute inset-0 hiw-storyboard-dots opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
@@ -57,7 +57,7 @@ export function UseCaseMockFrame({
   );
 }
 
-/** Marketing — campaign list ready to send with status mix */
+/** Marketing - campaign list ready to send with status mix */
 export function MarketingMockup() {
   return (
     <div className="p-3">
@@ -102,7 +102,7 @@ export function MarketingMockup() {
   );
 }
 
-/** Sales — outreach queue with verify / skip */
+/** Sales - outreach queue with verify / skip */
 export function SalesMockup() {
   return (
     <div className="p-3">
@@ -163,7 +163,7 @@ export function SalesMockup() {
   );
 }
 
-/** SaaS — signup gate with disposable blocked */
+/** SaaS - signup gate with disposable blocked */
 export function SaasMockup() {
   return (
     <div className="p-3">
@@ -196,7 +196,7 @@ export function SaasMockup() {
   );
 }
 
-/** E-commerce — abandoned cart recovery hygiene */
+/** E-commerce - abandoned cart recovery hygiene */
 export function EcommerceMockup() {
   return (
     <div className="p-3">
@@ -250,7 +250,7 @@ export function EcommerceMockup() {
   );
 }
 
-/** Agency — client list quality report */
+/** Agency - client list quality report */
 export function AgencyMockup() {
   return (
     <div className="p-3">

@@ -96,7 +96,7 @@ export const GUIDES: Guide[] = [
     slug: "verify-an-email-address-online",
     title: "How to verify an email address online",
     excerpt:
-      "Use the free email verifier to check syntax, MX, mailbox status, and risk flags in seconds — then claim 100 free credits to go further.",
+      "Use the free email verifier to check syntax, MX, mailbox status, and risk flags in seconds - then claim 100 free credits to go further.",
     product: "email-validator",
     goals: ["getting-started", "deliverability"],
     readTimeMinutes: 4,
@@ -145,7 +145,7 @@ export const GUIDES: Guide[] = [
       },
       {
         heading: "Filter and export",
-        body: "Review valid, risky, and invalid counts, then export the segments you plan to send — or suppress catch-all and disposable first.",
+        body: "Review valid, risky, and invalid counts, then export the segments you plan to send - or suppress catch-all and disposable first.",
       },
     ],
   },
@@ -164,7 +164,7 @@ export const GUIDES: Guide[] = [
     steps: [
       {
         heading: "Run a full list check",
-        body: "Upload your outreach list to the bulk email verifier so every row gets status plus risk flags — not just a green or red badge.",
+        body: "Upload your outreach list to the bulk email verifier so every row gets status plus risk flags - not just a green or red badge.",
       },
       {
         heading: "Filter catch-all and disposable",
@@ -200,7 +200,7 @@ export const GUIDES: Guide[] = [
       },
       {
         heading: "Verify on shared credits",
-        body: "Jobs use the same credit wallet as API and single checks — 100 free on signup, then pay-once packs that never expire.",
+        body: "Jobs use the same credit wallet as API and single checks - 100 free on signup, then pay-once packs that never expire.",
       },
     ],
   },
@@ -208,7 +208,7 @@ export const GUIDES: Guide[] = [
     slug: "integrate-email-verification-api-in-5-minutes",
     title: "Integrate the email verification API in 5 minutes",
     excerpt:
-      "Authenticate, call the real-time endpoint, and read status plus risk fields — same credits as bulk list cleaning.",
+      "Authenticate, call the real-time endpoint, and read status plus risk fields - same credits as bulk list cleaning.",
     product: "email-validation-api",
     goals: ["api-integrations", "getting-started"],
     readTimeMinutes: 5,
@@ -220,7 +220,7 @@ export const GUIDES: Guide[] = [
     steps: [
       {
         heading: "Get an API key",
-        body: "Register at app.emailverifier.io and open API settings. Get API key always means create an account — there is no fake key generator on the marketing site.",
+        body: "Register at app.emailverifier.io and open API settings. Get API key always means create an account - there is no fake key generator on the marketing site.",
       },
       {
         heading: "Send a test request",
@@ -248,7 +248,7 @@ export const GUIDES: Guide[] = [
     steps: [
       {
         heading: "Copy a documented snippet",
-        body: "Use the homepage API band or /email-verification-api examples (curl and Node). Stick to real field names — we do not invent SDKs.",
+        body: "Use the homepage API band or /email-verification-api examples (curl and Node). Stick to real field names - we do not invent SDKs.",
       },
       {
         heading: "Authenticate once",
@@ -364,7 +364,7 @@ export const GUIDES: Guide[] = [
       },
       {
         heading: "Re-check aging lists",
-        body: "People change jobs. Re-run older segments through the bulk email verifier before large sends — credits never expire, so you can verify when you need to.",
+        body: "People change jobs. Re-run older segments through the bulk email verifier before large sends - credits never expire, so you can verify when you need to.",
       },
     ],
   },
@@ -391,7 +391,7 @@ export const GUIDES: Guide[] = [
       },
       {
         heading: "Monitor credit usage",
-        body: "Signup volume is bursty — prepaid credits that never expire fit better than monthly allotments that vanish unused.",
+        body: "Signup volume is bursty - prepaid credits that never expire fit better than monthly allotments that vanish unused.",
       },
     ],
   },
@@ -418,7 +418,7 @@ export const GUIDES: Guide[] = [
       },
       {
         heading: "Pick your next workflow",
-        body: "Clean a CSV, connect an integration, or grab an API key — then come back to these guides when you need the next how-to.",
+        body: "Clean a CSV, connect an integration, or grab an API key - then come back to these guides when you need the next how-to.",
       },
     ],
   },

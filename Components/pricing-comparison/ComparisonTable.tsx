@@ -13,7 +13,7 @@ import {
 import { ComparisonCellView } from "./ComparisonCell";
 import { cn } from "@/lib/utils";
 
-/** Four competitors + EmailVerifier.io — benefits table only. */
+/** Four competitors + EmailVerifier.io - benefits table only. */
 const BENEFIT_VENDOR_IDS: VendorId[] = [
   "emailverifier",
   "zerobounce",
@@ -119,7 +119,7 @@ export function ComparisonTable() {
           </tr>
         </thead>
         <tbody>
-          {/* Credits & access — pulled from pricing benefit rows */}
+          {/* Credits & access - pulled from pricing benefit rows */}
           <GroupBlock
             label="Credits & access"
             expanded={openGroups.verification !== false}

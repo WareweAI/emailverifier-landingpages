@@ -14,7 +14,7 @@ export function BlogCta({ variant = "band" }: BlogCtaProps) {
           Clean your list with an email verifier
         </h2>
         <p className="mt-2 text-ink-muted">
-          Get 100 free credits on signup — no credit card. Same credits for bulk
+          Get 100 free credits on signup - no credit card. Same credits for bulk
           and the email verification API.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
@@ -35,7 +35,7 @@ export function BlogCta({ variant = "band" }: BlogCtaProps) {
         Ready to email verify your list?
       </h2>
       <p className="mt-2 max-w-2xl text-ink-muted">
-        Start with 100 free credits. Pay once at $1.80 per 1,000 — credits never
+        Start with 100 free credits. Pay once at $1.80 per 1,000 - credits never
         expire. Bulk CSV and real-time API on the same wallet.
       </p>
       <div className="mt-6 flex flex-wrap gap-3">

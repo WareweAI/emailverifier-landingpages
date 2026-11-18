@@ -24,7 +24,7 @@ import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
   title:
-    "Email Verification Guides — How-Tos for List Cleaning & API | EmailVerifier.io",
+    "Email Verification Guides - How-Tos for List Cleaning & API | EmailVerifier.io",
   description:
     "Step-by-step email verifier guides: clean lists with a bulk email verifier, email verify single addresses, and integrate the email verification API. 100 free credits.",
   path: "/guides",
@@ -94,7 +94,7 @@ export default async function GuidesPage({ searchParams }: PageProps) {
           <p className="mt-4 text-lg text-ink-muted">
             Step-by-step how-tos for cleaning lists, finding leads and
             integrating the API. Use this email verifier library when you need
-            evergreen tasks — not product news. Start free with 100 credits
+            evergreen tasks - not product news. Start free with 100 credits
             (no card); packs are $1.80 per 1,000 and never expire.
           </p>
         </header>

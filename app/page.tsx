@@ -18,7 +18,7 @@ import { HOMEPAGE_FAQS } from "@/lib/homepage-faq";
 export const metadata = buildMetadata({
   title: "Email Verifier: Instant Email Verification Tool & Checker",
   description:
-    "Email verifier for bulk lists and a real-time API. $1.80 per 1,000 credits that never expire. Try 3 free verifications on the page, 100 more on signup.",
+    "Verify email addresses, find verified work emails, and build targeted B2B lead lists. Start with 100 free credits. No credit card required.",
   path: "/",
   imageAlt:
     "Email verifier dashboard showing list cleaning and verification results",

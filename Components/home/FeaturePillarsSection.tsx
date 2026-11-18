@@ -48,11 +48,11 @@ const PILLARS: Pillar[] = [
     points: [
       {
         title: "Verify a single email or a list",
-        body: "Check individual email addresses in seconds, or upload bulk CSV/XLS lists — or import directly from Google Drive, OneDrive, and your CRM to clean thousands of contacts at once.",
+        body: "Check individual email addresses in seconds, or upload bulk CSV/XLS lists - or import directly from Google Drive, OneDrive, and your CRM to clean thousands of contacts at once.",
       },
       {
         title: "Deliverability score",
-        body: "Get an instant 0–100 confidence score and catch-all status for every address so you know exactly which emails are safe to send and which to suppress.",
+        body: "Get an instant 0-100 confidence score and catch-all status for every address so you know exactly which emails are safe to send and which to suppress.",
       },
       {
         title: "Accurate and most reliable verifier",
@@ -106,7 +106,7 @@ const PILLARS: Pillar[] = [
       },
       {
         title: "Signal-based outreach",
-        body: "Identify accounts showing active buying intent — such as recent funding, leadership changes, or hiring surges — so you reach out at the right moment.",
+        body: "Identify accounts showing active buying intent - such as recent funding, leadership changes, or hiring surges - so you reach out at the right moment.",
       },
     ],
     cta: "Find Leads with AI",

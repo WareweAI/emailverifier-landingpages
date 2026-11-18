@@ -169,7 +169,7 @@ export default function WhyValidate() {
             Why validate an email address?
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-muted">
-            One check tells you whether an address is worth sending to — before
+            One check tells you whether an address is worth sending to - before
             you burn credits, risk bounces, or pollute a signup list.
           </p>
         </div>

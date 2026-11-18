@@ -9,12 +9,12 @@ export const API_PAGE_FAQS: FaqItem[] = [
   {
     question: "What does a response include?",
     answer:
-      "Responses include status, overall score, deliverability, and risk flags such as catch-all, disposable, and role-based — the same signals you see in the dashboard.",
+      "Responses include status, overall score, deliverability, and risk flags such as catch-all, disposable, and role-based - the same signals you see in the dashboard.",
   },
   {
     question: "Do I need an SDK?",
     answer:
-      "No. Call the HTTPS endpoint with your API key from curl, Node, or any HTTP client. Register to create a key — there is no fake key generator on this site.",
+      "No. Call the HTTPS endpoint with your API key from curl, Node, or any HTTP client. Register to create a key - there is no fake key generator on this site.",
   },
   {
     question: "Where should I use the API?",
@@ -24,6 +24,6 @@ export const API_PAGE_FAQS: FaqItem[] = [
   {
     question: "How much does it cost?",
     answer:
-      "Pay-once credits from $1.80 per 1,000 at the 25,000-credit pack. Larger packs cost less per email. Start with 100 free credits — no credit card.",
+      "Pay-once credits from $1.80 per 1,000 at the 25,000-credit pack. Larger packs cost less per email. Start with 100 free credits - no credit card.",
   },
 ];

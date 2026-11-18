@@ -42,12 +42,12 @@ export async function generateMetadata({
   }
 
   return buildMetadata({
-    title: `${category.name} — Email Verifier Blog`,
+    title: `${category.name} - Email Verifier Blog`,
     description:
       category.description ||
       `Articles about ${category.name} from the EmailVerifier.io email verifier blog.`,
     path: `/blog/category/${category.slug}`,
-    imageAlt: `${category.name} — email verifier guides`,
+    imageAlt: `${category.name} - email verifier guides`,
   });
 }
 

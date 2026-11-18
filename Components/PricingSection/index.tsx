@@ -80,7 +80,7 @@ export default function PricingSection({
             Simple, Honest Pricing
           </h2>
           <p className="text-sm text-ink-muted sm:text-base">
-            Pay for the volume you need — or choose Unlimited for continuous
+            Pay for the volume you need - or choose Unlimited for continuous
             verification.
           </p>
         </div>

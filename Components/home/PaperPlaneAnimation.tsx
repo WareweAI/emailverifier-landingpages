@@ -11,10 +11,10 @@ const ANIMATION_CONFIG = {
 
 const DEMO_EMAIL = "maya@studio.co";
 
-/** Nose tip in the 36×36 plane SVG — used as MotionPath alignOrigin. */
+/** Nose tip in the 36×36 plane SVG - used as MotionPath alignOrigin. */
 const PLANE_NOSE_ORIGIN: [number, number] = [32 / 36, 6 / 36];
 
-/** Plane forward axis vs path tangent — tuned so body centerline follows the path. */
+/** Plane forward axis vs path tangent - tuned so body centerline follows the path. */
 const PLANE_PATH_ROTATION_OFFSET = -10;
 
 const FLIGHT_PATH =

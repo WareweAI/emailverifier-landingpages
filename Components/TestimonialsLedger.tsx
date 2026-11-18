@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 /**
  * Quotes sourced from Reddit comment JSON via arctic-shift archive
  * (comment IDs match the five embed permalinks previously in TestimonialsCarousel).
- * Authors corrected from archive — embed markup usernames were wrong.
+ * Authors corrected from archive - embed markup usernames were wrong.
  */
 type LedgerReview = {
   username: string;

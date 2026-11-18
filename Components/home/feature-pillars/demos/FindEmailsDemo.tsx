@@ -29,7 +29,7 @@ import {
 } from "lucide-react";
 
 /**
- * Find Emails — looping product demo.
+ * Find Emails - looping product demo.
  *
  * Flow: type name + company → finding → one verified match → bulk task bar → reset.
  * Edit COPY for the query and T for pacing (seconds).

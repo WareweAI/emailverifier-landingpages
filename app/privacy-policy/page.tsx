@@ -7,7 +7,7 @@ import JsonLd, {
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Privacy Policy — Email Verifier",
+  title: "Privacy Policy - Email Verifier",
   description:
     "Privacy policy for our email verifier: how we collect, use, and protect personal information. Uploaded files are deleted 30 days after processing.",
   path: "/privacy-policy",

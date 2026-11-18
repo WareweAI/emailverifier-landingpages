@@ -18,7 +18,7 @@ export default function ListCleanSection() {
           Bulk email verifier: dirty list to clean results
         </h2>
         <p className="mt-3 text-ink-muted">
-          See the outcome before you upload — example mix for a 10K list at
+          See the outcome before you upload - example mix for a 10K list at
           $1.80 per 1,000. Credits never expire.
         </p>
       </div>

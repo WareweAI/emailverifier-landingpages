@@ -21,7 +21,7 @@ import {
 import { Check, Copy, Plus } from "lucide-react";
 
 /**
- * API — looping product demo.
+ * API - looping product demo.
  *
  * Flow: copy a key → type an address → Try it → request → response fields → reset.
  * Response fields match the live single-email verifier. Edit COPY and T (seconds).

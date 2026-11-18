@@ -107,7 +107,7 @@ export function BulkUploadDemo() {
           Drag and drop your list
         </p>
         <p className="mt-2 max-w-md text-sm leading-relaxed text-ink-muted">
-          Drop a CSV, TXT, or Excel file to email verify every row — or choose a
+          Drop a CSV, TXT, or Excel file to email verify every row - or choose a
           file from your computer.
         </p>
         <ul className="mt-5 flex flex-wrap items-center justify-center gap-2">
@@ -149,7 +149,7 @@ export function BulkUploadDemo() {
         <div className="absolute inset-0 flex items-center justify-center bg-surface/40 p-3 backdrop-blur-[1px] sm:p-4">
           <HeroDemoSignupGate
             title="Sign up to check results"
-            description="Create a free account to unlock this result — 100 free credits, no card."
+            description="Create a free account to unlock this result - 100 free credits, no card."
             location="bulk-hero-upload-gate"
             className="w-full max-w-md"
           />

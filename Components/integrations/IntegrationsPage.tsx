@@ -32,7 +32,7 @@ const CONNECT_PATHS = [
   {
     step: "02",
     title: "Cloud import",
-    body: `Connect ${availableNames || "supported cloud sources"} when Available — Soon connectors use file export until they ship.`,
+    body: `Connect ${availableNames || "supported cloud sources"} when Available - Soon connectors use file export until they ship.`,
     href: "#cloud-imports",
     cta: "Browse import sources",
     icon: CloudUpload,
@@ -40,7 +40,7 @@ const CONNECT_PATHS = [
   {
     step: "03",
     title: "Real-time API",
-    body: "Email verify at signup with the same credits — curl or Node, no forced SDK.",
+    body: "Email verify at signup with the same credits - curl or Node, no forced SDK.",
     href: "/email-verification-api",
     cta: "View API docs",
     icon: Code2,
@@ -136,7 +136,7 @@ export default function IntegrationsPage() {
           </h2>
           <p className="mt-3 text-ink-muted">
             Filter by category. Badges match the homepage: Available, Soon, or
-            enabled on request — so status never disagrees across the site.
+            enabled on request - so status never disagrees across the site.
           </p>
         </div>
         <div className="mt-10">
@@ -158,7 +158,7 @@ export default function IntegrationsPage() {
           </h2>
           <p className="mt-3 text-ink-muted">
             Upload a file, connect a cloud or CRM source, or call the email
-            verification API — same credits either way.
+            verification API - same credits either way.
           </p>
         </div>
 
@@ -215,7 +215,7 @@ export default function IntegrationsPage() {
                 99.7%
               </span>
               Lower bounce rates, higher inbox placement, and a protected
-              sender reputation — backed by our deliverability guarantee.
+              sender reputation - backed by our deliverability guarantee.
             </p>
           </div>
         </div>

@@ -42,7 +42,7 @@ function StoryboardShell({
       )}
       aria-hidden
     >
-      {/* Decorative mesh — top-left only; revealed where content card is inset */}
+      {/* Decorative mesh - top-left only; revealed where content card is inset */}
       <div
         className="pointer-events-none absolute inset-0 overflow-hidden rounded-xl bg-surface-muted"
         aria-hidden
@@ -54,7 +54,7 @@ function StoryboardShell({
         <div className="absolute left-0 top-0 h-28 w-32 hiw-storyboard-dots opacity-70" />
       </div>
 
-      {/* Surface panel — offset down-right so mesh peeks on top + left */}
+      {/* Surface panel - offset down-right so mesh peeks on top + left */}
       <div className="relative ml-3 mt-3 flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl border border-line bg-surface hiw-storyboard-elevate">
         {children}
       </div>

@@ -40,12 +40,12 @@ export async function generateMetadata({
   }
 
   return buildMetadata({
-    title: `${author.name} — Email Verifier Blog`,
+    title: `${author.name} - Email Verifier Blog`,
     description:
       author.description ||
       `Articles by ${author.name} on the EmailVerifier.io email verifier blog.`,
     path: `/blog/author/${author.slug}`,
-    imageAlt: `${author.name} — email verifier blog author`,
+    imageAlt: `${author.name} - email verifier blog author`,
   });
 }
 

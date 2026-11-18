@@ -32,7 +32,7 @@ type TryEmailVerifierStickyProps = {
   className?: string;
 };
 
-/** Right-rail product CTA — shared by blog articles and guide detail pages. */
+/** Right-rail product CTA - shared by blog articles and guide detail pages. */
 export function TryEmailVerifierSticky({
   className = "hidden min-w-0 self-start xl:block",
 }: TryEmailVerifierStickyProps) {

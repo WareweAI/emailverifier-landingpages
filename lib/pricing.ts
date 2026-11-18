@@ -1,5 +1,5 @@
 /**
- * Credit pack prices — source of truth from
+ * Credit pack prices - source of truth from
  * https://app.emailverifier.io/dashboard/billing (captured Oct 2026).
  * Comparison baseline: 10K packs at $20 ($2.00 / 1,000).
  */
@@ -22,15 +22,15 @@ export type CreditPack = (typeof CREDIT_PACKS)[number];
 
 export const PRESETS = CREDIT_PACKS.map((p) => p.credits);
 
-/** Homepage calculator — same packs as dashboard billing, including the 10K base. */
+/** Homepage calculator - same packs as dashboard billing, including the 10K base. */
 export const HOMEPAGE_PRESETS = PRESETS;
 
 export const VOLUME_MIN = CREDIT_PACKS[0].credits;
 export const VOLUME_MAX = CREDIT_PACKS[CREDIT_PACKS.length - 1].credits;
-/** @deprecated Use VOLUME_MAX — kept for older seasonal naming */
+/** @deprecated Use VOLUME_MAX - kept for older seasonal naming */
 export const SEASONAL_MAX = VOLUME_MAX;
 export const VOLUME_STEP = 1_000;
-export const DEFAULT_VOLUME = 25_000;
+export const DEFAULT_VOLUME = 10_000;
 
 export const UNLIMITED_PRICE_MONTHLY = 299;
 export const UNLIMITED_TOTAL_SPOTS = 100;

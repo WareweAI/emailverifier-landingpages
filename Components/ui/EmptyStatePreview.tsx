@@ -7,7 +7,7 @@ type EmptyStatePreviewProps = {
 };
 
 /**
- * Post-signup empty dashboard — reduces friction by showing the exact next step.
+ * Post-signup empty dashboard - reduces friction by showing the exact next step.
  */
 export function EmptyStatePreview({ className }: EmptyStatePreviewProps) {
   return (
@@ -42,7 +42,7 @@ export function EmptyStatePreview({ className }: EmptyStatePreviewProps) {
             Upload your first CSV
           </p>
           <p className="mt-1 max-w-[14rem] text-xs text-ink-muted">
-            After signup — drop a list here. 100 free credits, no card.
+            After signup - drop a list here. 100 free credits, no card.
           </p>
           <span className="mt-4 inline-flex rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground">
             Choose file

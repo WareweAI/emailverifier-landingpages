@@ -1,5 +1,5 @@
 /**
- * Marketing API explorer content — field names and endpoints match
+ * Marketing API explorer content - field names and endpoints match
  * https://app.emailverifier.io/api-docs (live product docs).
  */
 
@@ -215,7 +215,7 @@ const data = await res.json();`,
         title: "Base URL & Authentication",
         summary: "X-API-Key on every request",
         description:
-          "All requests go to the base URL. Authenticate with the X-API-Key header. Bulk file endpoints need bulk_verification; the finder needs finder access. Keep keys on the server — never in client-side code.",
+          "All requests go to the base URL. Authenticate with the X-API-Key header. Bulk file endpoints need bulk_verification; the finder needs finder access. Keep keys on the server - never in client-side code.",
         method: "HEADER",
         path: "X-API-Key: YOUR_API_KEY",
         credits: "Same pool as bulk",

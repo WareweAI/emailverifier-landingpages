@@ -18,7 +18,7 @@ const STEPS = [
   },
   {
     title: "We Verify",
-    desc: "Syntax, MX, mailbox, and risk flags — no inbox mail sent.",
+    desc: "Syntax, MX, mailbox, and risk flags - no inbox mail sent.",
     icon: ShieldCheck,
   },
   {
@@ -100,7 +100,7 @@ export default function HowItWorksScene() {
        * Desktop (lg+): pin the two-column row so the left copy stays put.
        * Cards are absolutely stacked. Card 0 is in place; cards 1 and 2 start
        * below (yPercent) at full opacity and scrub upward to cover the stack.
-       * No autoAlpha / cross-fade — only transform.
+       * No autoAlpha / cross-fade - only transform.
        */
       mm.add(
         "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",

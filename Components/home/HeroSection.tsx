@@ -54,16 +54,16 @@ export default function HeroSection() {
                 </span>
               </h1>
               <h2 className="mt-10 w-full font-display text-xl font-normal leading-tight tracking-tight text-ink sm:mt-12 sm:text-2xl lg:mt-14 lg:text-3xl">
-                For Clean Lists and{" "}
-                <span className="text-primary">Verified Leads</span>
+                For Cleaner Lists and{" "}
+                <span className="text-primary">Targeted Leads</span>
               </h2>
 
               <p
                 data-hero-el
                 className="mt-4 max-w-lg text-base leading-relaxed text-ink-muted sm:text-lg"
               >
-                Stop chasing invalid, fake disposable emails and spam traps that
-                cost your sender reputation.
+                Clean your email lists, find verified work emails, and build
+                targeted B2B lead lists.
               </p>
 
               <div

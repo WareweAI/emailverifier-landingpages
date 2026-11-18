@@ -41,7 +41,7 @@ export default function ApiProductPage() {
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-ink-muted">
               Stop disposable, catch-all, and invalid addresses at signup. Same
-              credits as bulk — from ${RATE_PER_THOUSAND.toFixed(2)} per 1,000,
+              credits as bulk - from ${RATE_PER_THOUSAND.toFixed(2)} per 1,000,
               never expire.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">

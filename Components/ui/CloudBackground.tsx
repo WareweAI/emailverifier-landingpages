@@ -13,7 +13,7 @@ function FluffyCloud({ className }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       focusable="false"
     >
-      {/* Soft blue volume — fills the tall side column */}
+      {/* Soft blue volume - fills the tall side column */}
       <g fill="var(--color-primary-soft)" opacity="0.85">
         <ellipse cx="80" cy="640" rx="160" ry="90" />
         <ellipse cx="200" cy="600" rx="170" ry="110" />

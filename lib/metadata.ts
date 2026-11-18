@@ -16,7 +16,7 @@ export function buildMetadata({
   title,
   description,
   path,
-  imageAlt = "Email verifier — bulk list cleaning and real-time API",
+  imageAlt = "Email verifier - bulk list cleaning and real-time API",
   ogImage,
 }: BuildMetadataOptions): Metadata {
   const fullTitle = title.includes(SITE_NAME)

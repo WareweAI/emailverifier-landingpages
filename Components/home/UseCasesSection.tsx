@@ -37,9 +37,9 @@ const USE_CASES: UseCase[] = [
     persona: "Marketing & Growth",
     headline: "Protect the campaign before you hit send",
     description:
-      "Cold lists and old lead magnets look fine in a spreadsheet — until ESP reputation takes the hit. Clean the list first, then spend on creative, not recovery.",
+      "Cold lists and old lead magnets look fine in a spreadsheet - until ESP reputation takes the hit. Clean the list first, then spend on creative, not recovery.",
     benefit:
-      "Valid / risky / invalid plus disposable, catch-all, and role flags — so you know what to send, suppress, or review.",
+      "Valid / risky / invalid plus disposable, catch-all, and role flags - so you know what to send, suppress, or review.",
     signal: "Before every send · Not after the bounce report",
     icon: MailCheck,
     className: "md:col-span-2",
@@ -52,7 +52,7 @@ const USE_CASES: UseCase[] = [
     description:
       "Every bad email in the cadence wastes a touch and a domain. Verify prospects before outreach so reps spend time on people who can actually reply.",
     benefit:
-      "Fast checks on scraped or enriched lists — catch invalids and role inboxes before the first step fires.",
+      "Fast checks on scraped or enriched lists - catch invalids and role inboxes before the first step fires.",
     signal: "Outreach-ready lists · Same day, same credits",
     icon: Target,
     Mockup: SalesMockup,
@@ -63,7 +63,7 @@ const USE_CASES: UseCase[] = [
     description:
       "Disposable and catch-all signups inflate metrics and poison lifecycle email. Verify in real time at registration so your CRM stays usable.",
     benefit:
-      "Email verification API on the same cheap credits as bulk — block or flag before the account is created.",
+      "Email verification API on the same cheap credits as bulk - block or flag before the account is created.",
     signal: "Real-time at signup · Docs-lite, no SDK theater",
     icon: ShieldCheck,
     Mockup: SaasMockup,
@@ -74,7 +74,7 @@ const USE_CASES: UseCase[] = [
     description:
       "Abandoned-cart and promo sends only work if the address is real. Clean purchased and imported lists so welcome flows don’t train spam filters against you.",
     benefit:
-      "Bulk-clean lists with a bulk email verifier at a flat $1.80 per 1,000 — credits never expire between peak seasons.",
+      "Bulk-clean lists with a bulk email verifier at a flat $1.80 per 1,000 - credits never expire between peak seasons.",
     signal: "Seasonal lists · Credits that wait for you",
     icon: Package,
     Mockup: EcommerceMockup,
@@ -154,7 +154,7 @@ export default function UseCasesSection() {
         </h2>
         <p className="mt-4 text-lg leading-relaxed text-ink-muted">
           Whether you upload a CSV or verify at signup, this email verifier
-          shows what’s safe to send — and what will quietly wreck
+          shows what’s safe to send - and what will quietly wreck
           deliverability.
         </p>
         <p className="mt-3 text-sm text-ink-muted">
@@ -171,7 +171,7 @@ export default function UseCasesSection() {
 
       <div className="mx-auto mt-12 max-w-xl text-center">
         <p className="text-sm leading-relaxed text-ink-muted">
-          See your first results in seconds — then clean a full list with 100
+          See your first results in seconds - then clean a full list with 100
           free credits.
         </p>
         <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm font-medium">

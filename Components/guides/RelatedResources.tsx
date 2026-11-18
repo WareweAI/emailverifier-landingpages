@@ -13,7 +13,7 @@ const RESOURCES = [
     href: "/blog",
     title: "Blog",
     description:
-      "Product updates, email tips, and deliverability insights — newsletter-style.",
+      "Product updates, email tips, and deliverability insights - newsletter-style.",
     icon: Newspaper,
   },
 ] as const;

@@ -92,7 +92,7 @@ export default function Hero() {
                         >
                             <Link href="https://app.emailverifier.io/register"
                                 target="_blank" rel="noopener noreferrer"
-                                aria-label="Try Email Verifier free — registers at app.emailverifier.io">
+                                aria-label="Try Email Verifier free - registers at app.emailverifier.io">
                                 Verify Emails Free
                                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
                             </Link>

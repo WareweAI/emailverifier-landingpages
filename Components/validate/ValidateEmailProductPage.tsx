@@ -246,7 +246,7 @@ export default function ValidateEmailProductPage() {
                 99.7%
               </span>
               Lower bounce rates, higher inbox placement, and a protected
-              sender reputation — backed by our deliverability guarantee.
+              sender reputation - backed by our deliverability guarantee.
             </p>
           </div>
         </div>

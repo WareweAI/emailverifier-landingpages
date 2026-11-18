@@ -4,12 +4,12 @@ export const PRICING_PAGE_FAQS: FaqItem[] = [
   {
     question: "Do my verification credits ever expire?",
     answer:
-      "No. Seasonal one-time credits never expire. You can use them anytime — whether it's today, next month, or next year.",
+      "No. Seasonal one-time credits never expire. You can use them anytime - whether it's today, next month, or next year.",
   },
   {
     question: "What's the difference between Seasonal credits and Unlimited?",
     answer:
-      "Pay-as-you-go credits are a one-time purchase — packs from 10K to 10M, with volume discounts. Unlimited is a $299/month plan with unlimited emails per month, listed as upcoming until checkout is available.",
+      "Pay-as-you-go credits are a one-time purchase - packs from 10K to 10M, with volume discounts. Unlimited is a $299/month plan with unlimited emails per month, listed as upcoming until checkout is available.",
   },
   {
     question: "Is there a subscription or recurring charge?",
@@ -24,7 +24,7 @@ export const PRICING_PAGE_FAQS: FaqItem[] = [
   {
     question: "What's included with either option?",
     answer:
-      "Both include bulk email verifier and real-time verification, email verification API access, CSV list cleaning, disposable email detection, and role-based filtering — at no extra cost.",
+      "Both include bulk email verifier and real-time verification, email verification API access, CSV list cleaning, disposable email detection, and role-based filtering - at no extra cost.",
   },
   {
     question: "Do you offer refunds if I'm not satisfied?",

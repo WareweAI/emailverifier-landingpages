@@ -252,7 +252,7 @@ export default function FindEmailsForm({
               <div className="absolute inset-0 flex items-center justify-center bg-surface/40 p-3 backdrop-blur-[1px] sm:p-4">
                 <HeroDemoSignupGate
                   title="Sign up to check results"
-                  description="Create a free account to unlock matching work emails — 100 free credits, no card."
+                  description="Create a free account to unlock matching work emails - 100 free credits, no card."
                   location={`${location}-find-gate`}
                   className="w-full max-w-md"
                 />

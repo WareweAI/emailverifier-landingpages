@@ -29,7 +29,7 @@ type AppChromePreviewProps = {
 };
 
 /**
- * Static high-fidelity app chrome — same product language as the live app,
+ * Static high-fidelity app chrome - same product language as the live app,
  * without the heavy GSAP demo. Decorative / aria-hidden.
  */
 export function AppChromePreview({
@@ -144,7 +144,7 @@ function VerifyPanel() {
 
       <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-danger">
         <XCircle className="h-3.5 w-3.5" />
-        Undeliverable — do not send this address
+        Undeliverable - do not send this address
       </p>
     </>
   );

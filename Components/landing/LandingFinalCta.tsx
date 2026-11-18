@@ -37,7 +37,7 @@ export function LandingFinalCta({
     >
       <div
         className="relative overflow-hidden rounded-3xl px-6 py-14 sm:px-10 md:py-16 lg:px-16"
-        /* 1-off: dark CTA panel — matches site CTA treatment */
+        /* 1-off: dark CTA panel - matches site CTA treatment */
         style={{
           backgroundImage:
             "linear-gradient(to top right, var(--color-ink) 28%, var(--color-primary-deep) 100%)",

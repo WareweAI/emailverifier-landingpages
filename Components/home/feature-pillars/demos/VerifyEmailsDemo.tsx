@@ -23,7 +23,7 @@ import { Download, FolderOpen, Mail, RefreshCw, Upload } from "lucide-react";
 import Image from "next/image";
 
 /**
- * Verify Emails — looping product demo.
+ * Verify Emails - looping product demo.
  *
  * Flow: drop a CSV → verifying bar → bulk task result → single-address check → reset.
  * Edit COPY for labels and T for pacing (seconds). Colors are semantic tokens.

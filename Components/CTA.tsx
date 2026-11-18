@@ -84,7 +84,7 @@ export default function CTA() {
     >
       <div
         className="relative overflow-hidden rounded-3xl px-6 py-16 sm:px-10 md:py-20 lg:px-16 lg:py-24"
-        /* 1-off: dark CTA panel — ink to primary-deep, brand navy not status green */
+        /* 1-off: dark CTA panel - ink to primary-deep, brand navy not status green */
         style={{
           backgroundImage:
             "linear-gradient(to top right, var(--color-ink) 28%, var(--color-primary-deep) 100%)",
@@ -113,7 +113,7 @@ export default function CTA() {
                 rel="noopener noreferrer"
                 data-ev-event="cta_register_click"
               >
-                Try it Free — 100 Verification on us
+                Try it Free - 100 Verification on us
                 <ArrowRight
                   className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transition-none"
                   aria-hidden
@@ -121,7 +121,7 @@ export default function CTA() {
               </Link>
             </Button>
             <p className="text-sm text-primary-foreground/80">
-              No setup, No credit card, No stress — Just results.
+              No setup, No credit card, No stress - Just results.
             </p>
             <div
               className="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 text-sm text-primary-foreground/80"

@@ -4,7 +4,7 @@ export const VALIDATE_EMAIL_FAQS: FaqItem[] = [
   {
     question: "How many free checks do I get?",
     answer:
-      "You can email verify 3 addresses on this page. Create a free account for 100 more credits — no credit card required.",
+      "You can email verify 3 addresses on this page. Create a free account for 100 more credits - no credit card required.",
   },
   {
     question: "Does verification send an email?",
@@ -24,7 +24,7 @@ export const VALIDATE_EMAIL_FAQS: FaqItem[] = [
   {
     question: "How do I clean a full list?",
     answer:
-      "Sign up for 100 free credits, then upload a CSV, TXT, or XLSX in the dashboard. Bulk and API use the same credits at $1.80 per 1,000 — credits never expire.",
+      "Sign up for 100 free credits, then upload a CSV, TXT, or XLSX in the dashboard. Bulk and API use the same credits at $1.80 per 1,000 - credits never expire.",
   },
   {
     question: "Can this email verifier help avoid blacklists?",

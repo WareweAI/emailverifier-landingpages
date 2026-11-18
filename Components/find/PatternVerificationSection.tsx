@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 const POINTS = [
   {
     title: "Email Pattern Detection Engine",
-    body: "Our engine analyzes active domain signals to pinpoint exact corporate naming conventions — such as first.last@company.com, flast@company.com, first_last@company.com and 50 more — eliminating blind permutation guessing.",
+    body: "Our engine analyzes active domain signals to pinpoint exact corporate naming conventions - such as first.last@company.com, flast@company.com, first_last@company.com and 50 more - eliminating blind permutation guessing.",
   },
   {
     title: "Pre-Checked via Silent SMTP Handshake",
@@ -36,8 +36,8 @@ const POINTS = [
     ),
   },
   {
-    title: "0–100 Confidence Scoring",
-    body: "When a target company operates an accept-all mail server (catch-all), our smart risk model assigns a transparent 0–100 Confidence Score based on domain pattern certainty and live server behavior so your sales team never gambles with sender reputation.",
+    title: "0-100 Confidence Scoring",
+    body: "When a target company operates an accept-all mail server (catch-all), our smart risk model assigns a transparent 0-100 Confidence Score based on domain pattern certainty and live server behavior so your sales team never gambles with sender reputation.",
   },
 ] as const;
 
@@ -126,7 +126,7 @@ function PatternAnalysisCard() {
     <div className="overflow-hidden rounded-2xl border border-line bg-surface shadow-[var(--shadow-card)]">
       <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3">
         <p className="text-sm font-semibold text-ink">
-          Domain Pattern Analysis — stripe.com
+          Domain Pattern Analysis - stripe.com
         </p>
         <StatusChip
           label="Example"

@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-/** Shared section H2 scale — use across Features, Reviews, Pricing, FAQ, etc. */
+/** Shared section H2 scale - use across Features, Reviews, Pricing, FAQ, etc. */
 export const sectionHeadingClassName =
   "font-display text-xl font-semibold leading-[1.15] tracking-tight sm:text-2xl lg:text-3xl";
 

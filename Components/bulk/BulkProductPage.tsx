@@ -23,7 +23,7 @@ const OUTPUT_STATUSES = [
   {
     status: "valid",
     variant: "success" as const,
-    means: "Mailbox accepted — safe to keep for outreach or nurture.",
+    means: "Mailbox accepted - safe to keep for outreach or nurture.",
   },
   {
     status: "invalid",
@@ -33,7 +33,7 @@ const OUTPUT_STATUSES = [
   {
     status: "catch-all",
     variant: "warning" as const,
-    means: "Domain accepts unknown recipients — treat as risky, not valid.",
+    means: "Domain accepts unknown recipients - treat as risky, not valid.",
   },
   {
     status: "role-based",
@@ -43,7 +43,7 @@ const OUTPUT_STATUSES = [
   {
     status: "disposable",
     variant: "danger" as const,
-    means: "Temporary or throwaway providers — suppress before you send.",
+    means: "Temporary or throwaway providers - suppress before you send.",
   },
   {
     status: "syntax error",
@@ -156,7 +156,7 @@ export default function BulkProductPage() {
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-ink-muted">
               Drop a CSV, TXT, or Excel list into this email verifier. Get
-              statuses for every row — same ${RATE_PER_THOUSAND.toFixed(2)}/1K
+              statuses for every row - same ${RATE_PER_THOUSAND.toFixed(2)}/1K
               credits as the API, never expire.
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -205,8 +205,7 @@ export default function BulkProductPage() {
               Bulk cleaning outputs you can act on
             </h2>
             <p className="mt-4 text-ink-muted">
-              Every row from your bulk email verifier maps to a clear status —
-              so you know what to keep, segment, or suppress before the next
+              Every row from your bulk email verifier maps to a clear status - so you know what to keep, segment, or suppress before the next
               campaign.
             </p>
           </div>
@@ -273,7 +272,7 @@ export default function BulkProductPage() {
                 &lt;2%
               </span>
               Clean lists with this bulk email verifier to keep bounce rates
-              under 2% and protect inbox placement — backed by our 99.7%
+              under 2% and protect inbox placement - backed by our 99.7%
               deliverability standard.
             </p>
           </div>
@@ -293,7 +292,7 @@ export default function BulkProductPage() {
           </h2>
           <p className="mt-3 text-ink-muted">
             Connect Google Sheets, HubSpot, or Salesforce when enabled in your
-            account — or export CSV from Pipedrive and other CRMs and drop the
+            account - or export CSV from Pipedrive and other CRMs and drop the
             file into the bulk email verifier.
           </p>
         </div>
@@ -330,7 +329,7 @@ export default function BulkProductPage() {
       <PricingSection
         variant="homepage"
         heading="Pay-as-you-go and volume pricing"
-        lead={`Buy credits once for this bulk email verifier — from $${RATE_PER_THOUSAND.toFixed(2)} per 1,000. Larger packs lower the per-email rate. Credits never expire. Unlimited monthly plan listed as upcoming.`}
+        lead={`Buy credits once for this bulk email verifier - from $${RATE_PER_THOUSAND.toFixed(2)} per 1,000. Larger packs lower the per-email rate. Credits never expire. Unlimited monthly plan listed as upcoming.`}
       />
 
       <WhyUsTable

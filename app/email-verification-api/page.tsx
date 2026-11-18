@@ -9,7 +9,7 @@ import { API_PAGE_FAQS } from "@/lib/api-page-faq";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Email Verification API — Real-Time Email Verifier",
+  title: "Email Verification API - Real-Time Email Verifier",
   description:
     "Email verification API powered by the same email verifier credits as bulk. Block disposable, catch-all, and invalid addresses at signup. $1.80/1K, credits never expire.",
   path: "/email-verification-api",

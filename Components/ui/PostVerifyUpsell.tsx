@@ -33,8 +33,8 @@ export function PostVerifyUpsell({
       </p>
       <p className="mt-1 text-sm text-ink-muted">
         {atLimit
-          ? "Sign up for 100 free credits — your next screen is upload a CSV."
-          : "Sign up and land on Projects — upload CSV, get Valid / Risky / Invalid. No card."}
+          ? "Sign up for 100 free credits - your next screen is upload a CSV."
+          : "Sign up and land on Projects - upload CSV, get Valid / Risky / Invalid. No card."}
       </p>
       <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2">
         <Link
@@ -46,7 +46,7 @@ export function PostVerifyUpsell({
         >
           {atLimit
             ? "Get 100 free credits"
-            : "Clean a full list — 100 free"}
+            : "Clean a full list - 100 free"}
         </Link>
         <Link
           href={atLimit ? "/pricing" : "/bulk-email-verifier"}

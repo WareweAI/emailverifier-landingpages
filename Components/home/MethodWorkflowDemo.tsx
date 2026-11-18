@@ -170,7 +170,7 @@ function build(tl: DemoTimeline, root: HTMLDivElement) {
       dot.dataset.tone = "";
     }, [], 0);
 
-  // 1 — Import / upload
+  // 1 - Import / upload
   tl.addLabel("import", 0.2);
   press(tl, uploadBtn, "import");
   ripple(tl, uploadRipple, "<");
@@ -184,7 +184,7 @@ function build(tl: DemoTimeline, root: HTMLDivElement) {
     .to(progressBar, { scaleX: 1, duration: 0.7, ease: "power1.inOut" })
     .to({}, { duration: T.holdImport });
 
-  // 2 — Multi-layer verification
+  // 2 - Multi-layer verification
   tl.addLabel("verify")
     .call(() => setActiveStep(root, 1))
     .to(importScene, { autoAlpha: 0, y: -10, duration: 0.28 }, "verify")
@@ -205,7 +205,7 @@ function build(tl: DemoTimeline, root: HTMLDivElement) {
   });
   tl.to({}, { duration: T.holdVerify });
 
-  // 3 — Catch-all
+  // 3 - Catch-all
   tl.addLabel("catchall")
     .call(() => setActiveStep(root, 2))
     .to(verifyScene, { autoAlpha: 0, y: -10, duration: 0.28 }, "catchall")
@@ -226,7 +226,7 @@ function build(tl: DemoTimeline, root: HTMLDivElement) {
     },
   }).to({}, { duration: T.holdCatchall });
 
-  // 4 — Segment
+  // 4 - Segment
   tl.addLabel("segment")
     .call(() => setActiveStep(root, 3))
     .to(catchallScene, { autoAlpha: 0, y: -10, duration: 0.28 }, "segment")
@@ -244,7 +244,7 @@ function build(tl: DemoTimeline, root: HTMLDivElement) {
     stagger: 0.12,
   }).to({}, { duration: T.holdSegment });
 
-  // 5 — Export
+  // 5 - Export
   tl.addLabel("export")
     .call(() => setActiveStep(root, 4))
     .to(segmentScene, { autoAlpha: 0, y: -10, duration: 0.28 }, "export")

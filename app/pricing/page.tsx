@@ -13,9 +13,9 @@ import { PRICING_PAGE_FAQS } from "@/lib/pricing-page-faq";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Email Verifier Pricing — $1.80 per 1,000 Credits",
+  title: "Email Verifier Pricing - $1.80 per 1,000 Credits",
   description:
-    "Email verifier pricing for bulk lists and the email verification API. $1.80 per 1,000 credits that never expire — buy only the volume you need.",
+    "Email verifier pricing for bulk lists and the email verification API. $1.80 per 1,000 credits that never expire - buy only the volume you need.",
   path: "/pricing",
   imageAlt: "Email verifier pricing calculator for bulk and API credits",
 });
@@ -59,7 +59,7 @@ export default async function PricingPage({ searchParams }: PricingPageProps) {
           initialCredits={initialCredits}
           headingAs="h1"
           heading="Transparent Pay-As-You-Go email verifier credits"
-          lead="Start with 100 free credits for our email verifier. Buy more only when you need them — same credits for bulk and the email verification API, never expire."
+          lead="Start with 100 free credits for our email verifier. Buy more only when you need them - same credits for bulk and the email verification API, never expire."
         />
         <CompetitorComparisonSection />
         <FAQSection />

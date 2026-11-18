@@ -14,7 +14,7 @@ export function BulkFindDemo() {
       <div className="border-b border-line bg-surface-muted px-4 py-3">
         <p className="text-sm font-semibold text-ink">Bulk find task · example</p>
         <p className="text-xs text-ink-muted">
-          Illustrative progress — not a live job
+          Illustrative progress - not a live job
         </p>
       </div>
       <div className="space-y-3 p-4">
