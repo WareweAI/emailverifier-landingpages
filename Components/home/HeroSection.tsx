@@ -23,13 +23,13 @@ export default function HeroSection() {
             </div>
 
             <div className="order-1 flex w-full min-w-0 flex-col items-center text-center lg:items-start lg:text-left">
-              {/* 1-off: 3.25rem keeps this line on one row in the hero column */}
               <h1
                 id="hero-heading"
                 data-hero-el
-                className="mt-0 w-full font-display text-4xl font-semibold leading-tight tracking-tight text-primary sm:text-5xl lg:text-[3.25rem]"
+                className="mt-0 w-full"
               >
-                <span className="relative inline-block">
+                {/* 1-off: 3.25rem keeps this line on one row in the hero column */}
+                <span className="relative inline-block font-display text-4xl font-semibold leading-tight tracking-tight text-primary sm:text-5xl lg:text-[3.25rem]">
                   {/* 1-off: circle mark sized to this phrase only (not the line below) */}
                   <svg
                     width="503"
@@ -52,19 +52,19 @@ export default function HeroSection() {
                   </svg>
                   <span className="relative z-10">#1 Email Verification Tool</span>
                 </span>
+                <span className="mt-10 block w-full font-display text-xl font-normal leading-tight tracking-tight text-ink sm:mt-12 sm:text-2xl lg:mt-14 lg:text-3xl">
+                  For Cleaner Lists and{" "}
+                  <span className="text-primary">Targeted Leads</span>
+                </span>
               </h1>
-              <h2 className="mt-10 w-full font-display text-xl font-normal leading-tight tracking-tight text-ink sm:mt-12 sm:text-2xl lg:mt-14 lg:text-3xl">
-                For Cleaner Lists and{" "}
-                <span className="text-primary">Targeted Leads</span>
-              </h2>
 
-              <p
+              <h2
                 data-hero-el
-                className="mt-4 max-w-lg text-base leading-relaxed text-ink-muted sm:text-lg"
+                className="mt-4 max-w-lg text-base font-normal leading-relaxed tracking-normal text-ink-muted sm:text-lg"
               >
                 Clean your email lists, find verified work emails, and build
                 targeted B2B lead lists.
-              </p>
+              </h2>
 
               <div
                 data-hero-el
