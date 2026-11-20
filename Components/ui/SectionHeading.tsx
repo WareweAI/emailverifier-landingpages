@@ -12,23 +12,30 @@ type SectionEyebrowProps = {
   children: ReactNode;
   className?: string;
   align?: "left" | "center";
+  tone?: "default" | "onDark";
 };
 
 export function SectionEyebrow({
   children,
   className,
   align = "left",
+  tone = "default",
 }: SectionEyebrowProps) {
+  const onDark = tone === "onDark";
   return (
     <p
       className={cn(
-        "inline-flex items-center gap-2.5 text-sm font-medium text-ink-muted",
+        "inline-flex items-center gap-2.5 text-sm font-medium",
+        onDark ? "text-primary-foreground/70" : "text-ink-muted",
         align === "center" && "justify-center",
         className
       )}
     >
       <span
-        className="h-1 w-5 shrink-0 rounded-full bg-ink-muted"
+        className={cn(
+          "h-1 w-5 shrink-0 rounded-full",
+          onDark ? "bg-primary-foreground/70" : "bg-ink-muted",
+        )}
         aria-hidden
       />
       {children}

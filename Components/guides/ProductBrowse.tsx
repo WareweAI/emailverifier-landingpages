@@ -8,6 +8,7 @@ import {
   UserSearch,
   type LucideIcon,
 } from "lucide-react";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import {
   GUIDE_PRODUCTS,
   buildGuidesHref,
@@ -31,9 +32,10 @@ type ProductBrowseProps = {
 export function ProductBrowse({ activeProduct }: ProductBrowseProps) {
   return (
     <section aria-labelledby="browse-by-product-heading">
+      <SectionEyebrow>Products</SectionEyebrow>
       <h2
         id="browse-by-product-heading"
-        className="font-display text-xl font-semibold tracking-tight text-ink sm:text-2xl"
+        className="mt-3 font-display text-xl font-semibold tracking-tight text-ink sm:text-2xl"
       >
         Browse email verifier guides by product
       </h2>

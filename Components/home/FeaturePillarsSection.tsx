@@ -125,7 +125,7 @@ export default function FeaturePillarsSection() {
     >
       <div className="mx-auto max-w-6xl text-center">
         <SectionEyebrow align="center">Features</SectionEyebrow>
-        <SectionHeading id="feature-pillars-heading">
+        <SectionHeading id="feature-pillars-heading" withEyebrow>
           EmailVerifier.io Standout Features to Ensure 99.7% Deliverability
         </SectionHeading>
         <SectionLead className="mx-auto max-w-3xl">

@@ -29,6 +29,7 @@ type ProductCard = {
 
 type ProductCategory = {
   id: string;
+  eyebrow: string;
   label: string;
   description: string;
   products: readonly ProductCard[];
@@ -37,6 +38,7 @@ type ProductCategory = {
 const CATEGORIES: readonly ProductCategory[] = [
   {
     id: "email-verification",
+    eyebrow: "Verification",
     label: "Email verifier tools",
     description:
       "Single checks, bulk cleaning, and a real-time email verification API - same credits that never expire.",
@@ -66,6 +68,7 @@ const CATEGORIES: readonly ProductCategory[] = [
   },
   {
     id: "lead-generation",
+    eyebrow: "Lead generation",
     label: "Lead generation tools",
     description:
       "Find and enrich B2B contacts, then email verify before outreach on one credit balance.",
@@ -132,6 +135,7 @@ export default function ProductsHubPage() {
           className="bg-background py-12 md:py-16 lg:py-20"
           ariaLabelledBy={`${category.id}-heading`}
         >
+          <SectionEyebrow>{category.eyebrow}</SectionEyebrow>
           <SectionHeading id={`${category.id}-heading`} withEyebrow>
             {category.label}
           </SectionHeading>

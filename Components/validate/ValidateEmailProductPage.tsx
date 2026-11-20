@@ -14,6 +14,7 @@ import NextPaths from "@/Components/FreeValidationPage/NextPaths";
 import { DesktopMockup } from "@/Components/ui/DesktopMockup";
 import { HeroWash } from "@/Components/ui/HeroWash";
 import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { StatusChip } from "@/Components/ui/StatusChip";
 import { Reveal } from "@/Components/landing/Reveal";
@@ -185,9 +186,10 @@ export default function ValidateEmailProductPage() {
         ariaLabelledBy="validate-accuracy-heading"
       >
         <div className="mx-auto max-w-3xl text-center">
+          <SectionEyebrow align="center">Accuracy</SectionEyebrow>
           <h2
             id="validate-accuracy-heading"
-            className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+            className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
           >
             What Makes{" "}
             <span className="text-primary">emailverifier.io</span> the Most
@@ -258,9 +260,10 @@ export default function ValidateEmailProductPage() {
       >
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
+            <SectionEyebrow>Results</SectionEyebrow>
             <h2
               id="validate-result-heading"
-              className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+              className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
             >
               Verification status results you can act on
             </h2>

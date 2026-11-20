@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/Components/ui/Button";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { REGISTER_URL } from "@/lib/api-snippet";
 import { RATE_PER_THOUSAND } from "@/lib/pricing";
@@ -22,9 +23,10 @@ export function CreditPricingTeaser({
   return (
     <SectionShell ariaLabelledBy={headingId}>
       <div className="mx-auto max-w-3xl rounded-3xl border border-line bg-primary-soft px-6 py-10 text-center sm:px-10 md:py-12">
+        <SectionEyebrow align="center">Pricing</SectionEyebrow>
         <h2
           id={headingId}
-          className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+          className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
         >
           {title}
         </h2>

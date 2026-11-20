@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Blocks, Newspaper } from "lucide-react";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 
 const RESOURCES = [
   {
@@ -21,9 +22,10 @@ const RESOURCES = [
 export function RelatedResources() {
   return (
     <section aria-labelledby="related-resources-heading">
+      <SectionEyebrow>Resources</SectionEyebrow>
       <h2
         id="related-resources-heading"
-        className="font-display text-xl font-semibold tracking-tight text-ink sm:text-2xl"
+        className="mt-3 font-display text-xl font-semibold tracking-tight text-ink sm:text-2xl"
       >
         Related resources
       </h2>

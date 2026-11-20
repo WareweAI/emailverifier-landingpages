@@ -1,0 +1,56 @@
+---
+description: Require SectionEyebrow labels (dash + short text) above section headings
+alwaysApply: true
+---
+
+# Section Heading Labels (Eyebrows)
+
+Every marketing **section** H2 must have a `SectionEyebrow` immediately above it: short dash + label (e.g. "Features"), matching `Components/ui/SectionHeading.tsx`.
+
+## Required pattern
+
+```tsx
+import {
+  SectionEyebrow,
+  SectionHeading,
+  SectionLead,
+} from "@/Components/ui/SectionHeading";
+
+// Centered sections
+<SectionEyebrow align="center">Features</SectionEyebrow>
+<SectionHeading id="feature-pillars-heading" withEyebrow>
+  …
+</SectionHeading>
+
+// Left-aligned hubs (products / resources)
+<SectionEyebrow>Verification</SectionEyebrow>
+<SectionHeading id="…" withEyebrow>…</SectionHeading>
+
+// Dark bands
+<SectionEyebrow align="center" tone="onDark">How it works</SectionEyebrow>
+```
+
+- Always set `withEyebrow` on `SectionHeading`, or `mt-3` on a raw `<h2>`.
+- Labels are short (1-3 words): Features, Pricing, FAQ, How it works, Testimonials, Integrations, Results, Use cases.
+- Prefer `SectionEyebrow` over custom pills, uppercase overlines, or SVG badges.
+- Do not invent a second eyebrow component.
+
+## Do not add eyebrows to
+
+- Hero / page H1 areas
+- CTA sections (`CTA`, `LandingFinalCta`, `BlogCta`, `ToolCta`)
+- Header and Footer
+- Dialog titles, card titles, API endpoint H2s, legal/guide body H2s, stats strips without a section H2
+
+## Anti-patterns
+
+```tsx
+// BAD: heading spacing for eyebrow with no eyebrow rendered
+<SectionHeading withEyebrow>…</SectionHeading>
+
+// BAD: custom label instead of SectionEyebrow
+<p className="text-xs uppercase tracking-wide text-primary">Features</p>
+<h2>…</h2>
+
+// BAD: eyebrow on CTA / hero
+```

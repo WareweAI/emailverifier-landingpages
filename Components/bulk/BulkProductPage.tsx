@@ -5,6 +5,7 @@ import { Button } from "@/Components/ui/Button";
 import { DesktopMockup } from "@/Components/ui/DesktopMockup";
 import { HeroWash } from "@/Components/ui/HeroWash";
 import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { StatusChip } from "@/Components/ui/StatusChip";
 import { TrustStatsRow } from "@/Components/home/HomeStatsStrip";
@@ -198,9 +199,10 @@ export default function BulkProductPage() {
       >
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
+            <SectionEyebrow>Results</SectionEyebrow>
             <h2
               id="bulk-outputs-heading"
-              className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+              className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
             >
               Bulk cleaning outputs you can act on
             </h2>
@@ -284,9 +286,10 @@ export default function BulkProductPage() {
         ariaLabelledBy="bulk-integrations-heading"
       >
         <div className="mx-auto max-w-3xl text-center">
+          <SectionEyebrow align="center">Integrations</SectionEyebrow>
           <h2
             id="bulk-integrations-heading"
-            className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+            className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
           >
             Sync lists from the tools you already use
           </h2>

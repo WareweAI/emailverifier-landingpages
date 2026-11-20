@@ -149,9 +149,10 @@ export default function IntegrationsPage() {
         ariaLabelledBy="integration-paths-heading"
       >
         <div className="mx-auto max-w-3xl text-center">
+          <SectionEyebrow align="center">Paths</SectionEyebrow>
           <h2
             id="integration-paths-heading"
-            className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+            className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
           >
             Three ways to{" "}
             <span className="text-primary">email verify</span> from your stack

@@ -1,4 +1,5 @@
 import { StatusChip } from "@/Components/ui/StatusChip";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 
 const STATUSES = [
@@ -41,9 +42,10 @@ export default function StatusGlossary() {
       ariaLabelledBy="status-glossary-heading"
     >
       <div className="mx-auto max-w-2xl text-center">
+        <SectionEyebrow align="center">Statuses</SectionEyebrow>
         <h2
           id="status-glossary-heading"
-          className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+          className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
         >
           Understanding the result
         </h2>

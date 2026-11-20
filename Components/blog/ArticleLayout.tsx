@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import type { BlogPost } from "@/lib/wordpress/types";
 import type { TocItem } from "@/lib/wordpress/types";
 import { ArticleToc } from "./ArticleToc";
@@ -134,7 +135,8 @@ export function ArticleLayout({
 
       {related.length > 0 ? (
         <section className="mt-16 border-t border-line pt-12">
-          <h2 className="font-display text-2xl font-semibold text-ink">
+          <SectionEyebrow>Related</SectionEyebrow>
+          <h2 className="mt-3 font-display text-2xl font-semibold text-ink">
             Keep reading
           </h2>
           <div className="mt-8 grid gap-6 md:grid-cols-3">

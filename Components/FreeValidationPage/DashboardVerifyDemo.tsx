@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import LogoMark from "@/Components/ui/LogoMark";
 import { StatusChip } from "@/Components/ui/StatusChip";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { Button } from "@/Components/ui/Button";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
@@ -827,9 +828,10 @@ export default function DashboardVerifyDemo({
       ariaLabelledBy="dashboard-demo-heading"
     >
       <div className="mx-auto max-w-2xl text-center">
+        <SectionEyebrow align="center">Demo</SectionEyebrow>
         <h2
           id="dashboard-demo-heading"
-          className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+          className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
         >
           See the email verifier in action
         </h2>

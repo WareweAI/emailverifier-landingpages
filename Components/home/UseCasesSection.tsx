@@ -16,6 +16,7 @@ import {
   SaasMockup,
   UseCaseMockFrame,
 } from "@/Components/home/use-cases/UseCaseMockups";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { REGISTER_URL } from "@/lib/api-snippet";
 import { cn } from "@/lib/utils";
@@ -143,12 +144,10 @@ export default function UseCasesSection() {
       ariaLabelledBy="use-cases-heading"
     >
       <div className="mx-auto max-w-2xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-wide text-primary">
-          Built for the teams who send
-        </p>
+        <SectionEyebrow align="center">Use cases</SectionEyebrow>
         <h2
           id="use-cases-heading"
-          className="mt-2 font-display text-2xl font-semibold tracking-tight text-ink lg:text-4xl"
+          className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-4xl"
         >
           Cleaner lists for every team that can’t afford a bounce
         </h2>

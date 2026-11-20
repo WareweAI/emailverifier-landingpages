@@ -17,7 +17,7 @@ export default function Testimonials() {
     >
       <div className="mx-auto max-w-6xl text-center">
         <SectionEyebrow align="center">Testimonials</SectionEyebrow>
-        <SectionHeading id="testimonials-heading">
+        <SectionHeading id="testimonials-heading" withEyebrow>
         Loved by Sales Teams, Marketers, Founders, Recruiters, and Professionals
         </SectionHeading>
         <SectionLead className="mx-auto max-w-3xl">

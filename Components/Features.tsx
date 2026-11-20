@@ -1,6 +1,7 @@
 
 import { Shield, Zap, Globe, BarChart3, Lock, Cpu, Database, Filter } from 'lucide-react';
 import Image from 'next/image';
+import { SectionEyebrow } from '@/Components/ui/SectionHeading';
 
 const features = [
     {
@@ -75,7 +76,8 @@ export default function Features() {
             <div className="site-container">
 
                 <div className="text-center mb-16">
-                    <h2 id="features-heading" className="text-3xl font-bold text-gray-900 mb-4">
+                    <SectionEyebrow align="center">Features</SectionEyebrow>
+                    <h2 id="features-heading" className="mt-3 text-3xl font-bold text-gray-900 mb-4">
                         Powerful Features That Guarantee 99.9% Deliverability
                     </h2>
                     <p className='lg:text-xl max-w-xl mx-auto'>

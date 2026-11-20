@@ -46,7 +46,7 @@ export default function LogoCloud() {
       <div className="site-container">
         <div className="mx-auto max-w-6xl text-center">
           <SectionEyebrow align="center">Integrations</SectionEyebrow>
-          <SectionHeading id="logo-cloud-heading">
+          <SectionHeading id="logo-cloud-heading" withEyebrow>
             Integrate with trusted platforms
           </SectionHeading>
           <SectionLead className="mx-auto max-w-3xl">

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ListCleanVisual } from "@/Components/ui/ListCleanVisual";
 import { Button } from "@/Components/ui/Button";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { REGISTER_URL } from "@/lib/api-snippet";
 
@@ -11,9 +12,10 @@ export default function ListCleanSection() {
       ariaLabelledBy="list-clean-heading"
     >
       <div className="mx-auto max-w-2xl text-center">
+        <SectionEyebrow align="center">Bulk</SectionEyebrow>
         <h2
           id="list-clean-heading"
-          className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+          className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
         >
           Bulk email verifier: dirty list to clean results
         </h2>

@@ -7,6 +7,7 @@ import {
   VerifyStoryboard,
 } from "@/Components/home/how-it-works/HowItWorksStoryboards";
 import { Download, Mail, ShieldCheck } from "lucide-react";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
 
 const STEPS = [
@@ -40,12 +41,12 @@ export default function HowItWorksCompact() {
   return (
     <div>
       <div className="mx-auto max-w-2xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-wide text-primary-foreground/70">
+        <SectionEyebrow align="center" tone="onDark">
           How it works
-        </p>
+        </SectionEyebrow>
         <h2
           id="how-it-works-heading"
-          className="mt-2 font-display text-2xl font-semibold tracking-tight text-primary-foreground lg:text-3xl"
+          className="mt-3 font-display text-2xl font-semibold tracking-tight text-primary-foreground lg:text-3xl"
         >
           How Emailverifier.io Works
         </h2>

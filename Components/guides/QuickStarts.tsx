@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { getQuickStartGuides } from "@/lib/guides";
 
 export function QuickStarts() {
@@ -9,9 +10,10 @@ export function QuickStarts() {
       aria-labelledby="quick-starts-heading"
       className="rounded-2xl border border-line bg-surface p-6 shadow-[var(--shadow-card)] md:p-8"
     >
+      <SectionEyebrow>Quick starts</SectionEyebrow>
       <h2
         id="quick-starts-heading"
-        className="font-display text-xl font-semibold tracking-tight text-ink sm:text-2xl"
+        className="mt-3 font-display text-xl font-semibold tracking-tight text-ink sm:text-2xl"
       >
         Popular quick-starts
       </h2>

@@ -1,3 +1,4 @@
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 
 const STEPS = [
@@ -26,9 +27,10 @@ export default function WhatWeCheck() {
       ariaLabelledBy="what-we-check-heading"
     >
       <div className="mx-auto max-w-2xl text-center">
+        <SectionEyebrow align="center">Checks</SectionEyebrow>
         <h2
           id="what-we-check-heading"
-          className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+          className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
         >
           What this email verifier checks
         </h2>

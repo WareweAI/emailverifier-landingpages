@@ -1,4 +1,5 @@
 import { AlertCircle, Check, X } from "lucide-react";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { Reveal } from "@/Components/landing/Reveal";
 
@@ -12,6 +13,7 @@ export type WhyUsRow = {
 
 type WhyUsTableProps = {
   headingId?: string;
+  eyebrow?: string;
   title: string;
   intro?: string;
   oursLabel?: string;
@@ -45,6 +47,7 @@ function StatusIcon({ state }: { state: CellState }) {
 
 export function WhyUsTable({
   headingId = "why-us-heading",
+  eyebrow = "Why us",
   title,
   intro,
   oursLabel = "EmailVerifier.io",
@@ -55,9 +58,10 @@ export function WhyUsTable({
   return (
     <SectionShell className={className} ariaLabelledBy={headingId}>
       <div className="mx-auto max-w-2xl text-center">
+        <SectionEyebrow align="center">{eyebrow}</SectionEyebrow>
         <h2
           id={headingId}
-          className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+          className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
         >
           {title}
         </h2>

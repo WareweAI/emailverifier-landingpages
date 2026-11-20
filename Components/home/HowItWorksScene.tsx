@@ -7,6 +7,7 @@ import {
   VerifyStoryboard,
 } from "@/Components/home/how-it-works/HowItWorksStoryboards";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
 import { Download, Mail, ShieldCheck, type LucideProps } from "lucide-react";
 
@@ -210,42 +211,10 @@ export default function HowItWorksScene() {
         className="grid w-full min-w-0 gap-10 lg:grid-cols-12 lg:items-start lg:gap-x-16"
       >
         <div className="lg:col-span-5 lg:self-start">
-          <p className="relative inline-flex min-h-8 items-center py-0.5 pl-0.5 pr-9 text-xs font-semibold text-primary">
-            <svg
-              className="pointer-events-none absolute inset-0 h-full w-full"
-              viewBox="0 0 136 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden
-              preserveAspectRatio="none"
-            >
-              <path
-                d="M5 16C5 10 9.5 5.5 15.5 5.5H92C99.5 5.5 105 9 107.5 14.5C110 20 105.5 26 98 26H15.5C9.5 26 5 21.5 5 16Z"
-                fill="var(--color-primary-soft)"
-                stroke="var(--color-primary)"
-                strokeWidth="1.5"
-                strokeLinejoin="round"
-                opacity="0.95"
-              />
-              <path
-                d="M107 15C111 15.5 116 17.5 119 20.5C121.5 18 125 16 129 15.5"
-                stroke="var(--color-primary)"
-                strokeWidth="1.75"
-                strokeLinecap="round"
-              />
-              <path
-                d="M124 13.5L131 15.5L124 17.8"
-                stroke="var(--color-primary)"
-                strokeWidth="1.75"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="relative z-10 px-3.5">How It Works</span>
-          </p>
+          <SectionEyebrow>How it works</SectionEyebrow>
           <h2
             id="how-it-works-heading"
-            className="mt-4 font-display text-2xl font-semibold tracking-tight text-ink lg:text-4xl"
+            className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-4xl"
           >
             From list to clean results
           </h2>

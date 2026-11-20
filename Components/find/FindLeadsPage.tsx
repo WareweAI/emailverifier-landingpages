@@ -19,6 +19,7 @@ import { Button } from "@/Components/ui/Button";
 import { DesktopMockup } from "@/Components/ui/DesktopMockup";
 import { HeroWash } from "@/Components/ui/HeroWash";
 import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { StatusChip } from "@/Components/ui/StatusChip";
 import { FIND_LEADS_FAQS } from "@/lib/find-leads-faq";
@@ -179,9 +180,10 @@ export default function FindLeadsPage() {
         ariaLabelledBy="find-leads-caps-heading"
       >
         <div className="mx-auto max-w-3xl text-center">
+          <SectionEyebrow align="center">Features</SectionEyebrow>
           <h2
             id="find-leads-caps-heading"
-            className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+            className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
           >
             Built for prospecting next to the{" "}
             <span className="text-primary">email verifier</span>
@@ -250,9 +252,10 @@ export default function FindLeadsPage() {
       >
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
+            <SectionEyebrow>Results</SectionEyebrow>
             <h2
               id="find-leads-result-heading"
-              className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+              className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
             >
               Lead results you can act on
             </h2>

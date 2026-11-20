@@ -1,4 +1,5 @@
 import { Reveal } from "@/Components/landing/Reveal";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { cn } from "@/lib/utils";
 
@@ -32,9 +33,10 @@ export function HowSteps({
       ariaLabelledBy={headingId}
     >
       <div className="mx-auto max-w-2xl text-center">
+        <SectionEyebrow align="center">How it works</SectionEyebrow>
         <h2
           id={headingId}
-          className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+          className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
         >
           {title}
         </h2>

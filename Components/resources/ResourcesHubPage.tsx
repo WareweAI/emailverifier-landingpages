@@ -11,6 +11,7 @@ import { Reveal } from "@/Components/landing/Reveal";
 import { HeroWash } from "@/Components/ui/HeroWash";
 import { PageBreadcrumb } from "@/Components/ui/PageBreadcrumb";
 import {
+  SectionEyebrow,
   SectionHeading,
   SectionLead,
 } from "@/Components/ui/SectionHeading";
@@ -99,6 +100,7 @@ export default function ResourcesHubPage() {
           className="bg-background py-12 md:py-16 lg:py-20"
           ariaLabelledBy={`${category.id}-heading`}
         >
+          <SectionEyebrow>Resources</SectionEyebrow>
           <SectionHeading id={`${category.id}-heading`} withEyebrow>
             {category.label}
           </SectionHeading>

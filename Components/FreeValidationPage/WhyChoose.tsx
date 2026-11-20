@@ -1,4 +1,5 @@
 import { AlertCircle, Check, X } from "lucide-react";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { cn } from "@/lib/utils";
 
@@ -66,9 +67,10 @@ export default function WhyChoose() {
       ariaLabelledBy="why-choose-heading"
     >
       <div className="mx-auto max-w-2xl text-center">
+        <SectionEyebrow align="center">Why us</SectionEyebrow>
         <h2
           id="why-choose-heading"
-          className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+          className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
         >
           Why Choose Emailverifier.io?
         </h2>

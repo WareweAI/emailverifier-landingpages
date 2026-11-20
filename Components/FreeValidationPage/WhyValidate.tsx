@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { StatusChip } from "@/Components/ui/StatusChip";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { cn } from "@/lib/utils";
 
@@ -162,9 +163,10 @@ export default function WhyValidate() {
     <SectionShell className="bg-surface" ariaLabelledBy="why-validate-heading">
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-start lg:gap-16">
         <div>
+          <SectionEyebrow>Why validate</SectionEyebrow>
           <h2
             id="why-validate-heading"
-            className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+            className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
           >
             Why validate an email address?
           </h2>

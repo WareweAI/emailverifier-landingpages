@@ -5,6 +5,7 @@ import SeasonalPricingCard from "./SeasonalPricingCard";
 import UnlimitedPricingCard from "./UnlimitedPricingCard";
 import HomepagePricingCard from "./HomepagePricingCard";
 import { DEFAULT_VOLUME, nearestCreditPack } from "@/lib/pricing";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 
 export type PricingSectionProps = {
@@ -73,9 +74,10 @@ export default function PricingSection({
     >
       <div className="site-container flex w-full min-w-0 flex-col items-center">
         <div className="mb-10 max-w-3xl text-center">
+          <SectionEyebrow align="center">Pricing</SectionEyebrow>
           <h2
             id="pricing-heading"
-            className="mb-2 text-2xl font-semibold text-ink sm:text-3xl"
+            className="mt-3 mb-2 text-2xl font-semibold text-ink sm:text-3xl"
           >
             Simple, Honest Pricing
           </h2>

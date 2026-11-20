@@ -2,6 +2,7 @@ import Link from "next/link";
 import ApiSnippet from "@/Components/ui/ApiSnippet";
 import { JobFlowStrip } from "@/Components/ui/JobFlowStrip";
 import { Button } from "@/Components/ui/Button";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 import { REGISTER_URL } from "@/lib/api-snippet";
 
@@ -20,9 +21,10 @@ export default function ApiSection({
     <SectionShell ariaLabelledBy={sectionTitle ? "api-use-case-heading" : undefined}>
       {sectionTitle ? (
         <div className="mx-auto mb-10 max-w-2xl text-center md:mb-12">
+          <SectionEyebrow align="center">API</SectionEyebrow>
           <h2
             id="api-use-case-heading"
-            className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+            className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
           >
             {sectionTitle}
           </h2>

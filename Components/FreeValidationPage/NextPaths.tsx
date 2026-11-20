@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ApiSnippet from "@/Components/ui/ApiSnippet";
 import { BulkPreview } from "@/Components/ui/BulkPreview";
+import { SectionEyebrow } from "@/Components/ui/SectionHeading";
 import { SectionShell } from "@/Components/ui/SectionShell";
 
 const PATHS = [
@@ -29,9 +30,10 @@ export default function NextPaths() {
       ariaLabelledBy="next-paths-heading"
     >
       <div className="mx-auto max-w-2xl text-center">
+        <SectionEyebrow align="center">Use cases</SectionEyebrow>
         <h2
           id="next-paths-heading"
-          className="font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
+          className="mt-3 font-display text-2xl font-semibold tracking-tight text-ink lg:text-3xl"
         >
           Email Validation for Every Use Case
         </h2>
